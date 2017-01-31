@@ -18,10 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ICamera.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ICamera.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EF054C93-201B-4807-9285-CABC9C68978A}</ProjectGuid>
+    <ProjectGuid>{227E5411-92CB-4E30-A67B-043D8B04A9BC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Math</RootNamespace>
+    <RootNamespace>Graphics</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -130,21 +136,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Matrix3d.h" />
-    <ClInclude Include="Matrix4d.h" />
-    <ClInclude Include="Quaternion.h" />
-    <ClInclude Include="Tolerance.h" />
-    <ClInclude Include="Vector3d.h" />
-    <ClInclude Include="Vector4d.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Matrix3d.cpp" />
-    <ClCompile Include="Matrix4d.cpp" />
-    <ClCompile Include="Quaternion.cpp" />
-    <ClCompile Include="Vector3d.cpp" />
-    <ClCompile Include="Vector4d.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
