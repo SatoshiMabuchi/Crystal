@@ -1,6 +1,8 @@
 #ifndef __CRYSTAL_GRAPHICS_CAMERA_H__
 #define __CRYSTAL_GRAPHICS_CAMERA_H__
 
+#include "../Math/Matrix3d.h"
+#include "../Math/Matrix4d.h"
 #include "../Math/Vector3d.h"
 
 namespace Crystal {
@@ -22,15 +24,9 @@ public:
 
 	void moveLookatTo(const Math::Vector3d<T>& p) { this->lookat = p; }
 
-	void move(const Math::Vector3d<T>& move) {
-		this->pos += move;
-		//this->lookat += move;
-	}
+	void move(const Math::Vector3d<T>& v);
 
-	void translate(const Math::Vector3d<T>& v) {
-		this->pos += v;
-		this->lookat += v;
-	}
+	void translate(const Math::Vector3d<T>& v);
 
 	void moveTo(const Math::Vector3d<T>& p) { this->pos = p; }
 
@@ -43,7 +39,6 @@ public:
 	void setFar(const T f) { this->far_ = f; }
 
 	void setNear(const T n) { this->near_ = n; }
-
 
 	T getFar() const { return far_; }
 
@@ -65,8 +60,6 @@ public:
 
 	Math::Vector3d<T> getPosition(const Math::Vector3d<T>& position) const;
 
-	//Math::Ray3d<T> getRay(const T x, const T y) const;
-
 protected:
 	Math::Vector3d<T> pos;
 	Math::Vector3d<T> up;
@@ -77,7 +70,6 @@ protected:
 	T right;
 	T bottom;
 	T top;
-
 };
 
 	}

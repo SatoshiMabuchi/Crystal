@@ -130,7 +130,7 @@ public:
 
 	T getX33() const { return x[15]; }
 
-	Matrix4d<T> transposed() const;
+	Matrix4d<T> getTransposed() const;
 
 	T getDeterminent() const;
 

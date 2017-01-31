@@ -2,8 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="ICamera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="OrthogonalCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="OrthogonalCamera.cpp" />
   </ItemGroup>
 </Project>

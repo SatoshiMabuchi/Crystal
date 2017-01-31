@@ -55,7 +55,7 @@ TYPED_TEST(Matrix4dTest, TestTransposed)
 		10, 11, 12, 13,
 		20, 21, 22, 23,
 		30, 31, 32, 33);
-	const auto actual = m.transposed();
+	const auto actual = m.getTransposed();
 	const Matrix4d<T> expected(
 		0, 10, 20, 30,
 		1, 11, 21, 31,

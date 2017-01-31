@@ -19,6 +19,18 @@ ICamera<T>::ICamera() :
 	top = T{ 0.5 };
 }
 
+template<typename T>
+void ICamera<T>::move(const Vector3d<T>& v)
+{
+	this->pos += v;
+}
+
+template<typename T>
+void ICamera<T>::translate(const Vector3d<T>& v)
+{
+	this->pos += v;
+	this->lookat += v;
+}
 
 template<typename T>
 Matrix3d<T> ICamera<T>::getRotationMatrix() const

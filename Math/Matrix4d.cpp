@@ -149,9 +149,8 @@ Vector4d<T> Matrix4d<T>::multiple(const Vector4d<T>& v)
 	return Vector4d<T>(xx, yy, zz, ww);
 }
 
-
 template<typename T>
-Matrix4d<T> Matrix4d<T>::transposed() const
+Matrix4d<T> Matrix4d<T>::getTransposed() const
 {
 	return Matrix4d<T>(
 		getX00(), getX10(), getX20(), getX30(),
