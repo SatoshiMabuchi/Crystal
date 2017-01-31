@@ -45,46 +45,38 @@ Matrix4d<T>::Matrix4d(const Matrix3d<T>& m)
 
 template<typename T>
 Matrix4d<T> Matrix4d<T>::Zero() {
-	return Matrix4d<T>
-		(
-			0, 0, 0, 0,
-			0, 0, 0, 0,
-			0, 0, 0, 0,
-			0, 0, 0, 0
-			);
+	return Matrix4d<T>(
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0 );
 }
 
 template<typename T>
 Matrix4d<T> Matrix4d<T>::Identity() {
-	return Matrix4d<T>
-		(
-			1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			0, 0, 0, 1
-			);
+	return Matrix4d<T>(
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1 );
 }
 
 template<typename T>
 Matrix4d<T> Matrix4d<T>::RotateX(const T angle) {
-	return Matrix4d<T>
-		(
-			1, 0, 0, 0,
-			0, ::cos(angle), ::sin(angle), 0,
-			0, -::sin(angle), ::cos(angle), 0,
-			0, 0, 0, 1
-			);
+	return Matrix4d<T>(
+		1, 0, 0, 0,
+		0, ::cos(angle), ::sin(angle), 0,
+		0, -::sin(angle), ::cos(angle), 0,
+		0, 0, 0, 1);
 }
 
 template<typename T>
 Matrix4d<T> Matrix4d<T>::RotateY(const T angle) {
-	return Matrix4d<T>
-		(
-			::cos(angle), 0.0, -::sin(angle), 0.0,
-			0.0, 1.0, 0.0, 0.0,
-			::sin(angle), 0.0, ::cos(angle), 0.0,
-			0.0, 0.0, 0.0, 1.0
-			);
+	return Matrix4d<T>(
+		::cos(angle), 0.0, -::sin(angle), 0.0,
+		0.0, 1.0, 0.0, 0.0,
+		::sin(angle), 0.0, ::cos(angle), 0.0,
+		0.0, 0.0, 0.0, 1.0 );
 }
 
 template<typename T>
@@ -279,7 +271,6 @@ Matrix4d<T> Matrix4d<T>::operator*(const Matrix4d<T>& rhs)
 	return this->multipled(rhs);
 }
 
-
 template<typename T>
 Matrix4d<T> Matrix4d<T>::operator-()
 {
@@ -291,7 +282,6 @@ Vector4d<T> Matrix4d<T>::operator*(const Vector4d<T>& v)
 {
 	return this->multiple(v);
 }
-
 
 template class Matrix4d<float>;
 template class Matrix4d<double>;

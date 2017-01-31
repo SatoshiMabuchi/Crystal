@@ -27,13 +27,13 @@ public:
 
 	T getDistance(const Vector3d& rhs) const;
 
-	T getDistanceSquared(const Vector3d& rhs) const { return pow(x - rhs.x, 2) + pow(y - rhs.y, 2) + pow(z - rhs.z, 2); }
+	T getDistanceSquared(const Vector3d& rhs) const;
 
 	void scale(const T factor);
 
-	void scale(const T xFactor, const T yFactor, const T zFactor);
+	void scale(const T xfactor, const T yfactor, const T zfactor);
 
-	Vector3d getScaled(const T factor) const { return Vector3d(x * factor, y * factor, z * factor); }
+	Vector3d getScaled(const T factor) const;
 
 	Vector3d getScaled(const T xFactor, const T yFactor, const T zFactor) const { return Vector3d(x*xFactor, y*yFactor, z*zFactor); }
 
@@ -88,11 +88,7 @@ public:
 
 	void setZ(const T z) { this->z = z; }
 
-	void set(const T x, const T y, const T z) {
-		this->x = x;
-		this->y = y;
-		this->z = z;
-	}
+	void set(const T x, const T y, const T z);
 
 	std::vector< T > toArray() const { return std::vector < T > { x, y, z }; }
 

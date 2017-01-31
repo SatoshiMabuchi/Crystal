@@ -1,6 +1,8 @@
 #include "Matrix3d.h"
 
 #include "Vector3d.h"
+
+#include <cassert>
 //#include "Quaternion.h"
 
 using namespace Crystal::Math;
@@ -37,6 +39,42 @@ template<typename T>
 Matrix3d<T>::Matrix3d(const std::array<T, 9>& v) :
 	Matrix3d(v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8])
 {
+}
+
+template<typename T>
+void Matrix3d<T>::setIdentity()
+{
+	*this = Identity();
+}
+
+template<typename T>
+void Matrix3d<T>::setRotateX(const T angle)
+{
+	*this = RotateX(angle);
+}
+
+template<typename T>
+void Matrix3d<T>::setRotateY(const T angle)
+{
+	*this = RotateY(angle);
+}
+
+template<typename T>
+void Matrix3d<T>::setRotateZ(const T angle)
+{
+	*this = RotateZ(angle);
+}
+
+template<typename T>
+Matrix3d<T> Matrix3d<T>::Identity()
+{
+	return Matrix3d(1, 0, 0, 0, 1, 0, 0, 0, 1);
+}
+
+template<typename T>
+Matrix3d<T> Matrix3d<T>::Zero()
+{
+	return Matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
 

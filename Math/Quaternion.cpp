@@ -2,6 +2,7 @@
 
 #include "Matrix3d.h"
 #include "Tolerance.h"
+#include <cassert>
 
 using namespace Crystal::Math;
 

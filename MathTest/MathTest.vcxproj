@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="MathTest.cpp" />
     <ClCompile Include="Matrix3dTest.cpp" />
+    <ClCompile Include="Matrix4dTest.cpp" />
     <ClCompile Include="QuaternionTest.cpp" />
     <ClCompile Include="Vector3dTest.cpp" />
   </ItemGroup>

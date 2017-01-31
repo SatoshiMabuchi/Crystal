@@ -5,87 +5,97 @@
 
 using namespace Crystal::Math;
 
-TEST(QuaternionTest, TestGetConjugate)
+template<class T>
+class QuaternionTest : public testing::Test
 {
-	const Quaternion<float> q(1, 2, 3, 1);
-	const Quaternion<float> expected(-1, -2, -3, 1);
+};
+
+using TestTypes = ::testing::Types<float>;
+
+TYPED_TEST_CASE(QuaternionTest, TestTypes);
+
+TYPED_TEST(QuaternionTest, TestGetConjugate)
+{
+	using T = TypeParam;
+	const Quaternion<T> q(1, 2, 3, 1);
+	const Quaternion<T> expected(-1, -2, -3, 1);
 	EXPECT_EQ(expected, q.getConjugate());
 }
 
-TEST(QuaternionTest, TestGetInverse)
+TYPED_TEST(QuaternionTest, TestGetInverse)
 {
+	using T = TypeParam;
 	{
-		const Quaternion<float> q(0, 0, 0, 1);
+		const Quaternion<T> q(0, 0, 0, 1);
 		const auto actual = q.getInverse();
-		const Quaternion<float> expected(0, 0, 0, 1);
+		const Quaternion<T> expected(0, 0, 0, 1);
 		EXPECT_EQ(expected, actual);
 	}
 
 	{
-		const Quaternion<float> q(1, 2, 3, 1);
+		const Quaternion<T> q(1, 2, 3, 1);
 		const auto actual = q.getInverse();
-		//const Quaternion<float> expected(0, 0, 0, 1);
-		auto m = q.mult(actual);
-		EXPECT_EQ(m, Quaternion<float>());
-		//expected
-		//EXPECT_EQ(expected, actual);
+		const auto m = q.mult(actual);
+		EXPECT_EQ(m, Quaternion<T>());
 	}
 }
 
-TEST(QuaternionTest, TestMult)
+TYPED_TEST(QuaternionTest, TestMult)
 {
+	using T = TypeParam;
 	{
-		const Quaternion<float> q1(0, 0, 0, 1);
-		const Quaternion<float> q2(1, 1, 1, 1);
+		const Quaternion<T> q1(0, 0, 0, 1);
+		const Quaternion<T> q2(1, 1, 1, 1);
 		const auto actual = q1.mult(q2);
-		EXPECT_EQ(Quaternion<float>(1, 1, 1, 1), actual);
+		EXPECT_EQ(Quaternion<T>(1, 1, 1, 1), actual);
 	}
 
 	{
-		Quaternion<float> q1(Vector3d<float>(1, 0, 0), Tolerance<float>::getHalfPI());
-		Quaternion<float> q2(Vector3d<float>(0, 1, 0), Tolerance<float>::getHalfPI());
-		auto q3 = q1 * q2;
+		Quaternion<T> q1(Vector3d<T>(1, 0, 0), Tolerance<T>::getHalfPI());
+		Quaternion<T> q2(Vector3d<T>(0, 1, 0), Tolerance<T>::getHalfPI());
+		const auto q3 = q1 * q2;
 		const auto& expected = q3.toMatrix();
-		const auto& actual = Matrix3d<float>::RotateX(Tolerance<float>::getHalfPI()) * Matrix3d<float>::RotateY(Tolerance<float>::getHalfPI());
+		const auto& actual = Matrix3d<T>::RotateX(Tolerance<T>::getHalfPI()) * Matrix3d<T>::RotateY(Tolerance<T>::getHalfPI());
 		EXPECT_EQ(expected, actual);
 	}
 
 	{
-		Quaternion<float> q1(Vector3d<float>(1, 0, 0), Tolerance<float>::getHalfPI());
-		Quaternion<float> q2(Vector3d<float>(0, 0, 1), Tolerance<float>::getHalfPI());
-		auto q3 = q1 * q2;
+		Quaternion<T> q1(Vector3d<T>(1, 0, 0), Tolerance<T>::getHalfPI());
+		Quaternion<T> q2(Vector3d<T>(0, 0, 1), Tolerance<T>::getHalfPI());
+		const auto q3 = q1 * q2;
 		const auto& expected = q3.toMatrix();
-		const auto& actual = Matrix3d<float>::RotateX(Tolerance<float>::getHalfPI()) * Matrix3d<float>::RotateZ(Tolerance<float>::getHalfPI());
+		const auto& actual = Matrix3d<T>::RotateX(Tolerance<T>::getHalfPI()) * Matrix3d<T>::RotateZ(Tolerance<T>::getHalfPI());
 		EXPECT_EQ(expected, actual);
 	}
 
 	{
-		Quaternion<float> q1(Vector3d<float>(1, 0, 0), Tolerance<float>::getHalfPI());
-		Quaternion<float> q2(Vector3d<float>(0, 1, 0), Tolerance<float>::getHalfPI());
-		Quaternion<float> q3(Vector3d<float>(0, 0, 1), Tolerance<float>::getHalfPI());
-		auto q4 = q1 * q2 * q3;
+		Quaternion<T> q1(Vector3d<T>(1, 0, 0), Tolerance<T>::getHalfPI());
+		Quaternion<T> q2(Vector3d<T>(0, 1, 0), Tolerance<T>::getHalfPI());
+		Quaternion<T> q3(Vector3d<T>(0, 0, 1), Tolerance<T>::getHalfPI());
+		const auto q4 = q1 * q2 * q3;
 		const auto& expected = q4.toMatrix();
-		const auto& actual = Matrix3d<float>::RotateX(Tolerance<float>::getHalfPI()) * Matrix3d<float>::RotateY(Tolerance<float>::getHalfPI()) * Matrix3d<float>::RotateZ(Tolerance<float>::getHalfPI());
+		const auto& actual = Matrix3d<T>::RotateX(Tolerance<T>::getHalfPI()) * Matrix3d<T>::RotateY(Tolerance<float>::getHalfPI()) * Matrix3d<T>::RotateZ(Tolerance<T>::getHalfPI());
 		EXPECT_EQ(expected, actual);
 	}
-
 }
 
-TEST(QuaternionTest, TestToMatrix)
+TYPED_TEST(QuaternionTest, TestToMatrix)
 {
-	const Quaternion<float> q(0, 0, 0, 1);
+	using T = TypeParam;
+	const Quaternion<T> q(0, 0, 0, 1);
 	const auto& actual = q.toMatrix();
-	EXPECT_EQ(Matrix3d<float>::Identity(), actual);
+	EXPECT_EQ(Matrix3d<T>::Identity(), actual);
 }
 
-TEST(QuaternionTest, TestSlerp)
+TYPED_TEST(QuaternionTest, TestSlerp)
 {
-	const Quaternion<float> q1(Vector3d<float>(1, 0, 0), 0);
-	const Quaternion<float> q2(Vector3d<float>(1, 0, 0), Tolerance<float>::getHalfPI());
-	const Quaternion<float> q3(Vector3d<float>(1, 0, 0), Tolerance<float>::getPI());
+	using T = TypeParam;
+	const Quaternion<T> q1(Vector3d<T>(1, 0, 0), 0);
+	const Quaternion<T> q2(Vector3d<T>(1, 0, 0), Tolerance<T>::getHalfPI());
+	const Quaternion<T> q3(Vector3d<T>(1, 0, 0), Tolerance<T>::getPI());
 
-	const Quaternion<float> expected1(Vector3d<float>(1, 0, 0), Tolerance<float>::getHalfPI()*0.5f);
-	const Quaternion<float> expected2(Vector3d<float>(1, 0, 0), Tolerance<float>::getPI()*0.75f);
+	const Quaternion<T> expected1(Vector3d<T>(1, 0, 0), Tolerance<T>::getHalfPI()*0.5f);
+	const Quaternion<T> expected2(Vector3d<T>(1, 0, 0), Tolerance<T>::getPI()*0.75f);
 
 	EXPECT_EQ(expected1, q1.slerp(q2, 0.5));
 	EXPECT_EQ(expected2, q2.slerp(q3, 0.5));

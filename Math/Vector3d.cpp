@@ -45,6 +45,12 @@ T Vector3d<T>::getDistance(const Vector3d& rhs) const
 }
 
 template<typename T>
+T Vector3d<T>::getDistanceSquared(const Vector3d& rhs) const
+{
+	return pow(x - rhs.x, 2) + pow(y - rhs.y, 2) + pow(z - rhs.z, 2);
+}
+
+template<typename T>
 bool Vector3d<T>::equals(const Vector3d<T>&rhs) const
 {
 	const auto tolerance = 1.0e-6f;
@@ -69,6 +75,13 @@ void Vector3d<T>::scale(const T xFactor, const T yFactor, const T zFactor)
 	y *= yFactor;
 	z *= zFactor;
 }
+
+template<typename T>
+Vector3d<T> Vector3d<T>::getScaled(const T factor) const
+{
+	return Vector3d(x * factor, y * factor, z * factor);
+}
+
 
 template<typename T>
 Vector3d<T> Vector3d<T>::normalize()
@@ -156,6 +169,15 @@ T Vector3d<T>::operator[](const int index) const
 	assert(0 <= index  && index <= 3);
 	return toArray()[index];
 }
+
+template<typename T>
+void Vector3d<T>::set(const T x, const T y, const T z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
 
 template class Vector3d<float>;
 template class Vector3d<double>;

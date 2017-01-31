@@ -4,15 +4,12 @@
 #include "Tolerance.h"
 
 #include <vector>
-#include <cassert>
 #include <array>
 
 namespace Crystal {
 	namespace Math {
 		template<typename>
 		class Vector3d;
-		template<typename>
-		class Quaternion;
 
 template<typename T>
 class Matrix3d
@@ -30,19 +27,17 @@ public:
 
 	explicit Matrix3d(const std::array<T, 9>& v);
 
-	~Matrix3d() = default;
+	void setIdentity();
 
-	void setIdentity() { *this = Identity(); }
+	void setRotateX(const T angle);
 
-	void setRotateX(const T angle) { *this = RotateX(angle); }
+	void setRotateY(const T angle);
 
-	void setRotateY(const T angle) { *this = RotateY(angle); }
+	void setRotateZ(const T angle);
 
-	void setRotateZ(const T angle) { *this = RotateZ(angle); }
+	static Matrix3d Identity();
 
-	static Matrix3d Identity() { return Matrix3d(1, 0, 0, 0, 1, 0, 0, 0, 1); }
-
-	static Matrix3d Zero() { return Matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0); }
+	static Matrix3d Zero();
 
 	static Matrix3d RotateX(const T angle) { return Matrix3d(1, 0, 0, 0, ::cos(angle), -::sin(angle), 0, ::sin(angle), ::cos(angle)); }
 
@@ -89,8 +84,6 @@ public:
 	Matrix3d operator*(const Matrix3d& rhs) const { return getProduct(rhs); }
 
 	const Matrix3d operator*=(const Matrix3d& rhs) { return product(rhs); }
-
-	//Matrix3d operator*(const Vector3d<T>& v) const;
 
 	void setX00(const T x) { this->x00 = x; }
 
