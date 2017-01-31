@@ -4,10 +4,14 @@
     <ClInclude Include="ICamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="OrthogonalCamera.h" />
+    <ClInclude Include="ColorRGBA.h" />
+    <ClInclude Include="ColorHSV.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
+    <ClCompile Include="ColorRGBA.cpp" />
+    <ClCompile Include="ColorHSV.cpp" />
   </ItemGroup>
 </Project>
