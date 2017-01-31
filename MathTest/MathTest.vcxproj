@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MathTest.cpp" />
+    <ClCompile Include="Matrix3dTest.cpp" />
     <ClCompile Include="Vector3dTest.cpp" />
   </ItemGroup>
   <ItemGroup>
