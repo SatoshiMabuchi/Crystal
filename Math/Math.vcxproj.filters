@@ -4,9 +4,11 @@
     <ClInclude Include="Vector3d.h" />
     <ClInclude Include="Tolerance.h" />
     <ClInclude Include="Matrix3d.h" />
+    <ClInclude Include="Quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector3d.cpp" />
     <ClCompile Include="Matrix3d.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
   </ItemGroup>
 </Project>

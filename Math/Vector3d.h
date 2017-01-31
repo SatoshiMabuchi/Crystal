@@ -21,11 +21,11 @@ public:
 
 	Vector3d(const Vector3d& start, const Vector3d& end);
 
-	T getLengthSquared() const { return x * x + y * y + z * z; }
+	T getLengthSquared() const;
 
-	T getLength() const { return ::sqrt(getLengthSquared()); }
+	T getLength() const;
 
-	T getDistance(const Vector3d& rhs) const { return ::sqrt(getDistanceSquared(rhs)); }
+	T getDistance(const Vector3d& rhs) const;
 
 	T getDistanceSquared(const Vector3d& rhs) const { return pow(x - rhs.x, 2) + pow(y - rhs.y, 2) + pow(z - rhs.z, 2); }
 
@@ -33,13 +33,13 @@ public:
 
 	void scale(const T xFactor, const T yFactor, const T zFactor);
 
-	Vector3d scaled(const T factor) const { return Vector3d(x * factor, y * factor, z * factor); }
+	Vector3d getScaled(const T factor) const { return Vector3d(x * factor, y * factor, z * factor); }
 
-	Vector3d scaled(const T xFactor, const T yFactor, const T zFactor) const { return Vector3d(x*xFactor, y*yFactor, z*zFactor); }
+	Vector3d getScaled(const T xFactor, const T yFactor, const T zFactor) const { return Vector3d(x*xFactor, y*yFactor, z*zFactor); }
 
 	Vector3d normalize();
 
-	Vector3d normalized() const;
+	Vector3d getNormalized() const;
 
 	bool isNormalized() const { return Tolerance<T>::isEqualLoosely(getLength(), 1.0); }
 
@@ -69,9 +69,9 @@ public:
 
 	Vector3d getOuterProduct(const Vector3d& rhs) const;
 
-	//Vector3d operator*=(const T factor) { return scale(factor); }
+	Vector3d operator*=(const T factor);
 
-	//Vector3d operator/=(const T factor) { return scale(T(1) / factor); }
+	Vector3d operator/=(const T factor);
 
 	T operator[](const int index) const;
 
@@ -105,10 +105,10 @@ private:
 };
 
 template<typename T>
-static Vector3d<T> operator*(T factor, const Vector3d<T>& rhs) { return rhs.scaled(factor); }
+static Vector3d<T> operator*(T factor, const Vector3d<T>& rhs) { return rhs.getScaled(factor); }
 
 template<typename T>
-static Vector3d<T> operator/(T factor, const Vector3d<T>& rhs) { return rhs.scaled(1.0f / factor); }
+static Vector3d<T> operator/(T factor, const Vector3d<T>& rhs) { return rhs.getScaled(1.0f / factor); }
 
 
 	}

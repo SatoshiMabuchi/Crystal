@@ -6,7 +6,8 @@
 using namespace Crystal::Math;
 
 template<class T>
-class Matrix3dTest : public testing::Test {
+class Matrix3dTest : public testing::Test
+{
 };
 
 
@@ -93,7 +94,7 @@ TYPED_TEST(Matrix3dTest, TestRotateZ)
 
 	EXPECT_EQ(
 		Matrix3d<T>::Identity(),
-		Matrix3d<double>::RotateZ(Tolerance<double>::getTwoPI()));
+		Matrix3d<T>::RotateZ(Tolerance<T>::getTwoPI()));
 }
 
 TYPED_TEST(Matrix3dTest, TestScale)
@@ -124,44 +125,33 @@ TYPED_TEST(Matrix3dTest, TestDeterminantFloat)
 
 TYPED_TEST(Matrix3dTest, TestInverse)
 {
-	const auto m = Matrix3d<TypeParam>::Identity();
-	const auto i = m.getInverse();
-	EXPECT_EQ(Matrix3d<TypeParam>::Identity(), i);
+	using T = TypeParam;
+	const auto mi = Matrix3d<T>::Identity();
+	EXPECT_EQ(mi, mi.getInverse());
 }
 
 TYPED_TEST(Matrix3dTest, TestIsRegular)
 {
-	{
-		const auto m = Matrix3d<TypeParam>::Identity();
-		EXPECT_TRUE(m.isRegular());
-	}
-
-	{
-		const auto m = Matrix3d<TypeParam>(1, 1, 1, 1, 1, 1, 1, 1, 1);
-		EXPECT_FALSE(m.isRegular());
-	}
+	const auto mi = Matrix3d<TypeParam>::Identity();
+	const auto m1 = Matrix3d<TypeParam>(1, 1, 1, 1, 1, 1, 1, 1, 1);
+	EXPECT_TRUE( mi.isRegular());
+	EXPECT_FALSE(m1.isRegular());
 }
 
 TYPED_TEST(Matrix3dTest, TestGetRowVector)
 {
-	const Matrix3d<TypeParam> m(
-		1, 2, 3,
-		4, 5, 6,
-		7, 8, 9);
-
-	EXPECT_EQ(Vector3d<TypeParam>(1, 2, 3), m.getRowVector(0));
-	EXPECT_EQ(Vector3d<TypeParam>(4, 5, 6), m.getRowVector(1));
-	EXPECT_EQ(Vector3d<TypeParam>(7, 8, 9), m.getRowVector(2));
+	using T = TypeParam;
+	const Matrix3d<T> m(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	EXPECT_EQ(Vector3d<T>(1, 2, 3), m.getRowVector(0));
+	EXPECT_EQ(Vector3d<T>(4, 5, 6), m.getRowVector(1));
+	EXPECT_EQ(Vector3d<T>(7, 8, 9), m.getRowVector(2));
 }
 
 TYPED_TEST(Matrix3dTest, TestGetColumnVector)
 {
-	const Matrix3d<TypeParam> m(
-		1, 2, 3,
-		4, 5, 6,
-		7, 8, 9);
-
-	EXPECT_EQ(Vector3d<TypeParam>(1, 4, 7), m.getColumnVector(0));
-	EXPECT_EQ(Vector3d<TypeParam>(2, 5, 8), m.getColumnVector(1));
-	EXPECT_EQ(Vector3d<TypeParam>(3, 6, 9), m.getColumnVector(2));
+	using T = TypeParam;
+	const Matrix3d<T> m(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	EXPECT_EQ(Vector3d<T>(1, 4, 7), m.getColumnVector(0));
+	EXPECT_EQ(Vector3d<T>(2, 5, 8), m.getColumnVector(1));
+	EXPECT_EQ(Vector3d<T>(3, 6, 9), m.getColumnVector(2));
 }

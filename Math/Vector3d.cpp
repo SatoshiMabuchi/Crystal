@@ -27,6 +27,24 @@ Vector3d<T>::Vector3d(const Vector3d& start, const Vector3d& end) :
 {}
 
 template<typename T>
+T Vector3d<T>::getLengthSquared() const
+{
+	return x * x + y * y + z * z;
+}
+
+template<typename T>
+T Vector3d<T>::getLength() const
+{
+	return ::sqrt(getLengthSquared());
+}
+
+template<typename T>
+T Vector3d<T>::getDistance(const Vector3d& rhs) const
+{
+	return ::sqrt(getDistanceSquared(rhs));
+}
+
+template<typename T>
 bool Vector3d<T>::equals(const Vector3d<T>&rhs) const
 {
 	const auto tolerance = 1.0e-6f;
@@ -63,7 +81,7 @@ Vector3d<T> Vector3d<T>::normalize()
 }
 
 template<typename T>
-Vector3d<T> Vector3d<T>::normalized() const
+Vector3d<T> Vector3d<T>::getNormalized() const
 {
 	Vector3d<T> vector = *(this);
 	return vector.normalize();
@@ -91,14 +109,28 @@ template<typename T>
 Vector3d<T> Vector3d<T>::operator*(const T factor) const
 {
 	Vector3d vector(*this);
-	return vector.scaled(factor);
+	return vector.getScaled(factor);
 }
 
 template<typename T>
 Vector3d<T> Vector3d<T>::operator/(const T factor) const
 {
 	Vector3d vector(*this);
-	return vector.scaled(1.0f / factor);
+	return vector.getScaled(1.0f / factor);
+}
+
+template<typename T>
+Vector3d<T> Vector3d<T>::operator*=(const T factor)
+{
+	scale(factor);
+	return *this;
+}
+
+template<typename T>
+Vector3d<T> Vector3d<T>::operator/=(const T factor)
+{
+	scale(T(1) / factor);
+	return *this;
 }
 
 template<typename T>
