@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="GraphicsTest.cpp" />
     <ClCompile Include="ICameraTest.cpp" />
+    <ClCompile Include="PerspectiveCameraTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

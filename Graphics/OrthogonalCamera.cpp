@@ -8,7 +8,7 @@ void OrthogonalCamera<T>::init()
 {
 	near_ = 1;
 	far_ = 10.0;
-	pos = Math::Vector3d<T>::Zero();
+	pos = Math::Vector3d<T>(0,0,0);
 
 }
 
