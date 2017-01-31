@@ -4,6 +4,7 @@
     <ClCompile Include="MathTest.cpp" />
     <ClCompile Include="Vector3dTest.cpp" />
     <ClCompile Include="Matrix3dTest.cpp" />
+    <ClCompile Include="QuaternionTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
