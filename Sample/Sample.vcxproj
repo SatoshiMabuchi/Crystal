@@ -101,6 +101,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../ThirdParty/imgui-1.49/;../ThirdParty/imgui-1.49/examples/libs/gl3w/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +135,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../ThirdParty/imgui-1.49/;../ThirdParty/imgui-1.49/examples/libs/gl3w/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,14 +149,33 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ThirdParty\imgui-1.49\examples\libs\gl3w\GL\gl3w.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\examples\libs\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\imconfig.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\imgui.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\imgui_internal.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_rect_pack.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_textedit.h" />
+    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_truetype.h" />
+    <ClInclude Include="GL\gl3w.h" />
+    <ClInclude Include="GL\glcorearb.h" />
+    <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ThirdParty\imgui-1.49\examples\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_demo.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\ThirdParty\imgui-1.49\.travis.yml" />
+    <None Include="..\ThirdParty\imgui-1.49\LICENSE" />
+    <None Include="..\ThirdParty\imgui-1.49\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
