@@ -4,9 +4,11 @@
     <ClInclude Include="SPHParticle.h" />
     <ClInclude Include="SPHConstant.h" />
     <ClInclude Include="SPHKernel.h" />
+    <ClInclude Include="PhysicsObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SPHParticle.cpp" />
     <ClCompile Include="SPHKernel.cpp" />
+    <ClCompile Include="PhysicsObject.cpp" />
   </ItemGroup>
 </Project>

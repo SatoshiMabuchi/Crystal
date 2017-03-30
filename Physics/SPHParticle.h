@@ -76,6 +76,8 @@ public:
 
 	float getDiameter() const { return radius * 2.0f; }
 
+	void move(const Math::Vector3d<float>& v);
+
 private:
 	Math::Vector3d<float> position;
 	Math::Vector3d<float> force;

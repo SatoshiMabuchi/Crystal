@@ -105,3 +105,8 @@ void SPHParticle::addDensity(const SPHParticle& rhs)
 	const float distance = this->getPosition().getDistance(rhs.getPosition());
 	this->addDensity(kernel.getPoly6Kernel(distance, constant->getEffectLength()) * rhs.getMass());
 }
+
+void SPHParticle::move(const Vector3d<float>& v)
+{
+	this->position += v;
+}

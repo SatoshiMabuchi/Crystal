@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="SPHConstant.h" />
     <ClInclude Include="SPHKernel.h" />
     <ClInclude Include="SPHParticle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="SPHKernel.cpp" />
     <ClCompile Include="SPHParticle.cpp" />
   </ItemGroup>

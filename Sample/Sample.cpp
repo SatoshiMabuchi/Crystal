@@ -6,6 +6,11 @@
 #include <stdio.h>
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
+#include <GL/GL.h>
+#include "../Physics/PhysicsObject.h"
+
+using namespace Crystal::Math;
+using namespace Crystal::Physics;
 
 static void error_callback(int error, const char* description)
 {
@@ -85,6 +90,10 @@ int main(int, char**)
 		glViewport(0, 0, display_w, display_h);
 		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		Box3d<float> box(Vector3d<float>(0.0, 0.0, 0.0), Vector3d<float>(1.0, 1.0, 1.0));
+		//SPHConstant constant(1000.0, 1.0, 0.0, 0.0, 0.125f);
+		//Crystal::Physics::PhysicsObject object(box, 0.1f, constant);
 		ImGui::Render();
 		glfwSwapBuffers(window);
 	}
