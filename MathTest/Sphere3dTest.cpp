@@ -38,56 +38,50 @@ TEST(Sphere3dTest, TestIsOnStrictly)
 	EXPECT_TRUE(s.isOnStrictly(Vector3d<float>(1.0f, 0.0, 0.0f)));
 }
 
-/*
 TEST(Sphere3dTest, TestGetPositionByAngle)
 {
 	using T = float;
-	const Sphere3d<T> s(Vector3d<T>(0.0, 0.0, 0.0), 1.0f);
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Angle<T>::Zero(), -Angle<T>::HalfPI()));
-	EXPECT_EQ(Vector3d<T>(1, 0, 0), s.getPosition(Angle<T>::Zero(), Angle<T>::Zero()));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Angle<T>::Zero(), Angle<T>::HalfPI()));
+	const Sphere3d<T> s(Vector3d<T>(0.0, 0.0, 0.0), 1.0);
+	const auto pi = Tolerance<T>::getPI();
 
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Angle<T>::HalfPI(), -Angle<T>::HalfPI()));
-	EXPECT_EQ(Vector3d<T>(0, 1, 0), s.getPosition(Angle<T>::HalfPI(), Angle<T>::Zero()));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Angle<T>::HalfPI(), Angle<T>::HalfPI()));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByAngle(0.0*pi, 0.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByAngle(0.0*pi, 0.5*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByAngle(0.0*pi, 1.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByAngle(0.0*pi, 1.5*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByAngle(0.0*pi, 2.0*pi));
 
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Angle<T>::PI(), -Angle<T>::HalfPI()));
-	EXPECT_EQ(Vector3d<T>(-1, 0, 0), s.getPosition(Angle<T>::PI(), Angle<T>::Zero()));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Angle<T>::PI(), Angle<T>::HalfPI()));
+	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByAngle(0.5*pi, 0.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 1, 0), s.getPositionByAngle(0.5*pi, 0.5*pi));
+	EXPECT_EQ(Vector3d<T>(-1, 0, 0), s.getPositionByAngle(0.5*pi, 1.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0,-1, 0), s.getPositionByAngle(0.5*pi, 1.5*pi));
+	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByAngle(0.5*pi, 2.0*pi));
 
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Angle<T>::HalfPI() * 3, -Angle<T>::HalfPI()));
-	EXPECT_EQ(Vector3d<T>(0, -1, 0), s.getPosition(Angle<T>::HalfPI() * 3, Angle<T>::Zero()));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Angle<T>::HalfPI() * 3, Angle<T>::HalfPI()));
-
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Angle<T>::DoublePI(), -Angle<T>::HalfPI()));
-	EXPECT_EQ(Vector3d<T>(1, 0, 0), s.getPosition(Angle<T>::DoublePI(), Angle<T>::Zero()));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Angle<T>::DoublePI(), Angle<T>::HalfPI()));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByAngle(1.0*pi, 0.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByAngle(1.0*pi, 0.5*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByAngle(1.0*pi, 1.0*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByAngle(1.0*pi, 1.5*pi));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByAngle(1.0*pi, 2.0*pi));
 }
-*/
 
 TEST(Sphere3dTest, TestGetPositionByParam)
 {
 	using T = float;
 	const Sphere3d<T> s(Vector3d<T>(0.0, 0.0, 0.0), 1.0);
-	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0,0.0));
-	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0,0.5));
-	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0,1.0));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0, 0.0 ));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0, 0.25));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0, 0.5 ));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0, 0.75));
+	EXPECT_EQ(Vector3d<T>( 0, 0, 1), s.getPositionByParam(0.0, 1.0 ));
 
-	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByParam(0.5, 0.0));
-	EXPECT_EQ(Vector3d<T>(-1, 0, 0), s.getPositionByParam(0.5, 0.5));
-	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByParam(0.5, 1.0));
-	/*
+	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByParam(0.5, 0.0 ));
+	EXPECT_EQ(Vector3d<T>( 0, 1, 0), s.getPositionByParam(0.5, 0.25));
+	EXPECT_EQ(Vector3d<T>(-1, 0, 0), s.getPositionByParam(0.5, 0.5 ));
+	EXPECT_EQ(Vector3d<T>( 0,-1, 0), s.getPositionByParam(0.5, 0.75));
+	EXPECT_EQ(Vector3d<T>( 1, 0, 0), s.getPositionByParam(0.5, 1.0 ));
 
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Param<T>(0.5), Param<T>(0.0)));
-	EXPECT_EQ(Vector3d<T>(-1, 0, 0), s.getPosition(Param<T>(0.5), Param<T>(0.5)));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Param<T>(0.5), Param<T>(1.0)));
-
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Param<T>(0.75), Param<T>(0.0)));
-	EXPECT_EQ(Vector3d<T>(0, -1, 0), s.getPosition(Param<T>(0.75), Param<T>(0.5)));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Param<T>(0.75), Param<T>(1.0)));
-
-	EXPECT_EQ(Vector3d<T>(0, 0, -1), s.getPosition(Param<T>(1.0), Param<T>(0.0)));
-	EXPECT_EQ(Vector3d<T>(1, 0, 0), s.getPosition(Param<T>(1.0), Param<T>(0.5)));
-	EXPECT_EQ(Vector3d<T>(0, 0, 1), s.getPosition(Param<T>(1.0), Param<T>(1.0)));
-	*/
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByParam(1.0, 0.0 ));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByParam(1.0, 0.25));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByParam(1.0, 0.5 ));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByParam(1.0, 0.75));
+	EXPECT_EQ(Vector3d<T>( 0, 0,-1), s.getPositionByParam(1.0, 1.0 ));
 }

@@ -6,6 +6,12 @@
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="ColorRGBA.h" />
     <ClInclude Include="ColorHSV.h" />
+    <ClInclude Include="PointBuffer.h" />
+    <ClInclude Include="Buffer2d.h" />
+    <ClInclude Include="IBuffer.h" />
+    <ClInclude Include="Buffer1d.h" />
+    <ClInclude Include="Buffer3d.h" />
+    <ClInclude Include="Buffer4d.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
@@ -13,5 +19,6 @@
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="ColorRGBA.cpp" />
     <ClCompile Include="ColorHSV.cpp" />
+    <ClCompile Include="PointBuffer.cpp" />
   </ItemGroup>
 </Project>
