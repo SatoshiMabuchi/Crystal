@@ -8,6 +8,7 @@
     <ClInclude Include="Matrix4d.h" />
     <ClInclude Include="Vector4d.h" />
     <ClInclude Include="Box3d.h" />
+    <ClInclude Include="Sphere3d.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector3d.cpp" />
@@ -16,5 +17,6 @@
     <ClCompile Include="Matrix4d.cpp" />
     <ClCompile Include="Vector4d.cpp" />
     <ClCompile Include="Box3d.cpp" />
+    <ClCompile Include="Sphere3d.cpp" />
   </ItemGroup>
 </Project>
