@@ -1,16 +1,23 @@
 // ImGui - standalone example application for Glfw + OpenGL 3, using programmable pipeline
 // If you are new to ImGui, see examples/README.txt and documentation at the top of imgui.cpp.
 
-#include <imgui.h>
-#include "imgui_impl_glfw_gl3.h"
 #include <stdio.h>
-#include <GL/gl3w.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <GL/GL.h>
+#include <imgui.h>
+#include "imgui_impl_glfw_gl3.h"
+
 #include "../Physics/PhysicsObject.h"
+#include "../Graphics/PerspectiveCamera.h"
+#include "../Shader/PointRenderer.h"
+
+//#pragma comment(lib, "glew32.lib")
 
 using namespace Crystal::Math;
 using namespace Crystal::Physics;
+using namespace Crystal::Graphics;
+using namespace Crystal::Shader;
 
 static void error_callback(int error, const char* description)
 {
@@ -19,10 +26,15 @@ static void error_callback(int error, const char* description)
 
 int main(int, char**)
 {
+
+
 	// Setup window
 	glfwSetErrorCallback(error_callback);
+
 	if (!glfwInit())
 		return 1;
+
+
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -31,7 +43,13 @@ int main(int, char**)
 #endif
 	GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui OpenGL3 example", NULL, NULL);
 	glfwMakeContextCurrent(window);
-	gl3wInit();
+//	gl3wInit();
+
+	const auto e = glewInit();
+	if (e != GLEW_OK) {
+		return 1;
+	}
+
 
 	// Setup ImGui binding
 	ImGui_ImplGlfwGL3_Init(window, true);
@@ -91,9 +109,24 @@ int main(int, char**)
 		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//glCreateProgram();
+		auto vHandle = glCreateShader(GL_VERTEX_SHADER);
+		auto fHandle = glCreateShader(GL_FRAGMENT_SHADER);
+
+
 		Box3d<float> box(Vector3d<float>(0.0, 0.0, 0.0), Vector3d<float>(1.0, 1.0, 1.0));
 		//SPHConstant constant(1000.0, 1.0, 0.0, 0.0, 0.125f);
 		//Crystal::Physics::PhysicsObject object(box, 0.1f, constant);
+
+		//PointRenderer renderer;
+		//renderer.build();
+
+		//PointBuffer buffer;
+		//PerspectiveCamera<float> camera;
+		//camera.init();
+
+		//renderer.render(camera,buffer);
+
 		ImGui::Render();
 		glfwSwapBuffers(window);
 	}

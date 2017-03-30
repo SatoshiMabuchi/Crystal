@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PointRenderer.h"
-#include "GL/glew.h"
+#include "gl/glew.h"
 
 #include <sstream>
 

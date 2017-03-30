@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "GL/glew.h"
+#include "gl/glew.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Shader;
@@ -71,7 +71,7 @@ bool ShaderUnit::compile(const std::string& source, const ShaderUnit::Stage stag
 		id = glCreateShader(GL_FRAGMENT_SHADER);
 	}
 	else if (stage == ShaderUnit::Stage::GEOMETRY) {
-		id = glCreateShader(GL_GEOMETRY_SHADER_ARB);
+		id = glCreateShader(GL_GEOMETRY_SHADER);
 	}
 	else {
 		assert(false);
