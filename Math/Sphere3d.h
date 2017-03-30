@@ -13,16 +13,16 @@ namespace Crystal {
 		class Box3d;
 
 template<typename T>
-class Sphere
+class Sphere3d
 {
 public:
-	Sphere();
+	Sphere3d();
 
-	Sphere(const Vector3d<T>& center, const float radius);
+	Sphere3d(const Vector3d<T>& center, const float radius);
 
-	Sphere(const Math::Box3d<T>& boundingBox);
+	Sphere3d(const Math::Box3d<T>& boundingBox);
 
-	static Sphere UnitSphere();
+	static Sphere3d UnitSphere();
 
 	Math::Box3d<T> getBoundingBox() const;
 
@@ -51,8 +51,8 @@ public:
 		assert(isValid());
 	}
 
-	Sphere getOuterOffset(const float offsetLength) const {
-		Sphere sphere = *this;
+	Sphere3d getOuterOffset(const float offsetLength) const {
+		Sphere3d sphere = *this;
 		sphere.radius += offsetLength;
 		assert(sphere.isValid());
 		return sphere;
@@ -63,13 +63,13 @@ public:
 		assert(isValid());
 	}
 
-	Sphere getInnerOffset(const float offsetLength) const;
+	Sphere3d getInnerOffset(const float offsetLength) const;
 
-	bool equals(const Sphere& rhs) const;
+	bool equals(const Sphere3d& rhs) const;
 
-	bool operator==(const Sphere& rhs) const;
+	bool operator==(const Sphere3d& rhs) const;
 
-	bool operator!=(const Sphere& rhs) const;
+	bool operator!=(const Sphere3d& rhs) const;
 
 	bool isInner(const Vector3d<T>& v) const;
 

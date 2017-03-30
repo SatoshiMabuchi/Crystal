@@ -6,19 +6,19 @@
 using namespace Crystal::Math;
 
 template<typename T>
-Sphere<T>::Sphere() :
+Sphere3d<T>::Sphere3d() :
 	center(Vector3d<T>(0,0,0)),
 	radius(1.0f)
 {}
 
 template<typename T>
-Sphere<T>::Sphere(const Vector3d<T>& center, const float radius) :
+Sphere3d<T>::Sphere3d(const Vector3d<T>& center, const float radius) :
 	center(center),
 	radius(radius)
 {}
 
 template<typename T>
-Sphere<T>::Sphere(const Box3d<T>& boundingBox)
+Sphere3d<T>::Sphere3d(const Box3d<T>& boundingBox)
 {
 	center = Vector3d<T>(boundingBox.getCenter().getX(), boundingBox.getCenter().getY(), boundingBox.getCenter().getZ());
 	const Vector3d<T>& length = boundingBox.getLength();
@@ -26,20 +26,20 @@ Sphere<T>::Sphere(const Box3d<T>& boundingBox)
 }
 
 template<typename T>
-Sphere<T> Sphere<T>::UnitSphere()
+Sphere3d<T> Sphere3d<T>::UnitSphere()
 {
-	return Sphere<T>(Vector3d<T>(0,0,0), 1.0f);
+	return Sphere3d<T>(Vector3d<T>(0,0,0), 1.0f);
 }
 
 
 template<typename T>
-Box3d<T> Sphere<T>::getBoundingBox() const {
+Box3d<T> Sphere3d<T>::getBoundingBox() const {
 	Math::Box3d<T> box(center, center);
 	return box.getOuterOffset(radius);
 }
 
 template<typename T>
-std::vector<Vector3d<T>> Sphere<T>::toPoints(const T divideLength) const
+std::vector<Vector3d<T>> Sphere3d<T>::toPoints(const T divideLength) const
 {
 	std::vector<Vector3d<T>> points;
 
@@ -60,22 +60,22 @@ std::vector<Vector3d<T>> Sphere<T>::toPoints(const T divideLength) const
 }
 
 template<typename T>
-Vector3d<T> Sphere<T>::getPositionByAngle(const T theta, const T phi) const
+Vector3d<T> Sphere3d<T>::getPositionByAngle(const T theta, const T phi) const
 {
-	assert(0.0 <= theta && theta <= Tolerance<T>::getTwoPI());
-	assert(0.0 <= phi && phi <= Tolerance<T>::getPI());
+	assert(0.0 <= theta && theta <= Tolerance<T>::getPI());
+	assert(0.0 <= phi && phi <= Tolerance<T>::getTwoPI());
 
 	const auto x = radius * std::sin(theta) * std::cos(phi);
-	const auto y = radius * std::sin(theta) * std::cos(phi);
+	const auto y = radius * std::sin(theta) * std::sin(phi);
 	const auto z = radius * std::cos(theta);
 	return Vector3d<T>(x, y, z);
 }
 
 template<typename T>
-Vector3d<T> Sphere<T>::getPositionByParam(const T u, const T v) const
+Vector3d<T> Sphere3d<T>::getPositionByParam(const T u, const T v) const
 {
-	const auto theta = u * Tolerance<T>::getTwoPI();
-	const auto phi = v * Tolerance<T>::getPI();
+	const auto theta = u * Tolerance<T>::getPI();
+	const auto phi = v * Tolerance<T>::getTwoPI();
 	return getPositionByAngle(theta, phi);
 }
 
@@ -104,9 +104,9 @@ Point3d<T> Sphere<T>::getPoint(const Param<T> u, const Param<T> v) const
 */
 
 template<typename T>
-Sphere<T> Sphere<T>::getInnerOffset(const float offsetLength) const
+Sphere3d<T> Sphere3d<T>::getInnerOffset(const float offsetLength) const
 {
-	Sphere sphere = *this;
+	Sphere3d sphere = *this;
 	sphere.radius -= offsetLength;
 	assert(sphere.isValid());
 	return sphere;
@@ -114,7 +114,7 @@ Sphere<T> Sphere<T>::getInnerOffset(const float offsetLength) const
 
 
 template<typename T>
-bool Sphere<T>::equals(const Sphere& rhs) const
+bool Sphere3d<T>::equals(const Sphere3d& rhs) const
 {
 	return
 		Tolerance<T>::isEqualLoosely(radius, rhs.radius) &&
@@ -123,41 +123,41 @@ bool Sphere<T>::equals(const Sphere& rhs) const
 
 
 template<typename T>
-bool Sphere<T>::operator==(const Sphere& rhs) const
+bool Sphere3d<T>::operator==(const Sphere3d& rhs) const
 {
 	return equals(rhs);
 }
 
 template<typename T>
-bool Sphere<T>::operator!=(const Sphere& rhs) const
+bool Sphere3d<T>::operator!=(const Sphere3d& rhs) const
 {
 	return !equals(rhs);
 }
 
 template<typename T>
-bool Sphere<T>::isInner(const Vector3d<T>& v) const
+bool Sphere3d<T>::isInner(const Vector3d<T>& v) const
 {
 	return v.getDistanceSquared(center) < (radius * radius);
 }
 
 template<typename T>
-bool Sphere<T>::isOuter(const Vector3d<T>& v) const
+bool Sphere3d<T>::isOuter(const Vector3d<T>& v) const
 {
 	return v.getDistanceSquared(center) > (radius * radius);
 }
 
 
 template<typename T>
-bool Sphere<T>::isOnStrictly(const Vector3d<T>& v) const
+bool Sphere3d<T>::isOnStrictly(const Vector3d<T>& v) const
 {
 	return Tolerance<T>::isEqualStrictly(v.getDistanceSquared(center), radius * radius);
 }
 
 template<typename T>
-bool Sphere<T>::isOnLoosely(const Vector3d<T>& v) const
+bool Sphere3d<T>::isOnLoosely(const Vector3d<T>& v) const
 {
 	return Tolerance<T>::isEqualLoosely(v.getDistanceSquared(center), radius * radius);
 }
 
-template class Sphere<float>;
-template class Sphere<double>;
+template class Sphere3d<float>;
+template class Sphere3d<double>;

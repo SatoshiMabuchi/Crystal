@@ -7,6 +7,7 @@
     <ClCompile Include="QuaternionTest.cpp" />
     <ClCompile Include="Matrix4dTest.cpp" />
     <ClCompile Include="Box3dTest.cpp" />
+    <ClCompile Include="Sphere3dTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
