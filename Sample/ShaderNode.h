@@ -21,6 +21,9 @@ public:
 		Color = color; InputsCount = inputs_count; OutputsCount = outputs_count;
 	}
 
+
+	void setName(const std::string& name) { this->name = name; }
+
 	int id;
 	std::string name;
 	ImVec2 pos;

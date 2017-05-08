@@ -1,4 +1,5 @@
 #include "ShaderDesignePanel.h"
+#include <algorithm>
 
 using namespace Crystal::UI;
 
@@ -50,8 +51,8 @@ void ShaderDesignePanel::show()
 
 	// Draw a list of nodes on the left side
 	bool open_context_menu = false;
-	ShaderNode* node_hovered_in_list = nullptr;
-	ShaderNode* node_hovered_in_scene = nullptr;
+	ShaderNode* hoveredNodeInList = nullptr;
+	ShaderNode* hoveredNodeInScene = nullptr;
 	ImGui::BeginChild("node_list", ImVec2(100, 0));
 	ImGui::Text("Nodes");
 	ImGui::Separator();
@@ -61,7 +62,7 @@ void ShaderDesignePanel::show()
 			selectedNode = node;
 		}
 		if (ImGui::IsItemHovered()) {
-			node_hovered_in_list = node;
+			hoveredNodeInList = node;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		ImGui::PopID();
@@ -94,10 +95,12 @@ void ShaderDesignePanel::show()
 		float GRID_SZ = 64.0f;
 		ImVec2 win_pos = ImGui::GetCursorScreenPos();
 		ImVec2 canvas_sz = ImGui::GetWindowSize();
-		for (float x = fmodf(offset.x, GRID_SZ); x < canvas_sz.x; x += GRID_SZ)
+		for (float x = fmodf(offset.x, GRID_SZ); x < canvas_sz.x; x += GRID_SZ) {
 			draw_list->AddLine(ImVec2(x, 0.0f) + win_pos, ImVec2(x, canvas_sz.y) + win_pos, GRID_COLOR);
-		for (float y = fmodf(offset.y, GRID_SZ); y < canvas_sz.y; y += GRID_SZ)
+		}
+		for (float y = fmodf(offset.y, GRID_SZ); y < canvas_sz.y; y += GRID_SZ) {
 			draw_list->AddLine(ImVec2(0.0f, y) + win_pos, ImVec2(canvas_sz.x, y) + win_pos, GRID_COLOR);
+		}
 	}
 
 	// Display links
@@ -135,12 +138,6 @@ void ShaderDesignePanel::show()
 
 			ImGui::End();
 		}
-//			ImGui::OpenPopup("ShaderSource");
-//		}
-//		if(ImGui::BeginPopupModal("ShaderSource")){
-//			ImGui::EndPopup();
-//		}
-
 		ImGui::EndGroup();
 
 		// Save the size of what we have emitted and whether any of the widgets are being used
@@ -153,7 +150,7 @@ void ShaderDesignePanel::show()
 		ImGui::SetCursorScreenPos(node_rect_min);
 		ImGui::InvisibleButton("node", node->size);
 		if (ImGui::IsItemHovered()) {
-			node_hovered_in_scene = node;
+			hoveredNodeInScene = node;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		bool node_moving_active = ImGui::IsItemActive();
@@ -164,7 +161,7 @@ void ShaderDesignePanel::show()
 			node->pos = node->pos + ImGui::GetIO().MouseDelta;
 		}
 
-		ImU32 node_bg_color = (node_hovered_in_list == node || node_hovered_in_scene == node || (node_hovered_in_list == nullptr && selectedNode == node)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
+		ImU32 node_bg_color = (hoveredNodeInList == node || hoveredNodeInScene == node || (hoveredNodeInList == nullptr && selectedNode == node)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
 		draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 		draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
 		for (int slot_idx = 0; slot_idx < node->InputsCount; slot_idx++)
@@ -177,21 +174,19 @@ void ShaderDesignePanel::show()
 	draw_list->ChannelsMerge();
 
 	// Open context menu
-	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1))
-	{
+	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1)) {
 		selectedNode = nullptr;
-		node_hovered_in_list = nullptr;
-		node_hovered_in_scene = nullptr;
+		hoveredNodeInList = nullptr;
+		hoveredNodeInScene = nullptr;
 		open_context_menu = true;
 	}
-	if (open_context_menu)
-	{
+	if (open_context_menu) {
 		ImGui::OpenPopup("context_menu");
-		if (node_hovered_in_list) {
-			selectedNode = node_hovered_in_list;
+		if (hoveredNodeInList) {
+			selectedNode = hoveredNodeInList;
 		}
-		if (node_hovered_in_scene) {
-			selectedNode = node_hovered_in_scene;
+		if (hoveredNodeInScene) {
+			selectedNode = hoveredNodeInScene;
 		}
 	}
 
@@ -203,13 +198,30 @@ void ShaderDesignePanel::show()
 		if (node) {
 			ImGui::Text("Node '%s'", node->name.c_str());
 			ImGui::Separator();
-			if (ImGui::MenuItem("Rename..", NULL, false, false)) {}
-			if (ImGui::MenuItem("Delete", NULL, false, false)) {}
+			if (ImGui::MenuItem("Rename..", NULL, false)) {
+				/*
+
+				static char str[256];
+				ImGui::BeginPopup("NewName");
+				if (ImGui::InputText("Name", str, 256)) {
+					selectedNode->setName(str);
+				}
+				ImGui::EndPopup();
+				*/
+			}
+			if (ImGui::MenuItem("Delete", NULL, false)) {
+				nodes.erase(std::remove(nodes.begin(), nodes.end(), node), nodes.end());
+				delete node;
+			}
 			if (ImGui::MenuItem("Copy", NULL, false, false)) {}
 		}
 		else {
-			if (ImGui::MenuItem("Add")) { nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos, 0.5f, ImColor(100, 100, 200), 2, 2)); }
-			if (ImGui::MenuItem("Paste", NULL, false, false)) {}
+			if (ImGui::MenuItem("Add")) {
+				nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos, 0.5f, ImColor(100, 100, 200), 2, 2));
+			}
+			if (ImGui::MenuItem("Paste", NULL, false, false)) {
+				;
+			}
 		}
 		ImGui::EndPopup();
 	}
