@@ -9,26 +9,28 @@ void ShaderDesignePanel::show()
 {
 	bool opened =false;
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
-	if (!ImGui::Begin("Example: Custom Node Graph", &opened, ImGuiWindowFlags_MenuBar))
-	{
+	if (!ImGui::Begin("Example: Custom Node Graph", &opened, ImGuiWindowFlags_MenuBar)) {
 		ImGui::End();
 		return;
 	}
 	if (!inited) {
-		auto smoothingNode = new Node(0, "Smoothing", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
-		auto depthNode = new Node(1, "Depth", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1);
-		auto thicknessNode = new Node(2, "Thickness", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2);
+		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
+		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1);
+		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2);
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
-		links.push_back(NodeLink(smoothingNode, 0, thicknessNode, 0));
-		links.push_back(NodeLink(depthNode, 0, thicknessNode, 1));
+		links.push_back(ShaderLink(smoothingNode, 0, thicknessNode, 0));
+		links.push_back(ShaderLink(depthNode, 0, thicknessNode, 1));
 		inited = true;
 	}
 
 	ImGui::BeginMenuBar();
 	if (ImGui::BeginMenu("File")) {
 		//if (ImGui::MenuItem("Close")) *p_open = false;
+		if (ImGui::MenuItem("Open")) {
+			;
+		}
 		if (ImGui::MenuItem("Save")) {
 			std::stringstream ss;
 			{
@@ -40,23 +42,26 @@ void ShaderDesignePanel::show()
 			std::cout << ss.str() << std::endl;
 		}
 		ImGui::EndMenu();
+		if (ImGui::MenuItem("SaveAs")) {
+			;
+		}
 	}
 	ImGui::EndMenuBar();
 
 	// Draw a list of nodes on the left side
 	bool open_context_menu = false;
-	int node_hovered_in_list = -1;
-	int node_hovered_in_scene = -1;
+	ShaderNode* node_hovered_in_list = nullptr;
+	ShaderNode* node_hovered_in_scene = nullptr;
 	ImGui::BeginChild("node_list", ImVec2(100, 0));
 	ImGui::Text("Nodes");
 	ImGui::Separator();
 	for (auto node : nodes) {
 		ImGui::PushID(node->id);
-		if (ImGui::Selectable(node->name.c_str(), node->id == node_selected)) {
-			node_selected = node->id;
+		if (ImGui::Selectable(node->name.c_str(), node == selectedNode)) {
+			selectedNode = node;
 		}
 		if (ImGui::IsItemHovered()) {
-			node_hovered_in_list = node->id;
+			node_hovered_in_list = node;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		ImGui::PopID();
@@ -98,17 +103,13 @@ void ShaderDesignePanel::show()
 	// Display links
 	draw_list->ChannelsSetCurrent(0); // Background
 	for (auto link : links) {
-		Node* node_inp = link.inputNode;// &nodes[link->InputIdx];
-		Node* node_out = link.outputNode;
-		ImVec2 p1 = offset + node_inp->GetOutputSlotPos(link.InputSlot);
-		ImVec2 p2 = offset + node_out->GetInputSlotPos(link.OutputSlot);
+		auto p1 = offset + link.inputNode->GetOutputSlotPos(link.InputSlot);
+		auto p2 = offset + link.outputNode->GetInputSlotPos(link.OutputSlot);
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
 
 	// Display nodes
-	for (int node_idx = 0; node_idx < nodes.size(); node_idx++)
-	{
-		Node* node = nodes[node_idx];
+	for (auto node : nodes) {
 		ImGui::PushID(node->id);
 		ImVec2 node_rect_min = offset + node->pos;
 
@@ -151,20 +152,19 @@ void ShaderDesignePanel::show()
 		draw_list->ChannelsSetCurrent(0); // Background
 		ImGui::SetCursorScreenPos(node_rect_min);
 		ImGui::InvisibleButton("node", node->size);
-		if (ImGui::IsItemHovered())
-		{
-			node_hovered_in_scene = node->id;
+		if (ImGui::IsItemHovered()) {
+			node_hovered_in_scene = node;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		bool node_moving_active = ImGui::IsItemActive();
 		if (node_widgets_active || node_moving_active) {
-			node_selected = node->id;
+			selectedNode = node;
 		}
 		if (node_moving_active && ImGui::IsMouseDragging(0)) {
 			node->pos = node->pos + ImGui::GetIO().MouseDelta;
 		}
 
-		ImU32 node_bg_color = (node_hovered_in_list == node->id || node_hovered_in_scene == node->id || (node_hovered_in_list == -1 && node_selected == node->id)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
+		ImU32 node_bg_color = (node_hovered_in_list == node || node_hovered_in_scene == node || (node_hovered_in_list == nullptr && selectedNode == node)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
 		draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 		draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
 		for (int slot_idx = 0; slot_idx < node->InputsCount; slot_idx++)
@@ -179,24 +179,26 @@ void ShaderDesignePanel::show()
 	// Open context menu
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1))
 	{
-		node_selected = node_hovered_in_list = node_hovered_in_scene = -1;
+		selectedNode = nullptr;
+		node_hovered_in_list = nullptr;
+		node_hovered_in_scene = nullptr;
 		open_context_menu = true;
 	}
 	if (open_context_menu)
 	{
 		ImGui::OpenPopup("context_menu");
-		if (node_hovered_in_list != -1)
-			node_selected = node_hovered_in_list;
-		if (node_hovered_in_scene != -1)
-			node_selected = node_hovered_in_scene;
+		if (node_hovered_in_list) {
+			selectedNode = node_hovered_in_list;
+		}
+		if (node_hovered_in_scene) {
+			selectedNode = node_hovered_in_scene;
+		}
 	}
 
-	/*
 	// Draw context menu
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
-	if (ImGui::BeginPopup("context_menu"))
-	{
-		Node* node = node_selected != -1 ? &nodes[node_selected] : NULL;
+	if (ImGui::BeginPopup("context_menu")) {
+		auto node = selectedNode;
 		ImVec2 scene_pos = ImGui::GetMousePosOnOpeningCurrentPopup() - offset;
 		if (node) {
 			ImGui::Text("Node '%s'", node->name.c_str());
@@ -206,13 +208,12 @@ void ShaderDesignePanel::show()
 			if (ImGui::MenuItem("Copy", NULL, false, false)) {}
 		}
 		else {
-			if (ImGui::MenuItem("Add")) { nodes.push_back(Node(nodes.size(), "New node", scene_pos, 0.5f, ImColor(100, 100, 200), 2, 2)); }
+			if (ImGui::MenuItem("Add")) { nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos, 0.5f, ImColor(100, 100, 200), 2, 2)); }
 			if (ImGui::MenuItem("Paste", NULL, false, false)) {}
 		}
 		ImGui::EndPopup();
 	}
 	ImGui::PopStyleVar();
-	*/
 
 	// Scrolling
 	if (ImGui::IsWindowHovered() && !ImGui::IsAnyItemActive() && ImGui::IsMouseDragging(2, 0.0f)) {
