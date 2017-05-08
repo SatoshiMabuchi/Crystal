@@ -21,8 +21,8 @@ void ShaderDesignePanel::show()
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
-		links.push_back(NodeLink(smoothingNode, 0, 2, 0));
-		links.push_back(NodeLink(depthNode, 0, 2, 1));
+		links.push_back(NodeLink(smoothingNode, 0, thicknessNode, 0));
+		links.push_back(NodeLink(depthNode, 0, thicknessNode, 1));
 		inited = true;
 	}
 
@@ -33,9 +33,7 @@ void ShaderDesignePanel::show()
 	ImGui::BeginChild("node_list", ImVec2(100, 0));
 	ImGui::Text("Nodes");
 	ImGui::Separator();
-	for (int node_idx = 0; node_idx < nodes.size(); node_idx++)
-	{
-		Node* node = nodes[node_idx];
+	for (auto node : nodes) {
 		ImGui::PushID(node->id);
 		if (ImGui::Selectable(node->name.c_str(), node->id == node_selected)) {
 			node_selected = node->id;
@@ -82,13 +80,11 @@ void ShaderDesignePanel::show()
 
 	// Display links
 	draw_list->ChannelsSetCurrent(0); // Background
-	for (int link_idx = 0; link_idx < links.Size; link_idx++)
-	{
-		NodeLink* link = &links[link_idx];
-		Node* node_inp = link->inputNode;// &nodes[link->InputIdx];
-		Node* node_out = nodes[link->OutputIdx];
-		ImVec2 p1 = offset + node_inp->GetOutputSlotPos(link->InputSlot);
-		ImVec2 p2 = offset + node_out->GetInputSlotPos(link->OutputSlot);
+	for (auto link : links) {
+		Node* node_inp = link.inputNode;// &nodes[link->InputIdx];
+		Node* node_out = link.outputNode;
+		ImVec2 p1 = offset + node_inp->GetOutputSlotPos(link.InputSlot);
+		ImVec2 p2 = offset + node_out->GetInputSlotPos(link.OutputSlot);
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
 
@@ -107,6 +103,26 @@ void ShaderDesignePanel::show()
 		ImGui::Text("%s", node->name.c_str());
 		ImGui::SliderFloat("##value", &node->value, 0.0f, 1.0f, "Alpha %.2f");
 		ImGui::ColorEdit3("##color", &node->Color.x);
+		static bool showShaderSource = false;
+		if (ImGui::Button("ShaderSource")) {
+			showShaderSource = true;
+		}
+		if(showShaderSource) {
+			ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiSetCond_FirstUseEver);
+
+			ImGui::Begin("ShaderSource", &showShaderSource);
+			char str[256];
+			ImGui::InputTextMultiline("VertexShader", str, 256);
+			ImGui::InputTextMultiline("FragmentShader", str, 256);
+
+			ImGui::End();
+		}
+//			ImGui::OpenPopup("ShaderSource");
+//		}
+//		if(ImGui::BeginPopupModal("ShaderSource")){
+//			ImGui::EndPopup();
+//		}
+
 		ImGui::EndGroup();
 
 		// Save the size of what we have emitted and whether any of the widgets are being used

@@ -32,15 +32,16 @@ struct Node
 
 struct NodeLink
 {
-	NodeLink(Node* inputNode, int input_slot, int output_idx, int output_slot) :
-		inputNode(inputNode)
+	NodeLink(Node* inputNode, int input_slot, Node* outputNode, int output_slot) :
+		inputNode(inputNode),
+		outputNode(outputNode)
 	{
-		InputSlot = input_slot; OutputIdx = output_idx; OutputSlot = output_slot;
+		InputSlot = input_slot; OutputSlot = output_slot;
 	}
 
 	Node* inputNode;
 	int InputSlot;
-	int OutputIdx;
+	Node* outputNode;
 	int OutputSlot;
 };
 
@@ -51,7 +52,7 @@ public:
 
 private:
 	std::vector<Node*> nodes;
-	ImVector<NodeLink> links;
+	std::vector<NodeLink> links;
 	bool inited = false;
 	ImVec2 scrolling = ImVec2(0.0f, 0.0f);
 	bool show_grid = true;
