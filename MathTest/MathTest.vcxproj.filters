@@ -8,6 +8,8 @@
     <ClCompile Include="Matrix4dTest.cpp" />
     <ClCompile Include="Box3dTest.cpp" />
     <ClCompile Include="Sphere3dTest.cpp" />
+    <ClCompile Include="Vector2dTest.cpp" />
+    <ClCompile Include="Box2dTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
