@@ -8,11 +8,15 @@
     <ClInclude Include="PointRenderer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="DepthRenderer.h" />
+    <ClInclude Include="DepthTextureObject.h" />
+    <ClInclude Include="ITextureObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
     <ClCompile Include="PointRenderer.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="DepthRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

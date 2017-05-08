@@ -27,14 +27,17 @@
     <ClInclude Include="ColorRGBA.h" />
     <ClInclude Include="IBuffer.h" />
     <ClInclude Include="ICamera.h" />
+    <ClInclude Include="IImage.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PointBuffer.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorHSV.cpp" />
     <ClCompile Include="ColorRGBA.cpp" />
     <ClCompile Include="ICamera.cpp" />
+    <ClCompile Include="IImage.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
