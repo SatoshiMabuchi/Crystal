@@ -9,7 +9,7 @@ void ShaderDesignePanel::show()
 {
 	bool opened =false;
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
-	if (!ImGui::Begin("Example: Custom Node Graph", &opened))
+	if (!ImGui::Begin("Example: Custom Node Graph", &opened, ImGuiWindowFlags_MenuBar))
 	{
 		ImGui::End();
 		return;
@@ -25,6 +25,23 @@ void ShaderDesignePanel::show()
 		links.push_back(NodeLink(depthNode, 0, thicknessNode, 1));
 		inited = true;
 	}
+
+	ImGui::BeginMenuBar();
+	if (ImGui::BeginMenu("File")) {
+		//if (ImGui::MenuItem("Close")) *p_open = false;
+		if (ImGui::MenuItem("Save")) {
+			std::stringstream ss;
+			{
+				cereal::JSONOutputArchive o_archive(ss);
+				for (auto n : nodes) {
+					o_archive(*n);
+				}
+			}
+			std::cout << ss.str() << std::endl;
+		}
+		ImGui::EndMenu();
+	}
+	ImGui::EndMenuBar();
 
 	// Draw a list of nodes on the left side
 	bool open_context_menu = false;

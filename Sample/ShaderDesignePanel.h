@@ -4,6 +4,8 @@
 #include "imgui.h"
 #include <string>
 #include <vector>
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
 
 namespace Crystal {
 	namespace UI {
@@ -28,6 +30,12 @@ struct Node
 
 	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)InputsCount + 1)); }
 	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)OutputsCount + 1)); }
+
+	template<class Archive>
+	void serialize(Archive & archive)
+	{
+		archive(name, id);
+	}
 };
 
 struct NodeLink
