@@ -131,21 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Box2d.h" />
     <ClInclude Include="Box3d.h" />
     <ClInclude Include="Matrix3d.h" />
     <ClInclude Include="Matrix4d.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Sphere3d.h" />
     <ClInclude Include="Tolerance.h" />
+    <ClInclude Include="Vector2d.h" />
     <ClInclude Include="Vector3d.h" />
     <ClInclude Include="Vector4d.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Box2d.cpp" />
     <ClCompile Include="Box3d.cpp" />
     <ClCompile Include="Matrix3d.cpp" />
     <ClCompile Include="Matrix4d.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
+    <ClCompile Include="Vector2d.cpp" />
     <ClCompile Include="Vector3d.cpp" />
     <ClCompile Include="Vector4d.cpp" />
   </ItemGroup>

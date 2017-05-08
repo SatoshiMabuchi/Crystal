@@ -11,12 +11,14 @@
     <ClInclude Include="DepthRenderer.h" />
     <ClInclude Include="DepthTextureObject.h" />
     <ClInclude Include="ITextureObject.h" />
+    <ClInclude Include="OnScreenRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
     <ClCompile Include="PointRenderer.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="DepthRenderer.cpp" />
+    <ClCompile Include="OnScreenRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
