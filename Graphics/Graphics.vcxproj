@@ -28,6 +28,8 @@
     <ClInclude Include="IBuffer.h" />
     <ClInclude Include="ICamera.h" />
     <ClInclude Include="IImage.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="Imagef.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PointBuffer.h" />
@@ -38,6 +40,8 @@
     <ClCompile Include="ColorRGBA.cpp" />
     <ClCompile Include="ICamera.cpp" />
     <ClCompile Include="IImage.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Imagef.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PointBuffer.cpp" />

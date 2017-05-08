@@ -14,6 +14,8 @@
     <ClInclude Include="Buffer4d.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="IImage.h" />
+    <ClInclude Include="Imagef.h" />
+    <ClInclude Include="Image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
@@ -23,5 +25,7 @@
     <ClCompile Include="ColorHSV.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
     <ClCompile Include="IImage.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Imagef.cpp" />
   </ItemGroup>
 </Project>

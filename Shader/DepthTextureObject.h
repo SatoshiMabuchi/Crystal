@@ -2,7 +2,7 @@
 #define __CRYSTAL_SHADER_DEPTH_TEXTURE_OBJECT_H__
 
 #include "GL/glew.h"
-#include "../Graphics/IImage.h"
+#include "../Graphics/Imagef.h"
 #include "ITextureObject.h"
 
 namespace Crystal {
