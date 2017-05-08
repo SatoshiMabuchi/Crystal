@@ -11,6 +11,7 @@
 #include "../Physics/PhysicsObject.h"
 #include "../Graphics/PerspectiveCamera.h"
 #include "../Shader/PointRenderer.h"
+#include "ShaderDesignePanel.h"
 
 //#pragma comment(lib, "glew32.lib")
 
@@ -68,6 +69,8 @@ int main(int, char**)
 	bool show_another_window = false;
 	ImVec4 clear_color = ImColor(114, 144, 154);
 
+	Crystal::UI::ShaderDesignePanel panel;
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -101,6 +104,8 @@ int main(int, char**)
 			ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
 			ImGui::ShowTestWindow(&show_test_window);
 		}
+
+		panel.show();
 
 		// Rendering
 		int display_w, display_h;
