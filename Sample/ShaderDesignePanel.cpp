@@ -15,12 +15,14 @@ void ShaderDesignePanel::show()
 		return;
 	}
 	if (!inited) {
-		auto n = Node(0, "MainTex", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
-		nodes.push_back(n);
-		nodes.push_back(Node(1, "BumpMap", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1));
-		nodes.push_back(Node(2, "Combine", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2));
-		links.push_back(NodeLink(0, 0, 2, 0));
-		links.push_back(NodeLink(1, 0, 2, 1));
+		auto smoothingNode = new Node(0, "Smoothing", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
+		auto depthNode = new Node(1, "Depth", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1);
+		auto thicknessNode = new Node(2, "Thickness", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2);
+		nodes.push_back(smoothingNode);
+		nodes.push_back(depthNode);
+		nodes.push_back(thicknessNode);
+		links.push_back(NodeLink(smoothingNode, 0, 2, 0));
+		links.push_back(NodeLink(depthNode, 0, 2, 1));
 		inited = true;
 	}
 
@@ -33,13 +35,13 @@ void ShaderDesignePanel::show()
 	ImGui::Separator();
 	for (int node_idx = 0; node_idx < nodes.size(); node_idx++)
 	{
-		Node* node = &nodes[node_idx];
-		ImGui::PushID(node->ID);
-		if (ImGui::Selectable(node->name.c_str(), node->ID == node_selected)) {
-			node_selected = node->ID;
+		Node* node = nodes[node_idx];
+		ImGui::PushID(node->id);
+		if (ImGui::Selectable(node->name.c_str(), node->id == node_selected)) {
+			node_selected = node->id;
 		}
 		if (ImGui::IsItemHovered()) {
-			node_hovered_in_list = node->ID;
+			node_hovered_in_list = node->id;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		ImGui::PopID();
@@ -83,8 +85,8 @@ void ShaderDesignePanel::show()
 	for (int link_idx = 0; link_idx < links.Size; link_idx++)
 	{
 		NodeLink* link = &links[link_idx];
-		Node* node_inp = &nodes[link->InputIdx];
-		Node* node_out = &nodes[link->OutputIdx];
+		Node* node_inp = link->inputNode;// &nodes[link->InputIdx];
+		Node* node_out = nodes[link->OutputIdx];
 		ImVec2 p1 = offset + node_inp->GetOutputSlotPos(link->InputSlot);
 		ImVec2 p2 = offset + node_out->GetInputSlotPos(link->OutputSlot);
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
@@ -93,9 +95,9 @@ void ShaderDesignePanel::show()
 	// Display nodes
 	for (int node_idx = 0; node_idx < nodes.size(); node_idx++)
 	{
-		Node* node = &nodes[node_idx];
-		ImGui::PushID(node->ID);
-		ImVec2 node_rect_min = offset + node->Pos;
+		Node* node = nodes[node_idx];
+		ImGui::PushID(node->id);
+		ImVec2 node_rect_min = offset + node->pos;
 
 		// Display node contents first
 		draw_list->ChannelsSetCurrent(1); // Foreground
@@ -103,31 +105,33 @@ void ShaderDesignePanel::show()
 		ImGui::SetCursorScreenPos(node_rect_min + NODE_WINDOW_PADDING);
 		ImGui::BeginGroup(); // Lock horizontal position
 		ImGui::Text("%s", node->name.c_str());
-		ImGui::SliderFloat("##value", &node->Value, 0.0f, 1.0f, "Alpha %.2f");
+		ImGui::SliderFloat("##value", &node->value, 0.0f, 1.0f, "Alpha %.2f");
 		ImGui::ColorEdit3("##color", &node->Color.x);
 		ImGui::EndGroup();
 
 		// Save the size of what we have emitted and whether any of the widgets are being used
 		bool node_widgets_active = (!old_any_active && ImGui::IsAnyItemActive());
-		node->Size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
-		ImVec2 node_rect_max = node_rect_min + node->Size;
+		node->size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
+		ImVec2 node_rect_max = node_rect_min + node->size;
 
 		// Display node box
 		draw_list->ChannelsSetCurrent(0); // Background
 		ImGui::SetCursorScreenPos(node_rect_min);
-		ImGui::InvisibleButton("node", node->Size);
+		ImGui::InvisibleButton("node", node->size);
 		if (ImGui::IsItemHovered())
 		{
-			node_hovered_in_scene = node->ID;
+			node_hovered_in_scene = node->id;
 			open_context_menu |= ImGui::IsMouseClicked(1);
 		}
 		bool node_moving_active = ImGui::IsItemActive();
-		if (node_widgets_active || node_moving_active)
-			node_selected = node->ID;
-		if (node_moving_active && ImGui::IsMouseDragging(0))
-			node->Pos = node->Pos + ImGui::GetIO().MouseDelta;
+		if (node_widgets_active || node_moving_active) {
+			node_selected = node->id;
+		}
+		if (node_moving_active && ImGui::IsMouseDragging(0)) {
+			node->pos = node->pos + ImGui::GetIO().MouseDelta;
+		}
 
-		ImU32 node_bg_color = (node_hovered_in_list == node->ID || node_hovered_in_scene == node->ID || (node_hovered_in_list == -1 && node_selected == node->ID)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
+		ImU32 node_bg_color = (node_hovered_in_list == node->id || node_hovered_in_scene == node->id || (node_hovered_in_list == -1 && node_selected == node->id)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
 		draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 		draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
 		for (int slot_idx = 0; slot_idx < node->InputsCount; slot_idx++)
@@ -154,6 +158,7 @@ void ShaderDesignePanel::show()
 			node_selected = node_hovered_in_scene;
 	}
 
+	/*
 	// Draw context menu
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
 	if (ImGui::BeginPopup("context_menu"))
@@ -174,6 +179,7 @@ void ShaderDesignePanel::show()
 		ImGui::EndPopup();
 	}
 	ImGui::PopStyleVar();
+	*/
 
 	// Scrolling
 	if (ImGui::IsWindowHovered() && !ImGui::IsAnyItemActive() && ImGui::IsMouseDragging(2, 0.0f)) {
