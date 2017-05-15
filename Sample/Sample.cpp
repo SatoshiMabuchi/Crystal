@@ -11,6 +11,7 @@
 #include "../Physics/PhysicsObject.h"
 #include "../Graphics/PerspectiveCamera.h"
 #include "../Shader/PointRenderer.h"
+#include "PhysicsPanel.h"
 #include "ShaderDesignePanel.h"
 
 //#pragma comment(lib, "glew32.lib")
@@ -69,6 +70,7 @@ int main(int, char**)
 	bool show_another_window = false;
 	ImVec4 clear_color = ImColor(114, 144, 154);
 
+	PhysicsPanel physicsPanel;
 	Crystal::UI::ShaderDesignePanel panel;
 
 	// Main loop
@@ -105,28 +107,9 @@ int main(int, char**)
 			ImGui::ShowTestWindow(&show_test_window);
 		}
 
+		physicsPanel.show();
 		panel.show();
 
-		{
-			ImGui::Begin("Physics");
-			if (ImGui::Button("Add")) {
-				ImGui::OpenPopup("Add");
-			}
-			if(ImGui::BeginPopup("Add")) {
-				static float point1[3] = { 0.0f, 0.0f, 0.0f };
-				ImGui::InputFloat3("Point1", point1);
-				static float point2[3] = { 1.0f, 1.0f, 1.0f };
-				ImGui::InputFloat3("Point2", point2);
-				static float density = 1000.0f;
-				ImGui::InputFloat("Density", &density);
-				if (ImGui::Button("OK")) {
-					Box3d<float> box(Vector3d<float>(0.0, 0.0, 0.0), Vector3d<float>(1.0, 1.0, 1.0));
-				}
-				ImGui::EndPopup();
-			}
-			//if(ImGui::Button("Start"))
-			ImGui::End();
-		}
 
 		// Rendering
 		int display_w, display_h;

@@ -45,6 +45,7 @@
     <ClInclude Include="ShaderDesignePanel.h" />
     <ClInclude Include="ShaderNode.h" />
     <ClInclude Include="ShaderLink.h" />
+    <ClInclude Include="PhysicsPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -63,6 +64,7 @@
     </ClCompile>
     <ClCompile Include="ShaderDesignePanel.cpp" />
     <ClCompile Include="ShaderNode.cpp" />
+    <ClCompile Include="PhysicsPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
