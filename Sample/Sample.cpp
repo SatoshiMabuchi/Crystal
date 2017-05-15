@@ -107,6 +107,27 @@ int main(int, char**)
 
 		panel.show();
 
+		{
+			ImGui::Begin("Physics");
+			if (ImGui::Button("Add")) {
+				ImGui::OpenPopup("Add");
+			}
+			if(ImGui::BeginPopup("Add")) {
+				static float point1[3] = { 0.0f, 0.0f, 0.0f };
+				ImGui::InputFloat3("Point1", point1);
+				static float point2[3] = { 1.0f, 1.0f, 1.0f };
+				ImGui::InputFloat3("Point2", point2);
+				static float density = 1000.0f;
+				ImGui::InputFloat("Density", &density);
+				if (ImGui::Button("OK")) {
+					Box3d<float> box(Vector3d<float>(0.0, 0.0, 0.0), Vector3d<float>(1.0, 1.0, 1.0));
+				}
+				ImGui::EndPopup();
+			}
+			//if(ImGui::Button("Start"))
+			ImGui::End();
+		}
+
 		// Rendering
 		int display_w, display_h;
 		glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -115,11 +136,7 @@ int main(int, char**)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//glCreateProgram();
-		auto vHandle = glCreateShader(GL_VERTEX_SHADER);
-		auto fHandle = glCreateShader(GL_FRAGMENT_SHADER);
 
-
-		Box3d<float> box(Vector3d<float>(0.0, 0.0, 0.0), Vector3d<float>(1.0, 1.0, 1.0));
 		//SPHConstant constant(1000.0, 1.0, 0.0, 0.0, 0.125f);
 		//Crystal::Physics::PhysicsObject object(box, 0.1f, constant);
 
