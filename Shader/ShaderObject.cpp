@@ -274,3 +274,48 @@ void ShaderObject::findAttribLocation(const std::string& str)
 	assert(location != -1);
 	attribMap[str] = location;
 }
+
+std::vector<ShaderUniform> ShaderObject::getActiveUniforms()
+{
+	GLsizei maxLength = 0;
+	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
+	int count = 0;
+	glGetProgramiv(id, GL_ACTIVE_UNIFORMS, &count);
+	GLchar* name = (GLchar*)malloc(maxLength);
+	std::vector<ShaderUniform> uniforms;
+	for (auto i = 0; i < count; ++i) {
+		ShaderUniform uniform;
+		GLsizei written;
+		GLint size;
+		GLenum type;
+		glGetActiveUniform(id, i, maxLength, &written, &size, &type, name);
+		uniform.name = name;
+		uniform.type = type;
+		uniforms.push_back(uniform);
+	}
+	free(name);
+	return uniforms;
+}
+
+std::vector<ShaderAttribute> ShaderObject::getActiveAttributes()
+{
+	GLsizei maxLength = 0;
+	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
+	int count = 0;
+	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTES, &count);
+	GLchar* name = (GLchar*)malloc(maxLength);
+	std::vector<ShaderAttribute> attributes;
+	for (auto i = 0; i < count; ++i) {
+		GLsizei written;
+		GLint size;
+		GLenum type;
+		glGetActiveAttrib(id, i, maxLength, &written, &size, &type, name);
+		ShaderAttribute attribute;
+		attribute.name = name;
+		attribute.type = type;
+		attributes.push_back(attribute);
+	}
+	free(name);
+	return attributes;
+}
+

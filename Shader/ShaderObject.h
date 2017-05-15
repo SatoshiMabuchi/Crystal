@@ -7,6 +7,7 @@
 #include <string>
 
 #include "../Math/Vector3d.h"
+#include "GL/glew.h"
 
 namespace Crystal {
 	namespace Shader {
@@ -43,6 +44,20 @@ namespace Crystal {
 			std::string log;
 		};
 
+		class ShaderUniform
+		{
+		public:
+			std::string name;
+			GLenum type;
+		};
+
+		class ShaderAttribute
+		{
+		public:
+			std::string name;
+			GLenum type;
+		};
+
 		class ShaderObject
 		{
 		public:
@@ -69,6 +84,10 @@ namespace Crystal {
 			void findUniformLocation(const std::string& str);
 
 			void findAttribLocation(const std::string& str);
+
+			std::vector<ShaderUniform> getActiveUniforms();
+
+			std::vector<ShaderAttribute> getActiveAttributes();
 
 			std::string getLog() const { return log; }
 

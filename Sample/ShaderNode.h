@@ -6,6 +6,8 @@
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
 
+#include "../Shader/ShaderObject.h"
+
 namespace Crystal {
 	namespace UI {
 
@@ -21,6 +23,8 @@ public:
 		Color = color; InputsCount = inputs_count; OutputsCount = outputs_count;
 	}
 
+	void build();
+
 
 	void setName(const std::string& name) { this->name = name; }
 
@@ -32,6 +36,7 @@ public:
 	ImVec4  Color;
 	int InputsCount;
 	int OutputsCount;
+	Shader::ShaderObject shader;
 
 	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)InputsCount + 1)); }
 	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)OutputsCount + 1)); }

@@ -18,6 +18,7 @@ void ShaderDesignePanel::show()
 		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
 		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1);
 		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2);
+		smoothingNode->build();
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
