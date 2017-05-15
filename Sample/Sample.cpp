@@ -8,6 +8,7 @@
 #include <imgui.h>
 #include "imgui_impl_glfw_gl3.h"
 
+#include "../Physics/SPHParticle.h"
 #include "../Physics/PhysicsObject.h"
 #include "../Graphics/PerspectiveCamera.h"
 #include "../Shader/PointRenderer.h"
@@ -37,9 +38,9 @@ int main(int, char**)
 		return 1;
 
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #if __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
@@ -70,13 +71,23 @@ int main(int, char**)
 	bool show_another_window = false;
 	ImVec4 clear_color = ImColor(114, 144, 154);
 
+	PerspectiveCamera<float> camera;
+	//camera.init();
+	camera.moveLookatTo(Crystal::Math::Vector3d<float>(0.0, 0.0, 2.0));
+	camera.moveTo(Crystal::Math::Vector3d<float>(0.0, 0.0, -2.0));
+	camera.setNear(1.0f);
+	camera.setFar(100.0f);
+
 	PhysicsPanel physicsPanel;
-	Crystal::UI::ShaderDesignePanel panel;
+	Crystal::UI::ShaderDesignePanel shaderPanel;
+
+	PointRenderer renderer;
+	renderer.build();
+
 
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		glfwPollEvents();
 		ImGui_ImplGlfwGL3_NewFrame();
 
 		// 1. Show a simple window
@@ -108,24 +119,31 @@ int main(int, char**)
 		}
 
 		physicsPanel.show();
-		panel.show();
+		shaderPanel.show();
 
 
 		// Rendering
-		int display_w, display_h;
-		glfwGetFramebufferSize(window, &display_w, &display_h);
-		glViewport(0, 0, display_w, display_h);
-		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		glClear(GL_COLOR_BUFFER_BIT);
+		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		//glClear(GL_COLOR_BUFFER_BIT);
 
 		//glCreateProgram();
 
 		//SPHConstant constant(1000.0, 1.0, 0.0, 0.0, 0.125f);
 		//Crystal::Physics::PhysicsObject object(box, 0.1f, constant);
+		PointBuffer buffer;
+		const auto& particles = physicsPanel.getParticles();
+		for (auto p : particles) {
+			buffer.add( p->getPosition(), ColorRGBA<float>(1,0,0,0), 10.0f);
+		}
+		//buffer.add(Vector3d<float>(0, 0, 0), ColorRGBA<float>(1, 0, 0, 1), 10000.0f);
 
-		//PointRenderer renderer;
-		//renderer.build();
-
+		int display_w, display_h;
+		glfwGetFramebufferSize(window, &display_w, &display_h);
+		glViewport(0, 0, display_w, display_h);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+		renderer.render(camera, buffer);
+		glFlush();
 		//PointBuffer buffer;
 		//PerspectiveCamera<float> camera;
 		//camera.init();
@@ -134,6 +152,7 @@ int main(int, char**)
 
 		ImGui::Render();
 		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 
 	// Cleanup
