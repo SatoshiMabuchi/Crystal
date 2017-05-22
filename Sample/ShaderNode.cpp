@@ -1,6 +1,7 @@
 #include "ShaderNode.h"
 #include "ShaderSlot.h"
 
+#include "../Shader/PointRenderer.h"
 #include "../Shader/ShaderObject.h"
 
 using namespace Crystal::Shader;
@@ -54,13 +55,21 @@ void ShaderNode::build()
 	const auto vsSource = getBuildinVertexShaderSource();
 	const auto fsSource = getBuildinFragmentShaderSource();
 	bool b = shader.build(vsSource, fsSource);
-	shader.getActiveUniforms();
-	shader.getActiveAttributes();
+	const auto& uniforms = shader.getActiveUniforms();
+	for (const auto u : uniforms) {
+		createInputSlot(u.getTypeName());
+	}
+	const auto& attrs = shader.getActiveAttributes();
+	for (const auto a : attrs) {
+		createInputSlot("");
+	}
+	//shader.getActiveAttributes();
 }
 
-ShaderInputSlot* ShaderNode::createInputSlot()
+ShaderInputSlot* ShaderNode::createInputSlot(const std::string& name)
 {
-	auto slot = new ShaderInputSlot(this, inputSlots.size());
+	auto slot = new ShaderInputSlot(name, this, inputSlots.size());
+	std::cout << name << std::endl;
 	inputSlots.push_back(slot);
 	return slot;
 }

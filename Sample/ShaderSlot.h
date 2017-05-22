@@ -1,6 +1,7 @@
 #pragma once
 
 #include <imgui.h>
+#include <string>
 
 namespace Crystal {
 	namespace UI {
@@ -9,7 +10,8 @@ namespace Crystal {
 class ShaderInputSlot
 {
 public:
-	explicit ShaderInputSlot(ShaderNode* parent, const int id) :
+	explicit ShaderInputSlot(const std::string& name, ShaderNode* parent, const int id) :
+		name(name),
 		parent(parent),
 		id(id)
 	{}
@@ -17,6 +19,7 @@ public:
 	ImVec2 getPosition() const;
 
 private:
+	std::string name;
 	ShaderNode* parent;
 	const int id;
 };

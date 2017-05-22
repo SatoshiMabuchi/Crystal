@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="ShaderObject.h" />
     <ClInclude Include="PointRenderer.h" />
     <ClInclude Include="stdafx.h" />
@@ -12,6 +9,7 @@
     <ClInclude Include="DepthTextureObject.h" />
     <ClInclude Include="ITextureObject.h" />
     <ClInclude Include="OnScreenRenderer.h" />
+    <ClInclude Include="ShaderUniform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
@@ -19,6 +17,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="DepthRenderer.cpp" />
     <ClCompile Include="OnScreenRenderer.cpp" />
+    <ClCompile Include="ShaderUniform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

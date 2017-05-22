@@ -133,15 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="DepthRenderer.h" />
     <ClInclude Include="DepthTextureObject.h" />
     <ClInclude Include="ITextureObject.h" />
     <ClInclude Include="OnScreenRenderer.h" />
     <ClInclude Include="PointRenderer.h" />
     <ClInclude Include="ShaderObject.h" />
+    <ClInclude Include="ShaderUniform.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -150,6 +148,7 @@
     <ClCompile Include="OnScreenRenderer.cpp" />
     <ClCompile Include="PointRenderer.cpp" />
     <ClCompile Include="ShaderObject.cpp" />
+    <ClCompile Include="ShaderUniform.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
