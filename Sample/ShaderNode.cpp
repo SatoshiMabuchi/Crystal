@@ -72,4 +72,14 @@ ShaderOutputSlot* ShaderNode::createOutputSlot()
 	return slot;
 }
 
+void ShaderNode::clear() {
+	for (auto s : inputSlots) {
+		delete s;
+	}
+	inputSlots.clear();
+	for (auto s : outputSlots) {
+		delete s;
+	}
+	outputSlots.clear();
+}
 

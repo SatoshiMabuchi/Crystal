@@ -15,15 +15,15 @@ void ShaderDesignPanel::show()
 		return;
 	}
 	if (!inited) {
-		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50), 0.5f, ImColor(255, 100, 100), 1, 1);
-		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150), 0.42f, ImColor(200, 100, 200), 1, 1);
-		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80), 1.0f, ImColor(0, 200, 100), 2, 2);
+		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50));
+		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150));
+		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80));
 		smoothingNode->build();
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
-		ShaderOutputSlot* slot1 = smoothingNode->createOutputSlot();
-		ShaderInputSlot* slot2 = depthNode->createInputSlot();
+		auto slot1 = smoothingNode->createOutputSlot();
+		auto slot2 = depthNode->createInputSlot();
 		auto slot3 = thicknessNode->createInputSlot();
 		links.push_back(ShaderLink(slot1, slot2));
 		links.push_back(ShaderLink(slot1, slot3));
@@ -126,8 +126,6 @@ void ShaderDesignPanel::show()
 		ImGui::SetCursorScreenPos(node_rect_min + NODE_WINDOW_PADDING);
 		ImGui::BeginGroup(); // Lock horizontal position
 		ImGui::Text("%s", node->name.c_str());
-		ImGui::SliderFloat("##value", &node->value, 0.0f, 1.0f, "Alpha %.2f");
-		ImGui::ColorEdit3("##color", &node->Color.x);
 		static bool showShaderSource = false;
 		if (ImGui::Button("ShaderSource")) {
 			showShaderSource = true;
@@ -223,7 +221,7 @@ void ShaderDesignPanel::show()
 		}
 		else {
 			if (ImGui::MenuItem("Add")) {
-				nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos, 0.5f, ImColor(100, 100, 200), 2, 2));
+				nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos));
 			}
 			if (ImGui::MenuItem("Paste", NULL, false, false)) {
 				;

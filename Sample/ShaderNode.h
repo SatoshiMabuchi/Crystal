@@ -5,6 +5,7 @@
 #include "imgui.h"
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
+#include "../Util/UnCopyable.h"
 
 #include "../Shader/ShaderObject.h"
 
@@ -13,16 +14,18 @@ namespace Crystal {
 		class ShaderInputSlot;
 		class ShaderOutputSlot;
 
-class ShaderNode
+class ShaderNode : private UnCopyable
 {
 public:
-	ShaderNode(int id, std::string name, const ImVec2& pos, float value, const ImVec4& color, int inputs_count, int outputs_count) :
+	ShaderNode(int id, std::string name, const ImVec2& pos) :
 		id(id),
 		name(name),
-		pos(pos),
-		value(value)
+		pos(pos)
 	{
-		Color = color;
+	}
+
+	~ShaderNode() {
+		clear();
 	}
 
 	void build();
@@ -33,12 +36,12 @@ public:
 
 	ShaderOutputSlot* createOutputSlot();
 
+	void clear();
+
 	int id;
 	std::string name;
 	ImVec2 pos;
 	ImVec2 size;
-	float value;
-	ImVec4  Color;
 	std::vector<ShaderInputSlot*> inputSlots;
 	std::vector<ShaderOutputSlot*> outputSlots;
 	Shader::ShaderObject shader;
