@@ -1,5 +1,6 @@
 #include "ShaderDesignPanel.h"
 #include <algorithm>
+#include <fstream>
 
 #include "../ThirdParty/nativefiledialog/src/include/nfd.h"
 
@@ -7,6 +8,21 @@ using namespace Crystal::UI;
 
 static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
 static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
+
+namespace {
+	std::string getStrFromFile(const std::string& file)
+	{
+		std::ifstream stream(file);
+		if (stream.fail()) {
+			assert(false);
+			return "";
+		}
+		std::istreambuf_iterator<char> it(stream);
+		std::istreambuf_iterator<char> last;
+		return std::string(it, last);
+	}
+}
+
 
 void ShaderDesignPanel::show()
 {
@@ -37,7 +53,8 @@ void ShaderDesignPanel::show()
 		//if (ImGui::MenuItem("Close")) *p_open = false;
 		if (ImGui::MenuItem("Open")) {
 			nfdchar_t *outPath = NULL;
-			nfdresult_t result = NFD_OpenDialog(NULL, NULL, &outPath);
+			std::string filter = "glvs,glfs";
+			nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
 
 			if (result == NFD_OKAY) {
 				puts("Success!");
@@ -61,12 +78,13 @@ void ShaderDesignPanel::show()
 			}
 			std::cout << ss.str() << std::endl;
 		}
-		ImGui::EndMenu();
 		if (ImGui::MenuItem("SaveAs")) {
 			;
 		}
+		ImGui::EndMenu();
 	}
 	ImGui::EndMenuBar();
+
 
 	// Draw a list of nodes on the left side
 	bool open_context_menu = false;

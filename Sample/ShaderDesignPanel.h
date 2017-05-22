@@ -6,6 +6,7 @@
 #include <vector>
 #include "ShaderNode.h"
 #include "ShaderLink.h"
+#include "GLVSEditor.h"
 
 namespace Crystal {
 	namespace UI {

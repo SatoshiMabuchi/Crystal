@@ -14,6 +14,7 @@
 #include "../Shader/PointRenderer.h"
 #include "PhysicsPanel.h"
 #include "ShaderDesignPanel.h"
+#include "GLVSEditor.h"
 
 //#pragma comment(lib, "glew32.lib")
 
@@ -21,6 +22,7 @@ using namespace Crystal::Math;
 using namespace Crystal::Physics;
 using namespace Crystal::Graphics;
 using namespace Crystal::Shader;
+using namespace Crystal::UI;
 
 static void error_callback(int error, const char* description)
 {
@@ -81,6 +83,7 @@ int main(int, char**)
 	PhysicsPanel physicsPanel;
 	Crystal::UI::ShaderDesignPanel shaderPanel;
 
+	GLVSEditor vsEditor;
 	PointRenderer renderer;
 	renderer.build();
 
@@ -121,6 +124,7 @@ int main(int, char**)
 		physicsPanel.show();
 		shaderPanel.show();
 
+		vsEditor.show();
 
 		// Rendering
 		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);

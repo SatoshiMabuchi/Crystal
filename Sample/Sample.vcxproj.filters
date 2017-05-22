@@ -44,6 +44,7 @@
     <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderSlot.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
+    <ClInclude Include="GLVSEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -65,6 +66,7 @@
     <ClCompile Include="ShaderLink.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
     <ClCompile Include="ShaderSlot.cpp" />
+    <ClCompile Include="GLVSEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
