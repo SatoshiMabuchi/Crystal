@@ -61,7 +61,7 @@ void ShaderNode::build()
 	}
 	const auto& attrs = shader.getActiveAttributes();
 	for (const auto a : attrs) {
-		createInputSlot("");
+		createInputSlot(a.getTypeName());
 	}
 	//shader.getActiveAttributes();
 }

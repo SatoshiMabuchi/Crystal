@@ -10,6 +10,8 @@
     <ClInclude Include="ITextureObject.h" />
     <ClInclude Include="OnScreenRenderer.h" />
     <ClInclude Include="ShaderUniform.h" />
+    <ClInclude Include="ShaderAttribute.h" />
+    <ClInclude Include="ShaderType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
@@ -18,6 +20,8 @@
     <ClCompile Include="DepthRenderer.cpp" />
     <ClCompile Include="OnScreenRenderer.cpp" />
     <ClCompile Include="ShaderUniform.cpp" />
+    <ClCompile Include="ShaderAttribute.cpp" />
+    <ClCompile Include="ShaderType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,10 +1,13 @@
 #include "ShaderUniform.h"
+#include "ShaderType.h"
 #include <cassert>
 
 using namespace Crystal::Shader;
 
 std::string ShaderUniform::getTypeName() const
 {
+	return ShaderType::toString(type);
+	/*
 	switch (type) {
 	case GL_FLOAT:
 		return "float";
@@ -44,4 +47,5 @@ std::string ShaderUniform::getTypeName() const
 		assert(false);
 		return "";
 	}
+	*/
 }

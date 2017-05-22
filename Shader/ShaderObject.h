@@ -8,6 +8,7 @@
 
 #include "../Math/Vector3d.h"
 #include "ShaderUniform.h"
+#include "ShaderAttribute.h"
 #include "GL/glew.h"
 
 namespace Crystal {
@@ -43,14 +44,6 @@ namespace Crystal {
 			unsigned int id;
 
 			std::string log;
-		};
-
-
-		class ShaderAttribute
-		{
-		public:
-			std::string name;
-			GLenum type;
 		};
 
 		class ShaderObject
