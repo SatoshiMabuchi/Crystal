@@ -10,7 +10,7 @@
 namespace Crystal {
 	namespace UI {
 
-class ShaderDesignePanel
+class ShaderDesignPanel
 {
 public:
 	void show();

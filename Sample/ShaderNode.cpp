@@ -1,4 +1,5 @@
 #include "ShaderNode.h"
+#include "ShaderSlot.h"
 
 #include "../Shader/ShaderObject.h"
 
@@ -56,4 +57,19 @@ void ShaderNode::build()
 	shader.getActiveUniforms();
 	shader.getActiveAttributes();
 }
+
+ShaderInputSlot* ShaderNode::createInputSlot()
+{
+	auto slot = new ShaderInputSlot(this, inputSlots.size());
+	inputSlots.push_back(slot);
+	return slot;
+}
+
+ShaderOutputSlot* ShaderNode::createOutputSlot()
+{
+	auto slot = new ShaderOutputSlot(this, outputSlots.size());
+	outputSlots.push_back(slot);
+	return slot;
+}
+
 

@@ -39,10 +39,11 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ShaderDesignePanel.h" />
     <ClInclude Include="ShaderNode.h" />
     <ClInclude Include="ShaderLink.h" />
     <ClInclude Include="PhysicsPanel.h" />
+    <ClInclude Include="ShaderSlot.h" />
+    <ClInclude Include="ShaderDesignPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -59,9 +60,11 @@
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderDesignePanel.cpp" />
     <ClCompile Include="ShaderNode.cpp" />
     <ClCompile Include="PhysicsPanel.cpp" />
+    <ClCompile Include="ShaderLink.cpp" />
+    <ClCompile Include="ShaderDesignPanel.cpp" />
+    <ClCompile Include="ShaderSlot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

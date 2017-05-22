@@ -1,4 +1,4 @@
-#include "ShaderDesignePanel.h"
+#include "ShaderDesignPanel.h"
 #include <algorithm>
 
 using namespace Crystal::UI;
@@ -6,7 +6,7 @@ using namespace Crystal::UI;
 static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
 static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
 
-void ShaderDesignePanel::show()
+void ShaderDesignPanel::show()
 {
 	bool opened =false;
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
@@ -22,8 +22,11 @@ void ShaderDesignePanel::show()
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
-		links.push_back(ShaderLink(smoothingNode, 0, thicknessNode, 0));
-		links.push_back(ShaderLink(depthNode, 0, thicknessNode, 1));
+		ShaderOutputSlot* slot1 = smoothingNode->createOutputSlot();
+		ShaderInputSlot* slot2 = depthNode->createInputSlot();
+		auto slot3 = thicknessNode->createInputSlot();
+		links.push_back(ShaderLink(slot1, slot2));
+		links.push_back(ShaderLink(slot1, slot3));
 		inited = true;
 	}
 
@@ -107,8 +110,8 @@ void ShaderDesignePanel::show()
 	// Display links
 	draw_list->ChannelsSetCurrent(0); // Background
 	for (auto link : links) {
-		auto p1 = offset + link.inputNode->GetOutputSlotPos(link.InputSlot);
-		auto p2 = offset + link.outputNode->GetInputSlotPos(link.OutputSlot);
+		auto p1 = offset + link.in->getPosition();
+		auto p2 = offset + link.out->getPosition();
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
 
@@ -165,10 +168,12 @@ void ShaderDesignePanel::show()
 		ImU32 node_bg_color = (hoveredNodeInList == node || hoveredNodeInScene == node || (hoveredNodeInList == nullptr && selectedNode == node)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
 		draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 		draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
-		for (int slot_idx = 0; slot_idx < node->InputsCount; slot_idx++)
-			draw_list->AddCircleFilled(offset + node->GetInputSlotPos(slot_idx), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
-		for (int slot_idx = 0; slot_idx < node->OutputsCount; slot_idx++)
-			draw_list->AddCircleFilled(offset + node->GetOutputSlotPos(slot_idx), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
+		for (auto slot : node->inputSlots) {
+			draw_list->AddCircleFilled(offset + slot->getPosition(), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
+		}
+		for (auto slot : node->outputSlots) {
+			draw_list->AddCircleFilled(offset + slot->getPosition() , NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
+		}
 
 		ImGui::PopID();
 	}

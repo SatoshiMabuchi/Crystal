@@ -13,7 +13,7 @@
 #include "../Graphics/PerspectiveCamera.h"
 #include "../Shader/PointRenderer.h"
 #include "PhysicsPanel.h"
-#include "ShaderDesignePanel.h"
+#include "ShaderDesignPanel.h"
 
 //#pragma comment(lib, "glew32.lib")
 
@@ -79,7 +79,7 @@ int main(int, char**)
 	camera.setFar(100.0f);
 
 	PhysicsPanel physicsPanel;
-	Crystal::UI::ShaderDesignePanel shaderPanel;
+	Crystal::UI::ShaderDesignPanel shaderPanel;
 
 	PointRenderer renderer;
 	renderer.build();

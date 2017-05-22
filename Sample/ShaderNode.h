@@ -10,6 +10,8 @@
 
 namespace Crystal {
 	namespace UI {
+		class ShaderInputSlot;
+		class ShaderOutputSlot;
 
 class ShaderNode
 {
@@ -20,13 +22,16 @@ public:
 		pos(pos),
 		value(value)
 	{
-		Color = color; InputsCount = inputs_count; OutputsCount = outputs_count;
+		Color = color;
 	}
 
 	void build();
 
-
 	void setName(const std::string& name) { this->name = name; }
+
+	ShaderInputSlot* createInputSlot();
+
+	ShaderOutputSlot* createOutputSlot();
 
 	int id;
 	std::string name;
@@ -34,12 +39,12 @@ public:
 	ImVec2 size;
 	float value;
 	ImVec4  Color;
-	int InputsCount;
-	int OutputsCount;
+	std::vector<ShaderInputSlot*> inputSlots;
+	std::vector<ShaderOutputSlot*> outputSlots;
 	Shader::ShaderObject shader;
 
-	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)InputsCount + 1)); }
-	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)OutputsCount + 1)); }
+	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)inputSlots.size() + 1)); }
+	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)outputSlots.size() + 1)); }
 
 	template<class Archive>
 	void serialize(Archive & archive)

@@ -1,25 +1,26 @@
 #ifndef __CRYSTAL_UI_SHADER_LINK_H__
 #define __CRYSTAL_UI_SHADER_LINK_H__
 
+#include "ShaderSlot.h"
+
 namespace Crystal {
 	namespace UI {
 
 class ShaderNode;
+//class ShaderOutputSlot;
+//class ShaderInputSlot;
 
 class ShaderLink
 {
 public:
-	ShaderLink(ShaderNode* inputNode, int input_slot, ShaderNode* outputNode, int output_slot) :
-		inputNode(inputNode),
-		outputNode(outputNode)
+	ShaderLink(ShaderOutputSlot* out, ShaderInputSlot* in) :
+		out(out),
+		in(in)
 	{
-		InputSlot = input_slot; OutputSlot = output_slot;
 	}
 
-	ShaderNode* inputNode;
-	int InputSlot;
-	ShaderNode* outputNode;
-	int OutputSlot;
+	ShaderOutputSlot* out;
+	ShaderInputSlot* in;
 };
 
 	}
