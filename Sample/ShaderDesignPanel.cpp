@@ -1,6 +1,8 @@
 #include "ShaderDesignPanel.h"
 #include <algorithm>
 
+#include "../ThirdParty/nativefiledialog/src/include/nfd.h"
+
 using namespace Crystal::UI;
 
 static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
@@ -34,7 +36,20 @@ void ShaderDesignPanel::show()
 	if (ImGui::BeginMenu("File")) {
 		//if (ImGui::MenuItem("Close")) *p_open = false;
 		if (ImGui::MenuItem("Open")) {
-			;
+			nfdchar_t *outPath = NULL;
+			nfdresult_t result = NFD_OpenDialog(NULL, NULL, &outPath);
+
+			if (result == NFD_OKAY) {
+				puts("Success!");
+				puts(outPath);
+				free(outPath);
+			}
+			else if (result == NFD_CANCEL) {
+				puts("User pressed cancel.");
+			}
+			else {
+				printf("Error: %s\n", NFD_GetError());
+			}
 		}
 		if (ImGui::MenuItem("Save")) {
 			std::stringstream ss;
