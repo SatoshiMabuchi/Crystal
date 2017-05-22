@@ -25,3 +25,5 @@
 /PhysicsTest/x64/Debug
 /Shader/x64/Debug
 /Shape/x64/Debug
+/ThirdParty/nativefiledialog/build/vs2010/NativeFileDialog.VC.db
+/ThirdParty/nativefiledialog/build/vs2010/NativeFileDialog.VC.VC.opendb
