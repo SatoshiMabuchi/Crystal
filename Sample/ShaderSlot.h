@@ -10,8 +10,9 @@ namespace Crystal {
 class ShaderInputSlot
 {
 public:
-	explicit ShaderInputSlot(const std::string& name, ShaderNode* parent, const int id) :
+	explicit ShaderInputSlot(const std::string& name, const std::string& type, ShaderNode* parent, const int id) :
 		name(name),
+		type(type),
 		parent(parent),
 		id(id)
 	{}
@@ -20,6 +21,7 @@ public:
 
 private:
 	std::string name;
+	std::string type;
 	ShaderNode* parent;
 	const int id;
 };

@@ -57,18 +57,18 @@ void ShaderNode::build()
 	bool b = shader.build(vsSource, fsSource);
 	const auto& uniforms = shader.getActiveUniforms();
 	for (const auto u : uniforms) {
-		createInputSlot(u.getTypeName());
+		createInputSlot(u.name, u.getTypeName());
 	}
 	const auto& attrs = shader.getActiveAttributes();
 	for (const auto a : attrs) {
-		createInputSlot(a.getTypeName());
+		createInputSlot(a.name, a.getTypeName());
 	}
 	//shader.getActiveAttributes();
 }
 
-ShaderInputSlot* ShaderNode::createInputSlot(const std::string& name)
+ShaderInputSlot* ShaderNode::createInputSlot(const std::string& name,const std::string& type)
 {
-	auto slot = new ShaderInputSlot(name, this, inputSlots.size());
+	auto slot = new ShaderInputSlot(name, type, this, inputSlots.size());
 	std::cout << name << std::endl;
 	inputSlots.push_back(slot);
 	return slot;

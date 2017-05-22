@@ -290,7 +290,7 @@ std::vector<ShaderUniform> ShaderObject::getActiveUniforms()
 		GLenum type;
 		glGetActiveUniform(id, i, maxLength, &written, &size, &type, name);
 		uniform.name = name;
-		uniform.type = type;
+		uniform.type = ShaderType(type);
 		uniforms.push_back(uniform);
 	}
 	free(name);
@@ -312,7 +312,7 @@ std::vector<ShaderAttribute> ShaderObject::getActiveAttributes()
 		glGetActiveAttrib(id, i, maxLength, &written, &size, &type, name);
 		ShaderAttribute attribute;
 		attribute.name = name;
-		attribute.type = type;
+		attribute.type = ShaderType(type);
 		attributes.push_back(attribute);
 	}
 	free(name);

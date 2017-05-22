@@ -9,7 +9,14 @@ namespace Crystal {
 class ShaderType
 {
 public:
-	static std::string toString(const GLenum e);
+	ShaderType() {}
+
+	explicit ShaderType(const GLenum e);
+
+	std::string toString() const;
+
+private:
+	GLenum e;
 };
 
 	}

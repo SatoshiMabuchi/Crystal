@@ -23,8 +23,8 @@ void ShaderDesignPanel::show()
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
 		auto slot1 = smoothingNode->createOutputSlot();
-		auto slot2 = depthNode->createInputSlot("");
-		auto slot3 = thicknessNode->createInputSlot("");
+		auto slot2 = depthNode->createInputSlot("", "");
+		auto slot3 = thicknessNode->createInputSlot("", "");
 		links.push_back(ShaderLink(slot1, slot2));
 		links.push_back(ShaderLink(slot1, slot3));
 		inited = true;

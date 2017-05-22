@@ -2,6 +2,7 @@
 
 #include <string>
 #include "GL/glew.h"
+#include "ShaderType.h"
 
 namespace Crystal {
 	namespace Shader {
@@ -10,7 +11,7 @@ namespace Crystal {
 		{
 		public:
 			std::string name;
-			GLenum type;
+			ShaderType type;
 
 			std::string getTypeName() const;
 		};

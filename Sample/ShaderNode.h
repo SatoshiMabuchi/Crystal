@@ -32,7 +32,7 @@ public:
 
 	void setName(const std::string& name) { this->name = name; }
 
-	ShaderInputSlot* createInputSlot(const std::string& name);
+	ShaderInputSlot* createInputSlot(const std::string& name, const std::string& type);
 
 	ShaderOutputSlot* createOutputSlot();
 

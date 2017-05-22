@@ -3,7 +3,11 @@
 
 using namespace Crystal::Shader;
 
-std::string ShaderType::toString(const GLenum e)
+ShaderType::ShaderType(const GLenum e) :
+	e(e)
+{}
+
+std::string ShaderType::toString() const
 {
 	switch (e) {
 	case GL_FLOAT:
@@ -61,12 +65,19 @@ std::string ShaderType::toString(const GLenum e)
 	case GL_DOUBLE_MAT3:
 		return "double_mat3";
 	case GL_DOUBLE_MAT4:
+		return "double_mat4";
 	case GL_DOUBLE_MAT2x3:
+		return "double_mat2x3";
 	case GL_DOUBLE_MAT2x4:
+		return "double_mat2x4";
 	case GL_DOUBLE_MAT3x2:
+		return "double_mat3x2";
 	case GL_DOUBLE_MAT3x4:
+		return "double_mat3x4";
 	case GL_DOUBLE_MAT4x2:
+		return "double_mat4x2";
 	case GL_DOUBLE_MAT4x3:
+		return "double_mat4x3";
 	case GL_BOOL:
 		return "bool";
 	case GL_BOOL_VEC2:
