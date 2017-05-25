@@ -25,7 +25,7 @@ float getDepth(vec2 tCoord){
 vec3 uvToEye(vec2 tCoord, float depth) {
 	vec4 clippingPosition = vec4(tCoord, depth, 1.0);
 	vec4 viewPosition = inverse(projectionMatrix) * clippingPosition;
-	return viewPosition.xyz / viewPosition.w;" << std::endl
+	return viewPosition.xyz / viewPosition.w;
 }
 vec3 getEyePosition(vec2 texCoord){
 	float depth = getDepth(texCoord);
@@ -42,7 +42,7 @@ vec3 getPhongShadedColor( vec3 position, vec3 normal) {
 	if(innerProduct > 0.0) {
 		specular = light.Ls * material.Ks * pow( max( dot(r,v), 0.0 ), material.shininess );
 	}
-	return ambient + diffuse + specular
+	return ambient + diffuse + specular;
 }
 void main(void) {
 	float depth = getDepth(texCoord);
