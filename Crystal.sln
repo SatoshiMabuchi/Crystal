@@ -41,6 +41,26 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IO", "IO\IO.vcxproj", "{198
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shape", "Shape\Shape.vcxproj", "{76FDBCE5-E588-4BC9-97B4-C8FE5D76F91A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GLSL", "GLSL", "{06C8587D-CCC8-4A98-87A4-3D4594D35C2F}"
+	ProjectSection(SolutionItems) = preProject
+		GLSL\BilateralFilter.glfs = GLSL\BilateralFilter.glfs
+		GLSL\BilateralFilter.glvs = GLSL\BilateralFilter.glvs
+		GLSL\CubeMapRenderer.glfs = GLSL\CubeMapRenderer.glfs
+		GLSL\CubeMapRenderer.glvs = GLSL\CubeMapRenderer.glvs
+		Depth.glfs = Depth.glfs
+		Depth.glvs = Depth.glvs
+		Differed.glfs = Differed.glfs
+		Differed.glvs = Differed.glvs
+		GLSL\ParticleDepth.glfs = GLSL\ParticleDepth.glfs
+		GLSL\ParticleDepth.glvs = GLSL\ParticleDepth.glvs
+		GLSL\SSAbsorption.glfs = GLSL\SSAbsorption.glfs
+		GLSL\SSAbsorption.glvs = GLSL\SSAbsorption.glvs
+		SSNormal.glfs = SSNormal.glfs
+		SSNormal.glvs = SSNormal.glvs
+		GLSL\SSThickness.glfs = GLSL\SSThickness.glfs
+		GLSL\SSThickness.glvs = GLSL\SSThickness.glvs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

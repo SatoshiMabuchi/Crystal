@@ -184,16 +184,6 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\GLSL\BilateralFilter.glfs" />
-    <None Include="..\GLSL\BilateralFilter.glvs" />
-    <None Include="..\GLSL\CubeMapRenderer.glfs" />
-    <None Include="..\GLSL\CubeMapRenderer.glvs" />
-    <None Include="..\GLSL\ParticleDepth.glfs" />
-    <None Include="..\GLSL\ParticleDepth.glvs" />
-    <None Include="..\GLSL\SSAbsorption.glfs" />
-    <None Include="..\GLSL\SSAbsorption.glvs" />
-    <None Include="..\GLSL\SSThickness.glfs" />
-    <None Include="..\GLSL\SSThickness.glvs" />
     <None Include="..\ThirdParty\imgui-1.49\.travis.yml" />
     <None Include="..\ThirdParty\imgui-1.49\LICENSE" />
     <None Include="..\ThirdParty\imgui-1.49\README.md" />
