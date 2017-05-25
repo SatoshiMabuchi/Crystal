@@ -15,6 +15,7 @@
 #include "PhysicsPanel.h"
 #include "ShaderDesignPanel.h"
 #include "GLVSEditor.h"
+#include "GLFSEditor.h"
 
 //#pragma comment(lib, "glew32.lib")
 
@@ -84,6 +85,7 @@ int main(int, char**)
 	Crystal::UI::ShaderDesignPanel shaderPanel;
 
 	GLVSEditor vsEditor;
+	GLFSEditor fsEditor;
 	PointRenderer renderer;
 	renderer.build();
 
@@ -125,6 +127,7 @@ int main(int, char**)
 		shaderPanel.show();
 
 		vsEditor.show();
+		fsEditor.show();
 
 		// Rendering
 		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);

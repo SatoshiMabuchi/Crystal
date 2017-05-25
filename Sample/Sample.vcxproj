@@ -156,6 +156,7 @@
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_rect_pack.h" />
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_textedit.h" />
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_truetype.h" />
+    <ClInclude Include="GLFSEditor.h" />
     <ClInclude Include="GLVSEditor.h" />
     <ClInclude Include="GL\glcorearb.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp" />
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_demo.cpp" />
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_draw.cpp" />
+    <ClCompile Include="GLFSEditor.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="PhysicsPanel.cpp" />
@@ -182,6 +184,16 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\GLSL\BilateralFilter.glfs" />
+    <None Include="..\GLSL\BilateralFilter.glvs" />
+    <None Include="..\GLSL\CubeMapRenderer.glfs" />
+    <None Include="..\GLSL\CubeMapRenderer.glvs" />
+    <None Include="..\GLSL\ParticleDepth.glfs" />
+    <None Include="..\GLSL\ParticleDepth.glvs" />
+    <None Include="..\GLSL\SSAbsorption.glfs" />
+    <None Include="..\GLSL\SSAbsorption.glvs" />
+    <None Include="..\GLSL\SSThickness.glfs" />
+    <None Include="..\GLSL\SSThickness.glvs" />
     <None Include="..\ThirdParty\imgui-1.49\.travis.yml" />
     <None Include="..\ThirdParty\imgui-1.49\LICENSE" />
     <None Include="..\ThirdParty\imgui-1.49\README.md" />

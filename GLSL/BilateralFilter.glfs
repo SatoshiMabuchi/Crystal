@@ -18,15 +18,15 @@ void main(void) {
 			vec2 offset = vec2(dxx,dyy);
 			float sample = texture2D(tex, texCoord + offset ).r;
 			float r = sqrt(dxx * dxx + dyy * dyy) * blurScale;
-			float w = exp(-r*r);" << std::endl;
+			float w = exp(-r*r);
 			float r2 = (sample-depth) * blurDepthFalloff;
 			float g = exp(-r2*r2);
-			sum += sample * w * g;"
-			wsum += w * g;"
+			sum += sample * w * g;
+			wsum += w * g;
 		}
 	}
 	if(wsum > 0.0) {
 		sum /= wsum;
 	}
 	fragColor = vec4(sum);
-}"
+}

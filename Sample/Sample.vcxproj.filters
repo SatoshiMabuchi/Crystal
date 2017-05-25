@@ -8,6 +8,9 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{6a9db318-899f-4332-830b-674d009a77fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GLSL">
+      <UniqueIdentifier>{8912ddd4-4d5e-453d-a373-6e2e47151cf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ThirdParty\imgui-1.49\imconfig.h">
@@ -45,6 +48,7 @@
     <ClInclude Include="ShaderSlot.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="GLVSEditor.h" />
+    <ClInclude Include="GLFSEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -67,6 +71,7 @@
     <ClCompile Include="ShaderDesignPanel.cpp" />
     <ClCompile Include="ShaderSlot.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
+    <ClCompile Include="GLFSEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -78,6 +83,36 @@
     </None>
     <None Include="..\ThirdParty\imgui-1.49\README.md">
       <Filter>imgui</Filter>
+    </None>
+    <None Include="..\GLSL\BilateralFilter.glfs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\BilateralFilter.glvs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\CubeMapRenderer.glfs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\CubeMapRenderer.glvs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\SSThickness.glvs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\SSAbsorption.glvs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\SSAbsorption.glfs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\SSThickness.glfs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\ParticleDepth.glvs">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\GLSL\ParticleDepth.glfs">
+      <Filter>GLSL</Filter>
     </None>
   </ItemGroup>
 </Project>
