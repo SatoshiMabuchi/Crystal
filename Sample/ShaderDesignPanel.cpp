@@ -37,7 +37,6 @@ void ShaderDesignPanel::show()
 		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50));
 		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150));
 		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80));
-		smoothingNode->build();
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
@@ -89,23 +88,7 @@ void ShaderDesignPanel::show()
 
 	// Draw a list of nodes on the left side
 	bool open_context_menu = false;
-	ShaderNode* hoveredNodeInList = nullptr;
 	ShaderNode* hoveredNodeInScene = nullptr;
-	ImGui::BeginChild("node_list", ImVec2(100, 0));
-	ImGui::Text("Nodes");
-	ImGui::Separator();
-	for (auto node : nodes) {
-		ImGui::PushID(node->id);
-		if (ImGui::Selectable(node->name.c_str(), node == selectedNode)) {
-			selectedNode = node;
-		}
-		if (ImGui::IsItemHovered()) {
-			hoveredNodeInList = node;
-			open_context_menu |= ImGui::IsMouseClicked(1);
-		}
-		ImGui::PopID();
-	}
-	ImGui::EndChild();
 
 	ImGui::SameLine();
 	ImGui::BeginGroup();
@@ -147,24 +130,19 @@ void ShaderDesignPanel::show()
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
 
-	// Display nodes
 	for (auto node : nodes) {
-		node->show(offset, selectedNode, hoveredNodeInList, hoveredNodeInScene, open_context_menu);
+		node->show(offset, selectedNode, hoveredNodeInScene, open_context_menu);
 	}
 	draw_list->ChannelsMerge();
 
 	// Open context menu
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1)) {
 		selectedNode = nullptr;
-		hoveredNodeInList = nullptr;
 		hoveredNodeInScene = nullptr;
 		open_context_menu = true;
 	}
 	if (open_context_menu) {
 		ImGui::OpenPopup("context_menu");
-		if (hoveredNodeInList) {
-			selectedNode = hoveredNodeInList;
-		}
 		if (hoveredNodeInScene) {
 			selectedNode = hoveredNodeInScene;
 		}

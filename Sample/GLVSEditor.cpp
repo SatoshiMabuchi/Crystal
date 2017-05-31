@@ -27,6 +27,7 @@ namespace {
 
 void GLVSEditor::show()
 {
+	ImGui::BeginGroup(); // Lock horizontal position
 	if (ImGui::Button("Open")) {
 		nfdchar_t *outPath = NULL;
 		std::string filter = "glvs";
@@ -41,9 +42,9 @@ void GLVSEditor::show()
 		else if (result == NFD_CANCEL) {
 			puts("User pressed cancel.");
 		}
-			else {
-				printf("Error: %s\n", NFD_GetError());
-			}
+		else {
+			printf("Error: %s\n", NFD_GetError());
+		}
 	}
 	if (ImGui::Button("Save")) {
 		;
@@ -52,13 +53,13 @@ void GLVSEditor::show()
 		;
 	}
 	if (ImGui::Button("Compile")) {
-		//if (ImGui::MenuItem("Close")) *p_open = false;
-			shaderUnit.compile(txt, ShaderUnit::Stage::VERTEX);
-			const auto& str = shaderUnit.getLog();
-			int len = str.length();
-			logText = new char[len + 1];
-			memcpy(logText, str.c_str(), len + 1);
+		shaderUnit.compile(txt, ShaderUnit::Stage::VERTEX);
+		const auto& str = shaderUnit.getLog();
+		int len = str.length();
+		logText = new char[len + 1];
+		memcpy(logText, str.c_str(), len + 1);
 	}
+	ImGui::EndGroup();
 
 	ImGui::InputTextMultiline("Source", txt, 1024);
 	ImGui::InputTextMultiline("Log", logText, 1024);

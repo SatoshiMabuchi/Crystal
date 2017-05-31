@@ -19,6 +19,8 @@ public:
 
 	ImVec2 getPosition() const;
 
+	void draw(ImDrawList* draw_list, ImVec2 offset);
+
 private:
 	std::string name;
 	std::string type;
@@ -35,6 +37,8 @@ public:
 	{}
 
 	ImVec2 getPosition() const;
+
+	void draw(ImDrawList* draw_list, ImVec2 offset);
 
 private:
 	ShaderNode* parent;

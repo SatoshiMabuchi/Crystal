@@ -26,23 +26,24 @@ namespace {
 
 void GLFSEditor::show()
 {
+	ImGui::BeginGroup();
 	if (ImGui::Button("Open")) {
-			nfdchar_t *outPath = NULL;
-			std::string filter = "glfs";
-			nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
+		nfdchar_t *outPath = NULL;
+		std::string filter = "glfs";
+		nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
 
-			if (result == NFD_OKAY) {
-				setSource(getStrFromFile(outPath));
-				puts("Success!");
-				puts(outPath);
-				free(outPath);
-			}
-			else if (result == NFD_CANCEL) {
-				puts("User pressed cancel.");
-			}
-			else {
-				printf("Error: %s\n", NFD_GetError());
-			}
+		if (result == NFD_OKAY) {
+			setSource(getStrFromFile(outPath));
+			puts("Success!");
+			puts(outPath);
+			free(outPath);
+		}
+		else if (result == NFD_CANCEL) {
+			puts("User pressed cancel.");
+		}
+		else {
+			printf("Error: %s\n", NFD_GetError());
+		}
 	}
 	if (ImGui::Button("Save")) {
 		;
@@ -51,13 +52,13 @@ void GLFSEditor::show()
 		;
 	}
 	if (ImGui::Button("Compile")) {
-		//if (ImGui::MenuItem("Close")) *p_open = false;
-			shaderUnit.compile(txt, ShaderUnit::Stage::FRAGMENT);
-			const auto& str = shaderUnit.getLog();
-			int len = str.length();
-			logText = new char[len + 1];
-			memcpy(logText, str.c_str(), len + 1);
+		shaderUnit.compile(txt, ShaderUnit::Stage::FRAGMENT);
+		const auto& str = shaderUnit.getLog();
+		int len = str.length();
+		logText = new char[len + 1];
+		memcpy(logText, str.c_str(), len + 1);
 	}
+	ImGui::EndGroup();
 
 	ImGui::InputTextMultiline("Source", txt, 1024);
 	ImGui::InputTextMultiline("Log", logText, 1024);

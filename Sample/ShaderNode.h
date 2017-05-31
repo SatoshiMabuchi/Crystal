@@ -22,7 +22,8 @@ public:
 	ShaderNode(int id, std::string name, const ImVec2& pos) :
 		id(id),
 		name(name),
-		pos(pos)
+		pos(pos),
+		log("")
 	{
 	}
 
@@ -40,7 +41,7 @@ public:
 
 	void clear();
 
-	void show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNodeInList, ShaderNode* hoveredNodeInScene, bool& open_context_menu);
+	void show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu);
 
 	int id;
 	std::string name;
@@ -49,6 +50,7 @@ public:
 	std::vector<ShaderInputSlot*> inputSlots;
 	std::vector<ShaderOutputSlot*> outputSlots;
 	Shader::ShaderObject shader;
+	char* log;
 	Crystal::UI::GLVSEditor vsEditor;
 	Crystal::UI::GLFSEditor fsEditor;
 

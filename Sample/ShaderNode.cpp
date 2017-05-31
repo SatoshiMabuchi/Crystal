@@ -20,6 +20,11 @@ void ShaderNode::build()
 	const auto vsSource = vsEditor.getSource();
 	const auto fsSource = fsEditor.getSource();
 	bool b = shader.build(vsSource, fsSource);
+	const std::string str = shader.getLog();
+	int len = str.length();
+	log = new char[len + 1];
+	memcpy(log, str.c_str(), len + 1);
+
 	const auto& uniforms = shader.getActiveUniforms();
 	for (const auto u : uniforms) {
 		createInputSlot(u.name, u.getTypeName());
@@ -57,10 +62,9 @@ void ShaderNode::clear() {
 	outputSlots.clear();
 }
 
-void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNodeInList, ShaderNode* hoveredNodeInScene, bool& open_context_menu)
+void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu)
 {
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
-	const float NODE_SLOT_RADIUS = 4.0f;
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
 
 	ImGui::PushID(this->id);
@@ -70,6 +74,7 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	draw_list->ChannelsSetCurrent(1); // Foreground
 	bool old_any_active = ImGui::IsAnyItemActive();
 	ImGui::SetCursorScreenPos(node_rect_min + NODE_WINDOW_PADDING);
+
 	ImGui::BeginGroup(); // Lock horizontal position
 	ImGui::Text("%s", this->name.c_str());
 	static bool showShaderSource = false;
@@ -96,6 +101,7 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	if (ImGui::Button("Link")) {
 		build();
 	}
+	ImGui::InputTextMultiline("Log", log, 1024);
 	ImGui::EndGroup();
 
 	// Save the size of what we have emitted and whether any of the widgets are being used
@@ -108,7 +114,7 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	ImGui::SetCursorScreenPos(node_rect_min);
 	ImGui::InvisibleButton("node", this->size);
 	if (ImGui::IsItemHovered()) {
-		hoveredNodeInScene = this;
+		hoveredNode = this;
 		open_context_menu |= ImGui::IsMouseClicked(1);
 	}
 	bool node_moving_active = ImGui::IsItemActive();
@@ -119,14 +125,14 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 		this->pos =  this->pos + ImGui::GetIO().MouseDelta;
 	}
 
-	ImU32 node_bg_color = (hoveredNodeInList == this || hoveredNodeInScene == this || (hoveredNodeInList == nullptr && selectedNode == this)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
+	ImU32 node_bg_color = (hoveredNode == this || (hoveredNode == nullptr && selectedNode == this)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
 	draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 	draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
 	for (auto slot : inputSlots) {
-		draw_list->AddCircleFilled(offset + slot->getPosition(), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
+		slot->draw(draw_list, offset);
 	}
 	for (auto slot : outputSlots) {
-		draw_list->AddCircleFilled(offset + slot->getPosition(), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
+		slot->draw(draw_list, offset);
 	}
 
 	ImGui::PopID();
