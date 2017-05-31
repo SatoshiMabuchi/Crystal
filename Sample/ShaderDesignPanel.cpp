@@ -6,10 +6,11 @@
 
 using namespace Crystal::UI;
 
-static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
-static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
 
 namespace {
+	static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
+	static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
+
 	std::string getStrFromFile(const std::string& file)
 	{
 		std::ifstream stream(file);
@@ -109,8 +110,6 @@ void ShaderDesignPanel::show()
 	ImGui::SameLine();
 	ImGui::BeginGroup();
 
-	const float NODE_SLOT_RADIUS = 4.0f;
-	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
 
 	// Create our child canvas
 	ImGui::Text("Hold middle mouse button to scroll (%.2f,%.2f)", scrolling.x, scrolling.y);
@@ -150,63 +149,7 @@ void ShaderDesignPanel::show()
 
 	// Display nodes
 	for (auto node : nodes) {
-		ImGui::PushID(node->id);
-		ImVec2 node_rect_min = offset + node->pos;
-
-		// Display node contents first
-		draw_list->ChannelsSetCurrent(1); // Foreground
-		bool old_any_active = ImGui::IsAnyItemActive();
-		ImGui::SetCursorScreenPos(node_rect_min + NODE_WINDOW_PADDING);
-		ImGui::BeginGroup(); // Lock horizontal position
-		ImGui::Text("%s", node->name.c_str());
-		static bool showShaderSource = false;
-		if (ImGui::Button("ShaderSource")) {
-			showShaderSource = true;
-		}
-		if(showShaderSource) {
-			ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiSetCond_FirstUseEver);
-
-			ImGui::Begin("ShaderSource", &showShaderSource);
-			char str[256];
-			ImGui::InputTextMultiline("VertexShader", str, 256);
-			ImGui::InputTextMultiline("FragmentShader", str, 256);
-
-			ImGui::End();
-		}
-		ImGui::EndGroup();
-
-		// Save the size of what we have emitted and whether any of the widgets are being used
-		bool node_widgets_active = (!old_any_active && ImGui::IsAnyItemActive());
-		node->size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
-		ImVec2 node_rect_max = node_rect_min + node->size;
-
-		// Display node box
-		draw_list->ChannelsSetCurrent(0); // Background
-		ImGui::SetCursorScreenPos(node_rect_min);
-		ImGui::InvisibleButton("node", node->size);
-		if (ImGui::IsItemHovered()) {
-			hoveredNodeInScene = node;
-			open_context_menu |= ImGui::IsMouseClicked(1);
-		}
-		bool node_moving_active = ImGui::IsItemActive();
-		if (node_widgets_active || node_moving_active) {
-			selectedNode = node;
-		}
-		if (node_moving_active && ImGui::IsMouseDragging(0)) {
-			node->pos = node->pos + ImGui::GetIO().MouseDelta;
-		}
-
-		ImU32 node_bg_color = (hoveredNodeInList == node || hoveredNodeInScene == node || (hoveredNodeInList == nullptr && selectedNode == node)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
-		draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
-		draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
-		for (auto slot : node->inputSlots) {
-			draw_list->AddCircleFilled(offset + slot->getPosition(), NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
-		}
-		for (auto slot : node->outputSlots) {
-			draw_list->AddCircleFilled(offset + slot->getPosition() , NODE_SLOT_RADIUS, ImColor(150, 150, 150, 150));
-		}
-
-		ImGui::PopID();
+		node->show(offset, selectedNode, hoveredNodeInList, hoveredNodeInScene, open_context_menu);
 	}
 	draw_list->ChannelsMerge();
 

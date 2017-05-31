@@ -84,7 +84,6 @@ int main(int, char**)
 	PhysicsPanel physicsPanel;
 	Crystal::UI::ShaderDesignPanel shaderPanel;
 
-	GLVSEditor vsEditor;
 	GLFSEditor fsEditor;
 	PointRenderer renderer;
 	renderer.build();
@@ -126,7 +125,6 @@ int main(int, char**)
 		physicsPanel.show();
 		shaderPanel.show();
 
-		vsEditor.show();
 		fsEditor.show();
 
 		// Rendering
