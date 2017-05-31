@@ -69,7 +69,7 @@ void ShaderNode::build()
 		createInputSlot(a.name, a.getTypeName());
 	}
 	vsEditor.setSource(vsSource);
-
+	fsEditor.setSource(fsSource);
 	//shader.getActiveAttributes();
 }
 
@@ -120,6 +120,16 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	}
 	if (ImGui::BeginPopupModal("VertexShader")) {
 		vsEditor.show();
+		if (ImGui::Button("Close")) {
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+	if (ImGui::Button("FragmentShader")) {
+		ImGui::OpenPopup("FragmentShader");
+	}
+	if (ImGui::BeginPopupModal("FragmentShader")) {
+		fsEditor.show();
 		if (ImGui::Button("Close")) {
 			ImGui::CloseCurrentPopup();
 		}

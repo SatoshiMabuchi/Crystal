@@ -84,7 +84,6 @@ int main(int, char**)
 	PhysicsPanel physicsPanel;
 	Crystal::UI::ShaderDesignPanel shaderPanel;
 
-	GLFSEditor fsEditor;
 	PointRenderer renderer;
 	renderer.build();
 
@@ -125,7 +124,6 @@ int main(int, char**)
 		physicsPanel.show();
 		shaderPanel.show();
 
-		fsEditor.show();
 
 		// Rendering
 		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);

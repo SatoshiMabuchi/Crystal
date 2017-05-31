@@ -9,6 +9,7 @@
 
 #include "../Shader/ShaderObject.h"
 #include "GLVSEditor.h"
+#include "GLFSEditor.h"
 
 namespace Crystal {
 	namespace UI {
@@ -49,7 +50,7 @@ public:
 	std::vector<ShaderOutputSlot*> outputSlots;
 	Shader::ShaderObject shader;
 	Crystal::UI::GLVSEditor vsEditor;
-
+	Crystal::UI::GLFSEditor fsEditor;
 
 	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)inputSlots.size() + 1)); }
 	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)outputSlots.size() + 1)); }
