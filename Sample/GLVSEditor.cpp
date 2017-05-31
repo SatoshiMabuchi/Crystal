@@ -3,6 +3,7 @@
 #include <imgui.h>
 #include <string>
 #include <fstream>
+#include <sstream>
 #include "../ThirdParty/nativefiledialog/src/include/nfd.h"
 #include "../Shader/ShaderObject.h"
 

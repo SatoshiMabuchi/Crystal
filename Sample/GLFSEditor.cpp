@@ -62,3 +62,8 @@ void GLFSEditor::show()
 	ImGui::InputTextMultiline("Source", txt, 1024);
 	ImGui::InputTextMultiline("Log", logText, 1024);
 }
+
+char* GLFSEditor::getSource()
+{
+	return txt;
+}

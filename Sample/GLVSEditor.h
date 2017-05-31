@@ -28,6 +28,8 @@ public:
 
 	void show();
 
+	char* getSource() { return txt; }
+
 private:
 	char* txt;
 	char* logText;

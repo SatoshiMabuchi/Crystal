@@ -12,53 +12,13 @@ namespace {
 
 	static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
 	static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
-
-	std::string getBuildinVertexShaderSource()
-	{
-		std::ostringstream stream;
-		stream
-			<< "#version 150" << std::endl
-			<< "in vec3 position;" << std::endl
-			<< "in int id;" << std::endl
-			<< "in float pointSize;" << std::endl
-			<< "in vec4 color;" << std::endl
-			<< "out vec4 vColor;" << std::endl
-			<< "uniform mat4 projectionMatrix;" << std::endl
-			<< "uniform mat4 modelviewMatrix;" << std::endl
-			<< "void main(void) {" << std::endl
-			<< "	gl_Position = projectionMatrix * modelviewMatrix * vec4(position, 1.0);" << std::endl
-			<< "	gl_PointSize = pointSize / gl_Position.w;" << std::endl
-			<< "	vColor = color;" << std::endl
-			<< "}" << std::endl;
-		return stream.str();
-	}
-
-	std::string getBuildinFragmentShaderSource()
-	{
-		std::ostringstream stream;
-		stream
-			<< "#version 150" << std::endl
-			<< "in vec4 vColor;" << std::endl
-			<< "out vec4 fragColor;" << std::endl
-			<< "void main(void) {" << std::endl
-			<< "	vec2 coord = gl_PointCoord * 2.0 - 1.0;" << std::endl
-			<< "	float distSquared = 1.0 - dot(coord, coord);" << std::endl
-			<< "	if (distSquared < 0.0) {" << std::endl
-			<< "		discard;" << std::endl
-			<< "	}" << std::endl
-			<< "	fragColor.rgba = vColor;" << std::endl
-			<< "	fragColor.a = sqrt(distSquared) * vColor.a;" << std::endl
-			<< "	fragColor.a = 0.1;//sqrt(distSquared);" << std::endl
-			<< "}" << std::endl;
-		return stream.str();
-	}
 }
 
 
 void ShaderNode::build()
 {
-	const auto vsSource = getBuildinVertexShaderSource();
-	const auto fsSource = getBuildinFragmentShaderSource();
+	const auto vsSource = vsEditor.getSource();
+	const auto fsSource = fsEditor.getSource();
 	bool b = shader.build(vsSource, fsSource);
 	const auto& uniforms = shader.getActiveUniforms();
 	for (const auto u : uniforms) {
@@ -68,8 +28,6 @@ void ShaderNode::build()
 	for (const auto a : attrs) {
 		createInputSlot(a.name, a.getTypeName());
 	}
-	vsEditor.setSource(vsSource);
-	fsEditor.setSource(fsSource);
 	//shader.getActiveAttributes();
 }
 
@@ -134,6 +92,9 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();
+	}
+	if (ImGui::Button("Link")) {
+		build();
 	}
 	ImGui::EndGroup();
 
