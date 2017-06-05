@@ -39,7 +39,6 @@ void ShaderNode::build()
 ShaderInputSlot* ShaderNode::createInputSlot(const std::string& name,const std::string& type)
 {
 	auto slot = new ShaderInputSlot(name, type, this, inputSlots.size());
-	std::cout << name << std::endl;
 	inputSlots.push_back(slot);
 	return slot;
 }

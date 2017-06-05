@@ -288,9 +288,36 @@ std::vector<ShaderUniform*> ShaderObject::getActiveUniforms()
 		GLint size;
 		GLenum type;
 		glGetActiveUniform(id, i, maxLength, &written, &size, &type, name);
-		if (type == GL_FLOAT_MAT4) {
-			ShaderUniformMatrix4d* uniform = new ShaderUniformMatrix4d(name);
-			uniforms.push_back(uniform);
+		switch (type) {
+		case GL_FLOAT:
+			uniforms.push_back(new ShaderUniform1f(name));
+			break;
+		case GL_FLOAT_VEC2:
+			uniforms.push_back(new ShaderUniform2f(name));
+			break;
+		case GL_FLOAT_VEC3:
+			uniforms.push_back(new ShaderUniform3f(name));
+			break;
+		case GL_FLOAT_VEC4:
+			uniforms.push_back(new ShaderUniform4f(name));
+			break;
+		case GL_INT:
+		case GL_INT_VEC2:
+		case GL_INT_VEC3:
+		case GL_INT_VEC4:
+		case GL_BOOL:
+		case GL_BOOL_VEC2:
+		case GL_BOOL_VEC3:
+		case GL_BOOL_VEC4:
+		case GL_FLOAT_MAT2:
+		case GL_FLOAT_MAT3:
+		case GL_FLOAT_MAT4:
+			uniforms.push_back(new ShaderUniformMatrix4d(name));
+			break;
+		case GL_SAMPLER_2D:
+		case GL_SAMPLER_CUBE:
+		default:
+			assert(false);
 		}
 	}
 	free(name);
