@@ -275,14 +275,14 @@ void ShaderObject::findAttribLocation(const std::string& str)
 	attribMap[str] = location;
 }
 
-std::vector<ShaderUniform*> ShaderObject::getActiveUniforms()
+std::vector<IShaderUniform*> ShaderObject::getActiveUniforms()
 {
 	GLsizei maxLength = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
 	int count = 0;
 	glGetProgramiv(id, GL_ACTIVE_UNIFORMS, &count);
 	GLchar* name = (GLchar*)malloc(maxLength);
-	std::vector<ShaderUniform*> uniforms;
+	std::vector<IShaderUniform*> uniforms;
 	for (auto i = 0; i < count; ++i) {
 		GLsizei written;
 		GLint size;
@@ -302,19 +302,33 @@ std::vector<ShaderUniform*> ShaderObject::getActiveUniforms()
 			uniforms.push_back(new ShaderUniform4f(name));
 			break;
 		case GL_INT:
+			uniforms.push_back(new ShaderUniform1i(name));
+			break;
 		case GL_INT_VEC2:
+			uniforms.push_back(new ShaderUniform2i(name));
+			break;
 		case GL_INT_VEC3:
+			uniforms.push_back(new ShaderUniform3i(name));
+			break;
 		case GL_INT_VEC4:
+			uniforms.push_back(new ShaderUniform4i(name));
+			break;
 		case GL_BOOL:
 		case GL_BOOL_VEC2:
 		case GL_BOOL_VEC3:
 		case GL_BOOL_VEC4:
 		case GL_FLOAT_MAT2:
+			uniforms.push_back(new ShaderUniformMatrix2d(name));
+			break;
 		case GL_FLOAT_MAT3:
+			uniforms.push_back(new ShaderUniformMatrix3d(name));
+			break;
 		case GL_FLOAT_MAT4:
 			uniforms.push_back(new ShaderUniformMatrix4d(name));
 			break;
 		case GL_SAMPLER_2D:
+			uniforms.push_back(new ShaderUniformSampler2d(name));
+			break;
 		case GL_SAMPLER_CUBE:
 		default:
 			assert(false);

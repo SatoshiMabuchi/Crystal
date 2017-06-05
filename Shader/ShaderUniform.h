@@ -10,15 +10,15 @@ namespace Crystal {
 	namespace Shader {
 		class ShaderObject;
 
-		class ShaderUniform
+		class IShaderUniform
 		{
 		public:
-			ShaderUniform(const std::string& name, const ShaderType& type) :
+			IShaderUniform(const std::string& name, const ShaderType& type) :
 				name(name),
 				type(type)
 			{}
 
-			~ShaderUniform() {};
+			virtual ~IShaderUniform() {};
 
 			std::string getName() const { return name; }
 
@@ -33,51 +33,147 @@ namespace Crystal {
 			ShaderType type;
 		};
 
-		class ShaderUniform1f : public ShaderUniform
+		class ShaderUniform1f : public IShaderUniform
 		{
 		public:
 			explicit ShaderUniform1f(const std::string& name) :
-				ShaderUniform(name, ShaderType(GL_FLOAT))
+				IShaderUniform(name, ShaderType(GL_FLOAT))
 			{}
 
-			void render(ShaderObject& shader) override {};
+			void render(ShaderObject& shader) override;
+
+		private:
+			float value;
 		};
 
-		class ShaderUniform2f : public ShaderUniform
+		class ShaderUniform2f : public IShaderUniform
 		{
 		public:
 			explicit ShaderUniform2f(const std::string& name) :
-				ShaderUniform(name, ShaderType(GL_FLOAT_VEC2))
+				IShaderUniform(name, ShaderType(GL_FLOAT_VEC2))
 			{}
 
-			void render(ShaderObject& shader) override {};
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<float, 2> value;
 		};
 
-		class ShaderUniform3f : public ShaderUniform
+		class ShaderUniform3f : public IShaderUniform
 		{
 		public:
 			explicit ShaderUniform3f(const std::string& name) :
-				ShaderUniform(name, ShaderType(GL_FLOAT_VEC3))
+				IShaderUniform(name, ShaderType(GL_FLOAT_VEC3))
 			{}
 
-			void render(ShaderObject& shader) override {};
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<float, 3> value;
 		};
 
-		class ShaderUniform4f : public ShaderUniform
+		class ShaderUniform4f : public IShaderUniform
 		{
 		public:
 			explicit ShaderUniform4f(const std::string& name) :
-				ShaderUniform(name, ShaderType(GL_FLOAT_VEC4))
+				IShaderUniform(name, ShaderType(GL_FLOAT_VEC4))
 			{}
 
-			void render(ShaderObject& shader) override {};
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<float, 4> value;
 		};
 
-		class ShaderUniformMatrix4d : public ShaderUniform
+		class ShaderUniform1i : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform1i(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_INT))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			int value;
+		};
+
+		class ShaderUniform2i : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform2i(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_INT_VEC2))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int,2> value;
+		};
+
+		class ShaderUniform3i : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform3i(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_INT_VEC3))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int, 3> value;
+		};
+
+		class ShaderUniform4i : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform4i(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_INT_VEC4))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int, 4> value;
+		};
+
+
+		class ShaderUniformMatrix2d : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniformMatrix2d(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_FLOAT_MAT2))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+			void setValue(const std::array<float, 4>& v) { this->value = v; }
+
+		private:
+			std::array<float, 4> value;
+		};
+
+
+		class ShaderUniformMatrix3d : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniformMatrix3d(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_FLOAT_MAT3))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+			void setValue(const std::array<float, 9>& v) { this->value = v; }
+
+		private:
+			std::array<float, 9> value;
+		};
+
+		class ShaderUniformMatrix4d : public IShaderUniform
 		{
 		public:
 			explicit ShaderUniformMatrix4d(const std::string& name) :
-				ShaderUniform(name, ShaderType(GL_FLOAT_MAT4))
+				IShaderUniform(name, ShaderType(GL_FLOAT_MAT4))
 			{}
 
 			void render(ShaderObject& shader) override;
@@ -87,5 +183,21 @@ namespace Crystal {
 		private:
 			std::array<float,16> value;
 		};
+
+		class ShaderUniformSampler2d : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniformSampler2d(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_SAMPLER_2D))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+			void setValue(const int id) { this->id = id; }
+
+		private:
+			int id;
+		};
+
 	}
 }

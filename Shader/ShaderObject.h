@@ -73,7 +73,7 @@ namespace Crystal {
 
 			void findAttribLocation(const std::string& str);
 
-			std::vector<ShaderUniform*> getActiveUniforms();
+			std::vector<IShaderUniform*> getActiveUniforms();
 
 			std::vector<ShaderAttribute*> getActiveAttributes();
 

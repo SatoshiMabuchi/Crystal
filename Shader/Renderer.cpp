@@ -7,7 +7,7 @@
 using namespace Crystal::Graphics;
 using namespace Crystal::Shader;
 
-void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, const std::vector<ShaderUniform*>& uniforms, const std::vector<ShaderAttribute*>& attributes)
+void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, const std::vector<IShaderUniform*>& uniforms, const std::vector<ShaderAttribute*>& attributes)
 {
 	const auto& positions = buffer.getPosition().get();
 	const auto& colors = buffer.getColor().get();
