@@ -7,7 +7,7 @@
 using namespace Crystal::Graphics;
 using namespace Crystal::Shader;
 
-void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, const std::vector<ShaderUniform*>& uniforms)
+void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, const std::vector<ShaderUniform*>& uniforms, const std::vector<ShaderAttribute*>& attributes)
 {
 	const auto& positions = buffer.getPosition().get();
 	const auto& colors = buffer.getColor().get();
@@ -29,13 +29,14 @@ void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, c
 
 	glUseProgram(shader.getId());
 
-	for (auto u : uniforms) {
+	for(auto u : uniforms) {
 		u->render(shader);
 	}
 
-	glVertexAttribPointer(shader.getAttribLocation("positions"), 3, GL_FLOAT, GL_FALSE, 0, positions.data());
-	glVertexAttribPointer(shader.getAttribLocation("color"), 4, GL_FLOAT, GL_FALSE, 0, colors.data());
-	glVertexAttribPointer(shader.getAttribLocation("pointSize"), 1, GL_FLOAT, GL_FALSE, 0, sizes.data());
+	for (auto a : attributes) {
+		a->render(shader);
+	}
+
 
 
 	//const auto positions = buffer.getPositions();

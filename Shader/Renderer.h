@@ -13,16 +13,10 @@ namespace Crystal {
 		{
 		public:
 
-			void render(const Graphics::ICamera<float>& camera, const Graphics::PointBuffer& buffer, const std::vector<ShaderUniform*>& uniforms);
+			void render(const Graphics::ICamera<float>& camera, const Graphics::PointBuffer& buffer, const std::vector<ShaderUniform*>& uniforms, const std::vector<ShaderAttribute*>& attributes);
 
 			//void changeSize(const float size) { this->pointSize = size; }
-			bool build();
-
 		private:
-
-			std::string getBuildinVertexShaderSource() const;
-
-			std::string getBuildinFragmentShaderSource() const;
 
 		private:
 			ShaderObject shader;

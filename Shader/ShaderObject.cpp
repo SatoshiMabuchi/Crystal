@@ -297,23 +297,39 @@ std::vector<ShaderUniform*> ShaderObject::getActiveUniforms()
 	return uniforms;
 }
 
-std::vector<ShaderAttribute> ShaderObject::getActiveAttributes()
+std::vector<ShaderAttribute*> ShaderObject::getActiveAttributes()
 {
 	GLsizei maxLength = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
 	int count = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTES, &count);
 	GLchar* name = (GLchar*)malloc(maxLength);
-	std::vector<ShaderAttribute> attributes;
+	std::vector<ShaderAttribute*> attributes;
 	for (auto i = 0; i < count; ++i) {
 		GLsizei written;
 		GLint size;
 		GLenum type;
 		glGetActiveAttrib(id, i, maxLength, &written, &size, &type, name);
-		ShaderAttribute attribute;
-		attribute.name = name;
-		attribute.type = ShaderType(type);
-		attributes.push_back(attribute);
+		switch (type) {
+		case GL_FLOAT:
+			attributes.push_back(new ShaderAttribute1f(name));
+			break;
+		case GL_FLOAT_VEC2:
+			attributes.push_back(new ShaderAttribute2f(name));
+			break;
+		case GL_FLOAT_VEC3:
+			attributes.push_back(new ShaderAttribute3f(name));
+			break;
+		case GL_FLOAT_VEC4:
+			attributes.push_back(new ShaderAttribute4f(name));
+			break;
+		case GL_FLOAT_MAT2:
+		case GL_FLOAT_MAT3:
+		case GL_FLOAT_MAT4:
+			assert(false);
+		default:
+			assert(false);
+		}
 	}
 	free(name);
 	return attributes;
