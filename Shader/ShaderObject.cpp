@@ -314,9 +314,17 @@ std::vector<IShaderUniform*> ShaderObject::getActiveUniforms()
 			uniforms.push_back(new ShaderUniform4i(name));
 			break;
 		case GL_BOOL:
+			uniforms.push_back(new ShaderUniform1b(name));
+			break;
 		case GL_BOOL_VEC2:
+			uniforms.push_back(new ShaderUniform2b(name));
+			break;
 		case GL_BOOL_VEC3:
+			uniforms.push_back(new ShaderUniform3b(name));
+			break;
 		case GL_BOOL_VEC4:
+			uniforms.push_back(new ShaderUniform4b(name));
+			break;
 		case GL_FLOAT_MAT2:
 			uniforms.push_back(new ShaderUniformMatrix2d(name));
 			break;
@@ -330,6 +338,8 @@ std::vector<IShaderUniform*> ShaderObject::getActiveUniforms()
 			uniforms.push_back(new ShaderUniformSampler2d(name));
 			break;
 		case GL_SAMPLER_CUBE:
+			uniforms.push_back(new ShaderUniformCubeSampler(name));
+			break;
 		default:
 			assert(false);
 		}

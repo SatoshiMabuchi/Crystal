@@ -137,6 +137,63 @@ namespace Crystal {
 			std::array<int, 4> value;
 		};
 
+		class ShaderUniform1b : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform1b(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_BOOL))
+			{
+			}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			bool value;
+		};
+
+		class ShaderUniform2b : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform2b(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_BOOL_VEC2))
+			{
+			}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int,2> value;
+		};
+
+		class ShaderUniform3b : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform3b(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_BOOL_VEC3))
+			{
+			}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int, 3> value;
+		};
+
+		class ShaderUniform4b : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniform4b(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_BOOL_VEC4))
+			{
+			}
+
+			void render(ShaderObject& shader) override;
+
+		private:
+			std::array<int, 4> value;
+		};
+
+
 
 		class ShaderUniformMatrix2d : public IShaderUniform
 		{
@@ -198,6 +255,22 @@ namespace Crystal {
 		private:
 			int id;
 		};
+
+		class ShaderUniformCubeSampler : public IShaderUniform
+		{
+		public:
+			explicit ShaderUniformCubeSampler(const std::string& name) :
+				IShaderUniform(name, ShaderType(GL_SAMPLER_CUBE))
+			{}
+
+			void render(ShaderObject& shader) override;
+
+			void setValue(const int id) { this->id = id; }
+
+		private:
+			int id;
+		};
+
 
 	}
 }

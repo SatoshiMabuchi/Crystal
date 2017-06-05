@@ -44,6 +44,26 @@ void ShaderUniform4i::render(ShaderObject& shader)
 	glUniform4iv(shader.getUniformLocation(getName()), 1, value.data());
 }
 
+void ShaderUniform1b::render(ShaderObject& shader)
+{
+	glUniform1i(shader.getUniformLocation(getName()), value);
+}
+
+void ShaderUniform2b::render(ShaderObject& shader)
+{
+	glUniform2iv(shader.getUniformLocation(getName()), 1, value.data());
+}
+
+void ShaderUniform3b::render(ShaderObject& shader)
+{
+	glUniform3iv(shader.getUniformLocation(getName()), 1, value.data());
+}
+
+void ShaderUniform4b::render(ShaderObject& shader)
+{
+	glUniform4iv(shader.getUniformLocation(getName()), 1, value.data());
+}
+
 void ShaderUniformMatrix2d::render(ShaderObject& shader)
 {
 	glUniformMatrix2fv(shader.getUniformLocation(getName()), 1, GL_FALSE, value.data());
@@ -60,6 +80,11 @@ void ShaderUniformMatrix4d::render(ShaderObject& shader)
 }
 
 void ShaderUniformSampler2d::render(ShaderObject& shader)
+{
+	glUniform1i(shader.getUniformLocation(getName()), id);
+}
+
+void ShaderUniformCubeSampler::render(ShaderObject& shader)
 {
 	glUniform1i(shader.getUniformLocation(getName()), id);
 }
