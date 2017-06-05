@@ -1,4 +1,5 @@
 #include "ShaderDesignPanel.h"
+#include "CameraNode.h"
 #include <algorithm>
 #include <fstream>
 
@@ -37,6 +38,7 @@ void ShaderDesignPanel::show()
 		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50));
 		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150));
 		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80));
+		cameraNode = new CameraNode(3, "Camera", ImVec2(0, 0));
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
@@ -133,6 +135,7 @@ void ShaderDesignPanel::show()
 	for (auto node : nodes) {
 		node->show(offset, selectedNode, hoveredNodeInScene, open_context_menu);
 	}
+	cameraNode->show();
 	draw_list->ChannelsMerge();
 
 	// Open context menu

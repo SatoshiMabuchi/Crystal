@@ -10,6 +10,7 @@
 
 namespace Crystal {
 	namespace UI {
+		class CameraNode;
 
 class ShaderDesignPanel
 {
@@ -17,6 +18,7 @@ public:
 	void show();
 
 private:
+	CameraNode* cameraNode;
 	std::vector<ShaderNode*> nodes;
 	std::vector<ShaderLink> links;
 	bool inited = false;

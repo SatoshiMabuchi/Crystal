@@ -156,6 +156,7 @@
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_rect_pack.h" />
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_textedit.h" />
     <ClInclude Include="..\ThirdParty\imgui-1.49\stb_truetype.h" />
+    <ClInclude Include="CameraNode.h" />
     <ClInclude Include="GLFSEditor.h" />
     <ClInclude Include="GLVSEditor.h" />
     <ClInclude Include="GL\glcorearb.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp" />
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_demo.cpp" />
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_draw.cpp" />
+    <ClCompile Include="CameraNode.cpp" />
     <ClCompile Include="GLFSEditor.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />

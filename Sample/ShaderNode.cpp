@@ -76,7 +76,6 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 
 	ImGui::BeginGroup(); // Lock horizontal position
 	ImGui::Text("%s", this->name.c_str());
-	static bool showShaderSource = false;
 	if (ImGui::Button("VertexShader")) {
 		ImGui::OpenPopup("VertexShader");
 	}

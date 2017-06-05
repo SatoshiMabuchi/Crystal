@@ -46,6 +46,7 @@
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="GLVSEditor.h" />
     <ClInclude Include="GLFSEditor.h" />
+    <ClInclude Include="CameraNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -69,6 +70,7 @@
     <ClCompile Include="ShaderSlot.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="GLFSEditor.cpp" />
+    <ClCompile Include="CameraNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
