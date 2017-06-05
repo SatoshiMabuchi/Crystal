@@ -27,7 +27,7 @@ void ShaderNode::build()
 
 	const auto& uniforms = shader.getActiveUniforms();
 	for (const auto u : uniforms) {
-		createInputSlot(u.name, u.getTypeName());
+		createInputSlot(u->getName(), u->getTypeName());
 	}
 	const auto& attrs = shader.getActiveAttributes();
 	for (const auto a : attrs) {

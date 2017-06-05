@@ -275,23 +275,23 @@ void ShaderObject::findAttribLocation(const std::string& str)
 	attribMap[str] = location;
 }
 
-std::vector<ShaderUniform> ShaderObject::getActiveUniforms()
+std::vector<ShaderUniform*> ShaderObject::getActiveUniforms()
 {
 	GLsizei maxLength = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
 	int count = 0;
 	glGetProgramiv(id, GL_ACTIVE_UNIFORMS, &count);
 	GLchar* name = (GLchar*)malloc(maxLength);
-	std::vector<ShaderUniform> uniforms;
+	std::vector<ShaderUniform*> uniforms;
 	for (auto i = 0; i < count; ++i) {
-		ShaderUniform uniform;
 		GLsizei written;
 		GLint size;
 		GLenum type;
 		glGetActiveUniform(id, i, maxLength, &written, &size, &type, name);
-		uniform.name = name;
-		uniform.type = ShaderType(type);
-		uniforms.push_back(uniform);
+		if (type == GL_FLOAT_MAT4) {
+			ShaderUniformMatrix4d* uniform = new ShaderUniformMatrix4d(name);
+			uniforms.push_back(uniform);
+		}
 	}
 	free(name);
 	return uniforms;
