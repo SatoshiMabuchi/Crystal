@@ -54,7 +54,7 @@ void GLFSEditor::show()
 	if (ImGui::Button("Compile")) {
 		shaderUnit.compile(txt, ShaderUnit::Stage::FRAGMENT);
 		const auto& str = shaderUnit.getLog();
-		int len = str.length();
+		auto len = str.length();
 		logText = new char[len + 1];
 		memcpy(logText, str.c_str(), len + 1);
 	}

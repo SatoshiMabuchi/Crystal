@@ -10,10 +10,10 @@ namespace Crystal {
 	namespace Shader {
 		class ShaderObject;
 
-class ShaderAttribute
+class IShaderAttribute
 {
 public:
-	explicit ShaderAttribute(const std::string& name) :
+	explicit IShaderAttribute(const std::string& name) :
 		name(name)
 	{}
 
@@ -29,11 +29,11 @@ private:
 
 };
 
-class ShaderAttribute1f : public ShaderAttribute
+class ShaderAttribute1f : public IShaderAttribute
 {
 public:
 	explicit ShaderAttribute1f(const std::string& name) :
-		ShaderAttribute(name)
+		IShaderAttribute(name)
 	{}
 
 	void setValue(const float v) { this->value = v; }
@@ -44,11 +44,11 @@ private:
 	float value;
 };
 
-class ShaderAttribute2f : public ShaderAttribute
+class ShaderAttribute2f : public IShaderAttribute
 {
 public:
 	explicit ShaderAttribute2f(const std::string& name) :
-		ShaderAttribute(name)
+		IShaderAttribute(name)
 	{}
 
 	void render(ShaderObject& shader) override;
@@ -59,11 +59,11 @@ private:
 
 
 
-class ShaderAttribute3f : public ShaderAttribute
+class ShaderAttribute3f : public IShaderAttribute
 {
 public:
 	explicit ShaderAttribute3f(const std::string& name) :
-		ShaderAttribute(name)
+		IShaderAttribute(name)
 	{}
 
 	void render(ShaderObject& shader) override;
@@ -72,11 +72,11 @@ private:
 	std::array<float, 3> value;
 };
 
-class ShaderAttribute4f : public ShaderAttribute
+class ShaderAttribute4f : public IShaderAttribute
 {
 public:
 	explicit ShaderAttribute4f(const std::string& name) :
-		ShaderAttribute(name)
+		IShaderAttribute(name)
 	{}
 
 
@@ -84,6 +84,48 @@ public:
 
 private:
 	std::array<float,4> value;
+};
+
+class ShaderAttributeMatrix2d : public IShaderAttribute
+{
+public:
+	explicit ShaderAttributeMatrix2d(const std::string& name) :
+		IShaderAttribute(name)
+	{
+	}
+
+	void render(ShaderObject& shader) override;
+
+private:
+	std::array<float, 4> value;
+};
+
+class ShaderAttributeMatrix3d : public IShaderAttribute
+{
+public:
+	explicit ShaderAttributeMatrix3d(const std::string& name) :
+		IShaderAttribute(name)
+	{
+	}
+
+	void render(ShaderObject& shader) override;
+
+private:
+	std::array<float, 9> value;
+};
+
+class ShaderAttributeMatrix4d : public IShaderAttribute
+{
+public:
+	explicit ShaderAttributeMatrix4d(const std::string& name) :
+		IShaderAttribute(name)
+	{
+	}
+
+	void render(ShaderObject& shader) override;
+
+private:
+	std::array<float, 16> value;
 };
 
 

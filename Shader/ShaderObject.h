@@ -75,7 +75,7 @@ namespace Crystal {
 
 			std::vector<IShaderUniform*> getActiveUniforms();
 
-			std::vector<ShaderAttribute*> getActiveAttributes();
+			std::vector<IShaderAttribute*> getActiveAttributes();
 
 			std::string getLog() const { return log; }
 

@@ -21,7 +21,7 @@ public:
 	}
 
 	void setSource(const std::string& str) {
-		int len = str.length();
+		auto len = str.length();
 		txt = new char[len + 1];
 		memcpy(txt, str.c_str(), len + 1);
 	}

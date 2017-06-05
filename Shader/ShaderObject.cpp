@@ -348,14 +348,14 @@ std::vector<IShaderUniform*> ShaderObject::getActiveUniforms()
 	return uniforms;
 }
 
-std::vector<ShaderAttribute*> ShaderObject::getActiveAttributes()
+std::vector<IShaderAttribute*> ShaderObject::getActiveAttributes()
 {
 	GLsizei maxLength = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLength);
 	int count = 0;
 	glGetProgramiv(id, GL_ACTIVE_ATTRIBUTES, &count);
 	GLchar* name = (GLchar*)malloc(maxLength);
-	std::vector<ShaderAttribute*> attributes;
+	std::vector<IShaderAttribute*> attributes;
 	for (auto i = 0; i < count; ++i) {
 		GLsizei written;
 		GLint size;
@@ -375,9 +375,14 @@ std::vector<ShaderAttribute*> ShaderObject::getActiveAttributes()
 			attributes.push_back(new ShaderAttribute4f(name));
 			break;
 		case GL_FLOAT_MAT2:
+			attributes.push_back(new ShaderAttributeMatrix2d(name));
+			break;
 		case GL_FLOAT_MAT3:
+			attributes.push_back(new ShaderAttributeMatrix3d(name));
+			break;
 		case GL_FLOAT_MAT4:
-			assert(false);
+			attributes.push_back(new ShaderAttributeMatrix4d(name));
+			break;
 		default:
 			assert(false);
 		}
