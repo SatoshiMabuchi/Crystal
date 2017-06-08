@@ -134,7 +134,10 @@ void ShaderDesignPanel::show()
 	cameraNode->show(draw_list, offset);
 
 	for (auto node : nodes) {
-		node->show(offset, selectedNode, hoveredNodeInScene, open_context_menu);
+		node->show(offset);
+	}
+	for (auto node : nodes) {
+		node->showBackGround(offset, selectedNode, hoveredNodeInScene, open_context_menu);
 	}
 	draw_list->ChannelsMerge();
 

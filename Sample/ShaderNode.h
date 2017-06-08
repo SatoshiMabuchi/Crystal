@@ -41,7 +41,9 @@ public:
 
 	void clear();
 
-	void show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu);
+	void show(ImVec2 offset);
+
+	void showBackGround(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu);
 
 	int id;
 	std::string name;

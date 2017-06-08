@@ -61,7 +61,7 @@ void ShaderNode::clear() {
 	outputSlots.clear();
 }
 
-void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu)
+void ShaderNode::show(ImVec2 offset)
 {
 	ImDrawList* drawList = ImGui::GetWindowDrawList();
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
@@ -70,7 +70,6 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	const auto rectMin = offset + this->pos;
 
 	drawList->ChannelsSetCurrent(1);
-	bool old_any_active = ImGui::IsAnyItemActive();
 	ImGui::SetCursorScreenPos(rectMin + NODE_WINDOW_PADDING);
 
 	ImGui::BeginGroup();
@@ -101,6 +100,20 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	ImGui::InputTextMultiline("Log", log, 1024);
 	ImGui::EndGroup();
 
+
+	ImGui::PopID();
+}
+
+void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu)
+{
+	ImDrawList* drawList = ImGui::GetWindowDrawList();
+
+	ImGui::PushID(this->id);
+	const auto rectMin = offset + this->pos;
+
+	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
+	bool old_any_active = ImGui::IsAnyItemActive();
+
 	// Save the size of what we have emitted and whether any of the widgets are being used
 	bool node_widgets_active = (!old_any_active && ImGui::IsAnyItemActive());
 	this->size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
@@ -119,7 +132,7 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 		selectedNode = this;
 	}
 	if (node_moving_active && ImGui::IsMouseDragging(0)) {
-		this->pos =  this->pos + ImGui::GetIO().MouseDelta;
+		this->pos = this->pos + ImGui::GetIO().MouseDelta;
 	}
 
 	drawList->AddRectFilled(rectMin, rectMax, ImColor(60, 60, 60), 4.0f);
@@ -130,6 +143,5 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	for (auto slot : outputSlots) {
 		slot->draw(drawList, offset);
 	}
-
 	ImGui::PopID();
 }
