@@ -38,7 +38,7 @@ void ShaderDesignPanel::show()
 		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50));
 		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150));
 		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80));
-		cameraNode = new CameraNode(3, "Camera", ImVec2(0, 0));
+		cameraNode = new CameraNode(3, "Camera", ImVec2(10, 10));
 		nodes.push_back(smoothingNode);
 		nodes.push_back(depthNode);
 		nodes.push_back(thicknessNode);
@@ -131,11 +131,11 @@ void ShaderDesignPanel::show()
 		auto p2 = offset + link.out->getPosition();
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
+	cameraNode->show(draw_list, offset);
 
 	for (auto node : nodes) {
 		node->show(offset, selectedNode, hoveredNodeInScene, open_context_menu);
 	}
-	cameraNode->show();
 	draw_list->ChannelsMerge();
 
 	// Open context menu
