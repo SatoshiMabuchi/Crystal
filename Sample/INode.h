@@ -38,7 +38,10 @@ public:
 
 	const std::string getName() const { return name; }
 
-	const ImVec2 getPosition() const { return position; }
+	ImVec2 getPosition() const { return position; }
+
+	virtual void show(ImDrawList* drawList, ImVec2 offset) = 0;
+
 
 private:
 	const int id;
@@ -48,6 +51,13 @@ private:
 	std::vector<IInSlot*> inputs;
 	std::vector<IOutSlot*> outputs;
 };
+
+class ILink
+{
+public:
+	virtual void build() = 0;
+};
+
 
 	}
 }

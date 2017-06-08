@@ -162,6 +162,7 @@
     <ClInclude Include="GL\glcorearb.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="INode.h" />
+    <ClInclude Include="Matrix4dLink.h" />
     <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="ShaderNode.h" />
