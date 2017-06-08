@@ -6,19 +6,12 @@
 
 #include <string>
 #include "imgui.h"
+#include "INode.h"
 #include <vector>
 
 namespace Crystal {
 	namespace UI {
 		class ShaderOutputSlot;
-
-
-class IInSlot
-{
-public:
-	virtual ~IInSlot() {}
-	virtual void show(const ImVec2& pos, ImDrawList* drawList);
-};
 
 class Matrix4dInSlot : public IInSlot
 {
@@ -27,15 +20,6 @@ public:
 
 private:
 	std::array<double, 16> value;
-};
-
-
-class IOutSlot
-{
-public:
-	virtual ~IOutSlot() {}
-
-	virtual void show(const ImVec2& pos, ImDrawList* drawList);
 };
 
 class Matrix4dOutSlot : public IOutSlot
@@ -68,31 +52,6 @@ private:
 	Matrix4dInSlot* input;
 };
 
-class INode
-{
-public:
-	INode(const int id, const std::string& name, const ImVec2& pos) :
-		id(id),
-		name(name),
-		position(pos)
-	{}
-
-	virtual ~INode() {}
-
-	const int getId() const { return id; }
-
-	const std::string getName() const { return name; }
-
-	const ImVec2 getPosition() const { return position; }
-
-private:
-	const int id;
-	const std::string name;
-	const ImVec2 position;
-
-	std::vector<IInSlot*> inputs;
-	std::vector<IOutSlot*> outputs;
-};
 
 class CameraNode : public INode
 {

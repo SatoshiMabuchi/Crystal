@@ -161,9 +161,9 @@
     <ClInclude Include="GLVSEditor.h" />
     <ClInclude Include="GL\glcorearb.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="INode.h" />
     <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
-    <ClInclude Include="ShaderLink.h" />
     <ClInclude Include="ShaderNode.h" />
     <ClInclude Include="ShaderSlot.h" />
     <ClInclude Include="stdafx.h" />
@@ -177,10 +177,10 @@
     <ClCompile Include="GLFSEditor.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="INode.cpp" />
     <ClCompile Include="PhysicsPanel.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
-    <ClCompile Include="ShaderLink.cpp" />
     <ClCompile Include="ShaderNode.cpp" />
     <ClCompile Include="ShaderSlot.cpp" />
     <ClCompile Include="stdafx.cpp" />

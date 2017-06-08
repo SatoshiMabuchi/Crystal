@@ -45,8 +45,8 @@ void ShaderDesignPanel::show()
 		auto slot1 = smoothingNode->createOutputSlot();
 		auto slot2 = depthNode->createInputSlot("", "");
 		auto slot3 = thicknessNode->createInputSlot("", "");
-		links.push_back(ShaderLink(slot1, slot2));
-		links.push_back(ShaderLink(slot1, slot3));
+		//links.push_back(ShaderLink(slot1, slot2));
+		//links.push_back(ShaderLink(slot1, slot3));
 		inited = true;
 	}
 
@@ -126,11 +126,13 @@ void ShaderDesignPanel::show()
 
 	// Display links
 	draw_list->ChannelsSetCurrent(0); // Background
+	/*
 	for (auto link : links) {
 		auto p1 = offset + link.in->getPosition();
 		auto p2 = offset + link.out->getPosition();
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
+	*/
 	cameraNode->show(draw_list, offset);
 
 	for (auto node : nodes) {

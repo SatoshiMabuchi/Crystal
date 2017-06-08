@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "ShaderNode.h"
-#include "ShaderLink.h"
 #include "GLVSEditor.h"
 
 namespace Crystal {
@@ -20,7 +19,6 @@ public:
 private:
 	CameraNode* cameraNode;
 	std::vector<ShaderNode*> nodes;
-	std::vector<ShaderLink> links;
 	bool inited = false;
 	ImVec2 scrolling = ImVec2(0.0f, 0.0f);
 	bool show_grid = true;
