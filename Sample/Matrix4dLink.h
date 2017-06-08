@@ -10,6 +10,10 @@ namespace Crystal {
 class Matrix4dInSlot : public IInSlot
 {
 public:
+	Matrix4dInSlot(INode* parent) :
+		IInSlot(parent)
+	{}
+
 	void setValue(const std::array<double, 16>& value) { this->value = value; }
 
 private:
@@ -19,6 +23,10 @@ private:
 class Matrix4dOutSlot : public IOutSlot
 {
 public:
+	Matrix4dOutSlot(INode* parent) :
+		IOutSlot(parent)
+	{}
+
 	~Matrix4dOutSlot()
 	{}
 

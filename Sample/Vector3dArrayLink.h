@@ -11,6 +11,10 @@ namespace Crystal {
 		class Vector3dArrayInSlot : public IInSlot
 		{
 		public:
+			Vector3dArrayInSlot(INode* parent) :
+				IInSlot(parent)
+			{}
+
 			void setValue(const std::vector <Math::Vector3d <double>> &value) {
 				this->value.clear();
 				for (auto v : value) {
@@ -25,6 +29,10 @@ namespace Crystal {
 		class Vector3dArrayOutSlot : public IOutSlot
 		{
 		public:
+			Vector3dArrayOutSlot(INode* parent) :
+				IOutSlot(parent)
+			{}
+
 			std::vector<Math::Vector3d<double>> getValue() const { return value; }
 
 		private:
@@ -33,7 +41,10 @@ namespace Crystal {
 
 		class Vector3dArrayLink : public ILink
 		{
+
 		private:
+
+
 			void build() override {
 				input->setValue(output->getValue());
 			}

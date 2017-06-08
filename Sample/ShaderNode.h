@@ -3,26 +3,23 @@
 
 #include <string>
 #include "imgui.h"
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
 #include "../Util/UnCopyable.h"
 
 #include "../Shader/ShaderObject.h"
 #include "GLVSEditor.h"
 #include "GLFSEditor.h"
+#include "INode.h"
 
 namespace Crystal {
 	namespace UI {
 		class ShaderInputSlot;
 		class ShaderOutputSlot;
 
-class ShaderNode : private UnCopyable
+class ShaderNode : public INode
 {
 public:
 	ShaderNode(int id, std::string name, const ImVec2& pos) :
-		id(id),
-		name(name),
-		pos(pos),
+		INode(id, name, pos),
 		log("")
 	{
 	}
@@ -33,15 +30,13 @@ public:
 
 	void build();
 
-	void setName(const std::string& name) { this->name = name; }
-
 	ShaderInputSlot* createInputSlot(const std::string& name, const std::string& type);
 
 	ShaderOutputSlot* createOutputSlot();
 
 	void clear();
 
-	void show(ImVec2 offset);
+	void show(ImDrawList* drawList, ImVec2 offset) override;
 
 	void showBackGround(ImVec2 offset);
 
@@ -49,10 +44,6 @@ public:
 
 	bool isHovered();
 
-	int id;
-	std::string name;
-	ImVec2 pos;
-	ImVec2 size;
 	std::vector<ShaderInputSlot*> inputSlots;
 	std::vector<ShaderOutputSlot*> outputSlots;
 	Shader::ShaderObject shader;
@@ -60,14 +51,6 @@ public:
 	Crystal::UI::GLVSEditor vsEditor;
 	Crystal::UI::GLFSEditor fsEditor;
 
-	ImVec2 GetInputSlotPos(int slot_no) const { return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)inputSlots.size() + 1)); }
-	ImVec2 GetOutputSlotPos(int slot_no) const { return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)outputSlots.size() + 1)); }
-
-	template<class Archive>
-	void serialize(Archive & archive)
-	{
-		archive(name, id);
-	}
 };
 
 	}

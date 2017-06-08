@@ -23,8 +23,8 @@ public:
 	//void build();
 
 private:
-	Matrix4dOutSlot projectionMatrixSlot;
-	Matrix4dOutSlot modelviewMatrixSlot;
+	Matrix4dOutSlot* projectionMatrixSlot;
+	Matrix4dOutSlot* modelviewMatrixSlot;
 	Graphics::PerspectiveCamera<float> camera;
 };
 	}

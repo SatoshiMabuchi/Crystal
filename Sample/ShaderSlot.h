@@ -2,46 +2,35 @@
 
 #include <imgui.h>
 #include <string>
+#include "INode.h"
 
 namespace Crystal {
 	namespace UI {
-		class ShaderNode;
 
-class ShaderInputSlot
+class ShaderInputSlot : public IInSlot
 {
 public:
-	explicit ShaderInputSlot(const std::string& name, const std::string& type, ShaderNode* parent, const int id) :
-		name(name),
+	ShaderInputSlot(const std::string& name, const std::string& type, INode* parent, const int id) :
+		IInSlot(parent),
 		type(type),
-		parent(parent),
 		id(id)
 	{}
-
-	ImVec2 getPosition() const;
-
-	void draw(ImDrawList* draw_list, ImVec2 offset);
 
 private:
 	std::string name;
 	std::string type;
-	ShaderNode* parent;
 	const int id;
 };
 
-class ShaderOutputSlot
+class ShaderOutputSlot : public IOutSlot
 {
 public:
-	explicit ShaderOutputSlot(ShaderNode* parent, const int id) :
-		parent(parent),
+	explicit ShaderOutputSlot(INode* parent, const int id) :
+		IOutSlot(parent),
 		id(id)
 	{}
 
-	ImVec2 getPosition() const;
-
-	void draw(ImDrawList* draw_list, ImVec2 offset);
-
 private:
-	ShaderNode* parent;
 	const int id;
 };
 

@@ -75,7 +75,7 @@ void ShaderDesignPanel::show()
 			{
 				cereal::JSONOutputArchive o_archive(ss);
 				for (auto n : nodes) {
-					o_archive(*n);
+					;//o_archive(*n);
 				}
 			}
 			std::cout << ss.str() << std::endl;
@@ -136,7 +136,7 @@ void ShaderDesignPanel::show()
 	cameraNode->show(draw_list, offset);
 
 	for (auto node : nodes) {
-		node->show(offset);
+		node->show(draw_list, offset);
 	}
 	for (auto node : nodes) {
 		node->showBackGround(offset);
@@ -173,7 +173,7 @@ void ShaderDesignPanel::show()
 		auto node = selectedNode;
 		ImVec2 scene_pos = ImGui::GetMousePosOnOpeningCurrentPopup() - offset;
 		if (node) {
-			ImGui::Text("Node '%s'", node->name.c_str());
+			ImGui::Text("Node '%s'", node->getName().c_str());
 			ImGui::Separator();
 			if (ImGui::MenuItem("Rename..", NULL, false)) {
 				/*

@@ -61,19 +61,18 @@ void ShaderNode::clear() {
 	outputSlots.clear();
 }
 
-void ShaderNode::show(ImVec2 offset)
+void ShaderNode::show(ImDrawList* drawList, ImVec2 offset)
 {
-	ImDrawList* drawList = ImGui::GetWindowDrawList();
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
 
-	ImGui::PushID(this->id);
-	const auto rectMin = offset + this->pos;
+	ImGui::PushID(this->getId());
+	const auto rectMin = offset + this->getPosition();
 
 	drawList->ChannelsSetCurrent(1);
 	ImGui::SetCursorScreenPos(rectMin + NODE_WINDOW_PADDING);
 
 	ImGui::BeginGroup();
-	ImGui::Text("%s", this->name.c_str());
+	ImGui::Text("%s", this->getName().c_str());
 	if (ImGui::Button("VertexShader")) {
 		ImGui::OpenPopup("VertexShader");
 	}
@@ -108,8 +107,8 @@ void ShaderNode::showBackGround(ImVec2 offset)
 {
 	ImDrawList* drawList = ImGui::GetWindowDrawList();
 
-	ImGui::PushID(this->id);
-	const auto rectMin = offset + this->pos;
+	ImGui::PushID(this->getId());
+	const auto rectMin = offset + this->getPosition();
 
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
 
@@ -119,25 +118,26 @@ void ShaderNode::showBackGround(ImVec2 offset)
 	drawList->ChannelsSetCurrent(0);
 	ImGui::SetCursorScreenPos(rectMin);
 	ImGui::InvisibleButton("node", this->size);
+
 	const bool isActive_ = isActive();
 	if (isActive_ && ImGui::IsMouseDragging(0)) {
-		this->pos = this->pos + ImGui::GetIO().MouseDelta;
+		this->move(ImGui::GetIO().MouseDelta);
 	}
 
 	drawList->AddRectFilled(rectMin, rectMax, ImColor(60, 60, 60), 4.0f);
 	drawList->AddRect(rectMin, rectMax, ImColor(100, 100, 100), 4.0f);
 	for (auto slot : inputSlots) {
-		slot->draw(drawList, offset);
+		slot->show(offset, drawList);
 	}
 	for (auto slot : outputSlots) {
-		slot->draw(drawList, offset);
+		slot->show(offset, drawList);
 	}
 	ImGui::PopID();
 }
 
 bool ShaderNode::isActive()
 {
-	ImGui::PushID(this->id);
+	ImGui::PushID(this->getId());
 	const bool result = ImGui::IsItemActive();
 	ImGui::PopID();
 	return result;
@@ -145,7 +145,7 @@ bool ShaderNode::isActive()
 
 bool ShaderNode::isHovered()
 {
-	ImGui::PushID(this->id);
+	ImGui::PushID(this->getId());
 	const bool result = ImGui::IsItemHovered();
 	ImGui::PopID();
 	return result;
