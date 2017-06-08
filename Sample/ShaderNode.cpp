@@ -63,18 +63,17 @@ void ShaderNode::clear() {
 
 void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu)
 {
-	ImDrawList* draw_list = ImGui::GetWindowDrawList();
+	ImDrawList* drawList = ImGui::GetWindowDrawList();
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
 
 	ImGui::PushID(this->id);
-	ImVec2 node_rect_min = offset + this->pos;
+	const auto rectMin = offset + this->pos;
 
-	// Display node contents first
-	draw_list->ChannelsSetCurrent(1); // Foreground
+	drawList->ChannelsSetCurrent(1);
 	bool old_any_active = ImGui::IsAnyItemActive();
-	ImGui::SetCursorScreenPos(node_rect_min + NODE_WINDOW_PADDING);
+	ImGui::SetCursorScreenPos(rectMin + NODE_WINDOW_PADDING);
 
-	ImGui::BeginGroup(); // Lock horizontal position
+	ImGui::BeginGroup();
 	ImGui::Text("%s", this->name.c_str());
 	if (ImGui::Button("VertexShader")) {
 		ImGui::OpenPopup("VertexShader");
@@ -105,11 +104,11 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 	// Save the size of what we have emitted and whether any of the widgets are being used
 	bool node_widgets_active = (!old_any_active && ImGui::IsAnyItemActive());
 	this->size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
-	ImVec2 node_rect_max = node_rect_min + this->size;
+	const auto rectMax = rectMin + this->size;
 
 	// Display node box
-	draw_list->ChannelsSetCurrent(0); // Background
-	ImGui::SetCursorScreenPos(node_rect_min);
+	drawList->ChannelsSetCurrent(0); // Background
+	ImGui::SetCursorScreenPos(rectMin);
 	ImGui::InvisibleButton("node", this->size);
 	if (ImGui::IsItemHovered()) {
 		hoveredNode = this;
@@ -123,14 +122,13 @@ void ShaderNode::show(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hover
 		this->pos =  this->pos + ImGui::GetIO().MouseDelta;
 	}
 
-	ImU32 node_bg_color = (hoveredNode == this || (hoveredNode == nullptr && selectedNode == this)) ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
-	draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
-	draw_list->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
+	drawList->AddRectFilled(rectMin, rectMax, ImColor(60, 60, 60), 4.0f);
+	drawList->AddRect(rectMin, rectMax, ImColor(100, 100, 100), 4.0f);
 	for (auto slot : inputSlots) {
-		slot->draw(draw_list, offset);
+		slot->draw(drawList, offset);
 	}
 	for (auto slot : outputSlots) {
-		slot->draw(draw_list, offset);
+		slot->draw(drawList, offset);
 	}
 
 	ImGui::PopID();
