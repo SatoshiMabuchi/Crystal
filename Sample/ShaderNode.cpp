@@ -104,7 +104,7 @@ void ShaderNode::show(ImVec2 offset)
 	ImGui::PopID();
 }
 
-void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* hoveredNode, bool& open_context_menu)
+void ShaderNode::showBackGround(ImVec2 offset)
 {
 	ImDrawList* drawList = ImGui::GetWindowDrawList();
 
@@ -119,10 +119,6 @@ void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* hoveredNode, bool& op
 	drawList->ChannelsSetCurrent(0);
 	ImGui::SetCursorScreenPos(rectMin);
 	ImGui::InvisibleButton("node", this->size);
-	if (ImGui::IsItemHovered()) {
-		hoveredNode = this;
-		open_context_menu |= ImGui::IsMouseClicked(1);
-	}
 	const bool isActive_ = isActive();
 	if (isActive_ && ImGui::IsMouseDragging(0)) {
 		this->pos = this->pos + ImGui::GetIO().MouseDelta;
@@ -143,6 +139,14 @@ bool ShaderNode::isActive()
 {
 	ImGui::PushID(this->id);
 	const bool result = ImGui::IsItemActive();
+	ImGui::PopID();
+	return result;
+}
+
+bool ShaderNode::isHovered()
+{
+	ImGui::PushID(this->id);
+	const bool result = ImGui::IsItemHovered();
 	ImGui::PopID();
 	return result;
 }

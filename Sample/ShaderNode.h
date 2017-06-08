@@ -43,9 +43,11 @@ public:
 
 	void show(ImVec2 offset);
 
-	void showBackGround(ImVec2 offset, ShaderNode* hoveredNode, bool& open_context_menu);
+	void showBackGround(ImVec2 offset);
 
 	bool isActive();
+
+	bool isHovered();
 
 	int id;
 	std::string name;
