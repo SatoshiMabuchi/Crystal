@@ -3,11 +3,12 @@
 #include <vector>
 #include <string>
 #include "imgui.h"
+#include "../Util/UnCopyable.h"
 
 namespace Crystal {
 	namespace UI {
 
-class IInSlot
+class IInSlot : private UnCopyable
 {
 public:
 	virtual ~IInSlot() {}
@@ -15,7 +16,7 @@ public:
 	virtual void show(const ImVec2& pos, ImDrawList* drawList);
 };
 
-class IOutSlot
+class IOutSlot : private UnCopyable
 {
 public:
 	virtual ~IOutSlot() {}
@@ -23,7 +24,7 @@ public:
 	virtual void show(const ImVec2& pos, ImDrawList* drawList);
 };
 
-class INode
+class INode : private UnCopyable
 {
 public:
 	INode(const int id, const std::string& name, const ImVec2& pos) :

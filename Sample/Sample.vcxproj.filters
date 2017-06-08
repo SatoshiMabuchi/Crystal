@@ -8,6 +8,12 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{6a9db318-899f-4332-830b-674d009a77fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Node">
+      <UniqueIdentifier>{02733eb9-8116-4b4f-a60a-1d34b5270ece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Link">
+      <UniqueIdentifier>{b248af89-db0b-4a05-a906-5b0562eb2e49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ThirdParty\imgui-1.49\imconfig.h">
@@ -45,9 +51,21 @@
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="GLVSEditor.h" />
     <ClInclude Include="GLFSEditor.h" />
-    <ClInclude Include="CameraNode.h" />
-    <ClInclude Include="INode.h" />
-    <ClInclude Include="Matrix4dLink.h" />
+    <ClInclude Include="CameraNode.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="INode.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleNode.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4dLink.h">
+      <Filter>Link</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3dArrayLink.h">
+      <Filter>Link</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
@@ -70,8 +88,15 @@
     <ClCompile Include="ShaderSlot.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="GLFSEditor.cpp" />
-    <ClCompile Include="CameraNode.cpp" />
-    <ClCompile Include="INode.cpp" />
+    <ClCompile Include="CameraNode.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="INode.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleNode.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

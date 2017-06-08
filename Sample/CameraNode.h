@@ -12,7 +12,6 @@
 
 namespace Crystal {
 	namespace UI {
-		class ShaderOutputSlot;
 
 class CameraNode : public INode
 {
@@ -28,18 +27,6 @@ private:
 	Matrix4dOutSlot modelviewMatrixSlot;
 	Graphics::PerspectiveCamera<float> camera;
 };
-
-class ParticleNode : public INode
-{
-public:
-	ParticleNode(const int id, const std::string& name, const ImVec2& pos);
-
-	void show(ImDrawList* drawList, ImVec2 offset) override;
-
-private:
-	//Vector3dOutputSlot positionSlot;
-};
-
 	}
 }
 

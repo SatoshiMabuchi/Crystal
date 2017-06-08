@@ -163,12 +163,14 @@
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="INode.h" />
     <ClInclude Include="Matrix4dLink.h" />
+    <ClInclude Include="ParticleNode.h" />
     <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="ShaderNode.h" />
     <ClInclude Include="ShaderSlot.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Vector3dArrayLink.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp" />
@@ -179,6 +181,7 @@
     <ClCompile Include="GLVSEditor.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="INode.cpp" />
+    <ClCompile Include="ParticleNode.cpp" />
     <ClCompile Include="PhysicsPanel.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
