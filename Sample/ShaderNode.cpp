@@ -104,7 +104,7 @@ void ShaderNode::show(ImVec2 offset)
 	ImGui::PopID();
 }
 
-void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* selectedNode, ShaderNode* hoveredNode, bool& open_context_menu)
+void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* hoveredNode, bool& open_context_menu)
 {
 	ImDrawList* drawList = ImGui::GetWindowDrawList();
 
@@ -112,26 +112,19 @@ void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* selectedNode, ShaderN
 	const auto rectMin = offset + this->pos;
 
 	const ImVec2 NODE_WINDOW_PADDING(8.0f, 8.0f);
-	bool old_any_active = ImGui::IsAnyItemActive();
 
-	// Save the size of what we have emitted and whether any of the widgets are being used
-	bool node_widgets_active = (!old_any_active && ImGui::IsAnyItemActive());
 	this->size = ImGui::GetItemRectSize() + NODE_WINDOW_PADDING + NODE_WINDOW_PADDING;
 	const auto rectMax = rectMin + this->size;
 
-	// Display node box
-	drawList->ChannelsSetCurrent(0); // Background
+	drawList->ChannelsSetCurrent(0);
 	ImGui::SetCursorScreenPos(rectMin);
 	ImGui::InvisibleButton("node", this->size);
 	if (ImGui::IsItemHovered()) {
 		hoveredNode = this;
 		open_context_menu |= ImGui::IsMouseClicked(1);
 	}
-	bool node_moving_active = ImGui::IsItemActive();
-	if (node_widgets_active || node_moving_active) {
-		selectedNode = this;
-	}
-	if (node_moving_active && ImGui::IsMouseDragging(0)) {
+	const bool isActive_ = isActive();
+	if (isActive_ && ImGui::IsMouseDragging(0)) {
 		this->pos = this->pos + ImGui::GetIO().MouseDelta;
 	}
 
@@ -144,4 +137,12 @@ void ShaderNode::showBackGround(ImVec2 offset, ShaderNode* selectedNode, ShaderN
 		slot->draw(drawList, offset);
 	}
 	ImGui::PopID();
+}
+
+bool ShaderNode::isActive()
+{
+	ImGui::PushID(this->id);
+	const bool result = ImGui::IsItemActive();
+	ImGui::PopID();
+	return result;
 }

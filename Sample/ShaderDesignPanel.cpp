@@ -137,7 +137,12 @@ void ShaderDesignPanel::show()
 		node->show(offset);
 	}
 	for (auto node : nodes) {
-		node->showBackGround(offset, selectedNode, hoveredNodeInScene, open_context_menu);
+		node->showBackGround(offset, hoveredNodeInScene, open_context_menu);
+	}
+	for (auto node : nodes) {
+		if (node->isActive()) {
+			selectedNode = node;
+		}
 	}
 	draw_list->ChannelsMerge();
 
