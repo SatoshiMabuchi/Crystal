@@ -1,11 +1,8 @@
 #include "ParticleNode.h"
+#include "ImGuiExt.h"
 
 using namespace Crystal::UI;
 
-namespace {
-	static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
-	static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
-}
 
 ParticleNode::ParticleNode(const int id, const std::string& name, const ImVec2& pos) :
 	INode(id, name, pos)

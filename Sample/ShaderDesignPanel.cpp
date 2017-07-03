@@ -1,5 +1,6 @@
 #include "ShaderDesignPanel.h"
 #include "CameraNode.h"
+#include "ImGuiExt.h"
 #include <algorithm>
 #include <fstream>
 
@@ -9,9 +10,6 @@ using namespace Crystal::UI;
 
 
 namespace {
-	static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
-	static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
-
 	std::string getStrFromFile(const std::string& file)
 	{
 		std::ifstream stream(file);
@@ -35,18 +33,7 @@ void ShaderDesignPanel::show()
 		return;
 	}
 	if (!inited) {
-		auto smoothingNode = new ShaderNode(0, "Smoothing", ImVec2(40, 50));
-		auto depthNode = new ShaderNode(1, "Depth", ImVec2(40, 150));
-		auto thicknessNode = new ShaderNode(2, "Thickness", ImVec2(270, 80));
-		cameraNode = new CameraNode(3, "Camera", ImVec2(10, 10));
-		nodes.push_back(smoothingNode);
-		nodes.push_back(depthNode);
-		nodes.push_back(thicknessNode);
-		auto slot1 = smoothingNode->createOutputSlot();
-		auto slot2 = depthNode->createInputSlot("", "");
-		auto slot3 = thicknessNode->createInputSlot("", "");
-		//links.push_back(ShaderLink(slot1, slot2));
-		//links.push_back(ShaderLink(slot1, slot3));
+		model.build();
 		inited = true;
 	}
 
@@ -61,6 +48,7 @@ void ShaderDesignPanel::show()
 			if (result == NFD_OKAY) {
 				puts("Success!");
 				puts(outPath);
+				model.save(outPath);
 				free(outPath);
 			}
 			else if (result == NFD_CANCEL) {
@@ -71,14 +59,7 @@ void ShaderDesignPanel::show()
 			}
 		}
 		if (ImGui::MenuItem("Save")) {
-			std::stringstream ss;
-			{
-				cereal::JSONOutputArchive o_archive(ss);
-				for (auto n : nodes) {
-					;//o_archive(*n);
-				}
-			}
-			std::cout << ss.str() << std::endl;
+			//model.save();
 		}
 		if (ImGui::MenuItem("SaveAs")) {
 			;
@@ -133,26 +114,7 @@ void ShaderDesignPanel::show()
 		draw_list->AddBezierCurve(p1, p1 + ImVec2(+50, 0), p2 + ImVec2(-50, 0), p2, ImColor(200, 200, 100), 3.0f);
 	}
 	*/
-	cameraNode->show(draw_list, offset);
-
-	for (auto node : nodes) {
-		node->show(draw_list, offset);
-	}
-	for (auto node : nodes) {
-		node->showBackGround(offset);
-	}
-	for (auto node : nodes) {
-		if (node->isActive()) {
-			selectedNode = node;
-		}
-	}
-	for (auto node : nodes) {
-		if (node->isHovered()) {
-			hoveredNodeInScene = node;
-			open_context_menu |= ImGui::IsMouseClicked(1);
-		}
-	}
-	draw_list->ChannelsMerge();
+	model.draw(draw_list, offset);
 
 	// Open context menu
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1)) {
@@ -187,14 +149,17 @@ void ShaderDesignPanel::show()
 				*/
 			}
 			if (ImGui::MenuItem("Delete", NULL, false)) {
+				/*
+				model.remove();
 				nodes.erase(std::remove(nodes.begin(), nodes.end(), node), nodes.end());
 				delete node;
+				*/
 			}
 			if (ImGui::MenuItem("Copy", NULL, false, false)) {}
 		}
 		else {
 			if (ImGui::MenuItem("Add")) {
-				nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos));
+				//nodes.push_back(new ShaderNode(nodes.size(), "New node", scene_pos));
 			}
 			if (ImGui::MenuItem("Paste", NULL, false, false)) {
 				;

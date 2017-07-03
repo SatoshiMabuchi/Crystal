@@ -9,6 +9,7 @@
 #include "GLVSEditor.h"
 #include "GLFSEditor.h"
 #include "INode.h"
+#include <cereal/cereal.hpp>
 
 namespace Crystal {
 	namespace UI {
@@ -51,6 +52,13 @@ public:
 	Crystal::UI::GLVSEditor vsEditor;
 	Crystal::UI::GLFSEditor fsEditor;
 
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		std::for_each(inputSlots.begin(), inputSlots.end(), [](auto slot) {
+			archive(*slot)
+		};)
+	}
 };
 
 	}

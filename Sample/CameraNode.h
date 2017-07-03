@@ -9,6 +9,7 @@
 #include "INode.h"
 #include "Matrix4dLink.h"
 #include <vector>
+#include "cereal\cereal.hpp"
 
 namespace Crystal {
 	namespace UI {
@@ -21,6 +22,11 @@ public:
 	void show(ImDrawList* drawList, ImVec2 offset) override;
 
 	//void build();
+	template<class Archive>
+	void serialize(Archive & archive)
+	{
+		;//archive(CEREAL_NVP(name), CEREAL_NVP(hp));
+	}
 
 private:
 	Matrix4dOutSlot* projectionMatrixSlot;
