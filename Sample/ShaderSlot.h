@@ -16,11 +16,15 @@ public:
 		id(id)
 	{}
 
+	friend std::ostream& operator<<(std::ostream&, const ShaderInputSlot&);
+
 private:
 	std::string name;
 	std::string type;
 	const int id;
 };
+
+std::ostream& operator<<(std::ostream& stream, const ShaderInputSlot& slot);
 
 class ShaderOutputSlot : public IOutSlot
 {

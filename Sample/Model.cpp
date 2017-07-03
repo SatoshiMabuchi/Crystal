@@ -1,6 +1,5 @@
 #include "Model.h"
 #include <fstream>
-#include <cereal/archives/json.hpp>
 #include "CameraNode.h"
 #include "ShaderNode.h"
 
@@ -12,8 +11,11 @@ bool Model::save(const std::string& filename) const
 	if(!stream.is_open()) {
 		return false;
 	}
-	cereal::JSONOutputArchive archive(stream);
-	archive(*cameraNode);
+	//cereal::JSONOutputArchive archive(stream);
+	//archive(*cameraNode);
+	for (auto n : nodes) {
+		stream << *n;
+	}
 	return true;
 }
 
@@ -23,8 +25,8 @@ bool Model::load(const std::string& filename)
 	if (!stream.is_open()) {
 		return false;
 	}
-	cereal::JSONInputArchive archive(stream);
-	archive(*cameraNode);
+	//cereal::JSONInputArchive archive(stream);
+	//archive(*cameraNode);
 	return true;
 }
 

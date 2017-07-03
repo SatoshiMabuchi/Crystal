@@ -42,13 +42,13 @@ void ShaderDesignPanel::show()
 		//if (ImGui::MenuItem("Close")) *p_open = false;
 		if (ImGui::MenuItem("Open")) {
 			nfdchar_t *outPath = NULL;
-			std::string filter = "glvs,glfs";
+			std::string filter = "cgs";
 			nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
 
 			if (result == NFD_OKAY) {
 				puts("Success!");
 				puts(outPath);
-				model.save(outPath);
+				//model.save(outPath);
 				free(outPath);
 			}
 			else if (result == NFD_CANCEL) {
@@ -62,7 +62,15 @@ void ShaderDesignPanel::show()
 			//model.save();
 		}
 		if (ImGui::MenuItem("SaveAs")) {
-			;
+			nfdchar_t *outPath = NULL;
+			std::string filter = "cgs";
+			nfdresult_t result = NFD_SaveDialog(filter.data(), NULL, &outPath);
+
+			if (result == NFD_OKAY) {
+				puts(outPath);
+				model.save(outPath);
+				free(outPath);
+			}
 		}
 		ImGui::EndMenu();
 	}

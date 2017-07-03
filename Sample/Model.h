@@ -1,7 +1,8 @@
 #pragma once
 
 #include "imgui.h"
-#include <cereal/cereal.hpp>
+#include <string>
+#include <vector>
 
 namespace Crystal {
 	namespace UI {

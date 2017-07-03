@@ -150,3 +150,13 @@ bool ShaderNode::isHovered()
 	ImGui::PopID();
 	return result;
 }
+
+std::ostream& Crystal::UI::operator<<(std::ostream & stream, const ShaderNode & shader)
+{
+	stream << shader.getId() << std::endl;
+	stream << shader.inputSlots.size() << std::endl;
+	for (auto slot : shader.inputSlots) {
+		stream << *slot << std::endl;
+	}
+	return stream;
+}

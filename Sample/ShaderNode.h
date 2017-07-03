@@ -1,5 +1,4 @@
-#ifndef __CRYSTAL_UI_SHADER_NODE_H__
-#define __CRYSTAL_UI_SHADER_NODE_H__
+#pragma once
 
 #include <string>
 #include "imgui.h"
@@ -9,7 +8,6 @@
 #include "GLVSEditor.h"
 #include "GLFSEditor.h"
 #include "INode.h"
-#include <cereal/cereal.hpp>
 
 namespace Crystal {
 	namespace UI {
@@ -52,16 +50,11 @@ public:
 	Crystal::UI::GLVSEditor vsEditor;
 	Crystal::UI::GLFSEditor fsEditor;
 
-	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		std::for_each(inputSlots.begin(), inputSlots.end(), [](auto slot) {
-			archive(*slot)
-		};)
-	}
+	friend std::ostream& operator<<(std::ostream&, const ShaderNode&);
 };
+
+std::ostream& operator<<(std::ostream& stream, const ShaderNode& shader);
 
 	}
 }
 
-#endif
