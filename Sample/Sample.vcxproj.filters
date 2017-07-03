@@ -68,6 +68,7 @@
     </ClInclude>
     <ClInclude Include="ImGuiExt.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelIO.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">

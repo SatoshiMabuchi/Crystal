@@ -48,7 +48,7 @@ void ShaderDesignPanel::show()
 			if (result == NFD_OKAY) {
 				puts("Success!");
 				puts(outPath);
-				//model.save(outPath);
+				model.load(outPath);
 				free(outPath);
 			}
 			else if (result == NFD_CANCEL) {

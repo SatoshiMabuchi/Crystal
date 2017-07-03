@@ -2,6 +2,8 @@
 #include <fstream>
 #include "CameraNode.h"
 #include "ShaderNode.h"
+#include "ModelIO.h"
+#include <cereal/archives/json.hpp>
 
 using namespace Crystal::UI;
 
@@ -11,10 +13,11 @@ bool Model::save(const std::string& filename) const
 	if(!stream.is_open()) {
 		return false;
 	}
-	//cereal::JSONOutputArchive archive(stream);
+	cereal::JSONOutputArchive archive(stream);
 	//archive(*cameraNode);
 	for (auto n : nodes) {
-		stream << *n;
+		archive(*n);
+		//stream << *n;
 	}
 	return true;
 }
@@ -25,7 +28,12 @@ bool Model::load(const std::string& filename)
 	if (!stream.is_open()) {
 		return false;
 	}
-	//cereal::JSONInputArchive archive(stream);
+	cereal::JSONInputArchive archive(stream);
+	for (auto n : nodes) {
+		archive(*n);
+		//stream << *n;
+	}
+
 	//archive(*cameraNode);
 	return true;
 }

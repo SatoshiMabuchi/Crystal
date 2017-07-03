@@ -165,6 +165,7 @@
     <ClInclude Include="INode.h" />
     <ClInclude Include="Matrix4dLink.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelIO.h" />
     <ClInclude Include="ParticleNode.h" />
     <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
