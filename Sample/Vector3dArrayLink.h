@@ -8,50 +8,48 @@
 namespace Crystal {
 	namespace UI {
 
-		class Vector3dArrayInSlot : public IInSlot
-		{
-		public:
-			Vector3dArrayInSlot(INode* parent) :
-				IInSlot(parent)
-			{}
+class Vector3dArrayInSlot : public IInSlot
+{
+public:
+	Vector3dArrayInSlot(INode* parent) :
+		IInSlot(parent)
+	{}
 
-			void setValue(const std::vector <Math::Vector3d <double>> &value) {
-				this->value.clear();
-				for (auto v : value) {
-					this->value.add(v);
-				}
-			}
+	void setValue(const std::vector <Math::Vector3d <double>> &value) {
+		this->value.clear();
+		for (auto v : value) {
+			this->value.add(v);
+		}
+	}
 
-		private:
-			Graphics::Buffer3d<double> value;
-		};
+private:
+	Graphics::Buffer3d<double> value;
+};
 
-		class Vector3dArrayOutSlot : public IOutSlot
-		{
-		public:
-			Vector3dArrayOutSlot(INode* parent) :
-				IOutSlot(parent)
-			{}
+class Vector3dArrayOutSlot : public IOutSlot
+{
+public:
+	Vector3dArrayOutSlot(INode* parent) :
+		IOutSlot(parent)
+	{}
 
-			std::vector<Math::Vector3d<double>> getValue() const { return value; }
+	std::vector<Math::Vector3d<double>> getValue() const { return value; }
 
-		private:
-			std::vector<Math::Vector3d<double>> value;
-		};
+private:
+	std::vector<Math::Vector3d<double>> value;
+};
 
-		class Vector3dArrayLink : public ILink
-		{
+class Vector3dArrayLink : public ILink
+{
+private:
 
-		private:
+	void build() override {
+		input->setValue(output->getValue());
+	}
 
-
-			void build() override {
-				input->setValue(output->getValue());
-			}
-
-			Vector3dArrayOutSlot* output;
-			Vector3dArrayInSlot* input;
-		};
+	Vector3dArrayOutSlot* output;
+	Vector3dArrayInSlot* input;
+};
 
 
 	}

@@ -16,7 +16,7 @@ bool Model::save(const std::string& filename) const
 	cereal::JSONOutputArchive archive(stream);
 	//archive(*cameraNode);
 	for (auto n : nodes) {
-		archive(*n);
+		archive(cereal::make_nvp("node", *n));
 		//stream << *n;
 	}
 	return true;

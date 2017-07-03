@@ -16,15 +16,14 @@ public:
 		id(id)
 	{}
 
-	friend std::ostream& operator<<(std::ostream&, const ShaderInputSlot&);
+	template<class Archive>
+	friend void serialize(Archive& archive, ShaderInputSlot& input);
 
 private:
 	std::string name;
 	std::string type;
-	const int id;
+	int id;
 };
-
-std::ostream& operator<<(std::ostream& stream, const ShaderInputSlot& slot);
 
 class ShaderOutputSlot : public IOutSlot
 {

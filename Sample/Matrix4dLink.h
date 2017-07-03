@@ -44,6 +44,9 @@ private:
 		input->setValue(output->getValue().toArray());
 	}
 
+	template<class Archive>
+	friend void serialize(Archive& archive, Matrix4dLink& link);
+
 	Matrix4dOutSlot* output;
 	Matrix4dInSlot* input;
 };

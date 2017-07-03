@@ -50,10 +50,9 @@ public:
 	Crystal::UI::GLVSEditor vsEditor;
 	Crystal::UI::GLFSEditor fsEditor;
 
-	friend std::ostream& operator<<(std::ostream&, const ShaderNode&);
+	template<class Archive>
+	friend void serialize(Archive& archive, ShaderNode& shaderNode);
 };
-
-std::ostream& operator<<(std::ostream& stream, const ShaderNode& shader);
 
 	}
 }

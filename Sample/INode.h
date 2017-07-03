@@ -102,7 +102,15 @@ private:
 class ILink
 {
 public:
+	explicit ILink(const int id) :
+		id(id)
+	{
+	}
+
 	virtual void build() = 0;
+
+private:
+	int id;
 };
 
 

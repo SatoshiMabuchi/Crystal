@@ -1,11 +1,17 @@
 {
-    "value0": {
-        "value0": 0
+    "node": {
+        "id": 0
     },
-    "value1": {
-        "value0": 1
+    "node": {
+        "id": 1,
+        "value0": {
+            "value0": 0
+        }
     },
-    "value2": {
-        "value0": 2
+    "node": {
+        "id": 2,
+        "value0": {
+            "value0": 0
+        }
     }
 }
