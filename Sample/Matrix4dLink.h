@@ -37,9 +37,14 @@ private:
 	Math::Matrix4d<double> value;
 };
 
+/*
 class Matrix4dLink : public ILink
 {
 private:
+	Matrix4dLink(const int id, Matrix4dInSlot* in, Matrix4dOutSlot* out) :
+		ILink(id, in, out)
+	{}
+
 	void build() override {
 		input->setValue(output->getValue().toArray());
 	}
@@ -50,7 +55,7 @@ private:
 	Matrix4dOutSlot* output;
 	Matrix4dInSlot* input;
 };
-
+*/
 
 	}
 }

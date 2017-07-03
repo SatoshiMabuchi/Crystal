@@ -3,6 +3,7 @@
 #include "CameraNode.h"
 #include "ShaderNode.h"
 #include "ModelIO.h"
+#include "Vector3dArrayLink.h"
 #include <cereal/archives/json.hpp>
 
 using namespace Crystal::UI;
@@ -50,8 +51,8 @@ void Model::build()
 	auto slot1 = smoothingNode->createOutputSlot();
 	auto slot2 = depthNode->createInputSlot("", "");
 	auto slot3 = thicknessNode->createInputSlot("", "");
-	//links.push_back(ShaderLink(slot1, slot2));
-	//links.push_back(ShaderLink(slot1, slot3));
+	links.push_back(new ILink(0, slot1, slot2));
+	links.push_back(new ILink(1, slot1, slot3));
 }
 
 void Model::draw(ImDrawList* draw_list, ImVec2 offset)
@@ -63,6 +64,9 @@ void Model::draw(ImDrawList* draw_list, ImVec2 offset)
 	}
 	for (auto node : nodes) {
 		node->showBackGround(offset);
+	}
+	for (auto link : links) {
+		link->show(draw_list, offset);
 	}
 	/*
 	for (auto node : nodes) {

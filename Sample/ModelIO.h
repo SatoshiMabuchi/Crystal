@@ -33,6 +33,7 @@ namespace Crystal {
 			}
 		}
 
+		/*
 		template<class Archive>
 		void serialize(Archive& archive, Matrix4dLink& link)
 		{
@@ -44,5 +45,6 @@ namespace Crystal {
 		{
 			archive(cereal::make_nvp("value"), link.input->value);
 		}
+		*/
 	}
 }

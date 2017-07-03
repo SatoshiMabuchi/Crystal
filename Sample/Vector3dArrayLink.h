@@ -39,9 +39,13 @@ private:
 	std::vector<Math::Vector3d<double>> value;
 };
 
+/*
 class Vector3dArrayLink : public ILink
 {
 private:
+	Vector3dArrayLink(const int id, IOutSlot* out,IInSlot* in, ) :
+		ILink(id, in, out)
+	{}
 
 	void build() override {
 		input->setValue(output->getValue());
@@ -50,7 +54,7 @@ private:
 	Vector3dArrayOutSlot* output;
 	Vector3dArrayInSlot* input;
 };
-
+*/
 
 	}
 }

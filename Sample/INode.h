@@ -4,8 +4,6 @@
 #include <string>
 #include "imgui.h"
 #include "../Util/UnCopyable.h"
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
 
 namespace Crystal {
 	namespace UI {
@@ -69,24 +67,7 @@ public:
 
 	void move(ImVec2 v) { this->position.x += v.x; this->position.y += v.y; }
 
-	ImVec2 GetInputSlotPos(int slot_no) const {
-		auto pos = getPosition();
-		return ImVec2(pos.x, pos.y + size.y * ((float)slot_no + 1) / ((float)inputs.size() + 1));
-	}
-
-	ImVec2 GetOutputSlotPos(int slot_no) const {
-		auto pos = getPosition();
-		return ImVec2(pos.x + size.x, pos.y + size.y * ((float)slot_no + 1) / ((float)outputs.size() + 1));
-	}
-
-
-/*
-	template<class Archive>
-	void serialize(Archive & archive)
-	{
-		archive(name, id);
-	}
-	*/
+	ImVec2 getSize() const { return size; }
 
 	ImVec2 size;
 
@@ -102,15 +83,25 @@ private:
 class ILink
 {
 public:
-	explicit ILink(const int id) :
-		id(id)
+	explicit ILink(const int id, IOutSlot* out, IInSlot* in) :
+		id(id),
+		outSlot(out),
+		inSlot(in)
 	{
 	}
 
-	virtual void build() = 0;
+	void setOut(IOutSlot* slot) { this->outSlot = slot; }
+
+	void setIn(IInSlot* slot) { this->inSlot = slot; }
+
+	void show(ImDrawList* drawList, const ImVec2& offset);
+
+	//virtual void build() = 0;
 
 private:
 	int id;
+	IOutSlot* outSlot;
+	IInSlot* inSlot;
 };
 
 

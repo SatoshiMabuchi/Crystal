@@ -8,6 +8,7 @@ namespace Crystal {
 	namespace UI {
 		class CameraNode;
 		class ShaderNode;
+		class ILink;
 
 class Model
 {
@@ -23,7 +24,7 @@ public:
 private:
 	CameraNode* cameraNode;
 	std::vector<ShaderNode*> nodes;
-
+	std::vector<ILink*> links;
 };
 	}
 }
