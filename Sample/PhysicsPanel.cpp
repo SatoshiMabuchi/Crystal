@@ -1,14 +1,16 @@
 #include "PhysicsPanel.h"
 
-#include "imgui.h"
+#include "../AppBase/imgui.h"
 
 #include "../Math/Box3d.h"
 #include "../Physics/PhysicsObject.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Physics;
+using namespace Crystal::UI;
 
-PhysicsPanel::PhysicsPanel() :
+PhysicsPanel::PhysicsPanel(IModel* model, ICanvas* canvas) :
+	IPanel(model, canvas),
 	isUnderSimulation(false)
 {}
 

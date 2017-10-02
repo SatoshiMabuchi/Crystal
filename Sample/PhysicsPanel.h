@@ -2,16 +2,24 @@
 
 #include "../Physics/PhysicsWorld.h"
 
-class PhysicsPanel
-{
-public:
-	PhysicsPanel();
+#include "../AppBase/IPanel.h"
 
-	void show();
+namespace Crystal {
+	namespace UI {
 
-	std::vector<Crystal::Physics::SPHParticle*> getParticles();
+		class PhysicsPanel : public IPanel
+		{
+		public:
+			PhysicsPanel(IModel* model, ICanvas* canvas);
 
-private:
-	bool isUnderSimulation;
-	Crystal::Physics::PhysicsWorld world;
-};
+			void show();
+
+			std::vector<Crystal::Physics::SPHParticle*> getParticles();
+
+		private:
+			bool isUnderSimulation;
+			Crystal::Physics::PhysicsWorld world;
+		};
+
+	}
+}

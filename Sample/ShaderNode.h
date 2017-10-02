@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "imgui.h"
+#include "../AppBase/imgui.h"
 #include "../Util/UnCopyable.h"
 
 #include "../Shader/ShaderObject.h"

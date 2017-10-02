@@ -1,6 +1,6 @@
 #include "GLVSEditor.h"
 
-#include <imgui.h>
+#include "../AppBase/imgui.h"
 #include <string>
 #include <fstream>
 #include <sstream>

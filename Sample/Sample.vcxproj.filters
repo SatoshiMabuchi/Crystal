@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="imgui">
-      <UniqueIdentifier>{6a9db318-899f-4332-830b-674d009a77fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Node">
       <UniqueIdentifier>{02733eb9-8116-4b4f-a60a-1d34b5270ece}</UniqueIdentifier>
     </Filter>
@@ -16,33 +13,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\imconfig.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\imgui.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\imgui_internal.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_rect_pack.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_textedit.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\stb_truetype.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui_impl_glfw_gl3.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="GL\glcorearb.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\imgui-1.49\examples\libs\gl3w\GL\glcorearb.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ShaderNode.h" />
@@ -71,20 +41,8 @@
     <ClInclude Include="ModelIO.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_demo.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ThirdParty\imgui-1.49\imgui_draw.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="imgui_impl_glfw_gl3.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderNode.cpp" />
     <ClCompile Include="PhysicsPanel.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
@@ -104,14 +62,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="..\ThirdParty\imgui-1.49\.travis.yml">
-      <Filter>imgui</Filter>
-    </None>
-    <None Include="..\ThirdParty\imgui-1.49\LICENSE">
-      <Filter>imgui</Filter>
-    </None>
-    <None Include="..\ThirdParty\imgui-1.49\README.md">
-      <Filter>imgui</Filter>
-    </None>
   </ItemGroup>
 </Project>

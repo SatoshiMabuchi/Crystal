@@ -1,20 +1,23 @@
 #ifndef __CRYSTAL_UI_SHADER_DESIGNE_PANEL_H__
 #define __CRYSTAL_UI_SHADER_DESIGNE_PANEL_H__
 
-#include "imgui.h"
+#include "../AppBase/imgui.h"
 #include <string>
 #include <vector>
 #include "ShaderNode.h"
 #include "GLVSEditor.h"
 #include "Model.h"
+#include "../AppBase/IPanel.h"
 
 namespace Crystal {
 	namespace UI {
 		class CameraNode;
 
-class ShaderDesignPanel
+class ShaderDesignPanel : public IPanel
 {
 public:
+	ShaderDesignPanel(IModel* model, ICanvas* canvas);
+
 	void show();
 
 private:
