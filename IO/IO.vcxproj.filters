@@ -5,9 +5,13 @@
     <ClInclude Include="STLCell.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="OBJFileReader.h" />
+    <ClInclude Include="DXFFileReader.h" />
+    <ClInclude Include="MTLFileReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="STLFile.cpp" />
     <ClCompile Include="OBJFileReader.cpp" />
+    <ClCompile Include="DXFFileReader.cpp" />
+    <ClCompile Include="MTLFileReader.cpp" />
   </ItemGroup>
 </Project>

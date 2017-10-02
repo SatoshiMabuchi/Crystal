@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DXFFileReader.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="MTLFileReader.h" />
     <ClInclude Include="OBJFileReader.h" />
     <ClInclude Include="STLCell.h" />
     <ClInclude Include="STLFile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DXFFileReader.cpp" />
+    <ClCompile Include="MTLFileReader.cpp" />
     <ClCompile Include="OBJFileReader.cpp" />
     <ClCompile Include="STLFile.cpp" />
   </ItemGroup>

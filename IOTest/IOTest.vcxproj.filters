@@ -3,6 +3,8 @@
   <ItemGroup>
     <ClCompile Include="OBJFileReaderTest.cpp" />
     <ClCompile Include="IOTest.cpp" />
+    <ClCompile Include="DXFFileReaderTest.cpp" />
+    <ClCompile Include="MTLFileReaderTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

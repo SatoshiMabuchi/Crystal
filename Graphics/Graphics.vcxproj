@@ -30,6 +30,7 @@
     <ClInclude Include="IImage.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Imagef.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PointBuffer.h" />
