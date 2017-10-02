@@ -4,8 +4,10 @@
     <ClInclude Include="STLFile.h" />
     <ClInclude Include="STLCell.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="OBJFileReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="STLFile.cpp" />
+    <ClCompile Include="OBJFileReader.cpp" />
   </ItemGroup>
 </Project>

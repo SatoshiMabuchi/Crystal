@@ -1,6 +1,7 @@
 #ifndef __CRYSTAL_SHAPE_VERTEX_H__
 #define __CRYSTAL_SHAPE_VERTEX_H__
 
+#include "../Math/Vector2d.h"
 #include "../Math/Vector3d.h"
 #include "../Math/Matrix4d.h"
 #include "../Math/Box3d.h"
@@ -18,7 +19,7 @@ public:
 
 	Vertex(const Math::Vector3d<float>& position, const Math::Vector3d<float>& normal, const unsigned int id = -1);
 
-	//Vertex(const Math::Vector3d<float>& position, const Math::Vector3d<float>& normal, const Math::Vector2d<float>& texCoord, const unsigned int id = -1);
+	Vertex(const Math::Vector3d<float>& position, const Math::Vector3d<float>& normal, const Math::Vector2d<float>& texCoord, const unsigned int id = -1);
 
 	Vertex* clone();
 
@@ -41,7 +42,7 @@ public:
 private:
 	Math::Vector3d<float> position;
 	Math::Vector3d<float> normal;
-//	Math::Vector2d<float> texCoord;
+	Math::Vector2d<float> texCoord;
 	unsigned int id;
 };
 
