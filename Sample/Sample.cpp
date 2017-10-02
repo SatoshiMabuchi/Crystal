@@ -32,8 +32,6 @@ static void error_callback(int error, const char* description)
 
 int main(int, char**)
 {
-
-
 	// Setup window
 	glfwSetErrorCallback(error_callback);
 
@@ -93,6 +91,18 @@ int main(int, char**)
 	{
 		ImGui_ImplGlfwGL3_NewFrame();
 
+		//ImGui::Begin("config 1", nullptr, ImGuiWindowFlags_MenuBar);
+
+		if (ImGui::BeginMainMenuBar()) {
+			if (ImGui::BeginMenu("Menu")) {
+				ImGui::EndMenu();
+			}
+			//ImGui::EndMenuBar();
+			ImGui::EndMainMenuBar();
+
+		}
+
+		
 		// 1. Show a simple window
 		// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets appears in a window automatically called "Debug"
 		{
@@ -117,13 +127,12 @@ int main(int, char**)
 		// 3. Show the ImGui test window. Most of the sample code is in ImGui::ShowTestWindow()
 		if (show_test_window)
 		{
-			ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
-			ImGui::ShowTestWindow(&show_test_window);
+		//	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
+		//	ImGui::ShowTestWindow(&show_test_window);
 		}
 
 		physicsPanel.show();
 		shaderPanel.show();
-
 
 		// Rendering
 		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
