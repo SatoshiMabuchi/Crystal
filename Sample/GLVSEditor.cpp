@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "../ThirdParty/nativefiledialog/src/include/nfd.h"
+#include "../AppBase/tinyfiledialogs.h"
 #include "../Shader/ShaderObject.h"
 
 using namespace Crystal::Shader;
@@ -29,21 +29,10 @@ void GLVSEditor::show()
 {
 	ImGui::BeginGroup(); // Lock horizontal position
 	if (ImGui::Button("Open")) {
-		nfdchar_t *outPath = NULL;
-		std::string filter = "glvs";
-		nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
-
-		if (result == NFD_OKAY) {
-			setSource( getStrFromFile(outPath) );
-			puts("Success!");
-			puts(outPath);
-			free(outPath);
-		}
-		else if (result == NFD_CANCEL) {
-			puts("User pressed cancel.");
-		}
-		else {
-			printf("Error: %s\n", NFD_GetError());
+		char const * lFilterPatterns[2] = { "*.txt", "*.glvs" };
+		const auto filename = tinyfd_openFileDialog("Open", "", 2, lFilterPatterns, nullptr, 0);
+		if (!filename) {
+			setSource(getStrFromFile(filename));
 		}
 	}
 	if (ImGui::Button("Save")) {

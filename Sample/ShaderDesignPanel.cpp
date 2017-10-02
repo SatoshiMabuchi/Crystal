@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <fstream>
 
+#include "../AppBase/tinyfiledialogs.h"
 #include "../ThirdParty/nativefiledialog/src/include/nfd.h"
 
 using namespace Crystal::UI;
@@ -41,27 +42,17 @@ void ShaderDesignPanel::show()
 	if (ImGui::BeginMenu("File")) {
 		//if (ImGui::MenuItem("Close")) *p_open = false;
 		if (ImGui::MenuItem("Open")) {
-			nfdchar_t *outPath = NULL;
-			std::string filter = "cgs";
-			nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
-
-			if (result == NFD_OKAY) {
-				puts("Success!");
-				puts(outPath);
-				model.load(outPath);
-				free(outPath);
-			}
-			else if (result == NFD_CANCEL) {
-				puts("User pressed cancel.");
-			}
-			else {
-				printf("Error: %s\n", NFD_GetError());
+			char const * lFilterPatterns[2] = { "*.txt", "*.glfs" };
+			const auto filename = tinyfd_openFileDialog("Open", "", 2, lFilterPatterns, nullptr, 0);
+			if (!filename) {
+				model.load(filename);
 			}
 		}
 		if (ImGui::MenuItem("Save")) {
 			//model.save();
 		}
 		if (ImGui::MenuItem("SaveAs")) {
+			/*
 			nfdchar_t *outPath = NULL;
 			std::string filter = "cgs";
 			nfdresult_t result = NFD_SaveDialog(filter.data(), NULL, &outPath);
@@ -71,6 +62,7 @@ void ShaderDesignPanel::show()
 				model.save(outPath);
 				free(outPath);
 			}
+			*/
 		}
 		ImGui::EndMenu();
 	}

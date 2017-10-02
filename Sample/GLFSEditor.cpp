@@ -3,7 +3,8 @@
 #include <imgui.h>
 #include <string>
 #include <fstream>
-#include "../ThirdParty/nativefiledialog/src/include/nfd.h"
+//#include "../ThirdParty/nativefiledialog/src/include/nfd.h"
+#include "../AppBase/tinyfiledialogs.h"
 #include "../Shader/ShaderObject.h"
 
 using namespace Crystal::Shader;
@@ -28,6 +29,7 @@ void GLFSEditor::show()
 {
 	ImGui::BeginGroup();
 	if (ImGui::Button("Open")) {
+		/*
 		nfdchar_t *outPath = NULL;
 		std::string filter = "glfs";
 		nfdresult_t result = NFD_OpenDialog(filter.data(), NULL, &outPath);
@@ -43,6 +45,12 @@ void GLFSEditor::show()
 		}
 		else {
 			printf("Error: %s\n", NFD_GetError());
+		}
+		*/
+		char const * lFilterPatterns[2] = { "*.txt", "*.glfs" };
+		const auto filename = tinyfd_openFileDialog("Open", "", 2, lFilterPatterns, nullptr, 0);
+		if (!filename) {
+			setSource(getStrFromFile(filename));
 		}
 	}
 	if (ImGui::Button("Save")) {
