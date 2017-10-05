@@ -23,14 +23,19 @@
     <ClInclude Include="Helper.h" />
     <ClInclude Include="MTLFileReader.h" />
     <ClInclude Include="OBJFileReader.h" />
-    <ClInclude Include="STLCell.h" />
-    <ClInclude Include="STLFile.h" />
+    <ClInclude Include="STLAsciiFileReader.h" />
+    <ClInclude Include="STLAsciiFileWriter.h" />
+    <ClInclude Include="STLBinaryFileReader.h" />
+    <ClInclude Include="STLBinaryFileWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXFFileReader.cpp" />
     <ClCompile Include="MTLFileReader.cpp" />
     <ClCompile Include="OBJFileReader.cpp" />
-    <ClCompile Include="STLFile.cpp" />
+    <ClCompile Include="STLAsciiFileReader.cpp" />
+    <ClCompile Include="STLAsciiFileWriter.cpp" />
+    <ClCompile Include="STLBinaryFileReader.cpp" />
+    <ClCompile Include="STLBinaryFileWriter.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{198160CC-5ED1-499D-AD45-90DBAC4852F8}</ProjectGuid>

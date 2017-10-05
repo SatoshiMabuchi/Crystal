@@ -38,6 +38,8 @@ class DXFFileReader
 public:
 	DXFFileReader() {};
 
+	bool read(const std::string& filename);
+
 	bool read(std::istream& stream);
 
 	DXFFaceVector getFaces() const { return faces; }

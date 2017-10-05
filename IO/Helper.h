@@ -19,11 +19,12 @@ public:
 		return val;
 	}
 
-	static Math::Vector3d<float> readVector(std::istream& s)
+	template<typename T>
+	static Math::Vector3d<T> readVector(std::istream& s)
 	{
-		float x, y, z;
+		T x, y, z;
 		s >> x >> y >> z;
-		return Math::Vector3d<float>(x, y, z);
+		return Math::Vector3d<T>(x, y, z);
 	}
 
 	static Graphics::ColorRGBA<float> readColorRGB(std::istream& s)

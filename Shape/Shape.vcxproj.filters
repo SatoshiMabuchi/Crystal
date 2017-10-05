@@ -11,6 +11,7 @@
     <ClInclude Include="HalfEdge.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Face.h" />
+    <ClInclude Include="TriangleMesh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PolygonMesh.cpp" />

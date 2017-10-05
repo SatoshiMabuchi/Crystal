@@ -2,9 +2,19 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace Crystal::Math;
 using namespace Crystal::IO;
+
+bool DXFFileReader::read(const std::string& filename)
+{
+	std::ifstream stream(filename);
+	if (!stream.is_open()) {
+		return false;
+	}
+	return read(stream);
+}
 
 bool DXFFileReader::read(std::istream& stream)
 {
