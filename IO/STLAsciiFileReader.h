@@ -23,6 +23,8 @@ public:
 
 	bool read(std::istream& stream);
 
+	std::vector<Shape::TriangleFace> getFaces() const { return faces; }
+
 private:
 	std::vector<Shape::TriangleFace> faces;
 	std::string title;

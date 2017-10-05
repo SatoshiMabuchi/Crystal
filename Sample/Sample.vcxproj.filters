@@ -16,7 +16,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ShaderNode.h" />
-    <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderSlot.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="GLVSEditor.h" />
@@ -44,7 +43,6 @@
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="ShaderNode.cpp" />
-    <ClCompile Include="PhysicsPanel.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
     <ClCompile Include="ShaderSlot.cpp" />
     <ClCompile Include="GLVSEditor.cpp" />

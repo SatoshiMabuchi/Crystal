@@ -5,6 +5,7 @@
     <ClCompile Include="IOTest.cpp" />
     <ClCompile Include="DXFFileReaderTest.cpp" />
     <ClCompile Include="MTLFileReaderTest.cpp" />
+    <ClCompile Include="STLAsciiFileReaderTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -158,7 +158,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelIO.h" />
     <ClInclude Include="ParticleNode.h" />
-    <ClInclude Include="PhysicsPanel.h" />
     <ClInclude Include="ShaderDesignPanel.h" />
     <ClInclude Include="ShaderNode.h" />
     <ClInclude Include="ShaderSlot.h" />
@@ -173,7 +172,6 @@
     <ClCompile Include="INode.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ParticleNode.cpp" />
-    <ClCompile Include="PhysicsPanel.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="ShaderDesignPanel.cpp" />
     <ClCompile Include="ShaderNode.cpp" />

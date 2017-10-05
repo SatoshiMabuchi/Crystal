@@ -23,6 +23,7 @@
     <ClCompile Include="IOTest.cpp" />
     <ClCompile Include="MTLFileReaderTest.cpp" />
     <ClCompile Include="OBJFileReaderTest.cpp" />
+    <ClCompile Include="STLAsciiFileReaderTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

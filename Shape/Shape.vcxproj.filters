@@ -12,6 +12,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="TriangleMesh.h" />
+    <ClInclude Include="ParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PolygonMesh.cpp" />

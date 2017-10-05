@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Face.h" />
     <ClInclude Include="HalfEdge.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PolygonMesh.h" />
     <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vertex.h" />
