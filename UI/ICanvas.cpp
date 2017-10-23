@@ -1,6 +1,8 @@
 #include "ICanvas.h"
 #include "../Graphics/PerspectiveCamera.h"
+#include "IUICommand.h"
 
+using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::Shader;
 using namespace Crystal::UI;
@@ -21,3 +23,53 @@ void ICanvas::render(const int width, const int height)
 {
 	pointRenderer.render(*camera, pointBuffer);
 }
+
+void ICanvas::onLeftButtonDown(const Vector2d<float>& position)
+{
+	for (auto c : ctrls) {
+		;//c->
+	}
+}
+
+void ICanvas::onLeftButtonUp(const Vector2d<float>& position)
+{
+	for (auto c : ctrls) {
+		;// c->
+	}
+}
+
+void ICanvas::onRightButtonDown(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onRightButtonUp(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onMiddleButtonDown(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onMiddleButtonUp(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onLeftDragging(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onRightDragging(const Vector2d<float>& position)
+{
+
+}
+
+void ICanvas::onMiddleDragging(const Vector2d<float>& position)
+{
+
+}
+

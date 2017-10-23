@@ -1,6 +1,8 @@
 #pragma once
 
+#include "../Shape/ParticleSystem.h"
 #include "../Shape/PolygonMesh.h"
+#include "IObject.h"
 
 namespace Crystal {
 	namespace UI {
@@ -13,6 +15,7 @@ public:
 	bool write(const std::string& filename) const;
 
 private:
+	
 	Shape::PolygonMesh* polygonMesh;
 };
 	}

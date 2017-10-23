@@ -12,7 +12,7 @@ int main(int, char**)
 	IModel model;
 	ICanvas canvas;
 
-	Window window;
+	Window window(&model, &canvas);
 	if (!window.init()) {
 		assert(false);
 	}

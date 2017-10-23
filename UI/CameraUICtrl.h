@@ -22,6 +22,7 @@ public:
 	virtual void onRightButtonUp(const Math::Vector2d<float>& position) override;
 
 private:
+	Math::Vector2d<float> prevPosition;
 	Graphics::ICamera<float>* camera;
 };
 	}

@@ -7,11 +7,16 @@
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMouseListener.h" />
     <ClInclude Include="IUICommand.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="ViewModel.h" />
+    <ClInclude Include="IObject.h" />
+    <ClInclude Include="IKeyListener.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraUICtrl.cpp" />
     <ClCompile Include="IModel.cpp" />
     <ClCompile Include="ICanvas.cpp" />
+    <ClCompile Include="ViewModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

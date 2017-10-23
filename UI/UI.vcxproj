@@ -21,15 +21,20 @@
   <ItemGroup>
     <ClInclude Include="CameraUICtrl.h" />
     <ClInclude Include="ICanvas.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IKeyListener.h" />
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMouseListener.h" />
+    <ClInclude Include="IObject.h" />
     <ClInclude Include="IUICommand.h" />
     <ClInclude Include="RectSelectUICtrl.h" />
+    <ClInclude Include="ViewModel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraUICtrl.cpp" />
     <ClCompile Include="ICanvas.cpp" />
     <ClCompile Include="IModel.cpp" />
+    <ClCompile Include="ViewModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

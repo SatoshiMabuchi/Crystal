@@ -7,11 +7,17 @@
 
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
+#include "../UI/ICanvas.h"
 
 #include "../Graphics/PerspectiveCamera.h"
 
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
+
+Window::Window(IModel* model, ICanvas* canvas) :
+	model(model),
+	canvas(canvas)
+{}
 
 bool Window::init()
 {
@@ -23,16 +29,13 @@ bool Window::init()
 	//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#if __APPLE__
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
 	window = glfwCreateWindow(1280, 720, "ImGui OpenGL3 example", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	//	gl3wInit();
 
 	const auto e = glewInit();
 	if (e != GLEW_OK) {
-		return 1;
+		return false;
 	}
 
 
@@ -49,9 +52,7 @@ bool Window::init()
 	//io.Fonts->AddFontFromFileTTF("../../extra_fonts/ProggyTiny.ttf", 10.0f);
 	//io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 
-	bool show_test_window = true;
-	bool show_another_window = false;
-	ImVec4 clear_color = ImColor(114, 144, 154);
+	canvas->build();
 
 
 	return true;
@@ -59,11 +60,8 @@ bool Window::init()
 
 void Window::show()
 {
-	while (!glfwWindowShouldClose(window))
-	{
+	while (!glfwWindowShouldClose(window)) {
 		ImGui_ImplGlfwGL3_NewFrame();
-
-		//ImGui::Begin("config 1", nullptr, ImGuiWindowFlags_MenuBar);
 
 		if (ImGui::BeginMainMenuBar()) {
 			for (auto& m : menus) {
@@ -78,6 +76,10 @@ void Window::show()
 
 		glClearColor(0,0,0,0);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		int width, height;
+		glfwGetWindowSize(window, &width, &height);
+		canvas->render(width, height);
 
 		glFlush();
 

@@ -13,6 +13,8 @@ namespace Crystal {
 class Window
 {
 public:
+	Window(IModel* model, ICanvas* canvas);
+
 	bool init();
 
 	void show();
@@ -22,6 +24,8 @@ public:
 	void add(IPanel* panel) { this->panels.push_back( panel); }
 
 private:
+	IModel* model;
+	ICanvas* canvas;
 	std::vector< IMenu* > menus;
 	std::vector< IPanel* > panels;
 	GLFWwindow* window;

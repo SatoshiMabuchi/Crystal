@@ -11,7 +11,8 @@ CameraUICtrl::CameraUICtrl(ICamera<float>* camera) :
 
 void CameraUICtrl::onLeftButtonDown(const Vector2d<float>& position)
 {
-
+	prevPosition = position;
+	//camera->move();
 }
 
 void CameraUICtrl::onLeftButtonUp(const Vector2d<float>& position)
@@ -21,7 +22,7 @@ void CameraUICtrl::onLeftButtonUp(const Vector2d<float>& position)
 
 void CameraUICtrl::onRightButtonDown(const Vector2d<float>& position)
 {
-
+	prevPosition = position;
 }
 
 void CameraUICtrl::onRightButtonUp(const Vector2d<float>& position)
