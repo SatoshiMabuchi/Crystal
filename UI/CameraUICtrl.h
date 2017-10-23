@@ -4,11 +4,12 @@
 #include "../Graphics/ICamera.h"
 #include "IUICommand.h"
 #include "IMouseListener.h"
+#include "IUICommand.h"
 
 namespace Crystal {
 	namespace UI {
 
-class CameraUICtrl : public IMouseListener
+class CameraUICtrl : public IUICommand
 {
 public:
 	explicit CameraUICtrl(Graphics::ICamera<float>* camera);

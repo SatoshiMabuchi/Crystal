@@ -1,5 +1,6 @@
 #include "../AppBase/Window.h"
 #include "../AppBase/FileMenu.h"
+#include "../AppBase/CtrlMenu.h"
 
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
@@ -18,6 +19,7 @@ int main(int, char**)
 	}
 
 	window.add(new FileMenu(&model, &canvas));
+	window.add(new CtrlMenu(&model, &canvas));
 
 	window.show();
 

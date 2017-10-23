@@ -6,6 +6,7 @@ namespace Crystal {
 
 class IKeyListener
 {
+public:
 	virtual void onKeyDown(const int key) {};
 
 	virtual void onKeyUp(const int key) {};

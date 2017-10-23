@@ -20,7 +20,9 @@ class ICanvas : public IMouseListener
 public:
 	void build();
 
-	void addUICommand(IUICommand* ctrl) { this->ctrls.push_back(ctrl); }
+	void clearUICommand() { this->ctrls.clear(); }
+
+	void addUICommand(IUICommand* ctrl) { this->ctrls.push_back(std::unique_ptr<IUICommand>(ctrl)); }
 
 	void render(const int width, const int height);
 
@@ -42,9 +44,11 @@ public:
 
 	virtual void onMiddleDragging(const Math::Vector2d<float>& position) override;
 
+	Graphics::ICamera<float>* getCamera() { return camera.get(); }
+
 private:
 	std::unique_ptr<Graphics::ICamera<float>> camera;
-	std::list<IUICommand*> ctrls;
+	std::list<std::unique_ptr<IUICommand>> ctrls;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;
 };

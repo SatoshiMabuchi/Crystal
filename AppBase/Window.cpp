@@ -11,13 +11,33 @@
 
 #include "../Graphics/PerspectiveCamera.h"
 
+using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
+
+namespace {
+	ICanvas* canvas;
+
+	void onMouse(GLFWwindow *window, int button, int action, int mods) {
+		double x, y;
+		glfwGetCursorPos(window, &x, &y);
+		if (button == GLFW_MOUSE_BUTTON_LEFT) {
+			if (action == GLFW_PRESS) {
+				canvas->onLeftButtonDown(Vector2d<float>(x, y));
+			}
+			else if (action == GLFW_RELEASE) {
+				canvas->onLeftButtonUp(Vector2d<float>(x, y));
+			}
+		}
+	}
+}
 
 Window::Window(IModel* model, ICanvas* canvas) :
 	model(model),
 	canvas(canvas)
-{}
+{
+	::canvas = canvas;
+}
 
 bool Window::init()
 {
@@ -42,6 +62,8 @@ bool Window::init()
 	// Setup ImGui binding
 	ImGui_ImplGlfwGL3_Init(window, true);
 
+	glfwSetMouseButtonCallback(window, onMouse);
+
 	// Load Fonts
 	// (there is a default font, this is only if you want to change it. see extra_fonts/README.txt for more details)
 	//ImGuiIO& io = ImGui::GetIO();
@@ -52,6 +74,7 @@ bool Window::init()
 	//io.Fonts->AddFontFromFileTTF("../../extra_fonts/ProggyTiny.ttf", 10.0f);
 	//io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 
+	//canvas->addUICommand(new CameraUICtrl());
 	canvas->build();
 
 

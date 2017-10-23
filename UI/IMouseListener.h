@@ -7,6 +7,7 @@ namespace Crystal {
 
 class IMouseListener
 {
+public:
 	virtual void onLeftButtonDown(const Math::Vector2d<float>& position) {};
 
 	virtual void onLeftButtonUp(const Math::Vector2d<float>& position) {};

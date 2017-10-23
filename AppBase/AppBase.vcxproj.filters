@@ -7,6 +7,8 @@
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="PolygonPanel.cpp" />
+    <ClCompile Include="CtrlMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui.h" />
@@ -16,6 +18,8 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="IPanel.h" />
+    <ClInclude Include="PolygonPanel.h" />
+    <ClInclude Include="CtrlMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
