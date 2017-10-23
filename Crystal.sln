@@ -38,34 +38,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IO", "IO\IO.vcxproj", "{198
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shape", "Shape\Shape.vcxproj", "{76FDBCE5-E588-4BC9-97B4-C8FE5D76F91A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GLSL", "GLSL", "{06C8587D-CCC8-4A98-87A4-3D4594D35C2F}"
-	ProjectSection(SolutionItems) = preProject
-		GLSL\BilateralFilter.glfs = GLSL\BilateralFilter.glfs
-		GLSL\BilateralFilter.glvs = GLSL\BilateralFilter.glvs
-		GLSL\CubeMapRenderer.glfs = GLSL\CubeMapRenderer.glfs
-		GLSL\CubeMapRenderer.glvs = GLSL\CubeMapRenderer.glvs
-		GLSL\Depth.glfs = GLSL\Depth.glfs
-		GLSL\Depth.glvs = GLSL\Depth.glvs
-		GLSL\DepthSmoothing.glfs = GLSL\DepthSmoothing.glfs
-		GLSL\DepthSmoothing.glvs = GLSL\DepthSmoothing.glvs
-		Differed.glfs = Differed.glfs
-		Differed.glvs = Differed.glvs
-		Fluid.glfs = Fluid.glfs
-		Fluid.glvs = Fluid.glvs
-		GLSL\ParticleDepth.glfs = GLSL\ParticleDepth.glfs
-		GLSL\ParticleDepth.glvs = GLSL\ParticleDepth.glvs
-		Point.glfs = Point.glfs
-		Point.glvs = Point.glvs
-		GLSL\SSAbsorption.glfs = GLSL\SSAbsorption.glfs
-		GLSL\SSAbsorption.glvs = GLSL\SSAbsorption.glvs
-		SSNormal.glfs = SSNormal.glfs
-		SSNormal.glvs = SSNormal.glvs
-		SSReflection.glfs = SSReflection.glfs
-		SSReflection.glvs = SSReflection.glvs
-		GLSL\SSThickness.glfs = GLSL\SSThickness.glfs
-		GLSL\SSThickness.glvs = GLSL\SSThickness.glvs
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "UI\UI.vcxproj", "{FAC137D1-3997-43DD-BA2A-11EA7355AC6B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{227E5411-92CB-4E30-A67B-043D8B04A9BC} = {227E5411-92CB-4E30-A67B-043D8B04A9BC}

@@ -1,12 +1,12 @@
 #ifndef __CRYSTAL_UI_RECT_SELECT_UI_CTRL__
 #define __CRYSTAL_UI_RECT_SELECT_UI_CTRL__
 
-#include "IUICtrl.h"
+#include "IMouseListener.h"
 
 namespace Crystal {
 	namespace UI {
 
-class RectSelectUICtrl : public IUICtrl
+class RectSelectUICtrl : public IMouseListener
 {
 public:
 
