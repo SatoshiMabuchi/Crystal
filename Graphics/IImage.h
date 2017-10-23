@@ -33,10 +33,6 @@ namespace Crystal {
 				id(id)
 			{}
 
-			virtual void read(const std::string& filename) = 0;
-
-			virtual void save(const std::string& filename, const ImageFileFormat format) const = 0;
-
 			int getWidth() const { return width; }
 
 			int getHeight() const { return height; }

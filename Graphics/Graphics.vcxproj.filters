@@ -12,7 +12,6 @@
     <ClInclude Include="Buffer1d.h" />
     <ClInclude Include="Buffer3d.h" />
     <ClInclude Include="Buffer4d.h" />
-    <ClInclude Include="stb_image.h" />
     <ClInclude Include="IImage.h" />
     <ClInclude Include="Imagef.h" />
     <ClInclude Include="Image.h" />

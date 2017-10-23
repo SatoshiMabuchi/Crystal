@@ -32,8 +32,6 @@ public:
 		assert(isValid());
 	}
 
-	explicit Imagef(const std::string& filename) { read(filename); }
-
 	static Imagef White(const int width, const int height) {
 		std::vector<float> values(width * height * 4);
 		for (int i = 0; i < width * height; ++i) {
@@ -103,7 +101,6 @@ public:
 		return ColorRGBA<float>(r, g, b, a);
 	}
 
-	void changeSize(const int sizeX, const int sizeY);
 
 	std::vector<float> getValues() const { return values; }
 
@@ -117,12 +114,6 @@ public:
 	bool operator==(const Imagef& rhs) const { return equals(rhs); }
 
 	bool operator!=(const Imagef& rhs) const { return !equals(rhs); }
-
-
-	void read(const std::string& filename);
-
-	void save(const std::string& filename, const ImageFileFormat format) const;
-
 	Imagef reversed()
 	{
 		Imagef dest(getWidth(), getHeight());

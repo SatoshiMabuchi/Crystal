@@ -31,8 +31,6 @@ public:
 		assert(isValid());
 	}
 
-	explicit Image(const std::string& filename) { read(filename); }
-
 	static Image White(const int width, const int height) {
 		std::vector<unsigned char> values(width * height * 4);
 		for (int i = 0; i < width * height; ++i) {
@@ -122,10 +120,6 @@ public:
 	bool operator==(const Image& rhs) const { return equals(rhs); }
 
 	bool operator!=(const Image& rhs) const { return !equals(rhs); }
-
-	void read(const std::string& filename) override;
-
-	void save(const std::string& filename, const ImageFileFormat format) const override;
 
 	Image reversed()
 	{

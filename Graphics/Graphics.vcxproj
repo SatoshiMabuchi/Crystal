@@ -34,7 +34,6 @@
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PointBuffer.h" />
-    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorHSV.cpp" />
