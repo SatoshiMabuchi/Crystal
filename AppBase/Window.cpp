@@ -53,20 +53,12 @@ bool Window::init()
 	bool show_another_window = false;
 	ImVec4 clear_color = ImColor(114, 144, 154);
 
-	PerspectiveCamera<float> camera;
-	//camera.init();
-	camera.moveLookatTo(Crystal::Math::Vector3d<float>(0.0, 0.0, 2.0));
-	camera.moveTo(Crystal::Math::Vector3d<float>(0.0, 0.0, -2.0));
-	camera.setNear(1.0f);
-	camera.setFar(100.0f);
 
 	return true;
 }
 
 void Window::show()
 {
-
-	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
 		ImGui_ImplGlfwGL3_NewFrame();
@@ -83,65 +75,7 @@ void Window::show()
 		for (auto& p : panels) {
 			p->show();
 		}
-		/*
-		// 1. Show a simple window
-		// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets appears in a window automatically called "Debug"
-		{
-			static float f = 0.0f;
-			ImGui::Text("Hello, world!");
-			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-			ImGui::ColorEdit3("clear color", (float*)&clear_color);
-			if (ImGui::Button("Test Window")) show_test_window ^= 1;
-			if (ImGui::Button("Another Window")) show_another_window ^= 1;
-			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-		}
 
-		// 2. Show another simple window, this time using an explicit Begin/End pair
-		if (show_another_window)
-		{
-			ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiSetCond_FirstUseEver);
-			ImGui::Begin("Another Window", &show_another_window);
-			ImGui::Text("Hello");
-			ImGui::End();
-		}
-
-		// 3. Show the ImGui test window. Most of the sample code is in ImGui::ShowTestWindow()
-		if (show_test_window)
-		{
-			//	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
-			//	ImGui::ShowTestWindow(&show_test_window);
-		}
-
-		physicsPanel.show();
-		shaderPanel.show();
-
-		// Rendering
-		//glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		//glClear(GL_COLOR_BUFFER_BIT);
-
-		//glCreateProgram();
-
-		//SPHConstant constant(1000.0, 1.0, 0.0, 0.0, 0.125f);
-		//Crystal::Physics::PhysicsObject object(box, 0.1f, constant);
-		PointBuffer buffer;
-		const auto& particles = physicsPanel.getParticles();
-		for (auto p : particles) {
-			buffer.add(p->getPosition(), ColorRGBA<float>(1, 0, 0, 0), 10.0f);
-		}
-		//buffer.add(Vector3d<float>(0, 0, 0), ColorRGBA<float>(1, 0, 0, 1), 10000.0f);
-
-		int display_w, display_h;
-		glfwGetFramebufferSize(window, &display_w, &display_h);
-		glViewport(0, 0, display_w, display_h);
-		glClearColor(0, 0, 0, 0);
-		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		renderer.render(camera, buffer);
-		//PointBuffer buffer;
-		//PerspectiveCamera<float> camera;
-		//camera.init();
-
-		//renderer.render(camera,buffer);
-		*/
 		glClearColor(0,0,0,0);
 		glClear(GL_COLOR_BUFFER_BIT);
 

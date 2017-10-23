@@ -2,6 +2,10 @@
 #define __CRYSTAL_UI_I_CANVAS_H__
 
 #include "../Math/Vector2d.h"
+#include "../Shader/PointRenderer.h"
+#include "../Graphics/ICamera.h"
+#include <memory>
+
 #include "IUICommand.h"
 
 namespace Crystal {
@@ -13,13 +17,20 @@ namespace Crystal {
 class ICanvas
 {
 public:
-	void setUICtrl(IUICommand* ctrl) { this->ctrl = ctrl; }
+	void build();
+
+	void setUICommand(IUICommand* ctrl) { this->ctrl = ctrl; }
 
 
 	//void update(IModel* model);
 
+	void render(const int width, const int height);
+
 private:
+	std::unique_ptr<Graphics::ICamera<float>> camera;
 	IUICommand* ctrl;
+	Shader::PointRenderer pointRenderer;
+	Graphics::PointBuffer pointBuffer;
 };
 	}
 }

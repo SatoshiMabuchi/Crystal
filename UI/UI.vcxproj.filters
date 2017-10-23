@@ -13,4 +13,7 @@
     <ClCompile Include="IModel.cpp" />
     <ClCompile Include="ICanvas.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
