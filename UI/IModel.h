@@ -14,6 +14,8 @@ public:
 
 	bool write(const std::string& filename) const;
 
+	int addParticleSystem(const std::vector<Math::Vector3d<double>>& positions);
+
 private:
 	
 	Shape::PolygonMesh* polygonMesh;

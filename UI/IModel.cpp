@@ -6,6 +6,7 @@
 #include "../IO/DXFFileReader.h"
 #include "../IO/STLAsciiFileReader.h"
 
+using namespace Crystal::Math;
 using namespace Crystal::IO;
 using namespace Crystal::UI;
 
@@ -37,5 +38,15 @@ bool IModel::write(const std::string& filename) const
 	}
 	*/
 	return false;
+}
 
+int IModel::addParticleSystem(const std::vector<Vector3d<double>>& positions)
+{
+	/*
+	Shape::ParticleSystem< particles;
+	for (int i = 0; i < positions.size(); ++i) {
+
+	}
+	*/
+	return 0;
 }

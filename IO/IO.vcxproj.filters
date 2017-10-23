@@ -9,6 +9,7 @@
     <ClInclude Include="STLBinaryFileReader.h" />
     <ClInclude Include="STLAsciiFileWriter.h" />
     <ClInclude Include="STLBinaryFileWriter.h" />
+    <ClInclude Include="PCDFileReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OBJFileReader.cpp" />
@@ -18,5 +19,6 @@
     <ClCompile Include="STLBinaryFileReader.cpp" />
     <ClCompile Include="STLAsciiFileWriter.cpp" />
     <ClCompile Include="STLBinaryFileWriter.cpp" />
+    <ClCompile Include="PCDFileReader.cpp" />
   </ItemGroup>
 </Project>

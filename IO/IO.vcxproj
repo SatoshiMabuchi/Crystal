@@ -23,6 +23,7 @@
     <ClInclude Include="Helper.h" />
     <ClInclude Include="MTLFileReader.h" />
     <ClInclude Include="OBJFileReader.h" />
+    <ClInclude Include="PCDFileReader.h" />
     <ClInclude Include="STLAsciiFileReader.h" />
     <ClInclude Include="STLAsciiFileWriter.h" />
     <ClInclude Include="STLBinaryFileReader.h" />
@@ -32,6 +33,7 @@
     <ClCompile Include="DXFFileReader.cpp" />
     <ClCompile Include="MTLFileReader.cpp" />
     <ClCompile Include="OBJFileReader.cpp" />
+    <ClCompile Include="PCDFileReader.cpp" />
     <ClCompile Include="STLAsciiFileReader.cpp" />
     <ClCompile Include="STLAsciiFileWriter.cpp" />
     <ClCompile Include="STLBinaryFileReader.cpp" />

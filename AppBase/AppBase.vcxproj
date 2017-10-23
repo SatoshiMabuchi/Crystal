@@ -24,6 +24,7 @@
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="ParticlePanel.cpp" />
     <ClCompile Include="PolygonPanel.cpp" />
     <ClCompile Include="tinyfiledialogs.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="IPanel.h" />
+    <ClInclude Include="ParticlePanel.h" />
     <ClInclude Include="PolygonPanel.h" />
     <ClInclude Include="tinyfiledialogs.h" />
     <ClInclude Include="Window.h" />

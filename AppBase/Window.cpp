@@ -10,6 +10,7 @@
 #include "../UI/ICanvas.h"
 
 #include "../Graphics/PerspectiveCamera.h"
+#include <chrono>
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
@@ -17,16 +18,35 @@ using namespace Crystal::UI;
 
 namespace {
 	ICanvas* canvas;
+	std::chrono::time_point<std::chrono::system_clock> lastPressedTime;
+
+	Vector2d<float> toScreenCoord(GLFWwindow* window, const double x, const double y) {
+		int width,height;
+		glfwGetWindowSize(window, &width, &height);
+		const auto xx = x / (float)width;
+		const auto yy = y / (float)height;
+		return Vector2d<float>(xx, yy);
+	}
 
 	void onMouse(GLFWwindow *window, int button, int action, int mods) {
 		double x, y;
 		glfwGetCursorPos(window, &x, &y);
+		const auto& coord = toScreenCoord(window, x, y);
 		if (button == GLFW_MOUSE_BUTTON_LEFT) {
+			auto now = std::chrono::system_clock::now();
 			if (action == GLFW_PRESS) {
-				canvas->onLeftButtonDown(Vector2d<float>(x, y));
+				canvas->onLeftButtonDown(coord);
 			}
 			else if (action == GLFW_RELEASE) {
-				canvas->onLeftButtonUp(Vector2d<float>(x, y));
+				canvas->onLeftButtonUp(coord);
+			}
+		}
+		else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+			if (action == GLFW_PRESS) {
+				canvas->onRightButtonDown(coord);
+			}
+			else if (action == GLFW_RELEASE) {
+				canvas->onRightButtonUp(coord);
 			}
 		}
 	}
