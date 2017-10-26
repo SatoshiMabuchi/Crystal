@@ -9,10 +9,12 @@
 namespace Crystal {
 	namespace UI {
 
-class CameraUICtrl : public IUICommand
+class CameraUICommand : public IUICommand
 {
 public:
-	explicit CameraUICtrl(Graphics::ICamera<float>* camera);
+	virtual ~CameraUICommand() {}
+
+	explicit CameraUICommand(Graphics::ICamera<float>* camera);
 
 	virtual void onLeftButtonDown(const Math::Vector2d<float>& position) override;
 
@@ -21,6 +23,8 @@ public:
 	virtual void onRightButtonDown(const Math::Vector2d<float>& position) override;
 
 	virtual void onRightButtonUp(const Math::Vector2d<float>& position) override;
+
+	virtual bool isCompleted() const override { return false; }
 
 private:
 	Math::Vector2d<float> prevPosition;

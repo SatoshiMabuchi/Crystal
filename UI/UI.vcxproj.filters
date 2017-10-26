@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="ICanvas.h" />
-    <ClInclude Include="CameraUICtrl.h" />
     <ClInclude Include="RectSelectUICtrl.h" />
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMouseListener.h" />
@@ -11,12 +10,15 @@
     <ClInclude Include="ViewModel.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IKeyListener.h" />
+    <ClInclude Include="CameraUICommand.h" />
+    <ClInclude Include="CommandChain.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CameraUICtrl.cpp" />
     <ClCompile Include="IModel.cpp" />
     <ClCompile Include="ICanvas.cpp" />
     <ClCompile Include="ViewModel.cpp" />
+    <ClCompile Include="CameraUICommand.cpp" />
+    <ClCompile Include="CommandChain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

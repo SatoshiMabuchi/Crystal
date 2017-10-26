@@ -25,63 +25,46 @@ void ICanvas::render(const int width, const int height)
 
 void ICanvas::onLeftButtonDown(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onLeftButtonDown(position);
-	}
+	activeUICommand->onLeftButtonDown(position);
 }
 
 void ICanvas::onLeftButtonUp(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onLeftButtonUp(position);
-	}
+	activeUICommand->onLeftButtonUp(position);
 }
 
 void ICanvas::onRightButtonDown(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onRightButtonDown(position);
-	}
+	activeUICommand->onRightButtonDown(position);
 }
 
 void ICanvas::onRightButtonUp(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onRightButtonUp(position);
-	}
+	activeUICommand->onRightButtonUp(position);
 }
 
 void ICanvas::onMiddleButtonDown(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onMiddleButtonDown(position);
-	}
+	activeUICommand->onMiddleButtonDown(position);
 }
 
 void ICanvas::onMiddleButtonUp(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onMiddleButtonUp(position);
-	}
+	activeUICommand->onMiddleButtonUp(position);
 }
 
 void ICanvas::onLeftDragging(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onLeftDragging(position);
-	}
+	activeUICommand->onLeftDragging(position);
 }
 
 void ICanvas::onRightDragging(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onRightDragging(position);
-	}
+	activeUICommand->onRightDragging(position);
 }
 
 void ICanvas::onMiddleDragging(const Vector2d<float>& position)
 {
-	for (auto& c : ctrls) {
-		c->onMiddleDragging(position);
-	}
+	activeUICommand->onMiddleDragging(position);
+
 }

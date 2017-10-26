@@ -20,9 +20,7 @@ class ICanvas : public IMouseListener
 public:
 	void build();
 
-	void clearUICommand() { this->ctrls.clear(); }
-
-	void addUICommand(IUICommand* ctrl) { this->ctrls.push_back(std::unique_ptr<IUICommand>(ctrl)); }
+	void setUICommand(IUICommand* ui) { this->activeUICommand = std::unique_ptr<IUICommand>(ui); }
 
 	void render(const int width, const int height);
 
@@ -48,7 +46,7 @@ public:
 
 private:
 	std::unique_ptr<Graphics::ICamera<float>> camera;
-	std::list<std::unique_ptr<IUICommand>> ctrls;
+	std::unique_ptr<IUICommand> activeUICommand;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;
 };
