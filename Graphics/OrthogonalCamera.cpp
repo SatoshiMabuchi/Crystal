@@ -1,37 +1,16 @@
 #include "OrthogonalCamera.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp"
 
-using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 
-template<typename T>
-void OrthogonalCamera<T>::init()
+void OrthogonalCamera::init()
 {
 	near_ = 1;
 	far_ = 10.0;
-	pos = Math::Vector3d<T>(0,0,0);
-
+	pos = glm::vec3(0,0,0);
 }
 
-template<typename T>
-Matrix4d<T> OrthogonalCamera<T>::getProjectionMatrix() const
+glm::mat4x4 OrthogonalCamera::getProjectionMatrix() const
 {
-	//const T left = T{ -0.5 };
-	//const T right = T{ 0.5 };
-
-	const T dx = right - left;
-	const T dy = top - bottom;
-	const T dz = far_ - near_;
-
-	Math::Matrix4d<T> matrix;
-	matrix.setX00(T{ 2 } / dx);
-	matrix.setX11(T{ 2 } / dy);
-	matrix.setX22(T{ -2 } / dz);
-	matrix.setX30(-(right + left) / dx);
-	matrix.setX31(-(top + bottom) / dy);
-	matrix.setX32(-(far_ + near_) / dz);
-
-	return matrix;
+	return glm::ortho(left, right, bottom, top, near_, far_);
 }
-
-template class OrthogonalCamera<float>;
-template class OrthogonalCamera<double>;

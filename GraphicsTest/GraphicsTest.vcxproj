@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ICameraTest.cpp" />
     <ClCompile Include="GraphicsTest.cpp" />
     <ClCompile Include="PerspectiveCameraTest.cpp" />
   </ItemGroup>

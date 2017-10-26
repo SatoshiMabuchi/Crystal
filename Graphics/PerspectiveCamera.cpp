@@ -1,33 +1,16 @@
 #include "PerspectiveCamera.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp"
 
-using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 
-template<typename T>
-void PerspectiveCamera<T>::init()
+void PerspectiveCamera::init()
 {
 	near_ = 1;
 	far_ = 10.0;
-	pos = Math::Vector3d<T>(0,0,0);
+	pos = glm::vec3(0,0,0);
 }
 
-template<typename T>
-Matrix4d<T> PerspectiveCamera<T>::getProjectionMatrix() const
+glm::mat4 PerspectiveCamera::getProjectionMatrix() const
 {
-	const auto x00 = T{ 2 } *near_ / (right - left);
-	const auto x02 = (right + left) / (right - left);
-	const auto x11 = T{ 2 } *near_ / (top - bottom);
-	const auto x12 = (top + bottom) / (top - bottom);
-	const auto x22 = -(far_ + near_) / (far_ - near_);
-	const auto x23 = T{ -2 } *far_ * near_ / (far_ - near_);
-	return Matrix4d<T>
-		(
-			x00, 0, x02, 0,
-			0, x11, x12, 0,
-			0, 0, x22, x23,
-			0, 0, -1, 0
-			).getTransposed();
+	return glm::perspective(glm::pi<float>() * 0.25f, 4.0f / 3.0f, 0.1f, 100.f);
 }
-
-template class PerspectiveCamera<float>;
-template class PerspectiveCamera<double>;

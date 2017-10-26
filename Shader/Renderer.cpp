@@ -7,7 +7,7 @@
 using namespace Crystal::Graphics;
 using namespace Crystal::Shader;
 
-void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, const std::vector<IShaderUniform*>& uniforms, const std::vector<IShaderAttribute*>& attributes)
+void Renderer::render(const ICamera& camera, const PointBuffer& buffer, const std::vector<IShaderUniform*>& uniforms, const std::vector<IShaderAttribute*>& attributes)
 {
 	const auto& positions = buffer.getPosition().get();
 	const auto& colors = buffer.getColor().get();
@@ -17,8 +17,8 @@ void Renderer::render(const ICamera<float>& camera, const PointBuffer& buffer, c
 		return;
 	}
 
-	const auto& projectionMatrix = camera.getProjectionMatrix().toArray();
-	const auto& modelviewMatrix = camera.getModelviewMatrix().toArray();
+	const auto& projectionMatrix = camera.getProjectionMatrix()[0];
+	const auto& modelviewMatrix = camera.getModelviewMatrix()[0];
 
 	glEnable(GL_DEPTH_TEST);
 

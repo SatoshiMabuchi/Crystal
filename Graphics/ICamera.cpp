@@ -1,128 +1,55 @@
-#include "../Math/Matrix3d.h"
-#include "../Math/Matrix4d.h"
-
 #include "../Graphics/ICamera.h"
 
-using namespace Crystal::Math;
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp"
+
 using namespace Crystal::Graphics;
 
-template<typename T>
-ICamera<T>::ICamera() :
-	up(Vector3d<T>(0, 1, 0)),
-	lookat(Vector3d<T>(0, 0, 0))
+ICamera::ICamera() :
+	up(0, 1, 0),
+	lookat(0, 0, 0),
+	azimuth(0.0),
+	elevation(0.0)
 {
 	near_ = 1.0f;
 	far_ = 10.0f;
-	left = T{ -0.5 };
-	right = T{ 0.5 };
-	bottom = T{ -0.5 };
-	top = T{ 0.5 };
+	left = -0.5f;
+	right = 0.5f;
+	bottom = -0.5f;
+	top = 0.5f;
 }
 
-template<typename T>
-void ICamera<T>::move(const Vector3d<T>& v)
+void ICamera::move(const glm::vec3& v)
 {
 	this->pos += v;
 }
 
-template<typename T>
-void ICamera<T>::translate(const Vector3d<T>& v)
+void ICamera::translate(const glm::vec3& v)
 {
 	this->pos += v;
 	this->lookat += v;
 }
 
-template<typename T>
-Matrix3d<T> ICamera<T>::getRotationMatrix() const
+glm::mat4x4 ICamera::getModelviewMatrix() const
 {
-	const auto z = Vector3d<T>(pos - lookat).getNormalized();
-	const auto x = getUpVector().getOuterProduct(z).getNormalized();
-	const auto y = z.getOuterProduct(x);
-	/*	return Matrix3d<T>(
-	x.getX(), x.getY(), x.getZ(),
-	y.getX(), y.getY(), y.getZ(),
-	z.getX(), z.getY(), z.getZ());*/
-	return Matrix3d<T>(
-		x.getX(), y.getX(), z.getX(),
-		x.getY(), y.getY(), z.getY(),
-		x.getZ(), y.getZ(), z.getZ());
+	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(pos));
+	View = glm::rotate(View, azimuth, glm::vec3(-1.0f, 0.0f, 0.0f));
+	View = glm::rotate(View, elevation, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
+	return View * Model;
 }
 
-template<typename T>
-Matrix4d<T> ICamera<T>::getModelviewMatrix() const {
-	Matrix4d<T> matrix(getRotationMatrix());
-	matrix.translate(-pos.getX(), -pos.getY(), -pos.getZ());
-	return matrix;
-}
-
-template<typename T>
-T ICamera<T>::getDistance(const T depth) const
-{
-	const auto dist = far_ - near_;
-	return (dist * depth) + near_;
-}
-
-template<typename T>
-Vector3d<T> ICamera<T>::getForwardVector() const
+glm::vec3 ICamera::getForwardVector() const
 {
 	const auto v = lookat - pos;
-	return v.getNormalized();
+	return glm::normalize( v );
 }
 
-template<typename T>
-Vector3d<T> ICamera<T>::getUpVector() const
+glm::vec3 ICamera::getUpVector() const
 {
-	return up.getNormalized();
+	return glm::normalize(up);
 }
 
-template<typename T>
-Vector3d<T> ICamera<T>::getRightVector() const
+glm::vec3 ICamera::getRightVector() const
 {
-	return getForwardVector().getOuterProduct(getUpVector()).getNormalized();
+	return glm::normalize( glm::cross(getForwardVector(), getUpVector()) );
 }
-
-template<typename T>
-Matrix4d<T> ICamera<T>::getBillboardMatrix() const
-{
-	auto m = getModelviewMatrix();
-	Vector3d<T> z(-m[12], -m[13], -m[14]);
-	z.normalize();
-	Vector3d<T> x(-m[14], 0, m[12]);
-	x.normalize();
-	Vector3d<T> y = z.getOuterProduct(x);
-	m.setX00(x.getX());
-	m.setX10(x.getY());
-	m.setX20(x.getZ());
-	m.setX01(y.getX());
-	m.setX11(y.getY());
-	m.setX12(y.getZ());
-	m.setX02(z.getX());
-	m.setX12(z.getY());
-	m.setX22(z.getZ());
-	return m;
-}
-
-/*
-template<typename T>
-Ray3d<T> ICamera<T>::getRay(const T x, const T y) const
-{
-//Vector4d<float> near(-2 * x + 1, -2 * y + 1, 0, 1);
-//Vector4d<float> rayStart = near * getModelviewMatrix();
-Ray3d<T> ray;
-return ray;
-}
-*/
-
-template<typename T>
-Vector3d<T> ICamera<T>::getPosition(const Vector3d<T>& position) const
-{
-	auto m1 = getModelviewMatrix();
-	auto m2 = getProjectionMatrix();
-	m1.multiple(m2);
-	return m1.multiple(position);
-}
-
-
-
-template class ICamera<float>;
-template class ICamera<double>;

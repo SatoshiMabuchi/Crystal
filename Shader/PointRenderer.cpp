@@ -67,7 +67,7 @@ void PointRenderer::findLocation()
 }
 
 
-void PointRenderer::render(const ICamera<float>& camera, const PointBuffer& buffer)
+void PointRenderer::render(const ICamera& camera, const PointBuffer& buffer)
 {
 	const auto positions = buffer.getPosition().get();
 	const auto colors = buffer.getColor().get();
@@ -77,8 +77,8 @@ void PointRenderer::render(const ICamera<float>& camera, const PointBuffer& buff
 		return;
 	}
 
-	const auto& projectionMatrix = camera.getProjectionMatrix().toArray();
-	const auto& modelviewMatrix = camera.getModelviewMatrix().toArray();
+	const auto& projectionMatrix = camera.getProjectionMatrix();
+	const auto& modelviewMatrix = camera.getModelviewMatrix();
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -89,8 +89,8 @@ void PointRenderer::render(const ICamera<float>& camera, const PointBuffer& buff
 
 	glUseProgram(shader.getId());
 
-	glUniformMatrix4fv(shader.getUniformLocation("projectionMatrix"), 1, GL_FALSE, projectionMatrix.data());
-	glUniformMatrix4fv(shader.getUniformLocation("modelviewMatrix"), 1, GL_FALSE, modelviewMatrix.data());
+	glUniformMatrix4fv(shader.getUniformLocation("projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
+	glUniformMatrix4fv(shader.getUniformLocation("modelviewMatrix"), 1, GL_FALSE, &modelviewMatrix[0][0]);
 
 	glVertexAttribPointer(shader.getAttribLocation("positions"), 3, GL_FLOAT, GL_FALSE, 0, positions.data());
 	glVertexAttribPointer(shader.getAttribLocation("color"), 4, GL_FLOAT, GL_FALSE, 0, colors.data());

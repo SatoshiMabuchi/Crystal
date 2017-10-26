@@ -46,10 +46,10 @@ public:
 
 	virtual void onMiddleDragging(const Math::Vector2d<float>& position) override;
 
-	Graphics::ICamera<float>* getCamera() { return camera.get(); }
+	Graphics::ICamera* getCamera() { return camera.get(); }
 
 private:
-	std::unique_ptr<Graphics::ICamera<float>> camera;
+	std::unique_ptr<Graphics::ICamera> camera;
 	std::unique_ptr<CommandChain> commands;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;

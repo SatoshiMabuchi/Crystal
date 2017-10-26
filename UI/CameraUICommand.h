@@ -14,7 +14,7 @@ class CameraUICommand : public IUICommand
 public:
 	virtual ~CameraUICommand() {}
 
-	explicit CameraUICommand(Graphics::ICamera<float>* camera);
+	explicit CameraUICommand(Graphics::ICamera* camera);
 
 	virtual void onLeftButtonDown(const Math::Vector2d<float>& position) override;
 
@@ -28,7 +28,7 @@ public:
 
 private:
 	Math::Vector2d<float> prevPosition;
-	Graphics::ICamera<float>* camera;
+	Graphics::ICamera* camera;
 };
 	}
 }

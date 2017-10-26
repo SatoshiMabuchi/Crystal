@@ -1,14 +1,13 @@
 #ifndef __CRYSTAL_GRAPHICS_CAMERA_H__
 #define __CRYSTAL_GRAPHICS_CAMERA_H__
 
-#include "../Math/Matrix3d.h"
-#include "../Math/Matrix4d.h"
-#include "../Math/Vector3d.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/vec3.hpp"
+#include "../ThirdParty/glm-0.9.8.5/glm/vec4.hpp"
+#include "../ThirdParty/glm-0.9.8.5/glm/mat4x4.hpp"
 
 namespace Crystal {
 	namespace Graphics {
 
-template< typename T >
 class ICamera
 {
 public:
@@ -16,60 +15,54 @@ public:
 
 	virtual ~ICamera() = default;
 
-	void setCameraXY() { pos = Math::Vector3d<T>(0.0, 0.0, 1.0); }
+	void setCameraXY() { pos = glm::vec3(0.0, 0.0, 1.0); }
 
-	void setCameraYZ() { pos = Math::Vector3d<T>(1.0, 0.0, 0.0); }
+	void setCameraYZ() { pos = glm::vec3(1.0, 0.0, 0.0); }
 
-	void setCameraZX() { pos = Math::Vector3d<T>(0.0, 1.0, 0.0); }
+	void setCameraZX() { pos = glm::vec3(0.0, 1.0, 0.0); }
 
-	void moveLookatTo(const Math::Vector3d<T>& p) { this->lookat = p; }
+	void moveLookatTo(const glm::vec3& p) { this->lookat = p; }
 
-	void move(const Math::Vector3d<T>& v);
+	void move(const glm::vec3& v);
 
-	void translate(const Math::Vector3d<T>& v);
+	void translate(const glm::vec3& v);
 
-	void moveTo(const Math::Vector3d<T>& p) { this->pos = p; }
+	void moveTo(const glm::vec3& p) { this->pos = p; }
 
-	Math::Vector3d<T> getPosition() const { return pos; }
+	glm::vec3 getPosition() const { return pos; }
 
-	Math::Matrix3d<T> getRotationMatrix() const;
+	glm::mat4x4 getModelviewMatrix() const;
 
-	Math::Matrix4d<T> getModelviewMatrix() const;
+	void setFar(const float f) { this->far_ = f; }
 
-	void setFar(const T f) { this->far_ = f; }
+	void setNear(const float n) { this->near_ = n; }
 
-	void setNear(const T n) { this->near_ = n; }
+	float getFar() const { return far_; }
 
-	T getFar() const { return far_; }
+	float getNear() const { return near_; }
 
-	T getNear() const { return near_; }
+	virtual glm::mat4x4 getProjectionMatrix() const = 0;
 
-	T getDistance(const T depth) const;
+	glm::vec3 getForwardVector() const;
 
-	virtual Math::Matrix4d<T> getProjectionMatrix() const = 0;
+	glm::vec3 getUpVector() const;
 
-	Math::Vector3d<T> getForwardVector() const;
+	glm::vec3 getRightVector() const;
 
-	Math::Vector3d<T> getUpVector() const;
-
-	Math::Vector3d<T> getRightVector() const;
-
-	void setUpVector(const Math::Vector3d<T>& v) { this->up = v; }
-
-	Math::Matrix4d<T> getBillboardMatrix() const;
-
-	Math::Vector3d<T> getPosition(const Math::Vector3d<T>& position) const;
+	void setUpVector(const glm::vec3& v) { this->up = v; }
 
 protected:
-	Math::Vector3d<T> pos;
-	Math::Vector3d<T> up;
-	Math::Vector3d<T> lookat;
-	T near_;
-	T far_;
-	T left;
-	T right;
-	T bottom;
-	T top;
+	glm::vec3 pos;
+	glm::vec3 up;
+	glm::vec3 lookat;
+	float azimuth;
+	float elevation;
+	float near_;
+	float far_;
+	float left;
+	float right;
+	float bottom;
+	float top;
 };
 
 	}

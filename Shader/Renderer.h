@@ -13,7 +13,7 @@ namespace Crystal {
 		{
 		public:
 
-			void render(const Graphics::ICamera<float>& camera, const Graphics::PointBuffer& buffer, const std::vector<IShaderUniform*>& uniforms, const std::vector<IShaderAttribute*>& attributes);
+			void render(const Graphics::ICamera& camera, const Graphics::PointBuffer& buffer, const std::vector<IShaderUniform*>& uniforms, const std::vector<IShaderAttribute*>& attributes);
 
 			//void changeSize(const float size) { this->pointSize = size; }
 		private:

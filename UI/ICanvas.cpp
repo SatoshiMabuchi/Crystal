@@ -10,9 +10,9 @@ using namespace Crystal::UI;
 
 void ICanvas::build()
 {
-	camera.reset(new PerspectiveCamera<float>());
-	camera->moveLookatTo(Crystal::Math::Vector3d<float>(0.0, 0.0, 2.0));
-	camera->moveTo(Crystal::Math::Vector3d<float>(0.0, 0.0, -2.0));
+	camera.reset(new PerspectiveCamera());
+	camera->moveLookatTo(glm::vec3(0.0, 0.0, 2.0));
+	camera->moveTo(glm::vec3(0.0, 0.0, -2.0));
 	camera->setNear(1.0f);
 	camera->setFar(100.0f);
 

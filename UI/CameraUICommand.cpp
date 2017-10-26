@@ -4,7 +4,7 @@ using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
-CameraUICommand::CameraUICommand(ICamera<float>* camera) :
+CameraUICommand::CameraUICommand(ICamera* camera) :
 	camera(camera)
 {
 }
