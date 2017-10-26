@@ -16,17 +16,5 @@ public:
 private:
 	int id;
 };
-
-class ParticleSystemObject : public IObject
-{
-	explicit ParticleSystemObject(const int id) :
-		IObject(id)
-	{}
-
-	~ParticleSystemObject() {};
-
-private:
-	//Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>* particleSystem;
-};
 	}
 }

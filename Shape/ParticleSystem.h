@@ -11,7 +11,7 @@ class Particle
 public:
 	Particle(const Math::Vector3d<T>& position, const Attr& attr) :
 		position(position),
-		attr(attr)
+		attribute(attr)
 	{}
 
 	Math::Vector3d<T> getPosition() const { return position; }
@@ -38,8 +38,8 @@ public:
 		particles.clear();
 	}
 	
-	void add(Math::Vector3d& positions, const Attr& attr) {
-		particles.push_back(new Particle(position, attr));
+	void add(const Math::Vector3d<T>& position, const Attr& attr) {
+		particles.push_back(new Particle<T,Attr>(position, attr));
 	}
 
 private:

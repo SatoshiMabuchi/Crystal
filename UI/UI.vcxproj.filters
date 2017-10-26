@@ -12,6 +12,7 @@
     <ClInclude Include="IKeyListener.h" />
     <ClInclude Include="CameraUICommand.h" />
     <ClInclude Include="CommandChain.h" />
+    <ClInclude Include="ParticleSystemObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IModel.cpp" />

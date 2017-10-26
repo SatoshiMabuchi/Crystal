@@ -7,7 +7,10 @@ namespace Crystal {
 
 class ParticlePanel : public IPanel
 {
-	ParticlePanel(IModel* model, ICanvas* canvas);
+public:
+	ParticlePanel(IModel* model, ICanvas* canvas) :
+		IPanel(model, canvas)
+	{}
 
 	void show() override;
 };

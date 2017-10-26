@@ -7,6 +7,7 @@
 #include "../IO/STLAsciiFileReader.h"
 
 using namespace Crystal::Math;
+using namespace Crystal::Graphics;
 using namespace Crystal::IO;
 using namespace Crystal::UI;
 
@@ -40,13 +41,12 @@ bool IModel::write(const std::string& filename) const
 	return false;
 }
 
-int IModel::addParticleSystem(const std::vector<Vector3d<double>>& positions)
+int IModel::addParticleSystem(const std::vector<Vector3d<double>>& positions, const ColorRGBA<float>& color)
 {
-	/*
-	Shape::ParticleSystem< particles;
-	for (int i = 0; i < positions.size(); ++i) {
-
+	auto particles = new Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>();
+	for (const auto& p : positions) {
+		particles->add(p, color);
 	}
-	*/
-	return 0;
+	particleSystems.push_back(ParticleSystemObject(nextId++, particles));
+	return particleSystems.back().getId();
 }

@@ -2,8 +2,12 @@
 #include "../AppBase/FileMenu.h"
 #include "../AppBase/CtrlMenu.h"
 
+#include "../AppBase/ParticlePanel.h"
+
+
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
+
 
 using namespace Crystal::Math;
 using namespace Crystal::UI;
@@ -20,6 +24,8 @@ int main(int, char**)
 
 	window.add(new FileMenu(&model, &canvas));
 	window.add(new CtrlMenu(&model, &canvas));
+
+	window.add(new ParticlePanel(&model, &canvas));
 
 	window.show();
 

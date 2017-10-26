@@ -17,7 +17,7 @@ public:
 
 	virtual void show() = 0;
 
-private:
+protected:
 	IModel* model;
 	ICanvas* canvas;
 };

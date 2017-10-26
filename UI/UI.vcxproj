@@ -28,6 +28,7 @@
     <ClInclude Include="IMouseListener.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IUICommand.h" />
+    <ClInclude Include="ParticleSystemObject.h" />
     <ClInclude Include="RectSelectUICtrl.h" />
     <ClInclude Include="ViewModel.h" />
   </ItemGroup>
