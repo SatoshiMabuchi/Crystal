@@ -24,9 +24,27 @@ TEST(CommandChainTest, TestSetOrigin)
 {
 	CommandChain chain;
 	chain.setOrigin(new TestCommand("AAA"));
-//	chain.forward();
 	EXPECT_EQ("AAA", chain.getCurrentCommand()->getName());
-	//chain.forward();
-	//chain.add(new TestCommand("BBB"));
-	//chain.forward();
+}
+
+TEST(CommandChainTest, TestForward)
+{
+	CommandChain chain;
+	chain.setOrigin(new TestCommand("AAA"));
+	EXPECT_EQ("AAA", chain.getCurrentCommand()->getName());
+	chain.add(new TestCommand("BBB"));
+	chain.forward();
+	EXPECT_EQ("BBB", chain.getCurrentCommand()->getName());
+}
+
+TEST(CommandChainTest, TestBackward)
+{
+	CommandChain chain;
+	chain.setOrigin(new TestCommand("AAA"));
+	EXPECT_EQ("AAA", chain.getCurrentCommand()->getName());
+	chain.add(new TestCommand("BBB"));
+	chain.forward();
+	EXPECT_EQ("BBB", chain.getCurrentCommand()->getName());
+	chain.backward();
+	EXPECT_EQ("AAA", chain.getCurrentCommand()->getName());
 }

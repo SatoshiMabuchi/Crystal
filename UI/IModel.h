@@ -16,8 +16,7 @@ public:
 
 	int addParticleSystem(const std::vector<Math::Vector3d<double>>& positions);
 
-private:
-	
+private:	
 	Shape::PolygonMesh* polygonMesh;
 };
 	}

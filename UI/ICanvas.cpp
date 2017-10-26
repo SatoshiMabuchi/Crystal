@@ -1,6 +1,7 @@
 #include "ICanvas.h"
 #include "../Graphics/PerspectiveCamera.h"
 #include "IUICommand.h"
+#include "CameraUICommand.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
@@ -15,6 +16,10 @@ void ICanvas::build()
 	camera->setNear(1.0f);
 	camera->setFar(100.0f);
 
+	CommandChain* chain = new CommandChain();
+	chain->setOrigin(new CameraUICommand(getCamera()));
+	setUICommands(chain);
+
 	pointRenderer.build();
 }
 
@@ -25,46 +30,45 @@ void ICanvas::render(const int width, const int height)
 
 void ICanvas::onLeftButtonDown(const Vector2d<float>& position)
 {
-	activeUICommand->onLeftButtonDown(position);
+	commands->onLeftButtonDown(position);
 }
 
 void ICanvas::onLeftButtonUp(const Vector2d<float>& position)
 {
-	activeUICommand->onLeftButtonUp(position);
+	commands->onLeftButtonUp(position);
 }
 
 void ICanvas::onRightButtonDown(const Vector2d<float>& position)
 {
-	activeUICommand->onRightButtonDown(position);
+	commands->onRightButtonDown(position);
 }
 
 void ICanvas::onRightButtonUp(const Vector2d<float>& position)
 {
-	activeUICommand->onRightButtonUp(position);
+	commands->onRightButtonUp(position);
 }
 
 void ICanvas::onMiddleButtonDown(const Vector2d<float>& position)
 {
-	activeUICommand->onMiddleButtonDown(position);
+	commands->onMiddleButtonDown(position);
 }
 
 void ICanvas::onMiddleButtonUp(const Vector2d<float>& position)
 {
-	activeUICommand->onMiddleButtonUp(position);
+	commands->onMiddleButtonUp(position);
 }
 
 void ICanvas::onLeftDragging(const Vector2d<float>& position)
 {
-	activeUICommand->onLeftDragging(position);
+	commands->onLeftDragging(position);
 }
 
 void ICanvas::onRightDragging(const Vector2d<float>& position)
 {
-	activeUICommand->onRightDragging(position);
+	commands->onRightDragging(position);
 }
 
 void ICanvas::onMiddleDragging(const Vector2d<float>& position)
 {
-	activeUICommand->onMiddleDragging(position);
-
+	commands->onMiddleDragging(position);
 }

@@ -7,7 +7,7 @@
 namespace Crystal {
 	namespace UI {
 
-class CommandChain
+class CommandChain : public IMouseListener
 {
 public:
 	CommandChain();
@@ -27,6 +27,28 @@ public:
 	IUICommand* getCurrentCommand();
 
 	void forward() { currentIter++; }
+
+	void backward() { currentIter--; }
+
+	virtual void onLeftButtonDown(const Math::Vector2d<float>& position) override;
+
+	virtual void onLeftButtonUp(const Math::Vector2d<float>& position) override;
+
+	virtual void onRightButtonDown(const Math::Vector2d<float>& position) override;
+
+	virtual void onRightButtonUp(const Math::Vector2d<float>& position) override;
+
+	virtual void onMiddleButtonDown(const Math::Vector2d<float>& position) override;
+
+	virtual void onMiddleButtonUp(const Math::Vector2d<float>& position) override;
+
+	virtual void onLeftDragging(const Math::Vector2d<float>& position) override;
+
+	virtual void onRightDragging(const Math::Vector2d<float>& position) override;
+
+	virtual void onMiddleDragging(const Math::Vector2d<float>& position) override;
+
+	void post();
 
 private:
 	std::deque<std::unique_ptr<IUICommand>> commands;

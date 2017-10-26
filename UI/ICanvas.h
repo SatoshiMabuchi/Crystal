@@ -8,6 +8,7 @@
 #include <list>
 
 #include "IUICommand.h"
+#include "CommandChain.h"
 
 namespace Crystal {
 	namespace UI {
@@ -20,7 +21,7 @@ class ICanvas : public IMouseListener
 public:
 	void build();
 
-	void setUICommand(IUICommand* ui) { this->activeUICommand = std::unique_ptr<IUICommand>(ui); }
+	void setUICommands(CommandChain* chain) { this->commands.reset(chain); }
 
 	void render(const int width, const int height);
 
@@ -46,7 +47,7 @@ public:
 
 private:
 	std::unique_ptr<Graphics::ICamera<float>> camera;
-	std::unique_ptr<IUICommand> activeUICommand;
+	std::unique_ptr<CommandChain> commands;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;
 };
