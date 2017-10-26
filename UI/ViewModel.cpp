@@ -4,7 +4,10 @@
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
-void ViewModel::update(IModel* model)
+void ViewModel::add(const ParticleSystemObject& object)
 {
-	//model->
+	const auto& particles = object.getShape()->getParticles();
+	for (auto p : particles) {
+		pointBuffer.add( p->getPosition(), p->getAttribute().color, p->getAttribute().size);
+	}
 }

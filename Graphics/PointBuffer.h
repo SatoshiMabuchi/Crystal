@@ -17,6 +17,8 @@ public:
 
 	void add(const Math::Vector3d<float>& position, const ColorRGBA<float>& color, const float size);
 
+	void add(const Math::Vector3d<double>& position, const ColorRGBA<float>& color, const float size);
+
 	Graphics::Buffer3d<float> getPosition() const { return position; }
 
 	Graphics::Buffer4d<float> getColor() const { return color; }

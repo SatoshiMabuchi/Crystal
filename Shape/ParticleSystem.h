@@ -16,6 +16,8 @@ public:
 
 	Math::Vector3d<T> getPosition() const { return position; }
 
+	Attr getAttribute() const { return attribute; }
+
 private:
 	Math::Vector3d<T> position;
 	Attr attribute;
@@ -41,6 +43,8 @@ public:
 	void add(const Math::Vector3d<T>& position, const Attr& attr) {
 		particles.push_back(new Particle<T,Attr>(position, attr));
 	}
+
+	std::vector<Particle<T, Attr>*> getParticles() const { return particles; }
 
 private:
 	std::vector<Particle<T,Attr>*> particles;

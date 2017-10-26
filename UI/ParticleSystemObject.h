@@ -7,20 +7,26 @@
 namespace Crystal {
 	namespace UI {
 
+struct ParticleAttr
+{
+	Graphics::ColorRGBA<float> color;
+	float size;
+};
+
 class ParticleSystemObject : public IObject
 {
 public:
-	explicit ParticleSystemObject(const int id, Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>* shape) :
+	explicit ParticleSystemObject(const int id, Shape::ParticleSystem<float, ParticleAttr>* shape) :
 		IObject(id),
 		shape(shape)
 	{}
 
 	~ParticleSystemObject() {};
 
-	Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>* getShape() const { return shape; }
+	Shape::ParticleSystem<float, ParticleAttr>* getShape() const { return shape; }
 
 private:
-	Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>* shape;
+	Shape::ParticleSystem<float, ParticleAttr>* shape;
 };
 
 	}

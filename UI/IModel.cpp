@@ -41,12 +41,24 @@ bool IModel::write(const std::string& filename) const
 	return false;
 }
 
-int IModel::addParticleSystem(const std::vector<Vector3d<double>>& positions, const ColorRGBA<float>& color)
+int IModel::addParticleSystem(const std::vector<Vector3d<float>>& positions, const ColorRGBA<float>& color, const float size)
 {
-	auto particles = new Shape::ParticleSystem<double, Graphics::ColorRGBA<float>>();
+	auto particles = new Shape::ParticleSystem<float, ParticleAttr>();
 	for (const auto& p : positions) {
-		particles->add(p, color);
+		ParticleAttr attr;
+		attr.color = color;
+		attr.size = size;
+		particles->add(p, attr);
 	}
 	particleSystems.push_back(ParticleSystemObject(nextId++, particles));
 	return particleSystems.back().getId();
+}
+
+ViewModel IModel::toViewModel() const
+{
+	ViewModel vm;
+	for (const auto& p : particleSystems) {
+		vm.add(p);
+	}
+	return vm;
 }

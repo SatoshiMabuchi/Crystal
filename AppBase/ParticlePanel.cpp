@@ -19,9 +19,10 @@ namespace {
 
 		void execute() override
 		{
-			std::vector<Vector3d<double>> positions;
-			positions.push_back(Vector3d<double>(0, 0, 0));
-			model->addParticleSystem(positions, ColorRGBA<float>(1,1,1,1));
+			std::vector<Vector3d<float>> positions;
+			positions.push_back(Vector3d<float>(0, 0, 0));
+			model->addParticleSystem(positions, ColorRGBA<float>(1,1,1,1), 100.0f);
+			canvas->setViewModel( model->toViewModel() );
 		}
 
 	private:

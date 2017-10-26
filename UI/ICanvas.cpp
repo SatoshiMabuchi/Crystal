@@ -25,7 +25,7 @@ void ICanvas::build()
 
 void ICanvas::render(const int width, const int height)
 {
-	pointRenderer.render(*camera, pointBuffer);
+	pointRenderer.render(*camera, viewModel.getPointBuffer());
 }
 
 void ICanvas::onLeftButtonDown(const Vector2d<float>& position)

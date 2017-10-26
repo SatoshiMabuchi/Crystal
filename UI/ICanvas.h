@@ -9,6 +9,7 @@
 
 #include "IUICommand.h"
 #include "CommandChain.h"
+#include "ViewModel.h"
 
 namespace Crystal {
 	namespace UI {
@@ -20,6 +21,8 @@ class ICanvas : public IMouseListener
 {
 public:
 	void build();
+
+	void setViewModel(const ViewModel& vm) { this->viewModel = vm; }
 
 	void setUICommands(CommandChain* chain) { this->commands.reset(chain); }
 
@@ -50,6 +53,7 @@ private:
 	std::unique_ptr<CommandChain> commands;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;
+	ViewModel viewModel;
 };
 	}
 }
