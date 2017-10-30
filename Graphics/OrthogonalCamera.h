@@ -9,11 +9,7 @@ namespace Crystal {
 class OrthogonalCamera : public ICamera
 {
 public:
-	OrthogonalCamera() {
-		init();
-	}
-
-	void init();
+	OrthogonalCamera() {}
 
 	glm::mat4 getProjectionMatrix() const override;
 

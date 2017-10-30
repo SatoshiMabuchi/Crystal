@@ -28,6 +28,8 @@ public:
 
 	virtual void onRightDragging(const Math::Vector2d<float>& position) override;
 
+	virtual void onWheel(const float dx) override;
+
 	virtual bool isCompleted() const override { return false; }
 
 private:

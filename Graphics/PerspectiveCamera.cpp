@@ -3,15 +3,7 @@
 
 using namespace Crystal::Graphics;
 
-void PerspectiveCamera::init()
-{
-	near_ = 1;
-	far_ = 10.0;
-	pos = glm::vec3(0,0,0);
-}
-
 glm::mat4 PerspectiveCamera::getProjectionMatrix() const
 {
-	//glm::pi<float>() * 0.25f
 	return glm::perspective(fovy, aspect, near_, far_);
 }

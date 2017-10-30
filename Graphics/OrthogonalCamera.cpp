@@ -3,14 +3,7 @@
 
 using namespace Crystal::Graphics;
 
-void OrthogonalCamera::init()
-{
-	near_ = 1;
-	far_ = 10.0;
-	pos = glm::vec3(0,0,0);
-}
-
 glm::mat4x4 OrthogonalCamera::getProjectionMatrix() const
 {
-	return glm::ortho(left, right, bottom, top, near_, far_);
+	return glm::ortho(-0.5f, 0.5f, -0.5f, 0.5f, near_, far_);
 }

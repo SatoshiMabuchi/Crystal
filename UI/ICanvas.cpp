@@ -11,11 +11,8 @@ using namespace Crystal::UI;
 
 void ICanvas::build()
 {
-	auto perspectiveCamera = new PerspectiveCamera();
-	perspectiveCamera->setAspect(1.0f);
-	perspectiveCamera->setFovy(0.5f * Tolerance<float>::getPI());
+	auto perspectiveCamera = new PerspectiveCamera(1.0f, 0.5f * Tolerance<float>::getPI());
 	camera.reset(perspectiveCamera);
-	camera->moveLookatTo(glm::vec3(0.0, 0.0, 0.0));
 	camera->moveTo(glm::vec3(0.0, 0.0, -10.0));
 	camera->setNear(1.0f);
 	camera->setFar(10.0f);

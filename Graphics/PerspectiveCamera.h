@@ -9,16 +9,16 @@ namespace Crystal {
 class PerspectiveCamera : public ICamera
 {
 public:
-	PerspectiveCamera()
-	{
-		init();
-	}
+	PerspectiveCamera(){}
+
+	PerspectiveCamera(const float fovy, const float aspect) :
+		fovy(fovy),
+		aspect(aspect)
+	{}
 
 	void setFovy(const float fovy) { this->fovy = fovy; }
 
 	void setAspect(const float aspect) { this->aspect = aspect; }
-
-	void init();
 
 	glm::mat4 getProjectionMatrix() const override;
 

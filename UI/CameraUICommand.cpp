@@ -43,3 +43,8 @@ void CameraUICommand::onRightDragging(const Vector2d<float>& position)
 	camera->rotate(diff.getY(), diff.getX());
 	this->prevPosition = position;
 }
+
+void CameraUICommand::onWheel(const float dx)
+{
+	//camera->zoom(dx);
+}

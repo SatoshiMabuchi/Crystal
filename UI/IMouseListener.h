@@ -24,7 +24,9 @@ public:
 
 	virtual void onRightDragging(const Math::Vector2d<float>& position) {};
 
-	virtual void onMiddleDragging(const Math::Vector2d<float>& position) {}
+	virtual void onMiddleDragging(const Math::Vector2d<float>& position) {};
+
+	virtual void onWheel(const float dx) {};
 };
 
 	}

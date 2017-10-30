@@ -13,23 +13,15 @@ class ICamera
 public:
 	ICamera();
 
+	ICamera(const glm::vec3& position, const float near_, const float far_);
+
 	virtual ~ICamera() = default;
-
-	void setCameraXY() { pos = glm::vec3(0.0, 0.0, 1.0); }
-
-	void setCameraYZ() { pos = glm::vec3(1.0, 0.0, 0.0); }
-
-	void setCameraZX() { pos = glm::vec3(0.0, 1.0, 0.0); }
-
-	void moveLookatTo(const glm::vec3& p) { this->lookat = p; }
 
 	void move(const glm::vec3& v);
 
-	void translate(const glm::vec3& v);
+	void moveTo(const glm::vec3& p) { this->position = p; }
 
-	void moveTo(const glm::vec3& p) { this->pos = p; }
-
-	glm::vec3 getPosition() const { return pos; }
+	glm::vec3 getPosition() const { return position; }
 
 	glm::mat4x4 getModelviewMatrix() const;
 
@@ -43,28 +35,14 @@ public:
 
 	virtual glm::mat4x4 getProjectionMatrix() const = 0;
 
-	glm::vec3 getForwardVector() const;
-
-	glm::vec3 getUpVector() const;
-
-	glm::vec3 getRightVector() const;
-
-	void setUpVector(const glm::vec3& v) { this->up = v; }
-
 	void rotate(const float azimuth, const float elevation);
 
 protected:
-	glm::vec3 pos;
-	glm::vec3 up;
-	glm::vec3 lookat;
+	glm::vec3 position;
 	float azimuth;
 	float elevation;
 	float near_;
 	float far_;
-	float left;
-	float right;
-	float bottom;
-	float top;
 };
 
 	}
