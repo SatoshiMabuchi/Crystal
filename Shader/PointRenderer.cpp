@@ -22,7 +22,6 @@ std::string PointRenderer::getBuildinVertexShaderSource() const
 	stream
 		<< "#version 150" << std::endl
 		<< "in vec3 position;" << std::endl
-		<< "in int id;" << std::endl
 		<< "in float pointSize;" << std::endl
 		<< "in vec4 color;" << std::endl
 		<< "out vec4 vColor;" << std::endl
@@ -66,6 +65,10 @@ void PointRenderer::findLocation()
 	shader.findAttribLocation("pointSize");
 }
 
+#include "../ThirdParty/glm-0.9.8.5/glm/vec3.hpp" // glm::vec3
+#include "../ThirdParty/glm-0.9.8.5/glm/vec4.hpp" // glm::vec4
+#include "../ThirdParty/glm-0.9.8.5/glm/mat4x4.hpp" // glm::mat4
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp" // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 void PointRenderer::render(const ICamera& camera, const PointBuffer& buffer)
 {
@@ -76,6 +79,12 @@ void PointRenderer::render(const ICamera& camera, const PointBuffer& buffer)
 	if (positions.empty()) {
 		return;
 	}
+
+	//glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.f);
+	//glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0));
+	//View = glm::rotate(View, 0.0f, glm::vec3(-1.0f, 0.0f, 0.0f));
+	//View = glm::rotate(View, 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	//glm::mat4 Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
 
 	const auto& projectionMatrix = camera.getProjectionMatrix();
 	const auto& modelviewMatrix = camera.getModelviewMatrix();

@@ -19,6 +19,8 @@ using namespace Crystal::UI;
 namespace {
 	ICanvas* canvas;
 	std::chrono::time_point<std::chrono::system_clock> lastPressedTime;
+	bool isLeftDown;
+	bool isRightDown;
 
 	Vector2d<float> toScreenCoord(GLFWwindow* window, const double x, const double y) {
 		int width,height;
@@ -32,22 +34,43 @@ namespace {
 		double x, y;
 		glfwGetCursorPos(window, &x, &y);
 		const auto& coord = toScreenCoord(window, x, y);
+		auto now = std::chrono::system_clock::now();
 		if (button == GLFW_MOUSE_BUTTON_LEFT) {
-			auto now = std::chrono::system_clock::now();
+			/*
+			if (lastPressedTime - now < std::chrono::microseconds(200)) {
+
+			}
+			*/
 			if (action == GLFW_PRESS) {
 				canvas->onLeftButtonDown(coord);
+				isLeftDown = true;
 			}
 			else if (action == GLFW_RELEASE) {
 				canvas->onLeftButtonUp(coord);
+				isLeftDown = false;
 			}
 		}
 		else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
 			if (action == GLFW_PRESS) {
 				canvas->onRightButtonDown(coord);
+				isRightDown = true;
 			}
 			else if (action == GLFW_RELEASE) {
 				canvas->onRightButtonUp(coord);
+				isRightDown = false;
 			}
+		}
+		lastPressedTime = now;
+	}
+
+	void onMouseMove(GLFWwindow* window, double xpos, double ypos)
+	{
+		const auto& coord = toScreenCoord(window, xpos, ypos);
+		if (isLeftDown) {
+			canvas->onLeftDragging(coord);
+		}
+		else if (isRightDown) {
+			canvas->onRightDragging(coord);
 		}
 	}
 }
@@ -83,6 +106,7 @@ bool Window::init()
 	ImGui_ImplGlfwGL3_Init(window, true);
 
 	glfwSetMouseButtonCallback(window, onMouse);
+	glfwSetCursorPosCallback(window, onMouseMove);
 
 	// Load Fonts
 	// (there is a default font, this is only if you want to change it. see extra_fonts/README.txt for more details)

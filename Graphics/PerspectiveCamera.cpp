@@ -12,5 +12,6 @@ void PerspectiveCamera::init()
 
 glm::mat4 PerspectiveCamera::getProjectionMatrix() const
 {
-	return glm::perspective(glm::pi<float>() * 0.25f, 4.0f / 3.0f, 0.1f, 100.f);
+	//glm::pi<float>() * 0.25f
+	return glm::perspective(fovy, aspect, near_, far_);
 }

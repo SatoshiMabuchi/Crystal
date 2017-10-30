@@ -2,6 +2,7 @@
 #include "../Graphics/PerspectiveCamera.h"
 #include "IUICommand.h"
 #include "CameraUICommand.h"
+//#include "../ThirdParty/glm-0.9.8.5/glm/c"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
@@ -10,11 +11,14 @@ using namespace Crystal::UI;
 
 void ICanvas::build()
 {
-	camera.reset(new PerspectiveCamera());
-	camera->moveLookatTo(glm::vec3(0.0, 0.0, 2.0));
-	camera->moveTo(glm::vec3(0.0, 0.0, -2.0));
+	auto perspectiveCamera = new PerspectiveCamera();
+	perspectiveCamera->setAspect(1.0f);
+	perspectiveCamera->setFovy(0.5f * Tolerance<float>::getPI());
+	camera.reset(perspectiveCamera);
+	camera->moveLookatTo(glm::vec3(0.0, 0.0, 0.0));
+	camera->moveTo(glm::vec3(0.0, 0.0, -10.0));
 	camera->setNear(1.0f);
-	camera->setFar(100.0f);
+	camera->setFar(10.0f);
 
 	CommandChain* chain = new CommandChain();
 	chain->setOrigin(new CameraUICommand(getCamera()));
@@ -25,6 +29,8 @@ void ICanvas::build()
 
 void ICanvas::render(const int width, const int height)
 {
+	glClearColor(0.0, 0.0, 1.0, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	pointRenderer.render(*camera, viewModel.getPointBuffer());
 }
 

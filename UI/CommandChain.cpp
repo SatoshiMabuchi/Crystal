@@ -59,43 +59,43 @@ void CommandChain::onLeftButtonUp(const Vector2d<float>& position)
 
 void CommandChain::onRightButtonDown(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onRightButtonDown(position);
 	post();
 }
 
 void CommandChain::onRightButtonUp(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onRightButtonUp(position);
 	post();
 }
 
 void CommandChain::onMiddleButtonDown(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onMiddleButtonDown(position);
 	post();
 }
 
 void CommandChain::onMiddleButtonUp(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onMiddleButtonDown(position);
 	post();
 }
 
 void CommandChain::onLeftDragging(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onLeftDragging(position);
 	post();
 }
 
 void CommandChain::onRightDragging(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onRightDragging(position);
 	post();
 }
 
 void CommandChain::onMiddleDragging(const Vector2d<float>& position)
 {
-	getCurrentCommand()->onLeftButtonDown(position);
+	getCurrentCommand()->onMiddleDragging(position);
 	post();
 }
 

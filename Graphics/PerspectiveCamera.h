@@ -14,11 +14,17 @@ public:
 		init();
 	}
 
+	void setFovy(const float fovy) { this->fovy = fovy; }
+
+	void setAspect(const float aspect) { this->aspect = aspect; }
+
 	void init();
 
 	glm::mat4 getProjectionMatrix() const override;
 
 private:
+	float fovy;
+	float aspect;
 };
 
 	}

@@ -1,45 +1,35 @@
 #include "gtest/gtest.h"
 #include "../Graphics/PerspectiveCamera.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp"
 
-using namespace Crystal::Math;
 using namespace Crystal::Graphics;
-
-using T = float;
 
 TEST(PerspectiveCameraTest, TestGetModelViewMatrix)
 {
-	PerspectiveCamera<T> c;
-	c.moveTo(Vector3d<T>(0, 0, 10));
+	PerspectiveCamera c;
+	c.moveTo(glm::vec3(0, 0, 10));
 	const auto& actual = c.getModelviewMatrix();
-	const Matrix4d<T> expected(
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, -10, 1);
+	glm::mat4x4 expected(
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f,10.0f, 1.0f
+	);
 	EXPECT_EQ(expected, actual);
 }
 
 TEST(PerspectiveCameraTest, TestGetProjectionMatrix)
 {
-	PerspectiveCamera<T> c;
+	PerspectiveCamera c;
 	c.setNear(1.0f);
 	c.setFar(2.0f);
+	c.setFovy(glm::pi<float>() * 0.5f);
+	c.setAspect(1.0f);
 	const auto& actual = c.getProjectionMatrix();
-	const Matrix4d<T> expected(
-		2, 0, 0, 0,
-		0, 2, 0, 0,
-		0, 0, -3, -1,
-		0, 0, -4, 0);
-	EXPECT_EQ(expected, actual);
-}
-
-TEST(PerspectiveCameraTest, TestGetPosition)
-{
-	PerspectiveCamera<T> c;
-	c.setNear(1.0f);
-	c.setFar(2.0f);
-	c.moveTo(Vector3d<T>(0, 0, 10));
-	const auto actual = c.getPosition(Vector3d<T>(1, 1, 1));
-	const Vector3d<T> expected(-2, -2, -6);
+	const glm::mat4x4 expected(
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f,-3.0f,-1.0f,
+		0.0f, 0.0f,-4.0f, 0.0f);
 	EXPECT_EQ(expected, actual);
 }

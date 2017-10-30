@@ -51,6 +51,8 @@ public:
 
 	void setUpVector(const glm::vec3& v) { this->up = v; }
 
+	void rotate(const float azimuth, const float elevation);
+
 protected:
 	glm::vec3 pos;
 	glm::vec3 up;

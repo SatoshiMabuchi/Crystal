@@ -20,7 +20,13 @@ namespace {
 		void execute() override
 		{
 			std::vector<Vector3d<float>> positions;
-			positions.push_back(Vector3d<float>(0, 0, 0));
+			for (double x = -5.0; x < 5.0; x += 1.0) {
+				for (double y = -5.0; y < 5.0; y += 1.0) {
+					for (double z = -5.0; z < 5.0; z += 1.0) {
+						positions.push_back(Vector3d<float>(x, y, z));
+					}
+				}
+			}
 			model->addParticleSystem(positions, ColorRGBA<float>(1,1,1,1), 100.0f);
 			canvas->setViewModel( model->toViewModel() );
 		}
