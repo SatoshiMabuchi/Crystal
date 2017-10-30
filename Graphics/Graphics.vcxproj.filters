@@ -16,6 +16,8 @@
     <ClInclude Include="Imagef.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="TriangleBuffer.h" />
+    <ClInclude Include="PointLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
@@ -27,5 +29,6 @@
     <ClCompile Include="IImage.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Imagef.cpp" />
+    <ClCompile Include="TriangleBuffer.cpp" />
   </ItemGroup>
 </Project>
