@@ -14,6 +14,7 @@
     <ClInclude Include="ShaderType.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SmoothRenderer.h" />
+    <ClInclude Include="WireFrameRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="ShaderType.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SmoothRenderer.cpp" />
+    <ClCompile Include="WireFrameRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

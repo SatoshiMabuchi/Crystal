@@ -18,6 +18,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="TriangleBuffer.h" />
     <ClInclude Include="PointLight.h" />
+    <ClInclude Include="LineBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
@@ -30,5 +31,6 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Imagef.cpp" />
     <ClCompile Include="TriangleBuffer.cpp" />
+    <ClCompile Include="LineBuffer.cpp" />
   </ItemGroup>
 </Project>

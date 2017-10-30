@@ -30,6 +30,7 @@
     <ClInclude Include="IImage.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Imagef.h" />
+    <ClInclude Include="LineBuffer.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="IImage.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Imagef.cpp" />
+    <ClCompile Include="LineBuffer.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
