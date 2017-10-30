@@ -73,6 +73,11 @@ namespace {
 			canvas->onRightDragging(coord);
 		}
 	}
+
+	void onWheel(GLFWwindow *window, double offsetx, double offsety)
+	{
+		canvas->onWheel(offsety);
+	}
 }
 
 Window::Window(IModel* model, ICanvas* canvas) :
@@ -105,6 +110,7 @@ bool Window::init()
 	// Setup ImGui binding
 	ImGui_ImplGlfwGL3_Init(window, true);
 
+	glfwSetScrollCallback(window, onWheel);
 	glfwSetMouseButtonCallback(window, onMouse);
 	glfwSetCursorPosCallback(window, onMouseMove);
 

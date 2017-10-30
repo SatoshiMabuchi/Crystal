@@ -75,3 +75,9 @@ void ICanvas::onMiddleDragging(const Vector2d<float>& position)
 {
 	commands->onMiddleDragging(position);
 }
+
+//virtual void onWheel(const float scale) override;
+void ICanvas::onWheel(const float scale)
+{
+	commands->onWheel(scale);
+}

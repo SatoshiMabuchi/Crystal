@@ -16,6 +16,9 @@ void CtrlMenu::show()
 			canvas->setUICommands(chain);
 		}
 		if (ImGui::MenuItem("Pick")) {
+			CommandChain* chain = new CommandChain();
+			//chain->setOrigin(new PickUICommand(canvas->getCamera()));
+			canvas->setUICommands(chain);
 		}
 		if (ImGui::MenuItem("Rect")) {
 			//canvas->addUICommand(new RectSelectUICtrl(canvas->getCamera()));

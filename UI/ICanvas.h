@@ -46,6 +46,8 @@ public:
 
 	virtual void onMiddleDragging(const Math::Vector2d<float>& position) override;
 
+	virtual void onWheel(const float scale) override;
+
 	Graphics::ICamera* getCamera() { return camera.get(); }
 
 private:

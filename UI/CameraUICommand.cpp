@@ -46,5 +46,5 @@ void CameraUICommand::onRightDragging(const Vector2d<float>& position)
 
 void CameraUICommand::onWheel(const float dx)
 {
-	//camera->zoom(dx);
+	camera->zoom(dx / 100.0f);
 }

@@ -13,6 +13,7 @@
     <ClInclude Include="CameraUICommand.h" />
     <ClInclude Include="CommandChain.h" />
     <ClInclude Include="ParticleSystemObject.h" />
+    <ClInclude Include="PickUICommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IModel.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="ViewModel.cpp" />
     <ClCompile Include="CameraUICommand.cpp" />
     <ClCompile Include="CommandChain.cpp" />
+    <ClCompile Include="PickUICommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

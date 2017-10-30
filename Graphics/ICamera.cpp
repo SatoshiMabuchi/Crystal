@@ -8,7 +8,8 @@ ICamera::ICamera() :
 	azimuth(0.0),
 	elevation(0.0),
 	near_(1.0f),
-	far_(10.0f)
+	far_(10.0f),
+	scale(1.0f)
 {
 }
 
@@ -17,7 +18,8 @@ ICamera::ICamera(const glm::vec3& position, const float near_, const float far_)
 	elevation(0.0),
 	position(position),
 	near_(near_),
-	far_(far_)
+	far_(far_),
+	scale(1.0f)
 {
 }
 
@@ -28,11 +30,11 @@ void ICamera::move(const glm::vec3& v)
 
 glm::mat4x4 ICamera::getModelviewMatrix() const
 {
-	glm::mat4 View = glm::translate(glm::mat4(1.0f), position);
-	View = glm::rotate(View, azimuth, glm::vec3(-1.0f, 0.0f, 0.0f));
-	View = glm::rotate(View, elevation, glm::vec3(0.0f, 1.0f, 0.0f));
-	glm::mat4 Model = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f));
-	return View * Model;
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), position);
+	view = glm::rotate(view, azimuth, glm::vec3(-1.0f, 0.0f, 0.0f));
+	view = glm::rotate(view, elevation, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(scale));
+	return view * model;
 }
 
 void ICamera::rotate(const float azimuth, const float elevation)

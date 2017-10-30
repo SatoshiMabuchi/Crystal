@@ -99,6 +99,13 @@ void CommandChain::onMiddleDragging(const Vector2d<float>& position)
 	post();
 }
 
+void CommandChain::onWheel(const float dx)
+{
+	getCurrentCommand()->onWheel(dx);
+	post();
+}
+
+
 void CommandChain::post()
 {
 	if (getCurrentCommand()->isCompleted()) {

@@ -37,12 +37,15 @@ public:
 
 	void rotate(const float azimuth, const float elevation);
 
+	void zoom(const float s) { this->scale += s; }
+
 protected:
 	glm::vec3 position;
 	float azimuth;
 	float elevation;
 	float near_;
 	float far_;
+	float scale;
 };
 
 	}

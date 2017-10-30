@@ -48,6 +48,8 @@ public:
 
 	virtual void onMiddleDragging(const Math::Vector2d<float>& position) override;
 
+	virtual void onWheel(const float dx) override;
+
 	void post();
 
 private:
