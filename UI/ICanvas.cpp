@@ -13,6 +13,7 @@ using namespace Crystal::UI;
 void ICanvas::build()
 {
 	auto perspectiveCamera = new PerspectiveCamera(1.0f, 0.5f * Tolerance<float>::getPI());
+	perspectiveCamera->setTarget(Vector3df(0, 0, 0));
 	camera.reset(perspectiveCamera);
 	camera->moveTo(glm::vec3(0.0, 0.0, -10.0));
 	camera->setNear(1.0f);
@@ -88,5 +89,15 @@ void ICanvas::fitCamera(const Box3d& boundingBox)
 	const auto& dist = glm::distance(boundingBox.getMin(), boundingBox.getMax());
 	camera->setNear(dist * 0.1f);
 	camera->setFar(dist * 10.0f);
+	camera->setTarget(boundingBox.getCenter());
 	camera->moveTo(boundingBox.getMin());
+}
+
+void ICanvas::setCameraXY(const Box3d& boundingBox)
+{
+	const auto& dist = glm::distance(boundingBox.getMin(), boundingBox.getMax());
+	camera->setNear(dist * 0.1f);
+	camera->setFar(dist * 10.0f);
+	camera->setTarget(boundingBox.getCenter());
+	camera->moveTo(Vector3df(0.0f, boundingBox.getMinY(), boundingBox.getMinZ()));
 }

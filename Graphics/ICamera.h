@@ -1,9 +1,8 @@
 #ifndef __CRYSTAL_GRAPHICS_CAMERA_H__
 #define __CRYSTAL_GRAPHICS_CAMERA_H__
 
-#include "../ThirdParty/glm-0.9.8.5/glm/vec3.hpp"
-#include "../ThirdParty/glm-0.9.8.5/glm/vec4.hpp"
-#include "../ThirdParty/glm-0.9.8.5/glm/mat4x4.hpp"
+#include "../Math/Vector3d.h"
+#include "../Math/Matrix4d.h"
 
 namespace Crystal {
 	namespace Graphics {
@@ -21,9 +20,13 @@ public:
 
 	void moveTo(const glm::vec3& p) { this->position = p; }
 
-	glm::vec3 getPosition() const { return position; }
+	void setTarget(const Math::Vector3df& target) { this->target = target; }
 
-	glm::mat4x4 getModelviewMatrix() const;
+	Math::Vector3df getPosition() const { return position; }
+
+	Math::Matrix4df getRotateAround() const;
+
+	Math::Matrix4df getModelviewMatrix() const;
 
 	void setFar(const float f) { this->far_ = f; }
 
@@ -33,14 +36,15 @@ public:
 
 	float getNear() const { return near_; }
 
-	virtual glm::mat4x4 getProjectionMatrix() const = 0;
+	virtual Math::Matrix4df getProjectionMatrix() const = 0;
 
 	void rotate(const float azimuth, const float elevation);
 
 	void zoom(const float s) { this->scale += s; }
 
 protected:
-	glm::vec3 position;
+	Math::Vector3df target;
+	Math::Vector3df position;
 	float azimuth;
 	float elevation;
 	float near_;

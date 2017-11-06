@@ -52,6 +52,8 @@ public:
 
 	void fitCamera(const Math::Box3d& boundingBox);
 
+	void setCameraXY(const Math::Box3d& boundingBox);
+
 private:
 	std::unique_ptr<Graphics::ICamera> camera;
 	std::unique_ptr<CommandChain> commands;

@@ -1,5 +1,6 @@
 #include "../AppBase/Window.h"
 #include "../AppBase/FileMenu.h"
+#include "../AppBase/CameraMenu.h"
 #include "../AppBase/CtrlMenu.h"
 
 #include "../AppBase/ParticlePanel.h"
@@ -23,6 +24,7 @@ int main(int, char**)
 	}
 
 	window.add(new FileMenu(&model, &canvas));
+	window.add(new CameraMenu(&model, &canvas));
 	window.add(new CtrlMenu(&model, &canvas));
 
 	window.add(new ParticlePanel(&model, &canvas));

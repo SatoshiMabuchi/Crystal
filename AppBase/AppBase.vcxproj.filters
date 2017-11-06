@@ -10,6 +10,7 @@
     <ClCompile Include="PolygonPanel.cpp" />
     <ClCompile Include="CtrlMenu.cpp" />
     <ClCompile Include="ParticlePanel.cpp" />
+    <ClCompile Include="CameraMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="PolygonPanel.h" />
     <ClInclude Include="CtrlMenu.h" />
     <ClInclude Include="ParticlePanel.h" />
+    <ClInclude Include="CameraMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

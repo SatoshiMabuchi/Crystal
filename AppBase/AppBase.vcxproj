@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraMenu.cpp" />
     <ClCompile Include="CtrlMenu.cpp" />
     <ClCompile Include="FileMenu.cpp" />
     <ClCompile Include="imgui.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraMenu.h" />
     <ClInclude Include="CtrlMenu.h" />
     <ClInclude Include="FileMenu.h" />
     <ClInclude Include="IMenu.h" />
