@@ -2,6 +2,7 @@
 #define __CRYSTAL_UI_I_CANVAS_H__
 
 #include "../Math/Vector2d.h"
+#include "../Math/Box3d.h"
 #include "../Shader/PointRenderer.h"
 #include "../Graphics/ICamera.h"
 #include <memory>
@@ -15,7 +16,6 @@ namespace Crystal {
 	namespace UI {
 		class IUICtrl;
 		class IModel;
-
 
 class ICanvas : public IMouseListener
 {
@@ -49,6 +49,8 @@ public:
 	virtual void onWheel(const float scale) override;
 
 	Graphics::ICamera* getCamera() { return camera.get(); }
+
+	void fitCamera(const Math::Box3d& boundingBox);
 
 private:
 	std::unique_ptr<Graphics::ICamera> camera;

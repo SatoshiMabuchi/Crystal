@@ -3,6 +3,7 @@
 #include "IUICommand.h"
 #include "CameraUICommand.h"
 //#include "../ThirdParty/glm-0.9.8.5/glm/c"
+#include "../Math/Box3d.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
@@ -80,4 +81,12 @@ void ICanvas::onMiddleDragging(const Vector2df& position)
 void ICanvas::onWheel(const float scale)
 {
 	commands->onWheel(scale);
+}
+
+void ICanvas::fitCamera(const Box3d& boundingBox)
+{
+	const auto& dist = glm::distance(boundingBox.getMin(), boundingBox.getMax());
+	camera->setNear(dist * 0.1f);
+	camera->setFar(dist * 10.0f);
+	camera->moveTo(boundingBox.getMin());
 }

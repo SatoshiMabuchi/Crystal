@@ -1,11 +1,13 @@
-#pragma once
+#ifndef __CRYSTAL_SHAPE_PARTICLE_SYSTEM_H__
+#define __CRYSTAL_SHAPE_PARTICLE_SYSTEM_H__
 
 #include "../Math/Vector3d.h"
+#include "../Math/Box3d.h"
 
 namespace Crystal {
 	namespace Shape {
 
-template <typename T, typename Attr>
+template<typename Attr>
 class Particle
 {
 public:
@@ -23,7 +25,7 @@ private:
 	Attr attribute;
 };
 
-template<typename T, typename Attr>
+template<typename Attr>
 class ParticleSystem
 {
 public:
@@ -41,13 +43,26 @@ public:
 	}
 	
 	void add(const Math::Vector3dd& position, const Attr& attr) {
-		particles.push_back(new Particle<T,Attr>(position, attr));
+		particles.push_back(new Particle<Attr>(position, attr));
 	}
 
-	std::vector<Particle<T, Attr>*> getParticles() const { return particles; }
+	std::vector<Particle<Attr>*> getParticles() const { return particles; }
+
+	Math::Box3d getBoundingBox() {
+		if (particles.empty()) {
+			return Math::Box3d();
+		}
+		Math::Box3d bb(particles.front()->getPosition());
+		for (auto p : particles) {
+			bb.add(p->getPosition());
+		}
+		return bb;
+	}
 
 private:
-	std::vector<Particle<T,Attr>*> particles;
+	std::vector<Particle<Attr>*> particles;
 };
 	}
 }
+
+#endif

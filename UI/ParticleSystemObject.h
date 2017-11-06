@@ -16,17 +16,17 @@ struct ParticleAttr
 class ParticleSystemObject : public IObject
 {
 public:
-	explicit ParticleSystemObject(const int id, Shape::ParticleSystem<float, ParticleAttr>* shape) :
+	explicit ParticleSystemObject(const int id, Shape::ParticleSystem<ParticleAttr>* shape) :
 		IObject(id),
 		shape(shape)
 	{}
 
 	~ParticleSystemObject() {};
 
-	Shape::ParticleSystem<float, ParticleAttr>* getShape() const { return shape; }
+	Shape::ParticleSystem<ParticleAttr>* getShape() const { return shape; }
 
 private:
-	Shape::ParticleSystem<float, ParticleAttr>* shape;
+	Shape::ParticleSystem<ParticleAttr>* shape;
 };
 
 	}

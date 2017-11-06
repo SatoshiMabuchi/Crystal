@@ -4,6 +4,8 @@
 #include "../UI/ICanvas.h"
 #include "../UI/ICommand.h"
 
+#include <cereal/cereal.hpp>
+
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
@@ -20,6 +22,11 @@ namespace {
 		struct Args {
 			Box3d box;
 			glm::vec3 dx;
+			template<class Archive>
+			void serialize(Archive & archive) {
+				archive(box);
+				archive(dx);
+			}
 		};
 
 		void setArgs(Args args) {
@@ -40,6 +47,7 @@ namespace {
 			}
 			model->addParticleSystem(positions, ColorRGBA<float>(1,1,1,1), 100.0f);
 			canvas->setViewModel( model->toViewModel() );
+			canvas->fitCamera( model->getBoundingBox() );
 		}
 
 	private:
@@ -56,11 +64,11 @@ void ParticlePanel::show()
 		ImGui::OpenPopup("Box");
 	}
 	if (ImGui::BeginPopup("Box")) {
-		float min[3] = { -10.0f, -10.0f, -10.0f };
-		ImGui::InputFloat3("Min", min);
-		float max[3] = { 10.0f, 10.0f, 10.0f };
-		ImGui::InputFloat3("Max", max);
-		glm::vec3 dx = { 1.0f, 1.0f, 1.0f };
+		static glm::vec3 min = { -10.0f, -10.0f, -10.0f };
+		ImGui::InputFloat3("Min", &min[0]);
+		static glm::vec3 max = { 10.0f, 10.0f, 10.0f };
+		ImGui::InputFloat3("Max", &max[0]);
+		static glm::vec3 dx = { 1.0f, 1.0f, 1.0f };
 		ImGui::InputFloat3("Dx", &dx[0]);
 
 		if (ImGui::Button("OK")) {

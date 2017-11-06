@@ -22,6 +22,8 @@ public:
 
 	ViewModel toViewModel() const;
 
+	Math::Box3d getBoundingBox() const;
+
 private:	
 	Shape::PolygonMesh* polygonMesh;
 	std::list<ParticleSystemObject> particleSystems;
