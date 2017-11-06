@@ -5,161 +5,101 @@
 
 using namespace Crystal::Math;
 
-template<typename T>
-Box2d<T>::Box2d()
-	: Box2d<T>(Vector2d<T>(0, 0), Vector2d<T>(1, 1))
+Box2d::Box2d()
+	: Box2d(Vector2df(0, 0), Vector2df(1, 1))
 {
 }
 
-template<typename T>
-Box2d<T>::Box2d(const Vector2d<T>& pointX, const Vector2d<T>& pointY)
+Box2d::Box2d(const Vector2df& pointX, const Vector2df& pointY)
 {
-	const auto x = std::min<T>(pointX.getX(), pointY.getX());
-	const auto y = std::min<T>(pointX.getY(), pointY.getY());
-	this->start = Vector2d<T>(x, y);
-	const auto endX = std::max<T>(pointX.getX(), pointY.getX());
-	const auto endY = std::max<T>(pointX.getY(), pointY.getY());
-	this->end = Vector2d<T>(endX, endY);
+	const auto x = std::min<float>(pointX.x, pointY.x);
+	const auto y = std::min<float>(pointX.y, pointY.y);
+	this->start = Vector2df(x, y);
+	const auto endX = std::max<float>(pointX.x, pointY.x);
+	const auto endY = std::max<float>(pointX.y, pointY.y);
+	this->end = Vector2df(endX, endY);
 	assert(isValid());
 }
 
-template<typename T>
-void Box2d<T>::add(const Vector2d<T>& v) {
-	const auto x = std::min<T>(getMinX(), v.getX());
-	const auto y = std::min<T>(getMinY(), v.getY());
-	start = Vector2d<T>(x, y);
+void Box2d::add(const Vector2df& v) {
+	const auto x = std::min<float>(getMinX(), v.x);
+	const auto y = std::min<float>(getMinY(), v.y);
+	start = Vector2df(x, y);
 
-	const auto endX = std::max<T>(end.getX(), v.getX());
-	const auto endY = std::max<T>(end.getY(), v.getY());
-	end = Vector2d<T>(endX, endY);
+	const auto endX = std::max<float>(end.x, v.x);
+	const auto endY = std::max<float>(end.y, v.y);
+	end = Vector2df(endX, endY);
 }
 
-template<typename T>
-T Box2d<T>::getArea() const
+float Box2d::getArea() const
 {
-	return (end.getX() - getMinX()) * (end.getY() - getMinY());
+	return (end.x - getMinX()) * (end.y - getMinY());
 }
 
-/*
-template<typename T>
-bool Box2d<T>::isInterior(const Vector2d<T>& point) const
+void Box2d::add(const Box2d& b)
 {
-const bool xIsInterior = (getMinX() < point.getX() && point.getX() < end.getX());
-const bool yIsInterior = (getMinY() < point.getY() && point.getY() < end.getY());
-return xIsInterior && yIsInterior;
-}
-template<typename T>
-bool Box2d<T>::isExterior(const Vector2d<T>& point) const
-{
-return !isInterior(point);
-}
-*/
-template<typename T>
-void Box2d<T>::add(const Box2d<T>& b)
-{
-	const auto sx = std::min<T>(getMinX(), b.getMinX());
-	const auto sy = std::min<T>(getMinY(), b.getMinY());
-	this->start = Vector2d<T>(sx, sy);
+	const auto sx = std::min<float>(getMinX(), b.getMinX());
+	const auto sy = std::min<float>(getMinY(), b.getMinY());
+	this->start = Vector2df(sx, sy);
 
-	const auto ex = std::max<T>(end.getX(), b.getMaxX());
-	const auto ey = std::max<T>(end.getY(), b.getMaxY());
-	this->end = Vector2d<T>(ex, ey);
+	const auto ex = std::max<float>(end.x, b.getMaxX());
+	const auto ey = std::max<float>(end.y, b.getMaxY());
+	this->end = Vector2df(ex, ey);
 }
 
-template<typename T>
-Vector2d<T> Box2d<T>::getCenter() const
+Vector2df Box2d::getCenter() const
 {
-	return Vector2d<T>(
-		(getMinX() + end.getX()) / T{ 2 },
-		(getMinY() + end.getY()) / T{ 2 }
+	return Vector2df(
+		(getMinX() + end.x) / 2.0f,
+		(getMinY() + end.y) / 2.0f
 	);
 }
 
-template<typename T>
-Box2d<T> Box2d<T>::getOverlapped(const Box2d<T>& rhs) const
+Box2d Box2d::getOverlapped(const Box2d& rhs) const
 {
 	assert(hasIntersection(rhs));
-	const auto minx = std::max<T>(this->getStart().getX(), rhs.getStart().getX());
-	const auto miny = std::max<T>(this->getStart().getY(), rhs.getStart().getY());
+	const auto minx = std::max(this->getStart().x, rhs.getStart().x);
+	const auto miny = std::max(this->getStart().y, rhs.getStart().y);
 
-	const auto maxx = std::min<T>(this->getEnd().getX(), rhs.getEnd().getX());
-	const auto maxy = std::min<T>(this->getEnd().getY(), rhs.getEnd().getY());
+	const auto maxx = std::min(this->getEnd().x, rhs.getEnd().x);
+	const auto maxy = std::min(this->getEnd().y, rhs.getEnd().y);
 
-	const Vector2d<T> min_(minx, miny);
-	const Vector2d<T> max_(maxx, maxy);
+	const Vector2df min_(minx, miny);
+	const Vector2df max_(maxx, maxy);
 	return Box2d(min_, max_);
 }
 
-template<typename T>
-bool Box2d<T>::equals(const Box2d<T>& rhs) const
+bool Box2d::equals(const Box2d& rhs) const
 {
 	return
 		start == rhs.getStart() &&
-		Tolerance<T>::isEqualLoosely(end.getX(), rhs.end.getX()) &&
-		Tolerance<T>::isEqualLoosely(end.getY(), rhs.end.getY());
+		end == rhs.getEnd();
 }
 
-template<typename T>
-bool Box2d<T>::hasIntersection(const Box2d& rhs) const
+bool Box2d::hasIntersection(const Box2d& rhs) const
 {
-	const auto distx = std::fabs(getCenter().getX() - rhs.getCenter().getX());
-	const auto lx = getLength().getX() / T{ 2 } +rhs.getLength().getX() / T{ 2 };
+	const auto distx = std::fabs(getCenter().x - rhs.getCenter().x);
+	const auto lx = getLength().x / 2.0f +rhs.getLength().x / 2.0f;
 
-	const auto disty = std::fabs(getCenter().getY() - rhs.getCenter().getY());
-	const auto ly = getLength().getY() / T{ 2 } +rhs.getLength().getY() / T{ 2 };
+	const auto disty = std::fabs(getCenter().y - rhs.getCenter().y);
+	const auto ly = getLength().y / 2.0f +rhs.getLength().y / 2.0f;
 
 	return (distx < lx && disty < ly);
 }
 
-/*
-template<typename T>
-void Box2d<T>::outerOffset(const T offsetLength)
-{
-const auto x = getMinX() - offsetLength;
-const auto y = getMinY() - offsetLength;
-const auto z = getMinZ() - offsetLength;
-start = Vector3d<T>(x, y, z);
-end += Vector3d<T>(offsetLength, offsetLength, offsetLength);
-assert(isValid());
-}
-template<typename T>
-std::vector< Vector2d<T> > Box2d<T>::toPoints(const T divideLength) const
-{
-Vector3dVector<T> points;
-for (T x = getMinX(); x <= end.getX(); x += divideLength) {
-for (T y = getMinY(); y <= end.getY(); y += divideLength) {
-for (T z = getMinZ(); z <= end.getZ(); z += divideLength) {
-points.push_back(Vector3d<T>(x, y, z));
-}
-}
-}
-return points;
-}
-*/
-template<typename T>
-bool Box2d<T>::isValid() const
+bool Box2d::isValid() const
 {
 	return
-		(getMinX() <= end.getX()) && (getMinY() <= end.getY());
+		(getMinX() <= end.x) && (getMinY() <= end.y);
 }
 
-template<typename T>
-bool Box2d<T>::isShirinked() const
+bool Box2d::isShirinked() const
 {
 	return
-		(getMinX() == end.getX()) && (getMinY() == end.getY());
+		(getMinX() == end.x) && (getMinY() == end.y);
 }
 
-/*
-template<typename T>
-Space3d<T> Box2d<T>::toSpace() const
-{
-return Space3d<T>(start, getLength());
-}
-*/
-
-template<typename T>
-std::array< T, 8 > Box2d<T>::toArray() const
+std::array< float, 8 > Box2d::toArray() const
 {
 	return{
 		getMinX(), getMaxY(),
@@ -168,7 +108,3 @@ std::array< T, 8 > Box2d<T>::toArray() const
 		getMaxX(), getMaxY()
 	};
 }
-
-
-template class Box2d<float>;
-template class Box2d<double>;

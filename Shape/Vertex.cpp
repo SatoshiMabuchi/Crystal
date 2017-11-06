@@ -16,7 +16,7 @@ Vertex::Vertex(const Vector3d<float>& position, const Vector3d<float>& normal, c
 {}
 
 /*
-Vertex::Vertex(const Vector3d<float>& position, const Vector3d<float>& normal, const Vector2d<float>& texCoord, const unsigned int id) :
+Vertex::Vertex(const Vector3d<float>& position, const Vector3d<float>& normal, const Vector2df& texCoord, const unsigned int id) :
 	Point3d<float>(position, normal, texCoord),
 	id(id)
 {}

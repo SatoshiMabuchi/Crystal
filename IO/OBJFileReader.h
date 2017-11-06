@@ -32,7 +32,7 @@ public:
 
 	std::vector< Math::Vector3d<float> > getNormals() const { return normals; }
 
-	std::vector< Math::Vector2d<float> > getTexCoords() const { return texCoords; }
+	std::vector< Math::Vector2df > getTexCoords() const { return texCoords; }
 
 	Shape::PolygonMesh* toPolygonObject();
 
@@ -53,7 +53,7 @@ private:
 
 	std::vector< Math::Vector3d<float> > positions;
 	std::vector< Math::Vector3d<float> > normals;
-	std::vector< Math::Vector2d<float> > texCoords;
+	std::vector< Math::Vector2df > texCoords;
 
 	std::vector< OBJFace > faces;
 
@@ -61,7 +61,7 @@ private:
 
 	Math::Vector3d<float> readVector3d(const std::string& str);
 
-	Math::Vector2d<float> readVector2d(const std::string& str);
+	Math::Vector2df readVector2d(const std::string& str);
 
 	//unsigned int readFaces(const std::string& str);
 

@@ -7,42 +7,41 @@
 namespace Crystal {
 	namespace Math {
 
-		template<typename T>
 		class Box2d
 		{
 		public:
 			Box2d();
 
-			Box2d(const Vector2d<T>& pointX, const Vector2d<T>& pointY);
+			Box2d(const Vector2df& pointX, const Vector2df& pointY);
 
-			void add(const Vector2d<T>& v);
+			void add(const Vector2df& v);
 
 			void add(const Box2d& b);
 
-			T getArea() const;
+			float getArea() const;
 
-			Vector2d<T> getMax() const { return Vector2d<T>(end.getX(), end.getY()); }
+			Vector2df getMax() const { return Vector2df(end[0], end[1]); }
 
-			Vector2d<T> getMin() const { return Vector2d<T>(getMinX(), getMinY()); }
+			Vector2df getMin() const { return Vector2df(getMinX(), getMinY()); }
 
-			Vector2d<T> getStart() const { return getMin(); }
+			Vector2df getStart() const { return getMin(); }
 
-			Vector2d<T> getEnd() const { return getMax(); }
+			Vector2df getEnd() const { return getMax(); }
 
-			Vector2d<T> getCenter() const;
+			Vector2df getCenter() const;
 
 			//std::vector< Vector2d<T> > toInnerPoints(const T divideLength) const;
 
-			T getMaxX() const { return end.getX(); }
+			float getMaxX() const { return end[0]; }
 
-			T getMinX() const { return start.getX(); }
+			float getMinX() const { return start[0]; }
 
-			T getMaxY() const { return end.getY(); }
+			float getMaxY() const { return end[1]; }
 
-			T getMinY() const { return start.getY(); }
+			float getMinY() const { return start[1]; }
 
-			Vector2d<T> getLength() const {
-				return Vector2d<T>(end.getX() - getMinX(), end.getY() - getMinY());
+			Vector2df getLength() const {
+				return Vector2df(end.x - getMinX(), end.y - getMinY());
 			}
 
 			bool isValid() const;
@@ -61,11 +60,11 @@ namespace Crystal {
 
 			//Space3d<T> toSpace() const;
 
-			std::array< T, 8 > toArray() const;
+			std::array< float, 8 > toArray() const;
 
 		private:
-			Vector2d<T> start;
-			Vector2d<T> end;
+			Vector2df start;
+			Vector2df end;
 		};
 
 	}

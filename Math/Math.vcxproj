@@ -151,7 +151,6 @@
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
     <ClCompile Include="Triangle3d.cpp" />
-    <ClCompile Include="Vector2d.cpp" />
     <ClCompile Include="Vector3d.cpp" />
     <ClCompile Include="Vector4d.cpp" />
   </ItemGroup>

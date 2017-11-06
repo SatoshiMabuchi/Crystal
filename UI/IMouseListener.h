@@ -8,23 +8,23 @@ namespace Crystal {
 class IMouseListener
 {
 public:
-	virtual void onLeftButtonDown(const Math::Vector2d<float>& position) {};
+	virtual void onLeftButtonDown(const Math::Vector2df& position) {};
 
-	virtual void onLeftButtonUp(const Math::Vector2d<float>& position) {};
+	virtual void onLeftButtonUp(const Math::Vector2df& position) {};
 
-	virtual void onRightButtonDown(const Math::Vector2d<float>& position) {};
+	virtual void onRightButtonDown(const Math::Vector2df& position) {};
 
-	virtual void onRightButtonUp(const Math::Vector2d<float>& position) {};
+	virtual void onRightButtonUp(const Math::Vector2df& position) {};
 
-	virtual void onMiddleButtonDown(const Math::Vector2d<float>& position) {};
+	virtual void onMiddleButtonDown(const Math::Vector2df& position) {};
 
-	virtual void onMiddleButtonUp(const Math::Vector2d<float>& position) {};
+	virtual void onMiddleButtonUp(const Math::Vector2df& position) {};
 
-	virtual void onLeftDragging(const Math::Vector2d<float>& position) {};
+	virtual void onLeftDragging(const Math::Vector2df& position) {};
 
-	virtual void onRightDragging(const Math::Vector2d<float>& position) {};
+	virtual void onRightDragging(const Math::Vector2df& position) {};
 
-	virtual void onMiddleDragging(const Math::Vector2d<float>& position) {};
+	virtual void onMiddleDragging(const Math::Vector2df& position) {};
 
 	virtual void onWheel(const float dx) {};
 };

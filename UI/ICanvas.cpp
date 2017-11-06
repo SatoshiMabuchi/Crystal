@@ -31,47 +31,47 @@ void ICanvas::render(const int width, const int height)
 	pointRenderer.render(*camera, viewModel.getPointBuffer());
 }
 
-void ICanvas::onLeftButtonDown(const Vector2d<float>& position)
+void ICanvas::onLeftButtonDown(const Vector2df& position)
 {
 	commands->onLeftButtonDown(position);
 }
 
-void ICanvas::onLeftButtonUp(const Vector2d<float>& position)
+void ICanvas::onLeftButtonUp(const Vector2df& position)
 {
 	commands->onLeftButtonUp(position);
 }
 
-void ICanvas::onRightButtonDown(const Vector2d<float>& position)
+void ICanvas::onRightButtonDown(const Vector2df& position)
 {
 	commands->onRightButtonDown(position);
 }
 
-void ICanvas::onRightButtonUp(const Vector2d<float>& position)
+void ICanvas::onRightButtonUp(const Vector2df& position)
 {
 	commands->onRightButtonUp(position);
 }
 
-void ICanvas::onMiddleButtonDown(const Vector2d<float>& position)
+void ICanvas::onMiddleButtonDown(const Vector2df& position)
 {
 	commands->onMiddleButtonDown(position);
 }
 
-void ICanvas::onMiddleButtonUp(const Vector2d<float>& position)
+void ICanvas::onMiddleButtonUp(const Vector2df& position)
 {
 	commands->onMiddleButtonUp(position);
 }
 
-void ICanvas::onLeftDragging(const Vector2d<float>& position)
+void ICanvas::onLeftDragging(const Vector2df& position)
 {
 	commands->onLeftDragging(position);
 }
 
-void ICanvas::onRightDragging(const Vector2d<float>& position)
+void ICanvas::onRightDragging(const Vector2df& position)
 {
 	commands->onRightDragging(position);
 }
 
-void ICanvas::onMiddleDragging(const Vector2d<float>& position)
+void ICanvas::onMiddleDragging(const Vector2df& position)
 {
 	commands->onMiddleDragging(position);
 }

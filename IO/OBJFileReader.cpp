@@ -73,7 +73,7 @@ PolygonMesh* OBJFileReader::toPolygonObject()
 			if (face.normalIndex[i] != -1) {
 				normal = normals[face.normalIndex[i] - 1];
 			}
-			Vector2d<float> texCoord;
+			Vector2df texCoord;
 			if (face.texCoordIndex[i] != -1) {
 				texCoord = texCoords[face.texCoordIndex[i] - 1];
 			}
@@ -230,11 +230,11 @@ Vector3d<float> OBJFileReader::readVector3d(const std::string& str)
 	}
 }
 
-Vector2d<float> OBJFileReader::readVector2d(const std::string& str)
+Vector2df OBJFileReader::readVector2d(const std::string& str)
 {
 	const std::vector< std::string >& strs = Helper::split(str, ' ');
 	//assert(strs.front() == "vt");
 	const float u = ::std::stof(strs[0]);
 	const float v = ::std::stof(strs[1]);
-	return Vector2d<float>(u, v);
+	return Vector2df(u, v);
 }

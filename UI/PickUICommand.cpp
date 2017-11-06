@@ -9,38 +9,38 @@ PickUICommand::PickUICommand(ICamera* camera) :
 {
 }
 
-void PickUICommand::onLeftButtonDown(const Vector2d<float>& position)
+void PickUICommand::onLeftButtonDown(const Vector2df& position)
 {
 	prevPosition = position;
 	//	camera->move();
 }
 
-void PickUICommand::onLeftButtonUp(const Vector2d<float>& position)
+void PickUICommand::onLeftButtonUp(const Vector2df& position)
 {
 
 }
 
-void PickUICommand::onLeftDragging(const Vector2d<float>& position)
+void PickUICommand::onLeftDragging(const Vector2df& position)
 {
 	const auto diff = prevPosition - position;
-	camera->move(glm::vec3(diff.getX(), diff.getY(), 0.0));
+	camera->move(glm::vec3(diff.x, diff.y, 0.0));
 	this->prevPosition = position;
 }
 
-void PickUICommand::onRightButtonDown(const Vector2d<float>& position)
+void PickUICommand::onRightButtonDown(const Vector2df& position)
 {
 	prevPosition = position;
 }
 
-void PickUICommand::onRightButtonUp(const Vector2d<float>& position)
+void PickUICommand::onRightButtonUp(const Vector2df& position)
 {
 
 }
 
-void PickUICommand::onRightDragging(const Vector2d<float>& position)
+void PickUICommand::onRightDragging(const Vector2df& position)
 {
 	const auto diff = prevPosition - position;
-	camera->rotate(diff.getY(), diff.getX());
+	camera->rotate(diff.y, diff.x);
 	this->prevPosition = position;
 }
 

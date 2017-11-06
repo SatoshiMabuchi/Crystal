@@ -22,12 +22,12 @@ namespace {
 	bool isLeftDown;
 	bool isRightDown;
 
-	Vector2d<float> toScreenCoord(GLFWwindow* window, const double x, const double y) {
+	Vector2df toScreenCoord(GLFWwindow* window, const double x, const double y) {
 		int width,height;
 		glfwGetWindowSize(window, &width, &height);
 		const auto xx = x / (float)width;
 		const auto yy = y / (float)height;
-		return Vector2d<float>(xx, yy);
+		return Vector2df(xx, yy);
 	}
 
 	void onMouse(GLFWwindow *window, int button, int action, int mods) {

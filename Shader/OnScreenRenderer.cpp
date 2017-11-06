@@ -58,7 +58,7 @@ void OnScreenRenderer::findLocation()
 
 void OnScreenRenderer::render(const ITextureObject& texture)
 {
-	const Box2d<float> box(Vector2d<float>(-1.0, -1.0), Vector2d<float>(1.0, 1.0));
+	const Box2d box(Vector2df(-1.0, -1.0), Vector2df(1.0, 1.0));
 	const auto& positions = box.toArray();
 
 	//glEnable(GL_DEPTH_TEST);

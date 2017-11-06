@@ -21,7 +21,6 @@
     <ClCompile Include="Vector4d.cpp" />
     <ClCompile Include="Box3d.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
-    <ClCompile Include="Vector2d.cpp" />
     <ClCompile Include="Box2d.cpp" />
     <ClCompile Include="Triangle3d.cpp" />
   </ItemGroup>
