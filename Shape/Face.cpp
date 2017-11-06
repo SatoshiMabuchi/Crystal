@@ -38,12 +38,11 @@ Vertex* Face::find(Vertex* v)
 	return nullptr;
 }
 
-Vector3d<float> Face::getNormal() const
+Vector3df Face::getNormal() const
 {
 	auto vertices = getVertices();
-	auto normal = (vertices[1]->getPosition() - vertices[0]->getPosition()).getOuterProduct(vertices[2]->getPosition() - vertices[0]->getPosition());
-	normal.normalize();
-	return normal;
+	auto normal = glm::cross((vertices[1]->getPosition() - vertices[0]->getPosition()), (vertices[2]->getPosition() - vertices[0]->getPosition()));
+	return glm::normalize( normal );
 }
 
 /*
@@ -78,7 +77,7 @@ float Face::getArea() const
 	const auto& edges = getEdges();
 	auto v1 = (edges[0]->getEnd()->getPosition() - edges[0]->getStart()->getPosition());
 	auto v2 = (edges[1]->getEnd()->getPosition() - edges[1]->getStart()->getPosition());
-	return v1.getOuterProduct(v2).getLength() / 2.0f;
+	return glm::cross( v1, v2).length() / 2.0f;
 }
 
 bool Face::isDegenerated() const
@@ -117,7 +116,7 @@ std::map<Vertex*, Vertex*> Face::findDouble(const Face& rhs, const float distanc
 		for (auto v2 : vertices2) {
 			auto p1 = v1->getPosition();
 			auto p2 = v2->getPosition();
-			if (p1.getDistanceSquared(p2) < distance * distance) {
+			if (glm::distance( p1, p2) < distance) {
 				map[v1] = v2;
 			}
 		}

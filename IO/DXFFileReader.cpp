@@ -36,8 +36,8 @@ bool DXFFileReader::read(std::istream& stream)
 	while (str != "EOF") {
 		DXFFace f;
 		std::getline(stream, str);
-		std::vector<Vector3d<float>> positions;
-		Vector3d<float> pos;
+		std::vector<Vector3df> positions;
+		Vector3df pos;
 		if (str == "0") {
 			std::getline(stream, str);
 			if (str == "3DFACE") {
@@ -50,15 +50,15 @@ bool DXFFileReader::read(std::istream& stream)
 		}
 		else if (str == "10") {
 			std::getline(stream, str);
-			pos.setX(std::stof(str));
+			pos.x = (std::stof(str));
 		}
 		else if (str == "20") {
 			std::getline(stream, str);
-			pos.setY(std::stof(str));
+			pos.y = (std::stof(str));
 		}
 		else if (str == "30") {
 			std::getline(stream, str);
-			pos.setZ(std::stof(str));
+			pos.z = (std::stof(str));
 			positions.push_back(pos);
 		}
 	}

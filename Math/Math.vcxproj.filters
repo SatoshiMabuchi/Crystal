@@ -14,11 +14,6 @@
     <ClInclude Include="Triangle3d.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector3d.cpp" />
-    <ClCompile Include="Matrix3d.cpp" />
-    <ClCompile Include="Quaternion.cpp" />
-    <ClCompile Include="Matrix4d.cpp" />
-    <ClCompile Include="Vector4d.cpp" />
     <ClCompile Include="Box3d.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
     <ClCompile Include="Box2d.cpp" />

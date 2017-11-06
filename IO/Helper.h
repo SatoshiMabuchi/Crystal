@@ -20,11 +20,11 @@ public:
 	}
 
 	template<typename T>
-	static Math::Vector3d<T> readVector(std::istream& s)
+	static Math::Vector3dd readVector(std::istream& s)
 	{
 		T x, y, z;
 		s >> x >> y >> z;
-		return Math::Vector3d<T>(x, y, z);
+		return Math::Vector3dd(x, y, z);
 	}
 
 	static Graphics::ColorRGBA<float> readColorRGB(std::istream& s)

@@ -15,11 +15,11 @@ namespace Crystal {
 class Vertex
 {
 public:
-	Vertex(const Math::Vector3d<float>& position, const unsigned int id = -1);
+	Vertex(const Math::Vector3df& position, const unsigned int id = -1);
 
-	Vertex(const Math::Vector3d<float>& position, const Math::Vector3d<float>& normal, const unsigned int id = -1);
+	Vertex(const Math::Vector3df& position, const Math::Vector3df& normal, const unsigned int id = -1);
 
-	Vertex(const Math::Vector3d<float>& position, const Math::Vector3d<float>& normal, const Math::Vector2df& texCoord, const unsigned int id = -1);
+	Vertex(const Math::Vector3df& position, const Math::Vector3df& normal, const Math::Vector2df& texCoord, const unsigned int id = -1);
 
 	Vertex* clone();
 
@@ -29,19 +29,19 @@ public:
 
 	void reverse();
 
-	Math::Vector3d<float> getPosition() const { return position; }
+	Math::Vector3df getPosition() const { return position; }
 
-	Math::Vector3d<float> getNormal() const { return normal; }
+	Math::Vector3df getNormal() const { return normal; }
 
-	void move(const Math::Vector3d<float>& v) { this->position += v; }
+	void move(const Math::Vector3df& v) { this->position += v; }
 
-	void setNormal(const Math::Vector3d<float>& n) { this->normal = n; }
+	void setNormal(const Math::Vector3df& n) { this->normal = n; }
 
-	//void scale(const Vector3d<float>& s) { this->position.scale(s); }
+	//void scale(const Vector3df& s) { this->position.scale(s); }
 
 private:
-	Math::Vector3d<float> position;
-	Math::Vector3d<float> normal;
+	Math::Vector3df position;
+	Math::Vector3df normal;
 	Math::Vector2df texCoord;
 	unsigned int id;
 };
@@ -49,7 +49,7 @@ private:
 
 class Util {
 public:
-	static Math::Box3d<float> getBoundingBox(const std::list<Vertex*>& vertices);
+	static Math::Box3d getBoundingBox(const std::list<Vertex*>& vertices);
 };
 
 	}

@@ -9,17 +9,17 @@ template <typename T, typename Attr>
 class Particle
 {
 public:
-	Particle(const Math::Vector3d<T>& position, const Attr& attr) :
+	Particle(const Math::Vector3dd& position, const Attr& attr) :
 		position(position),
 		attribute(attr)
 	{}
 
-	Math::Vector3d<T> getPosition() const { return position; }
+	Math::Vector3dd getPosition() const { return position; }
 
 	Attr getAttribute() const { return attribute; }
 
 private:
-	Math::Vector3d<T> position;
+	Math::Vector3dd position;
 	Attr attribute;
 };
 
@@ -40,7 +40,7 @@ public:
 		particles.clear();
 	}
 	
-	void add(const Math::Vector3d<T>& position, const Attr& attr) {
+	void add(const Math::Vector3dd& position, const Attr& attr) {
 		particles.push_back(new Particle<T,Attr>(position, attr));
 	}
 

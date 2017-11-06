@@ -68,8 +68,8 @@ PolygonMesh* OBJFileReader::toPolygonObject()
 	for (const auto face : this->faces) {
 		std::vector<Vertex*> vs;
 		for (int i = 0; i < face.positionIndex.size(); ++i) {
-			Vector3d<float> pos = positions[face.positionIndex[i] - 1];
-			Vector3d<float> normal;
+			Vector3df pos = positions[face.positionIndex[i] - 1];
+			Vector3df normal;
 			if (face.normalIndex[i] != -1) {
 				normal = normals[face.normalIndex[i] - 1];
 			}
@@ -198,7 +198,7 @@ bool OBJFileReader::read(std::istream& stream)
 }
 
 
-Vector3d<float> OBJFileReader::readVertices(const std::string& str)
+Vector3df OBJFileReader::readVertices(const std::string& str)
 {
 	const std::vector< std::string >& strs = Helper::split(str, ' ');
 	//assert(strs.front() == "v");
@@ -208,14 +208,14 @@ Vector3d<float> OBJFileReader::readVertices(const std::string& str)
 	const float z = std::stof(strs[2].c_str());
 	if (strs.size() == 4) {
 		const float w = ::std::stof(strs[3].c_str());
-		return Vector3d<float>(x, y, z);
+		return Vector3df(x, y, z);
 	}
 	else {
-		return Vector3d<float>(x, y, z);
+		return Vector3df(x, y, z);
 	}
 }
 
-Vector3d<float> OBJFileReader::readVector3d(const std::string& str)
+Vector3df OBJFileReader::readVector3d(const std::string& str)
 {
 	const std::vector< std::string >& strs = Helper::split(str, ' ');
 	//assert(strs.front() == "vt");
@@ -223,10 +223,10 @@ Vector3d<float> OBJFileReader::readVector3d(const std::string& str)
 	const float v = ::std::stof(strs[1]);
 	if (strs.size() == 3) {
 		const float w = std::stof(strs[2]);
-		return Vector3d<float>(u, v, w);
+		return Vector3df(u, v, w);
 	}
 	else {
-		return Vector3d<float>(u, v, 0.0f);
+		return Vector3df(u, v, 0.0f);
 	}
 }
 

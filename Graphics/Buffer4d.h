@@ -30,13 +30,6 @@ public:
 		buffer.insert(buffer.end(), rhs.buffer.begin(), rhs.buffer.end());
 	}
 
-	void add(const Math::Quaternion<T>& q) {
-		buffer.push_back(q.getX());
-		buffer.push_back(q.getY());
-		buffer.push_back(q.getZ());
-		buffer.push_back(q.getW());
-	}
-
 	bool operator==(const Buffer4d<T>& rhs) { return buffer == rhs.buffer; }
 
 	std::vector< T > get() const { return buffer; }

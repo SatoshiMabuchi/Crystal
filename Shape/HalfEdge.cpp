@@ -15,14 +15,14 @@ HalfEdge::HalfEdge(Vertex* start, Vertex* end, const int id) :
 {
 }
 
-Vector3d<float> HalfEdge::getVector() const
+Vector3df HalfEdge::getVector() const
 {
 	return end->getPosition() - start->getPosition();
 }
 
 float HalfEdge::getLength() const
 {
-	return getVector().getLength();
+	return glm::length( getVector() );
 }
 
 /*
@@ -50,7 +50,7 @@ bool HalfEdge::isReverse(const HalfEdge& rhs) const
 }
 
 /*
-void HalfEdge::move(const Vector3d<float>& v)
+void HalfEdge::move(const Vector3df& v)
 {
 	this->start->move(v);
 	this->end->move(v);

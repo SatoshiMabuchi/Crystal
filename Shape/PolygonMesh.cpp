@@ -27,40 +27,7 @@ void PolygonMesh::clear()
 
 #include "HalfEdge.h"
 
-void PolygonMesh::smooth(const float angle)
-{
-	auto edges = findInnerVertices();
-	for (auto e : edges) {
-		smooth(e);
-	}
-}
 
-
-void PolygonMesh::smooth(Vertex* center)
-{
-	std::list<Vertex*> neighbors;
-	auto fs = getFaces();
-	for (auto f : fs) {
-		for (auto e : f->getEdges()) {
-			if (e->getStart() == center) {
-				neighbors.push_back(e->getEnd());
-			}
-		}
-	}
-	neighbors.sort();
-	neighbors.unique();
-	//std::list<Vertex*> neighbors = center->getNeighbors();
-	Vector3d<float> diff(0, 0, 0);
-	for (auto& n : neighbors) {
-		diff += (n->getPosition() - center->getPosition()) / neighbors.size();
-	}
-	const auto& normal = center->getNormal();
-	const auto length = normal.getInnerProduct(-diff);
-	diff += length * normal;
-	//diff *= normal.getInnerProduct(diff);
-
-	center->move(diff);
-}
 
 HalfEdge* PolygonMesh::getShortestEdge()
 {
@@ -146,17 +113,17 @@ void PolygonMesh::mergeDouble(PolygonMesh* rhs, float distance)
 	}
 }
 
-Vector3d<float> PolygonMesh::getCenter() const
+Vector3df PolygonMesh::getCenter() const
 {
-	Vector3d<float> center;
+	Vector3df center;
 	const auto& vs = this->getVertices();
 	for (const auto& v : vs) {
-		center += v->getPosition() / vs.size();
+		center += v->getPosition() / static_cast<float>(vs.size());
 	}
 	return center;
 }
 
-void PolygonMesh::move(const Vector3d<float>& v)
+void PolygonMesh::move(const Vector3df& v)
 {
 	const auto& vs = getVertices();
 	for (auto& vert : vs) {
@@ -165,7 +132,7 @@ void PolygonMesh::move(const Vector3d<float>& v)
 }
 
 /*
-void PolygonMesh::scale(const Vector3d<float>& s)
+void PolygonMesh::scale(const Vector3df& s)
 {
 	const auto& center = getCenter();
 	move(-center);
@@ -255,7 +222,7 @@ void PolygonMesh::updateNormals()
 
 	for (auto f : fs) {
 		for (auto v : f->getVertices()) {
-			v->setNormal(Vector3d<float>(0, 0, 0));
+			v->setNormal(Vector3df(0, 0, 0));
 		}
 	}
 	for (auto f : fs) {
@@ -270,7 +237,7 @@ void PolygonMesh::updateNormals()
 	for (auto f : fs) {
 		for (auto v : f->getVertices()) {
 			auto n = v->getNormal();
-			v->setNormal(n.getNormalized());
+			v->setNormal(glm::normalize( n ));
 		}
 	}
 }

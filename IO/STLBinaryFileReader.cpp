@@ -39,11 +39,11 @@ bool STLBinaryFileReader::read(std::istream& stream)
 			assert(false);
 		}
 
-		Vector3d<double> fn(normal[0], normal[1], normal[2]);
-		std::array< Vector3d<double>, 3 > vertices = {
-			Vector3d<double>(pos0[0], pos0[1], pos0[2]),
-			Vector3d<double>(pos1[0], pos1[1], pos1[2]),
-			Vector3d<double>(pos2[0], pos2[1], pos2[2]),
+		Vector3dd fn(normal[0], normal[1], normal[2]);
+		std::array< Vector3dd, 3 > vertices = {
+			Vector3dd(pos0[0], pos0[1], pos0[2]),
+			Vector3dd(pos1[0], pos1[1], pos1[2]),
+			Vector3dd(pos2[0], pos2[1], pos2[2]),
 		};
 		TriangleFace face(vertices, fn);
 		faces.push_back(face);

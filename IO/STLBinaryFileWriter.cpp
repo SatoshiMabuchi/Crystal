@@ -15,10 +15,10 @@ bool STLBinaryFileWriter::write(const std::string& filename)
 }
 
 namespace {
-	std::array<float, 3> toArrayf(const Vector3d<double>& v) {
-		auto x = (float)(v.getX());
-		auto y = (float)(v.getY());
-		auto z = (float)(v.getZ());
+	std::array<float, 3> toArrayf(const Vector3dd& v) {
+		auto x = (float)(v.x);
+		auto y = (float)(v.y);
+		auto z = (float)(v.z);
 		return { x, y, z };
 	}
 

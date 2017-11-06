@@ -18,7 +18,7 @@ public:
 
 	int getId() const { return id; }
 
-	Math::Vector3d<float> getVector() const;
+	Math::Vector3df getVector() const;
 
 	float getLength() const;
 
@@ -40,7 +40,7 @@ public:
 
 	bool isReverse(const HalfEdge& rhs) const;
 
-	//void move(const Math::Vector3d<float>& v);
+	//void move(const Math::Vector3df& v);
 
 	bool isShared(const HalfEdge& rhs) const;
 

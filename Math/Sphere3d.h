@@ -9,7 +9,6 @@
 
 namespace Crystal {
 	namespace Math {
-		template<typename>
 		class Box3d;
 
 template<typename T>
@@ -18,27 +17,21 @@ class Sphere3d
 public:
 	Sphere3d();
 
-	Sphere3d(const Vector3d<T>& center, const float radius);
+	Sphere3d(const Vector3dd& center, const float radius);
 
-	Sphere3d(const Math::Box3d<T>& boundingBox);
+	Sphere3d(const Math::Box3d& boundingBox);
 
-	static Sphere3d UnitSphere();
+	Vector3dd getPositionByAngle(const T u, const T v) const;
 
-	Math::Box3d<T> getBoundingBox() const;
+	Vector3dd getPositionByParam(const T u, const T v) const;
 
-	std::vector<Vector3d<T>> toPoints(const T divideLength) const;
+	//Vector3dd getNormalByAngle(const T u, const T v) const;
 
-	Vector3d<T> getPositionByAngle(const T u, const T v) const;
-
-	Vector3d<T> getPositionByParam(const T u, const T v) const;
-
-	//Vector3d<T> getNormalByAngle(const T u, const T v) const;
-
-	//Vector3d<T> getNormalByParam(const T u, const T v) const;
+	//Vector3dd getNormalByParam(const T u, const T v) const;
 
 	//Point3d<T> getPoint(const Param<T> u, const Param<T> v) const;
 
-	Vector3d<T> getCenter() const { return center; }
+	Vector3dd getCenter() const { return center; }
 
 	T getRadius() const { return radius; }
 
@@ -71,16 +64,12 @@ public:
 
 	bool operator!=(const Sphere3d& rhs) const;
 
-	bool isInner(const Vector3d<T>& v) const;
+	bool isInner(const Vector3dd& v) const;
 
-	bool isOuter(const Vector3d<T>& v) const;
-
-	bool isOnStrictly(const Vector3d<T>& v) const;
-
-	bool isOnLoosely(const Vector3d<T>& v) const;
+	bool isOuter(const Vector3dd& v) const;
 
 private:
-	Vector3d<T> center;
+	Vector3dd center;
 	T radius;
 };
 

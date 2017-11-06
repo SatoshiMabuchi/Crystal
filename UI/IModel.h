@@ -16,7 +16,7 @@ public:
 
 	bool write(const std::string& filename) const;
 
-	int addParticleSystem(const std::vector<Math::Vector3d<float>>& positions, const Graphics::ColorRGBA<float>& color, const float size);
+	int addParticleSystem(const std::vector<Math::Vector3df>& positions, const Graphics::ColorRGBA<float>& color, const float size);
 
 	std::list<ParticleSystemObject> getParticleSystems() const { return particleSystems; }
 

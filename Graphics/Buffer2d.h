@@ -20,8 +20,8 @@ public:
 	~Buffer2d() = default;
 
 	void add(const Math::Vector2d<T>& v) {
-		buffer.push_back(v.getX());
-		buffer.push_back(v.getY());
+		buffer.push_back(v.x);
+		buffer.push_back(v.y);
 	}
 
 	Math::Vector2d<T> get(const unsigned int i) const {

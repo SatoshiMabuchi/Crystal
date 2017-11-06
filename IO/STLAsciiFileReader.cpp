@@ -49,7 +49,7 @@ bool STLAsciiFileReader::read(std::istream& stream)
 			return false;
 		}
 
-		std::array<Vector3d<double>, 3> vertices;
+		std::array<Vector3dd, 3> vertices;
 		for (int i = 0; i < 3; ++i) {
 			stream >> str;
 			if (str != "vertex") {

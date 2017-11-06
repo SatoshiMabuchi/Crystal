@@ -43,23 +43,23 @@ TEST(STLAsciiFileReaderTest, TestReadAscii)
 	EXPECT_EQ(2, faces.size());
 
 	const auto& face1 = faces[0];
-	EXPECT_EQ( Vector3d<double>(0,0,1), face1.getNormal() );
-	EXPECT_EQ( Vector3d<double>(0,0,1), face1.getVertices()[0]);
-	EXPECT_EQ( Vector3d<double>(1,0,1), face1.getVertices()[1]);
-	EXPECT_EQ( Vector3d<double>(0,1,1), face1.getVertices()[2]);
+	EXPECT_EQ( Vector3dd(0,0,1), face1.getNormal() );
+	EXPECT_EQ( Vector3dd(0,0,1), face1.getVertices()[0]);
+	EXPECT_EQ( Vector3dd(1,0,1), face1.getVertices()[1]);
+	EXPECT_EQ( Vector3dd(0,1,1), face1.getVertices()[2]);
 
 	const auto& face2 = faces[1];
-	EXPECT_EQ( Vector3d<double>(0,0,1), face2.getNormal());
-	EXPECT_EQ( Vector3d<double>(1,1,1), face2.getVertices()[0]);
-	EXPECT_EQ( Vector3d<double>(0,1,1), face2.getVertices()[1]);
-	EXPECT_EQ( Vector3d<double>(1,0,1), face2.getVertices()[2]);
+	EXPECT_EQ( Vector3dd(0,0,1), face2.getNormal());
+	EXPECT_EQ( Vector3dd(1,1,1), face2.getVertices()[0]);
+	EXPECT_EQ( Vector3dd(0,1,1), face2.getVertices()[1]);
+	EXPECT_EQ( Vector3dd(1,0,1), face2.getVertices()[2]);
 
 	/*
-	const Vector3d<T> normal2(0.0, 0.0, 1.0);
-	const std::vector< Vector3d<T> > positions2 = {
-		Vector3d<T>(1.0, 1.0, 1.0),
-		Vector3d<T>(0.0, 1.0, 1.0),
-		Vector3d<T>(1.0, 0.0, 1.0)
+	const Vector3dd normal2(0.0, 0.0, 1.0);
+	const std::vector< Vector3dd > positions2 = {
+		Vector3dd(1.0, 1.0, 1.0),
+		Vector3dd(0.0, 1.0, 1.0),
+		Vector3dd(1.0, 0.0, 1.0)
 	};
 	STLFile expected(cells, " cube-ascii");
 	EXPECT_EQ(expected, file);

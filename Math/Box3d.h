@@ -11,16 +11,15 @@ namespace Crystal {
 		class Quad3d;
 		template<typename>
 		class Line3d;
-		template<typename T>
 
 class Box3d
 {
 public:
 	Box3d();
 
-	Box3d(const Vector3d<T>& point);
+	Box3d(const Vector3dd& point);
 
-	Box3d(const Vector3d<T>& pointX, const Vector3d<T>& pointY);
+	Box3d(const Vector3dd& pointX, const Vector3dd& pointY);
 
 	~Box3d() = default;
 
@@ -30,49 +29,39 @@ public:
 
 	Box3d getBoundingBox() const { return *this; }
 
-	void add(const Vector3d<T>& v);
+	void add(const Vector3dd& v);
 
 	void add(const Box3d& b);
 
-	T getVolume() const;
+	double getVolume() const;
 
-	Vector3d<T> getMax() const { return Vector3d<T>(end.getX(), end.getY(), end.getZ()); }
+	Vector3dd getMax() const { return end; }
 
-	Vector3d<T> getMin() const { return Vector3d<T>(getMinX(), getMinY(), getMinZ()); }
+	Vector3dd getMin() const { return Vector3dd(getMinX(), getMinY(), getMinZ()); }
 
-	Vector3d<T> getStart() const { return getMin(); }
+	Vector3dd getStart() const { return getMin(); }
 
-	Vector3d<T> getEnd() const { return getMax(); }
+	Vector3dd getEnd() const { return getMax(); }
 
-	Vector3d<T> getCenter() const;
+	Vector3dd getCenter() const;
 
-	bool isInterior(const Vector3d<T>& point) const;
+	bool isInterior(const Vector3dd& point) const;
 
-	bool isExterior(const Vector3d<T>& point) const;
+	bool isExterior(const Vector3dd& point) const;
 
-	void outerOffset(const T offsetLength);
+	double getMaxX() const { return end.x; }
 
-	Box3d getOuterOffset(const T offsetLength) const;
+	double getMinX() const { return start.x; }
 
-	void innerOffset(const T offsetLength);
+	double getMaxY() const { return end.y; }
 
-	Box3d getInnerOffset(const T offsetLength) const;
+	double getMinY() const { return start.y; }
 
-	std::vector<Vector3d<T>> toPoints(const T divideLength) const;
+	double getMaxZ() const { return end.z; }
 
-	T getMaxX() const { return end.getX(); }
+	double getMinZ() const { return start.z; }
 
-	T getMinX() const { return start.getX(); }
-
-	T getMaxY() const { return end.getY(); }
-
-	T getMinY() const { return start.getY(); }
-
-	T getMaxZ() const { return end.getZ(); }
-
-	T getMinZ() const { return start.getZ(); }
-
-	Vector3d<T> getLength() const;
+	Vector3dd getLength() const;
 
 	bool isValid() const;
 
@@ -88,13 +77,11 @@ public:
 
 	Box3d getOverlapped(const Box3d& rhs) const;
 
-	std::vector<Math::Vector3d<T>> toSurfacePositions(const T divideLength) const;
-
-	Vector3d<T> getPosition(const Vector3d<T>& param) const;
+	Vector3dd getPosition(const Vector3dd& param) const;
 
 private:
-	Vector3d<T> start;
-	Vector3d<T> end;
+	Vector3dd start;
+	Vector3dd end;
 };
 
 	}

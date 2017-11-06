@@ -18,7 +18,7 @@ namespace {
 		{}
 
 		struct Args {
-			Box3d<float> box;
+			Box3d box;
 			glm::vec3 dx;
 		};
 
@@ -28,13 +28,13 @@ namespace {
 
 		void execute() override
 		{
-			std::vector<Vector3d<float>> positions;
+			std::vector<Vector3df> positions;
 			const auto& min = this->args.box.getMin();
 			const auto& max = this->args.box.getMax();
-			for (double x = min.getX(); x < max.getX(); x += args.dx[0]) {
-				for (double y = min.getY(); y < max.getY(); y += args.dx[1]) {
-					for (double z = min.getZ(); z < max.getZ(); z += args.dx[2]) {
-						positions.push_back(Vector3d<float>(x, y, z));
+			for (double x = min.x; x < max.x; x += args.dx[0]) {
+				for (double y = min.y; y < max.y; y += args.dx[1]) {
+					for (double z = min.z; z < max.z; z += args.dx[2]) {
+						positions.push_back(Vector3df(x, y, z));
 					}
 				}
 			}
@@ -66,7 +66,7 @@ void ParticlePanel::show()
 		if (ImGui::Button("OK")) {
 			ParticleGenerateCommand command(model, canvas);
 			ParticleGenerateCommand::Args args;
-			args.box = Box3d<float>(Vector3d<float>(min[0], min[1], min[2]), Vector3d<float>(max[0], max[1], max[2]));
+			args.box = Box3d(Vector3df(min[0], min[1], min[2]), Vector3df(max[0], max[1], max[2]));
 			args.dx = dx;
 			command.setArgs(args);
 			command.execute();

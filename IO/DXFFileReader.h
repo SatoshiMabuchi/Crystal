@@ -14,12 +14,12 @@ struct DXFFace {
 
 	int getColorNumber() const { return colorNumber; }
 
-	void setPositions(const std::vector<Math::Vector3d<float>>& positions) {
+	void setPositions(const std::vector<Math::Vector3df>& positions) {
 		assert(positions.size() == 4);
 		this->positions = positions;
 	}
 
-	std::vector<Math::Vector3d<float>> getPositions() const { return positions; }
+	std::vector<Math::Vector3df> getPositions() const { return positions; }
 
 	void setLayerName(const std::string& layerName) { this->layerName = layerName; }
 
@@ -27,7 +27,7 @@ struct DXFFace {
 
 private:
 	int colorNumber;
-	std::vector<Math::Vector3d<float>> positions;
+	std::vector<Math::Vector3df> positions;
 	std::string layerName;
 };
 

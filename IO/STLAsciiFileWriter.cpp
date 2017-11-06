@@ -20,11 +20,11 @@ bool STLAsciiFileWriter::write(std::ostream& stream)
 	for (const auto& face : faces) {
 		stream << "facet" << " ";
 		const auto& normal = face.getNormal();
-		stream << "normal" << " " << normal.getX() << " " << normal.getY() << " " << normal.getZ() << std::endl;
+		stream << "normal" << " " << normal.x << " " << normal.y << " " << normal.z << std::endl;
 		stream << "outer loop" << std::endl;
 		const auto& positions = face.getVertices();
 		for (const auto& pos : positions) {
-			stream << "vertex" << " " << pos.getX() << " " << pos.getY() << " " << pos.getZ() << std::endl;
+			stream << "vertex" << " " << pos.x << " " << pos.y << " " << pos.z << std::endl;
 		}
 		stream << "endloop" << std::endl;
 		stream << "endfacet" << std::endl;

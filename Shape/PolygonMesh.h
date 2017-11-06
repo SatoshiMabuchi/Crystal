@@ -37,10 +37,6 @@ public:
 
 	void clear();
 
-	void smooth(const float angle);
-
-	void smooth(Vertex* v);
-
 	void add(Face* f);
 
 	bool has(Face* f);
@@ -57,11 +53,11 @@ public:
 
 	void mergeDouble(PolygonMesh* rhs, float distance);
 
-	Math::Vector3d<float> getCenter() const;
+	Math::Vector3df getCenter() const;
 
-	void move(const Math::Vector3d<float>& v);
+	void move(const Math::Vector3df& v);
 
-	//void scale(const Math::Vector3d<float>& s);
+	//void scale(const Math::Vector3df& s);
 
 	//void rotate(const Math::Quaternion<float>& quaternion);
 

@@ -11,26 +11,26 @@ namespace Crystal {
 class TriangleFace
 {
 public:
-	explicit TriangleFace(const std::array<Math::Vector3d<double>,3>& vertices) :
+	explicit TriangleFace(const std::array<Math::Vector3dd,3>& vertices) :
 		vertices(vertices)
 	{
 		this->normal = toTriangle().getNormal();
 	}
 
-	TriangleFace(const std::array<Math::Vector3d<double>, 3>& vertices, const Math::Vector3d<double>& normal) :
+	TriangleFace(const std::array<Math::Vector3dd, 3>& vertices, const Math::Vector3dd& normal) :
 		vertices(vertices),
 		normal(normal)
 	{}
 
-	Math::Vector3d<double> getNormal() const { return normal; }
+	Math::Vector3dd getNormal() const { return normal; }
 
-	std::array<Math::Vector3d<double>, 3> getVertices() const { return vertices; }
+	std::array<Math::Vector3dd, 3> getVertices() const { return vertices; }
 
 	Math::Triangle3d<double> toTriangle() const { return Math::Triangle3d<double>(vertices); }
 
 private:
-	std::array<Math::Vector3d<double>, 3> vertices;
-	Math::Vector3d<double> normal;
+	std::array<Math::Vector3dd, 3> vertices;
+	Math::Vector3dd normal;
 };
 
 class TriangleMesh

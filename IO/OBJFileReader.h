@@ -28,9 +28,9 @@ public:
 
 	bool read(std::istream& stream);
 
-	std::vector< Math::Vector3d<float> > getPositions() const { return positions; }
+	std::vector< Math::Vector3df > getPositions() const { return positions; }
 
-	std::vector< Math::Vector3d<float> > getNormals() const { return normals; }
+	std::vector< Math::Vector3df > getNormals() const { return normals; }
 
 	std::vector< Math::Vector2df > getTexCoords() const { return texCoords; }
 
@@ -51,15 +51,15 @@ public:
 private:
 	std::string comment;
 
-	std::vector< Math::Vector3d<float> > positions;
-	std::vector< Math::Vector3d<float> > normals;
+	std::vector< Math::Vector3df > positions;
+	std::vector< Math::Vector3df > normals;
 	std::vector< Math::Vector2df > texCoords;
 
 	std::vector< OBJFace > faces;
 
-	Math::Vector3d<float> readVertices(const std::string& str);
+	Math::Vector3df readVertices(const std::string& str);
 
-	Math::Vector3d<float> readVector3d(const std::string& str);
+	Math::Vector3df readVector3d(const std::string& str);
 
 	Math::Vector2df readVector2d(const std::string& str);
 

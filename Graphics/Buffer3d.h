@@ -22,27 +22,27 @@ public:
 
 	/*
 	void add(const Math::Vector2d<T>& v) {
-		buffer.push_back(v.getX());
-		buffer.push_back(v.getY());
+		buffer.push_back(v.x);
+		buffer.push_back(v.y);
 		buffer.push_back(0);
 	}
 	*/
 
-	void add(const Math::Vector3d<T>& v) {
-		buffer.push_back(v.getX());
-		buffer.push_back(v.getY());
-		buffer.push_back(v.getZ());
+	void add(const Math::Vector3dd& v) {
+		buffer.push_back(v.x);
+		buffer.push_back(v.y);
+		buffer.push_back(v.z);
 	}
 
 	void add(const Buffer3d<T>& rhs) {
 		buffer.insert(buffer.end(), rhs.buffer.begin(), rhs.buffer.end());
 	}
 
-	Math::Vector3d<T> get(const unsigned int i) const {
+	Math::Vector3dd get(const unsigned int i) const {
 		const auto x = buffer[i * 3];
 		const auto y = buffer[i * 3 + 1];
 		const auto z = buffer[i * 3 + 2];
-		return Math::Vector3d<T>(x, y, z);
+		return Math::Vector3dd(x, y, z);
 	}
 
 	bool operator==(const Buffer3d<T>& rhs) { return buffer == rhs.buffer; }
