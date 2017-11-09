@@ -1,9 +1,6 @@
 #pragma once
 
-#include "../Shape/ParticleSystem.h"
-#include "../Shape/PolygonMesh.h"
-#include "IObject.h"
-#include "ParticleSystemObject.h"
+#include "ObjectRepository.h"
 #include "ViewModel.h"
 
 namespace Crystal {
@@ -18,15 +15,14 @@ public:
 
 	int addParticleSystem(const std::vector<Math::Vector3df>& positions, const Graphics::ColorRGBAf& color, const float size);
 
-	std::list<ParticleSystemObject> getParticleSystems() const { return particleSystems; }
+	std::list<ParticleSystemObject> getParticleSystems() const { return objects.getParticleSystems(); }
 
 	ViewModel toViewModel() const;
 
 	Math::Box3d getBoundingBox() const;
 
 private:	
-	Shape::PolygonMesh* polygonMesh;
-	std::list<ParticleSystemObject> particleSystems;
+	ObjectRepository objects;
 	int nextId;
 };
 	}

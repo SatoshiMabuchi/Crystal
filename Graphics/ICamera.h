@@ -38,6 +38,8 @@ public:
 
 	virtual Math::Matrix4df getProjectionMatrix() const = 0;
 
+	void setAngle(const float azimuth, const float elevation);
+
 	void rotate(const float azimuth, const float elevation);
 
 	void zoom(const float s) { this->scale += s; }

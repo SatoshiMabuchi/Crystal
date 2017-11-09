@@ -90,7 +90,9 @@ void ICanvas::fitCamera(const Box3d& boundingBox)
 	camera->setNear(dist * 0.1f);
 	camera->setFar(dist * 10.0f);
 	camera->setTarget(boundingBox.getCenter());
-	camera->moveTo(boundingBox.getMin());
+	camera->moveTo(boundingBox.getMin() - Vector3dd(0, 0, boundingBox.getLength().z));
+	camera->setAngle(45.0f, 45.0f);
+
 }
 
 void ICanvas::setCameraXY(const Box3d& boundingBox)
@@ -100,4 +102,25 @@ void ICanvas::setCameraXY(const Box3d& boundingBox)
 	camera->setFar(dist * 10.0f);
 	camera->setTarget(boundingBox.getCenter());
 	camera->moveTo(Vector3df(0.0f, boundingBox.getMinY(), boundingBox.getMinZ()));
+	camera->setAngle(0.0f, 0.0f);
+}
+
+void ICanvas::setCameraYZ(const Box3d& boundingBox)
+{
+	const auto& dist = glm::distance(boundingBox.getMin(), boundingBox.getMax());
+	camera->setNear(dist * 0.1f);
+	camera->setFar(dist * 10.0f);
+	camera->setTarget(boundingBox.getCenter());
+	camera->moveTo(Vector3df(0.0f, boundingBox.getMinY(), boundingBox.getMinZ()));
+	camera->setAngle(90.0f, 0.0f);
+}
+
+void ICanvas::setCameraZX(const Box3d& boundingBox)
+{
+	const auto& dist = glm::distance(boundingBox.getMin(), boundingBox.getMax());
+	camera->setNear(dist * 0.1f);
+	camera->setFar(dist * 10.0f);
+	camera->setTarget(boundingBox.getCenter());
+	camera->moveTo(Vector3df(0.0f, boundingBox.getMinY(), boundingBox.getMinZ()));
+	camera->setAngle(0.0f, 90.0f);
 }

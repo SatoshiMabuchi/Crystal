@@ -48,6 +48,12 @@ glm::mat4x4 ICamera::getModelviewMatrix() const
 	return view * model;
 }
 
+void ICamera::setAngle(const float azimuth, const float elevation)
+{
+	this->azimuth = azimuth;
+	this->elevation = elevation;
+}
+
 void ICamera::rotate(const float azimuth, const float elevation)
 {
 	this->azimuth += azimuth;

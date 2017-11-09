@@ -17,14 +17,13 @@ void CameraMenu::show()
 			canvas->setViewModel(model->toViewModel());
 		}
 		if (ImGui::MenuItem("YZ")) {
-			//canvas->addUICommand(new RectSelectUICtrl(canvas->getCamera()));
+			canvas->setCameraYZ(model->getBoundingBox());
+			canvas->setViewModel(model->toViewModel());
 		}
 		if (ImGui::MenuItem("ZX")) {
-			CommandChain* chain = new CommandChain();
-			//chain->setOrigin(new PickUICommand(canvas->getCamera()));
-			canvas->setUICommands(chain);
+			canvas->setCameraZX(model->getBoundingBox());
+			canvas->setViewModel(model->toViewModel());
 		}
-
 
 		ImGui::EndMenu();
 	}

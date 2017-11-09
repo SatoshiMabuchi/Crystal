@@ -25,6 +25,7 @@
     <ClInclude Include="PolygonMesh.h" />
     <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="WireFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Face.cpp" />

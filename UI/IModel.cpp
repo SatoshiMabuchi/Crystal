@@ -1,37 +1,20 @@
 #include "IModel.h"
 
-#include <filesystem>
-
-#include "../IO/OBJFileReader.h"
-#include "../IO/DXFFileReader.h"
-#include "../IO/STLAsciiFileReader.h"
+#include "FileReader.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
-using namespace Crystal::IO;
 using namespace Crystal::UI;
 
 bool IModel::read(const std::string& filename)
 {
-	const auto& ext = std::experimental::filesystem::path(filename).extension();
-	if (ext == ".obj") {
-		OBJFileReader reader;
-		return reader.read(filename);
-	}
-	else if (ext == ".dxf") {
-		DXFFileReader reader;
-		return reader.read(filename);
-	}
-	else if (ext == ".stl") {
-		STLAsciiFileReader reader;
-		return reader.read(filename);
-	}
-	return false;
+	FileReader reader;
+	return reader.read(filename);
 }
 
 bool IModel::write(const std::string& filename) const
 {
-	const auto& ext = std::experimental::filesystem::path(filename).extension();
+	//const auto& ext = std::experimental::filesystem::path(filename).extension();
 	/*
 	if (ext == ".obj") {
 		OBJFileWriter reader;
@@ -43,20 +26,13 @@ bool IModel::write(const std::string& filename) const
 
 int IModel::addParticleSystem(const std::vector<Vector3df>& positions, const ColorRGBAf& color, const float size)
 {
-	auto particles = new Shape::ParticleSystem<ParticleAttr>();
-	for (const auto& p : positions) {
-		ParticleAttr attr;
-		attr.color = color;
-		attr.size = size;
-		particles->add(p, attr);
-	}
-	particleSystems.push_back(ParticleSystemObject(nextId++, particles));
-	return particleSystems.back().getId();
+	return objects.addParticleSystem(positions, color, size);
 }
 
 ViewModel IModel::toViewModel() const
 {
 	ViewModel vm;
+	const auto& particleSystems = objects.getParticleSystems();
 	for (const auto& p : particleSystems) {
 		vm.add(p);
 	}
@@ -65,12 +41,5 @@ ViewModel IModel::toViewModel() const
 
 Box3d IModel::getBoundingBox() const
 {
-	if (particleSystems.empty()) {
-		return Box3d();
-	}
-	Box3d bb(particleSystems.front().getShape()->getBoundingBox());
-	for (const auto& p : particleSystems) {
-		bb.add(p.getShape()->getBoundingBox());
-	}
-	return bb;
+	return objects.getBoundingBox();
 }

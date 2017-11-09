@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="CameraUICommand.h" />
     <ClInclude Include="CommandChain.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="ICanvas.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="IKeyListener.h" />
@@ -28,16 +29,21 @@
     <ClInclude Include="IMouseListener.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IUICommand.h" />
+    <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="ParticleSystemObject.h" />
     <ClInclude Include="PickUICommand.h" />
+    <ClInclude Include="PolygonMeshObject.h" />
     <ClInclude Include="RectSelectUICtrl.h" />
     <ClInclude Include="ViewModel.h" />
+    <ClInclude Include="WireFrameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraUICommand.cpp" />
     <ClCompile Include="CommandChain.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="ICanvas.cpp" />
     <ClCompile Include="IModel.cpp" />
+    <ClCompile Include="ObjectRepository.cpp" />
     <ClCompile Include="PickUICommand.cpp" />
     <ClCompile Include="ViewModel.cpp" />
   </ItemGroup>
