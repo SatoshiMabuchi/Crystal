@@ -9,7 +9,7 @@ namespace Crystal {
 
 struct ParticleAttr
 {
-	Graphics::ColorRGBA<float> color;
+	Graphics::ColorRGBAf color;
 	float size;
 };
 

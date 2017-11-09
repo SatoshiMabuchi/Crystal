@@ -88,25 +88,22 @@ public:
 
 	bool isValid() const { return ((getWidth() * getHeight() * 4) == values.size()); }
 
-	void setColor(const int i, const int j, const ColorRGBA<unsigned char>& c) {
+	void setColor(const int i, const int j, const ColorRGBAuc& c) {
 		const auto index = getIndex1d(i, j);
-		values[index] = c.getRed();
-		values[index + 1] = c.getGreen();
-		values[index + 2] = c.getBlue();
-		values[index + 3] = c.getAlpha();
+		values[index] = c.r;
+		values[index + 1] = c.g;
+		values[index + 2] = c.b;
+		values[index + 3] = c.a;
 	}
 
-
-	ColorRGBA<unsigned char> getColor(const int x, const int y) const {
+	ColorRGBAuc getColor(const int x, const int y) const {
 		const auto index = getIndex1d(x, y);
 		const auto r = values[index];
 		const auto g = values[index + 1];
 		const auto b = values[index + 2];
 		const auto a = values[index + 3];
-		return ColorRGBA<unsigned char>(r, g, b, a);
+		return ColorRGBAuc(r, g, b, a);
 	}
-
-	void changeSize(const int sizeX, const int sizeY);
 
 	std::vector<unsigned char> getValues() const { return values; }
 

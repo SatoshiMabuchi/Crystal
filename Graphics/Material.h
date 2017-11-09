@@ -17,9 +17,9 @@ namespace Crystal {
 		public:
 
 			Material(const unsigned int id = 0) :
-				diffuse(Graphics::ColorRGBA<float>::Black()),
-				specular(Graphics::ColorRGBA<float>::Black()),
-				ambient(Graphics::ColorRGBA<float>::Black()),
+				diffuse(Graphics::ColorRGBAf(0,0,0,0)),
+				specular(Graphics::ColorRGBAf(0,0,0,0)),
+				ambient(Graphics::ColorRGBAf(0,0,0,0)),
 				shininess(1.0f),
 				transparent(0.0f),
 				id(id)
@@ -34,17 +34,17 @@ namespace Crystal {
 
 			void setName(const std::string& name) { this->name = name; }
 
-			void setAmbient(const Graphics::ColorRGBA<float>& a) { this->ambient = a; }
+			void setAmbient(const Graphics::ColorRGBAf& a) { this->ambient = a; }
 
-			Graphics::ColorRGBA<float> getAmbient() const { return ambient; }
+			Graphics::ColorRGBAf getAmbient() const { return ambient; }
 
-			void setDiffuse(const Graphics::ColorRGBA<float>& d) { this->diffuse = d; }
+			void setDiffuse(const Graphics::ColorRGBAf& d) { this->diffuse = d; }
 
-			Graphics::ColorRGBA<float> getDiffuse() const { return diffuse; }
+			Graphics::ColorRGBAf getDiffuse() const { return diffuse; }
 
-			void setSpecular(const Graphics::ColorRGBA<float>& s) { this->specular = s; }
+			void setSpecular(const Graphics::ColorRGBAf& s) { this->specular = s; }
 
-			Graphics::ColorRGBA<float> getSpecular() const { return specular; }
+			Graphics::ColorRGBAf getSpecular() const { return specular; }
 
 			void setShininess(const float s) { this->shininess = s; }
 
@@ -65,9 +65,9 @@ namespace Crystal {
 
 			float shininess;
 			float transparent;
-			Graphics::ColorRGBA<float> ambient;
-			Graphics::ColorRGBA<float> diffuse;
-			Graphics::ColorRGBA<float> specular;
+			Graphics::ColorRGBAf ambient;
+			Graphics::ColorRGBAf diffuse;
+			Graphics::ColorRGBAf specular;
 
 			const unsigned int id;
 

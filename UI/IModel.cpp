@@ -41,7 +41,7 @@ bool IModel::write(const std::string& filename) const
 	return false;
 }
 
-int IModel::addParticleSystem(const std::vector<Vector3df>& positions, const ColorRGBA<float>& color, const float size)
+int IModel::addParticleSystem(const std::vector<Vector3df>& positions, const ColorRGBAf& color, const float size)
 {
 	auto particles = new Shape::ParticleSystem<ParticleAttr>();
 	for (const auto& p : positions) {

@@ -5,6 +5,7 @@
 
 //#include "../Math/Vector2d.h"
 #include "../Math/Vector3d.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/glm.hpp"
 
 namespace Crystal {
 	namespace Graphics {
@@ -20,18 +21,10 @@ public:
 
 	~Buffer3d() = default;
 
-	/*
-	void add(const Math::Vector2d<T>& v) {
-		buffer.push_back(v.x);
-		buffer.push_back(v.y);
-		buffer.push_back(0);
-	}
-	*/
-
-	void add(const Math::Vector3dd& v) {
-		buffer.push_back(v.x);
-		buffer.push_back(v.y);
-		buffer.push_back(v.z);
+	void add(const glm::vec3& v) {
+		buffer.push_back(v[0]);
+		buffer.push_back(v[1]);
+		buffer.push_back(v[2]);
 	}
 
 	void add(const Buffer3d<T>& rhs) {

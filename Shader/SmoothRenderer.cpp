@@ -161,9 +161,10 @@ void SmoothRenderer::render(const ICamera& camera, const TriangleBuffer& buffer,
 		const auto& indices = b.getIndices();
 		const auto material = b.getMaterial();
 		assert(material != nullptr);
-		glUniform3fv(shader.getUniformLocation("material.Ka"), 1, material->getAmbient().toArray3().data());
-		glUniform3fv(shader.getUniformLocation("material.Kd"), 1, material->getDiffuse().toArray3().data());
-		glUniform3fv(shader.getUniformLocation("material.Ks"), 1, material->getSpecular().toArray3().data());
+		// gl4fv@‚É•ÏXD
+		glUniform3fv(shader.getUniformLocation("material.Ka"), 1, &material->getAmbient()[0]);
+		glUniform3fv(shader.getUniformLocation("material.Kd"), 1, &material->getDiffuse()[0]);
+		glUniform3fv(shader.getUniformLocation("material.Ks"), 1, &material->getSpecular()[0]);
 		glUniform1f(shader.getUniformLocation("material.shininess"), material->getShininess());
 
 		/*

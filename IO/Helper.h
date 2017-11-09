@@ -27,19 +27,19 @@ public:
 		return Math::Vector3dd(x, y, z);
 	}
 
-	static Graphics::ColorRGBA<float> readColorRGB(std::istream& s)
+	static Graphics::ColorRGBAf readColorRGB(std::istream& s)
 	{
 		float r, g, b;
 		s >> r >> g >> b;
-		return Graphics::ColorRGBA<float>(r, g, b);
+		return Graphics::ColorRGBAf(r, g, b, 0.0f);
 	}
 
 
-	static Graphics::ColorRGBA<float> readColorRGBA(std::istream& s)
+	static Graphics::ColorRGBAf readColorRGBA(std::istream& s)
 	{
 		float r, g, b, a;
 		s >> r >> g >> b >> a;
-		return Graphics::ColorRGBA<float>(r, g, b, a);
+		return Graphics::ColorRGBAf(r, g, b, a);
 	}
 
 	static std::string readNextString(std::istream& stream)

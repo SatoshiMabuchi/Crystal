@@ -15,7 +15,7 @@ public:
 
 	void clear();
 
-	void add(const Math::Vector3df& position, const ColorRGBA<float>& color);
+	void add(const Math::Vector3df& position, const ColorRGBAf& color);
 
 	Graphics::Buffer3d<float> getPositions() const { return positions; }
 

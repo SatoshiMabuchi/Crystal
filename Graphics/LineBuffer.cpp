@@ -9,7 +9,7 @@ void LineBuffer::clear()
 	colors.clear();
 }
 
-void LineBuffer::add(const Vector3df& position, const ColorRGBA<float>& color)
+void LineBuffer::add(const Vector3df& position, const ColorRGBAf& color)
 {
 	positions.add(position);
 	colors.add(color);

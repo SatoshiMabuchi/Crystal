@@ -23,7 +23,6 @@
     <ClInclude Include="Buffer2d.h" />
     <ClInclude Include="Buffer3d.h" />
     <ClInclude Include="Buffer4d.h" />
-    <ClInclude Include="ColorHSV.h" />
     <ClInclude Include="ColorRGBA.h" />
     <ClInclude Include="IBuffer.h" />
     <ClInclude Include="ICamera.h" />
@@ -39,8 +38,6 @@
     <ClInclude Include="TriangleBuffer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ColorHSV.cpp" />
-    <ClCompile Include="ColorRGBA.cpp" />
     <ClCompile Include="ICamera.cpp" />
     <ClCompile Include="IImage.cpp" />
     <ClCompile Include="Image.cpp" />

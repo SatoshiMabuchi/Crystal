@@ -84,21 +84,21 @@ public:
 
 	bool isValid() const { return ((getWidth() * getHeight() * 4) == values.size()); }
 
-	void setColor(const int i, const int j, const ColorRGBA<float>& c) {
+	void setColor(const int i, const int j, const ColorRGBAf& c) {
 		const auto index = getIndex1d(i, j);
-		values[index] = c.getRed();
-		values[index + 1] = c.getGreen();
-		values[index + 2] = c.getBlue();
-		values[index + 3] = c.getAlpha();
+		values[index] = c.r;
+		values[index + 1] = c.g;
+		values[index + 2] = c.b;
+		values[index + 3] = c.a;
 	}
 
-	ColorRGBA<float> getColor(const int x, const int y) const {
+	ColorRGBAf getColor(const int x, const int y) const {
 		const auto index = getIndex1d(x, y);
 		const auto r = values[index];
 		const auto g = values[index + 1];
 		const auto b = values[index + 2];
 		const auto a = values[index + 3];
-		return ColorRGBA<float>(r, g, b, a);
+		return ColorRGBAf(r, g, b, a);
 	}
 
 

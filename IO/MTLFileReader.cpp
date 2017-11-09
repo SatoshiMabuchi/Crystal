@@ -18,9 +18,9 @@ using namespace Crystal::IO;
 
 OBJMaterial::OBJMaterial()
 {
-	ambient = Graphics::ColorRGBA<float>(0.0f, 0.0f, 0.0f, 0.0f);
-	diffuse = Graphics::ColorRGBA<float>(0.0f, 0.0f, 0.0f, 0.0f);
-	specular = Graphics::ColorRGBA<float>(0.0f, 0.0f, 0.0f, 0.0f);
+	ambient = Graphics::ColorRGBAf(0.0f, 0.0f, 0.0f, 0.0f);
+	diffuse = Graphics::ColorRGBAf(0.0f, 0.0f, 0.0f, 0.0f);
+	specular = Graphics::ColorRGBAf(0.0f, 0.0f, 0.0f, 0.0f);
 	float specularExponent = 0.0f;
 	float transparent = 0.0f;
 	float opticalDensity = 0.0f;
@@ -103,17 +103,17 @@ bool OBJMaterial::write(std::ostream& stream) const
 {
 	stream << "newmtl " << name << std::endl;
 
-	const ColorRGBA<float>& ambient = this->ambient;
+	const ColorRGBAf& ambient = this->ambient;
 	char s[256];
-	sprintf(s, "Ka %.4lf %.4lf %.4lf", ambient.getRed(), ambient.getGreen(), ambient.getBlue());
+	sprintf(s, "Ka %.4lf %.4lf %.4lf", ambient.r, ambient.g, ambient.b);
 	stream << s << std::endl;
 
-	const ColorRGBA<float>& diffuse = this->getDiffuse();
-	sprintf(s, "Kd %.4lf %.4lf %.4lf", diffuse.getRed(), diffuse.getGreen(), diffuse.getBlue());
+	const ColorRGBAf& diffuse = this->getDiffuse();
+	sprintf(s, "Kd %.4lf %.4lf %.4lf", diffuse.r, diffuse.g, diffuse.b);
 	stream << s << std::endl;
 
-	const ColorRGBA<float>& specular = this->getSpecular();
-	sprintf(s, "Ks %.4lf %.4lf %.4lf", specular.getRed(), specular.getGreen(), specular.getBlue());
+	const ColorRGBAf& specular = this->getSpecular();
+	sprintf(s, "Ks %.4lf %.4lf %.4lf", specular.r, specular.g, specular.b);
 	stream << s << std::endl;
 
 	const float shininess = this->getSpecularExponent();

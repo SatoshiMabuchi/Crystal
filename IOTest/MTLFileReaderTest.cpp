@@ -7,7 +7,7 @@ using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::IO;
 
-::std::ostream& operator<<(::std::ostream& os, const ColorRGBA<float>& c) {
+::std::ostream& operator<<(::std::ostream& os, const ColorRGBAf& c) {
 	return os << c.getRed() << c.getGreen() << c.getBlue() << std::endl;
 }
 
@@ -30,9 +30,9 @@ TEST(MTLFileReaderTest, TestRead)
 
 	OBJMaterial expected;
 	expected.setName("FrontColor");
-	expected.setAmbient(ColorRGBA<float>(0.0f, 0.0f, 0.0f));
-	expected.setDiffuse(ColorRGBA<float>(1.0f, 1.0f, 1.0f));
-	expected.setSpecular(ColorRGBA<float>(0.1f, 0.1f, 0.1f));
+	expected.setAmbient(ColorRGBAf(0.0f, 0.0f, 0.0f));
+	expected.setDiffuse(ColorRGBAf(1.0f, 1.0f, 1.0f));
+	expected.setSpecular(ColorRGBAf(0.1f, 0.1f, 0.1f));
 
 	const std::vector<OBJMaterial> expecteds = { expected };
 	EXPECT_EQ(expecteds, file.materials);
@@ -76,7 +76,7 @@ TEST(MTLFileReaderTest, TestExample1)
 	EXPECT_TRUE(file.read(stream));
 	EXPECT_EQ(1, file.materials.size());
 	EXPECT_EQ("neon_green", file.materials.front().getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), file.materials.front().getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), file.materials.front().getDiffuse());
 	EXPECT_EQ(0, file.materials.front().getIllumination());
 }
 
@@ -93,8 +93,8 @@ TEST(MTLFileReaderTest, TestExample2)
 
 	EXPECT_EQ(1, file.materials.size());
 	EXPECT_EQ("flat_green", file.materials.front().getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), file.materials.front().getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), file.materials.front().getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), file.materials.front().getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), file.materials.front().getDiffuse());
 	EXPECT_EQ(1, file.materials.front().getIllumination());
 
 }
@@ -115,8 +115,8 @@ TEST(MTLFileReaderTest, TestExample3)
 
 	const OBJMaterial& mtl = file.materials.front();
 	EXPECT_EQ("diss_green", mtl.getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getDiffuse());
 	EXPECT_FLOAT_EQ(0.8f, mtl.getTransparent());
 	EXPECT_EQ(1, mtl.getIllumination());
 }
@@ -138,9 +138,9 @@ TEST(MTLFileReaderTest, TestExample4)
 
 	const OBJMaterial& mtl = file.materials.front();
 	EXPECT_EQ("shiny_green", mtl.getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getDiffuse());
-	EXPECT_EQ(ColorRGBA<float>(1.0, 1.0, 1.0), mtl.getSpecular());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getDiffuse());
+	EXPECT_EQ(ColorRGBAf(1.0, 1.0, 1.0), mtl.getSpecular());
 	EXPECT_FLOAT_EQ(200.0f, mtl.getSpecularExponent());
 	EXPECT_EQ(1, mtl.getIllumination());
 }
@@ -162,9 +162,9 @@ TEST(MTLFileReaderTest, TestExample5)
 	EXPECT_EQ(1, file.materials.size());
 	const OBJMaterial& mtl = file.materials.front();
 	EXPECT_EQ("green_mirror", mtl.getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getDiffuse());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 1.0, 0.0), mtl.getSpecular());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.0, 1.0, 0.0), mtl.getSpecular());
 	EXPECT_FLOAT_EQ(200.0f, mtl.getSpecularExponent());
 	EXPECT_EQ(3, mtl.getIllumination());
 }
@@ -186,9 +186,9 @@ TEST(MTLFileReaderTest, TestExample6)
 	EXPECT_EQ(1, file.materials.size());
 	const OBJMaterial& mtl = file.materials.front();
 	EXPECT_EQ("fake_windsh", mtl.getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 0.0, 0.0), mtl.getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0, 0.0, 0.0), mtl.getDiffuse());
-	EXPECT_EQ(ColorRGBA<float>(0.9f, 0.9f, 0.9f), mtl.getSpecular());
+	EXPECT_EQ(ColorRGBAf(0.0, 0.0, 0.0), mtl.getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0, 0.0, 0.0), mtl.getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.9f, 0.9f, 0.9f), mtl.getSpecular());
 	EXPECT_FLOAT_EQ(200.0f, mtl.getSpecularExponent());
 	EXPECT_EQ(4, mtl.getIllumination());
 }
@@ -209,9 +209,9 @@ TEST(MTLFileReaderTest, TestExample7)
 	EXPECT_EQ(1, file.materials.size());
 	const OBJMaterial& mtl = file.materials.front();
 	EXPECT_EQ("fresnel_blue", mtl.getName());
-	EXPECT_EQ(ColorRGBA<float>(0.0f, 0.0f, 0.0f), mtl.getAmbient());
-	EXPECT_EQ(ColorRGBA<float>(0.0f, 0.0f, 0.0f), mtl.getDiffuse());
-	EXPECT_EQ(ColorRGBA<float>(0.6180f, 0.8760f, 0.1430f), mtl.getSpecular());
+	EXPECT_EQ(ColorRGBAf(0.0f, 0.0f, 0.0f), mtl.getAmbient());
+	EXPECT_EQ(ColorRGBAf(0.0f, 0.0f, 0.0f), mtl.getDiffuse());
+	EXPECT_EQ(ColorRGBAf(0.6180f, 0.8760f, 0.1430f), mtl.getSpecular());
 	EXPECT_FLOAT_EQ(200.0f, mtl.getSpecularExponent());
 	EXPECT_EQ(5, mtl.getIllumination());
 }

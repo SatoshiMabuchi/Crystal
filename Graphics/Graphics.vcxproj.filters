@@ -5,7 +5,6 @@
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="ColorRGBA.h" />
-    <ClInclude Include="ColorHSV.h" />
     <ClInclude Include="PointBuffer.h" />
     <ClInclude Include="Buffer2d.h" />
     <ClInclude Include="IBuffer.h" />
@@ -24,8 +23,6 @@
     <ClCompile Include="ICamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
-    <ClCompile Include="ColorRGBA.cpp" />
-    <ClCompile Include="ColorHSV.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
     <ClCompile Include="IImage.cpp" />
     <ClCompile Include="Image.cpp" />
