@@ -17,9 +17,9 @@ public:
 
 	std::list<ParticleSystemObject> getParticleSystems() const { return objects.getParticleSystems(); }
 
-	ViewModel toViewModel() const;
+	virtual ViewModel toViewModel() const;
 
-	Math::Box3d getBoundingBox() const;
+	virtual Math::Box3d getBoundingBox() const;
 
 private:	
 	ObjectRepository objects;

@@ -7,7 +7,7 @@ using namespace Crystal::UI;
 
 void CameraMenu::show()
 {
-	if (ImGui::BeginMenu("Ctrl")) {
+	if (ImGui::BeginMenu("Camera")) {
 		if (ImGui::MenuItem("Fit")) {
 			canvas->fitCamera(model->getBoundingBox());
 			canvas->setViewModel( model->toViewModel() );
