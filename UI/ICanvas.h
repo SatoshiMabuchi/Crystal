@@ -9,7 +9,6 @@
 #include <list>
 
 #include "IUICommand.h"
-#include "CommandChain.h"
 #include "ViewModel.h"
 
 namespace Crystal {
@@ -24,7 +23,7 @@ public:
 
 	void setViewModel(const ViewModel& vm) { this->viewModel = vm; }
 
-	void setUICommands(CommandChain* chain) { this->commands.reset(chain); }
+	void setUICommands(IUICtrl* ctrl) { this->ctrl.reset(ctrl); }
 
 	void render(const int width, const int height);
 
@@ -60,7 +59,7 @@ public:
 
 private:
 	std::unique_ptr<Graphics::ICamera> camera;
-	std::unique_ptr<CommandChain> commands;
+	std::unique_ptr<IUICtrl> ctrl;
 	Shader::PointRenderer pointRenderer;
 	Graphics::PointBuffer pointBuffer;
 	ViewModel viewModel;

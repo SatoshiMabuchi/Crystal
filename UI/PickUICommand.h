@@ -7,7 +7,7 @@
 namespace Crystal {
 	namespace UI {
 
-class PickUICommand : public IUICommand
+class PickUICommand : public IUICtrl
 {
 public:
 	virtual ~PickUICommand() {}
@@ -27,8 +27,6 @@ public:
 	virtual void onRightDragging(const Math::Vector2df& position) override;
 
 	virtual void onWheel(const float dx) override;
-
-	virtual bool isCompleted() const override { return false; }
 
 private:
 	Math::Vector2df prevPosition;

@@ -19,9 +19,7 @@ void ICanvas::build()
 	camera->setNear(1.0f);
 	camera->setFar(10.0f);
 
-	CommandChain* chain = new CommandChain();
-	chain->setOrigin(new CameraUICommand(getCamera()));
-	setUICommands(chain);
+	setUICommands(new CameraUICommand(getCamera()));
 
 	pointRenderer.build();
 }
@@ -35,53 +33,52 @@ void ICanvas::render(const int width, const int height)
 
 void ICanvas::onLeftButtonDown(const Vector2df& position)
 {
-	commands->onLeftButtonDown(position);
+	ctrl->onLeftButtonDown(position);
 }
 
 void ICanvas::onLeftButtonUp(const Vector2df& position)
 {
-	commands->onLeftButtonUp(position);
+	ctrl->onLeftButtonUp(position);
 }
 
 void ICanvas::onRightButtonDown(const Vector2df& position)
 {
-	commands->onRightButtonDown(position);
+	ctrl->onRightButtonDown(position);
 }
 
 void ICanvas::onRightButtonUp(const Vector2df& position)
 {
-	commands->onRightButtonUp(position);
+	ctrl->onRightButtonUp(position);
 }
 
 void ICanvas::onMiddleButtonDown(const Vector2df& position)
 {
-	commands->onMiddleButtonDown(position);
+	ctrl->onMiddleButtonDown(position);
 }
 
 void ICanvas::onMiddleButtonUp(const Vector2df& position)
 {
-	commands->onMiddleButtonUp(position);
+	ctrl->onMiddleButtonUp(position);
 }
 
 void ICanvas::onLeftDragging(const Vector2df& position)
 {
-	commands->onLeftDragging(position);
+	ctrl->onLeftDragging(position);
 }
 
 void ICanvas::onRightDragging(const Vector2df& position)
 {
-	commands->onRightDragging(position);
+	ctrl->onRightDragging(position);
 }
 
 void ICanvas::onMiddleDragging(const Vector2df& position)
 {
-	commands->onMiddleDragging(position);
+	ctrl->onMiddleDragging(position);
 }
 
-//virtual void onWheel(const float scale) override;
 void ICanvas::onWheel(const float scale)
 {
-	commands->onWheel(scale);
+	ctrl->onWheel(scale);
 }
 
 void ICanvas::fitCamera(const Box3d& boundingBox)

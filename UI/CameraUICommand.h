@@ -9,7 +9,7 @@
 namespace Crystal {
 	namespace UI {
 
-class CameraUICommand : public IUICommand
+class CameraUICommand : public IUICtrl
 {
 public:
 	virtual ~CameraUICommand() {}
@@ -29,8 +29,6 @@ public:
 	virtual void onRightDragging(const Math::Vector2df& position) override;
 
 	virtual void onWheel(const float dx) override;
-
-	virtual bool isCompleted() const override { return false; }
 
 private:
 	Math::Vector2df prevPosition;

@@ -11,22 +11,13 @@ void CtrlMenu::show()
 {
 	if (ImGui::BeginMenu("Ctrl")) {
 		if (ImGui::MenuItem("Camera")) {
-			CommandChain* chain = new CommandChain();
-			chain->setOrigin(new CameraUICommand(canvas->getCamera()));
-			canvas->setUICommands(chain);
+			canvas->setUICommands(new CameraUICommand(canvas->getCamera()));
 		}
 		if (ImGui::MenuItem("Pick")) {
-			CommandChain* chain = new CommandChain();
-			//chain->setOrigin(new PickUICommand(canvas->getCamera()));
-			canvas->setUICommands(chain);
 		}
 		if (ImGui::MenuItem("Rect")) {
-			//canvas->addUICommand(new RectSelectUICtrl(canvas->getCamera()));
 		}
-
 
 		ImGui::EndMenu();
 	}
-	//ImGui::EndMenuBar();
-
 }

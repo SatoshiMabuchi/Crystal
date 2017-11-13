@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraUICommand.h" />
-    <ClInclude Include="CommandChain.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ICanvas.h" />
     <ClInclude Include="IKeyListener.h" />
@@ -38,7 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraUICommand.cpp" />
-    <ClCompile Include="CommandChain.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="ICanvas.cpp" />
     <ClCompile Include="IModel.cpp" />
