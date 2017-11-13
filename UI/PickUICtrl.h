@@ -6,12 +6,12 @@
 namespace Crystal {
 	namespace UI {
 
-class PickUICommand : public IUICtrl
+class PickUICtrl : public IUICtrl
 {
 public:
-	virtual ~PickUICommand() {}
+	virtual ~PickUICtrl() {}
 
-	explicit PickUICommand(Graphics::ICamera* camera);
+	explicit PickUICtrl(Graphics::ICamera* camera);
 
 	virtual void onLeftButtonDown(const Math::Vector2df& position) override;
 

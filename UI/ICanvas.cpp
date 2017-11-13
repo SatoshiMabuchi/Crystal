@@ -17,7 +17,7 @@ void ICanvas::build()
 	camera->setNear(1.0f);
 	camera->setFar(10.0f);
 
-	setUICommands(new CameraUICtrl(getCamera()));
+	setUICtrl(new CameraUICtrl(getCamera()));
 
 	pointRenderer.build();
 }

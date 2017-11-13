@@ -11,7 +11,7 @@ void CtrlMenu::show()
 {
 	if (ImGui::BeginMenu("Ctrl")) {
 		if (ImGui::MenuItem("Camera")) {
-			canvas->setUICommands(new CameraUICtrl(canvas->getCamera()));
+			canvas->setUICtrl(new CameraUICtrl(canvas->getCamera()));
 		}
 		if (ImGui::MenuItem("Pick")) {
 		}

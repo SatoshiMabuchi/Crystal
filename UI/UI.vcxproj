@@ -29,7 +29,7 @@
     <ClInclude Include="IUICtrl.h" />
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="ParticleSystemObject.h" />
-    <ClInclude Include="PickUICommand.h" />
+    <ClInclude Include="PickUICtrl.h" />
     <ClInclude Include="PolygonMeshObject.h" />
     <ClInclude Include="RectSelectUICtrl.h" />
     <ClInclude Include="ViewModel.h" />
@@ -41,7 +41,7 @@
     <ClCompile Include="ICanvas.cpp" />
     <ClCompile Include="IModel.cpp" />
     <ClCompile Include="ObjectRepository.cpp" />
-    <ClCompile Include="PickUICommand.cpp" />
+    <ClCompile Include="PickUICtrl.cpp" />
     <ClCompile Include="ViewModel.cpp" />
   </ItemGroup>
   <ItemGroup>

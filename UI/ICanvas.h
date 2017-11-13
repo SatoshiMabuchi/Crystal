@@ -23,7 +23,7 @@ public:
 
 	void setViewModel(const ViewModel& vm) { this->viewModel = vm; }
 
-	void setUICommands(IUICtrl* ctrl) { this->ctrl.reset(ctrl); }
+	void setUICtrl(IUICtrl* ctrl) { this->ctrl.reset(ctrl); }
 
 	void render(const int width, const int height);
 
