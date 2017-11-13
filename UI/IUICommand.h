@@ -1,6 +1,5 @@
 #pragma once
 #include "IMouseListener.h"
-#include "ICommand.h"
 
 namespace Crystal {
 	namespace UI {

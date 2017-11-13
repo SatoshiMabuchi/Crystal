@@ -6,7 +6,6 @@
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMouseListener.h" />
     <ClInclude Include="IUICommand.h" />
-    <ClInclude Include="ICommand.h" />
     <ClInclude Include="ViewModel.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IKeyListener.h" />
