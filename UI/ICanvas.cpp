@@ -1,8 +1,6 @@
 #include "ICanvas.h"
 #include "../Graphics/PerspectiveCamera.h"
-#include "IUICommand.h"
-#include "CameraUICommand.h"
-//#include "../ThirdParty/glm-0.9.8.5/glm/c"
+#include "CameraUICtrl.h"
 #include "../Math/Box3d.h"
 
 using namespace Crystal::Math;
@@ -19,7 +17,7 @@ void ICanvas::build()
 	camera->setNear(1.0f);
 	camera->setFar(10.0f);
 
-	setUICommands(new CameraUICommand(getCamera()));
+	setUICommands(new CameraUICtrl(getCamera()));
 
 	pointRenderer.build();
 }

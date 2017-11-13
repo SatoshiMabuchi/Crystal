@@ -1,8 +1,7 @@
 #include <memory>
 #include "../Graphics/ICamera.h"
-#include "IUICommand.h"
+#include "IUICtrl.h"
 #include "IMouseListener.h"
-#include "IUICommand.h"
 
 namespace Crystal {
 	namespace UI {

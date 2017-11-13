@@ -2,7 +2,7 @@
 #include "imgui.h"
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
-#include "../UI/CameraUICommand.h"
+#include "../UI/CameraUICtrl.h"
 #include "../UI/RectSelectUICtrl.h"
 
 using namespace Crystal::UI;
@@ -11,7 +11,7 @@ void CtrlMenu::show()
 {
 	if (ImGui::BeginMenu("Ctrl")) {
 		if (ImGui::MenuItem("Camera")) {
-			canvas->setUICommands(new CameraUICommand(canvas->getCamera()));
+			canvas->setUICommands(new CameraUICtrl(canvas->getCamera()));
 		}
 		if (ImGui::MenuItem("Pick")) {
 		}

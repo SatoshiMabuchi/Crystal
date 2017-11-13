@@ -2,19 +2,17 @@
 
 #include <memory>
 #include "../Graphics/ICamera.h"
-#include "IUICommand.h"
-#include "IMouseListener.h"
-#include "IUICommand.h"
+#include "IUICtrl.h"
 
 namespace Crystal {
 	namespace UI {
 
-class CameraUICommand : public IUICtrl
+class CameraUICtrl : public IUICtrl
 {
 public:
-	virtual ~CameraUICommand() {}
+	virtual ~CameraUICtrl() {}
 
-	explicit CameraUICommand(Graphics::ICamera* camera);
+	explicit CameraUICtrl(Graphics::ICamera* camera);
 
 	virtual void onLeftButtonDown(const Math::Vector2df& position) override;
 

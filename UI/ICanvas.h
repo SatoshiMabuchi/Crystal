@@ -8,7 +8,7 @@
 #include <memory>
 #include <list>
 
-#include "IUICommand.h"
+#include "IUICtrl.h"
 #include "ViewModel.h"
 
 namespace Crystal {
