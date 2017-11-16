@@ -14,21 +14,39 @@ namespace Crystal {
 class Sphere3d
 {
 public:
-	Sphere3d();
+	Sphere3d() :
+		center(Vector3dd(0, 0, 0)),
+		radius(1.0f)
+	{}
 
-	Sphere3d(const Vector3dd& center, const float radius);
+	Sphere3d(const Vector3dd& center, const float radius) :
+		center(center),
+		radius(radius)
+	{}
 
-	Sphere3d(const Math::Box3d& boundingBox);
+	/*
+	Sphere3d(const Math::Box3d& boundingBox) {
+		center = boundingBox.getCenter();
+		const auto& length = boundingBox.getLength();
+		radius = std::min<double>(std::min<double>(length.x, length.y), length.z) * 0.5;
+	}
+	*/
 
-	Vector3dd getPositionByAngle(const double u, const double v) const;
+	Vector3dd getPositionByAngle(const double theta, const double phi) const {
+		assert(0.0 <= theta && theta <= Tolerance<double>::getPI());
+		assert(0.0 <= phi && phi <= Tolerance<double>::getTwoPI());
 
-	Vector3dd getPositionByParam(const double u, const double v) const;
+		const auto x = radius * std::sin(theta) * std::cos(phi);
+		const auto y = radius * std::sin(theta) * std::sin(phi);
+		const auto z = radius * std::cos(theta);
+		return Vector3dd(x, y, z);
+	}
 
-	//Vector3dd getNormalByAngle(const T u, const T v) const;
-
-	//Vector3dd getNormalByParam(const T u, const T v) const;
-
-	//Point3d<T> getPoint(const Param<T> u, const Param<T> v) const;
+	Vector3dd getPositionByParam(const double u, const double v) const {
+		const auto theta = u * Tolerance<double>::getPI();
+		const auto phi = v * Tolerance<double>::getTwoPI();
+		return getPositionByAngle(theta, phi);
+	}
 
 	Vector3dd getCenter() const { return center; }
 
@@ -55,17 +73,26 @@ public:
 		assert(isValid());
 	}
 
-	Sphere3d getInnerOffset(const float offsetLength) const;
+	Sphere3d getInnerOffset(const float offsetLength) const {
+		Sphere3d sphere = *this;
+		sphere.radius -= offsetLength;
+		assert(sphere.isValid());
+		return sphere;
+	}
 
-	bool equals(const Sphere3d& rhs) const;
+	bool equals(const Sphere3d& rhs) const {
+		return
+			Tolerance<double>::isEqualLoosely(radius, rhs.radius) &&
+			(center == rhs.center);
+	}
 
-	bool operator==(const Sphere3d& rhs) const;
+	bool operator==(const Sphere3d& rhs) const { return equals(rhs); }
 
-	bool operator!=(const Sphere3d& rhs) const;
+	bool operator!=(const Sphere3d& rhs) const { return !equals(rhs); }
 
-	bool isInner(const Vector3dd& v) const;
+	bool isInner(const Vector3dd& v) const { return glm::distance(v, center) < radius; }
 
-	bool isOuter(const Vector3dd& v) const;
+	bool isOuter(const Vector3dd& v) const { return glm::distance(v, center) > radius; }
 
 private:
 	Vector3dd center;

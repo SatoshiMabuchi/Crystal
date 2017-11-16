@@ -147,7 +147,6 @@
   <ItemGroup>
     <ClCompile Include="Box2d.cpp" />
     <ClCompile Include="Box3d.cpp" />
-    <ClCompile Include="Sphere3d.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

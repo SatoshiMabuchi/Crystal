@@ -23,5 +23,5 @@ TEST(Triangle3dTest, TestGetArea)
 		Vector3dd(0,1,0)
 	};
 	Triangle3d triangle(vertices);
-	EXPECT_FLOAT_EQ(0.5, triangle.getArea());
+	EXPECT_DOUBLE_EQ(0.5, triangle.getArea());
 }
