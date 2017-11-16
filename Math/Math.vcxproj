@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="Box2d.h" />
     <ClInclude Include="Box3d.h" />
+    <ClInclude Include="Line3d.h" />
     <ClInclude Include="Matrix3d.h" />
     <ClInclude Include="Matrix4d.h" />
     <ClInclude Include="Quaternion.h" />
@@ -147,7 +148,6 @@
     <ClCompile Include="Box2d.cpp" />
     <ClCompile Include="Box3d.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
-    <ClCompile Include="Triangle3d.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

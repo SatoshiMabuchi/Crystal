@@ -26,7 +26,7 @@ public:
 
 	std::array<Math::Vector3dd, 3> getVertices() const { return vertices; }
 
-	Math::Triangle3d<double> toTriangle() const { return Math::Triangle3d<double>(vertices); }
+	Math::Triangle3d toTriangle() const { return Math::Triangle3d(vertices); }
 
 private:
 	std::array<Math::Vector3dd, 3> vertices;

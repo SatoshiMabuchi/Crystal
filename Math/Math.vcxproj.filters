@@ -12,11 +12,11 @@
     <ClInclude Include="Vector2d.h" />
     <ClInclude Include="Box2d.h" />
     <ClInclude Include="Triangle3d.h" />
+    <ClInclude Include="Line3d.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box3d.cpp" />
     <ClCompile Include="Sphere3d.cpp" />
     <ClCompile Include="Box2d.cpp" />
-    <ClCompile Include="Triangle3d.cpp" />
   </ItemGroup>
 </Project>

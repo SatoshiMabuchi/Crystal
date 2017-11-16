@@ -11,7 +11,6 @@ namespace Crystal {
 	namespace Math {
 		class Box3d;
 
-template<typename T>
 class Sphere3d
 {
 public:
@@ -21,9 +20,9 @@ public:
 
 	Sphere3d(const Math::Box3d& boundingBox);
 
-	Vector3dd getPositionByAngle(const T u, const T v) const;
+	Vector3dd getPositionByAngle(const double u, const double v) const;
 
-	Vector3dd getPositionByParam(const T u, const T v) const;
+	Vector3dd getPositionByParam(const double u, const double v) const;
 
 	//Vector3dd getNormalByAngle(const T u, const T v) const;
 
@@ -33,7 +32,7 @@ public:
 
 	Vector3dd getCenter() const { return center; }
 
-	T getRadius() const { return radius; }
+	double getRadius() const { return radius; }
 
 	bool isValid() const {
 		return radius >= 0.0f;
@@ -70,7 +69,7 @@ public:
 
 private:
 	Vector3dd center;
-	T radius;
+	double radius;
 };
 
 	}

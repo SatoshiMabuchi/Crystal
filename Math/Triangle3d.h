@@ -6,7 +6,6 @@
 namespace Crystal {
 	namespace Math {
 
-template<typename T>
 class Triangle3d
 {
 public:
@@ -14,12 +13,21 @@ public:
 		vertices(vertices)
 	{}
 
-	Vector3dd getNormal() const;
+	Vector3dd getNormal() const {
+		const auto v1 = vertices[1] - vertices[0];
+		const auto v2 = vertices[2] - vertices[0];
+		return glm::normalize(glm::cross(v1, v2));
+	}
 
-	T getArea() const;
+	double getArea() const {
+		const auto v1 = vertices[1] - vertices[0];
+		const auto v2 = vertices[2] - vertices[0];
+		return glm::length( glm::cross(v1, v2) )  * 0.5;
+	}
 
 private:
 	std::array<Vector3dd, 3> vertices;
 };
+
 	}
 }

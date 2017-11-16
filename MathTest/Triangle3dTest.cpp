@@ -11,7 +11,7 @@ TEST(Triangle3dTest, TestGetNormal)
 		Vector3dd(1,0,0),
 		Vector3dd(0,1,0)
 	};
-	Triangle3d<double> triangle(vertices);
+	Triangle3d triangle(vertices);
 	EXPECT_EQ(Vector3dd(0, 0, 1), triangle.getNormal());
 }
 
@@ -22,6 +22,6 @@ TEST(Triangle3dTest, TestGetArea)
 		Vector3dd(1,0,0),
 		Vector3dd(0,1,0)
 	};
-	Triangle3d<double> triangle(vertices);
+	Triangle3d triangle(vertices);
 	EXPECT_FLOAT_EQ(0.5, triangle.getArea());
 }
