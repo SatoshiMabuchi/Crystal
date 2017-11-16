@@ -14,7 +14,4 @@
     <ClInclude Include="Triangle3d.h" />
     <ClInclude Include="Line3d.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Box3d.cpp" />
-  </ItemGroup>
 </Project>
