@@ -14,10 +14,11 @@ ICamera::ICamera() :
 {
 }
 
-ICamera::ICamera(const glm::vec3& position, const float near_, const float far_) :
+ICamera::ICamera(const glm::vec3& position, const glm::vec3& target, const float near_, const float far_) :
 	azimuth(0.0),
 	elevation(0.0),
 	position(position),
+	target(target),
 	near_(near_),
 	far_(far_),
 	scale(1.0f)

@@ -12,7 +12,7 @@ class ICamera
 public:
 	ICamera();
 
-	ICamera(const glm::vec3& position, const float near_, const float far_);
+	ICamera(const glm::vec3& position, const glm::vec3& target, const float near_, const float far_);
 
 	virtual ~ICamera() = default;
 
