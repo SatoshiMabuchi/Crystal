@@ -26,6 +26,7 @@
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMouseListener.h" />
     <ClInclude Include="IObject.h" />
+    <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IUICtrl.h" />
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="ParticleSystemObject.h" />

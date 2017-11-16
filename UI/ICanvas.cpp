@@ -2,31 +2,28 @@
 #include "../Graphics/PerspectiveCamera.h"
 #include "CameraUICtrl.h"
 #include "../Math/Box3d.h"
+#include "IRenderer.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
-using namespace Crystal::Shader;
 using namespace Crystal::UI;
+
+ICanvas::ICanvas(IRenderer* renderer, ICamera* camera) :
+	renderer(renderer),
+	camera(camera)
+{
+
+}
 
 void ICanvas::build()
 {
-	auto perspectiveCamera = new PerspectiveCamera(1.0f, 0.5f * Tolerance<float>::getPI());
-	perspectiveCamera->setTarget(Vector3df(0, 0, 0));
-	camera.reset(perspectiveCamera);
-	camera->moveTo(glm::vec3(0.0, 0.0, -10.0));
-	camera->setNear(1.0f);
-	camera->setFar(10.0f);
-
 	setUICtrl(new CameraUICtrl(getCamera()));
-
-	pointRenderer.build();
+	renderer->build();
 }
 
 void ICanvas::render(const int width, const int height)
 {
-	glClearColor(0.0, 0.0, 1.0, 0.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	pointRenderer.render(*camera, viewModel.getPointBuffer());
+	renderer->render(width, height);
 }
 
 void ICanvas::onLeftButtonDown(const Vector2df& position)

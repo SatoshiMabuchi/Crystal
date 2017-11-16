@@ -3,27 +3,34 @@
 
 #include "../Math/Vector2d.h"
 #include "../Math/Box3d.h"
-#include "../Shader/PointRenderer.h"
 #include "../Graphics/ICamera.h"
 #include <memory>
 #include <list>
 
 #include "IUICtrl.h"
 #include "ViewModel.h"
+#include "IRenderer.h"
 
 namespace Crystal {
 	namespace UI {
 		class IUICtrl;
 		class IModel;
+		class IRenderer;
 
 class ICanvas : public IMouseListener
 {
 public:
+	ICanvas(IRenderer* renderer, Graphics::ICamera* camera);
+
+	virtual ~ICanvas() {}
+
 	void build();
 
-	void setViewModel(const ViewModel& vm) { this->viewModel = vm; }
-
 	void setUICtrl(IUICtrl* ctrl) { this->ctrl.reset(ctrl); }
+
+	void setRenderer(IRenderer* renderer) { this->renderer.reset(renderer); }
+
+	void setViewModel(ViewModel viewModel) { this->renderer->setViewModel(viewModel); }
 
 	void render(const int width, const int height);
 
@@ -60,8 +67,7 @@ public:
 private:
 	std::unique_ptr<Graphics::ICamera> camera;
 	std::unique_ptr<IUICtrl> ctrl;
-	Shader::PointRenderer pointRenderer;
-	Graphics::PointBuffer pointBuffer;
+	std::unique_ptr<IRenderer> renderer;
 	ViewModel viewModel;
 };
 	}

@@ -9,6 +9,8 @@ namespace Crystal {
 class IModel
 {
 public:
+	virtual ~IModel() {}
+
 	bool read(const std::string& filename);
 
 	bool write(const std::string& filename) const;
@@ -23,7 +25,6 @@ public:
 
 private:	
 	ObjectRepository objects;
-	int nextId;
 };
 	}
 }
