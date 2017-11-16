@@ -5,11 +5,9 @@
 #include "Buffer1d.h"
 #include "Buffer4d.h"
 #include "Material.h"
+#include "../Shape/PolygonMesh.h"
 
 namespace Crystal {
-	namespace Shape {
-		class PolygonMesh;
-	}
 	namespace Graphics {
 
 class TriangleBufferBlock
@@ -33,9 +31,19 @@ private:
 class TriangleBuffer
 {
 public:
-	TriangleBuffer();
+	TriangleBuffer() {}
 
-	void add(const Shape::PolygonMesh& polygon, Material* mat = nullptr);
+	void add(const Shape::PolygonMesh& polygon, Material* mat = nullptr) {
+		const auto& faces = polygon.getFaces();
+		std::vector<unsigned int> indices;
+		for (auto f : faces) {
+			indices.push_back(f->getV1()->getId());
+			indices.push_back(f->getV2()->getId());
+			indices.push_back(f->getV3()->getId());
+		}
+		TriangleBufferBlock block(indices, mat);
+		blocks.push_back(block);
+	}
 
 	Buffer3d<float> getPositions() const { return positions; }
 

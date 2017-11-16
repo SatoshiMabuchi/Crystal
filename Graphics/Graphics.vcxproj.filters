@@ -19,10 +19,4 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="LineBuffer.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ICamera.cpp" />
-    <ClCompile Include="PointBuffer.cpp" />
-    <ClCompile Include="TriangleBuffer.cpp" />
-    <ClCompile Include="LineBuffer.cpp" />
-  </ItemGroup>
 </Project>

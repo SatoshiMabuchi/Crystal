@@ -13,9 +13,15 @@ class LineBuffer
 public:
 	LineBuffer() {};
 
-	void clear();
+	void clear() {
+		positions.clear();
+		colors.clear();
+	}
 
-	void add(const Math::Vector3df& position, const ColorRGBAf& color);
+	void add(const Math::Vector3df& position, const ColorRGBAf& color) {
+		positions.add(position);
+		colors.add(color);
+	}
 
 	Graphics::Buffer3d<float> getPositions() const { return positions; }
 
