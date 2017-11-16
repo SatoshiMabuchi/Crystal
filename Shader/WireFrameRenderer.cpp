@@ -57,7 +57,7 @@ void WireFrameRenderer::findLocation()
 	shader.findAttribLocation("color");
 }
 
-void WireFrameRenderer::render(const ICamera& camera, const LineBuffer& buffer, const float width)
+void WireFrameRenderer::render(const ICamera& camera)
 {
 	const auto& indices = buffer.getIndices();
 	const auto& positions = buffer.getPositions().get();

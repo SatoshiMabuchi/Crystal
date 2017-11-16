@@ -5,28 +5,30 @@
 #include "../Graphics/PointBuffer.h"
 
 #include "ShaderObject.h"
+#include "IShader.h"
 
 namespace Crystal {
 	namespace Shader {
 
-class PointRenderer
+class PointRenderer : public IShader
 {
 public:
 	void findLocation();
 
-	void render(const Graphics::ICamera& camera, const Graphics::PointBuffer& buffer);
+	void setBuffer(const Graphics::PointBuffer& buffer) { this->buffer = buffer; }
 
-	//void changeSize(const float size) { this->pointSize = size; }
-	bool build();
+	void render(const Graphics::ICamera& camera) override;
+
+	bool build() override;
 
 private:
-
 	std::string getBuildinVertexShaderSource() const;
 
 	std::string getBuildinFragmentShaderSource() const;
 
 private:
 	ShaderObject shader;
+	Graphics::PointBuffer buffer;
 };
 
 	}

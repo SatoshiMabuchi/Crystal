@@ -1,6 +1,7 @@
 #include "ObjectRepository.h"
 
 using namespace Crystal::Math;
+using namespace Crystal::Shape;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
@@ -17,6 +18,12 @@ int ObjectRepository::addParticleSystem(const std::vector<Vector3df>& positions,
 	return particleSystems.back().getId();
 }
 
+int ObjectRepository::addWireFrame(WireFrame* wire, const ColorRGBAf& color)
+{
+	wires.push_back(WireFrameObject(nextId++, wire));
+	return wires.back().getId();
+}
+
 Box3d ObjectRepository::getBoundingBox() const
 {
 	if (particleSystems.empty()) {
@@ -28,3 +35,4 @@ Box3d ObjectRepository::getBoundingBox() const
 	}
 	return bb;
 }
+

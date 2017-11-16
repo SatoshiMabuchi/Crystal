@@ -3,6 +3,7 @@
 #include "FileReader.h"
 
 using namespace Crystal::Math;
+using namespace Crystal::Shape;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
@@ -27,6 +28,11 @@ bool IModel::write(const std::string& filename) const
 int IModel::addParticleSystem(const std::vector<Vector3df>& positions, const ColorRGBAf& color, const float size)
 {
 	return objects.addParticleSystem(positions, color, size);
+}
+
+int IModel::addWireFrame(WireFrame* wire, const ColorRGBAf& color)
+{
+	return objects.addWireFrame(wire, color);
 }
 
 ViewModel IModel::toViewModel() const

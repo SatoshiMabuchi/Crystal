@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="DepthRenderer.h" />
     <ClInclude Include="DepthTextureObject.h" />
+    <ClInclude Include="IShader.h" />
     <ClInclude Include="ITextureObject.h" />
     <ClInclude Include="OnScreenRenderer.h" />
     <ClInclude Include="PointRenderer.h" />

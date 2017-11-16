@@ -11,6 +11,7 @@
     <ClCompile Include="CtrlMenu.cpp" />
     <ClCompile Include="ParticlePanel.cpp" />
     <ClCompile Include="CameraMenu.cpp" />
+    <ClCompile Include="WireFramePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="CtrlMenu.h" />
     <ClInclude Include="ParticlePanel.h" />
     <ClInclude Include="CameraMenu.h" />
+    <ClInclude Include="WireFramePanel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

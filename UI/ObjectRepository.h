@@ -18,6 +18,8 @@ public:
 
 	std::list<ParticleSystemObject> getParticleSystems() const { return particleSystems; }
 
+	int addWireFrame(Shape::WireFrame* wire, const Graphics::ColorRGBAf& color);
+
 	Math::Box3d getBoundingBox() const;
 
 private:

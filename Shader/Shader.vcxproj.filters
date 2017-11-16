@@ -15,6 +15,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SmoothRenderer.h" />
     <ClInclude Include="WireFrameRenderer.h" />
+    <ClInclude Include="IShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />

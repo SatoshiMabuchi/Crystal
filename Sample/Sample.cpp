@@ -31,19 +31,18 @@ namespace Crystal {
 			}
 
 			void setViewModel(const ViewModel& vm) override {
-				this->pointBuffer = vm.getPointBuffer();
+				this->pointRenderer.setBuffer( vm.getPointBuffer() );
 			}
 
 			void render(const int width, const int height) override
 			{
 				glClearColor(0.0, 0.0, 1.0, 0.0);
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-				pointRenderer.render(*camera, pointBuffer);
+				pointRenderer.render(*camera);
 			}
 
 		private:
 			Shader::PointRenderer pointRenderer;
-			Graphics::PointBuffer pointBuffer;
 			Graphics::ICamera* camera;
 		};
 	}

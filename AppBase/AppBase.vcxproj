@@ -29,6 +29,7 @@
     <ClCompile Include="PolygonPanel.cpp" />
     <ClCompile Include="tinyfiledialogs.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WireFramePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraMenu.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="PolygonPanel.h" />
     <ClInclude Include="tinyfiledialogs.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="WireFramePanel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

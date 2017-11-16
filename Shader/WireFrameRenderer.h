@@ -3,21 +3,26 @@
 
 #include "../Graphics/ICamera.h"
 #include "../Graphics/LineBuffer.h"
+#include "IShader.h"
 
 #include "ShaderObject.h"
 
 namespace Crystal {
 	namespace Shader {
 
-class WireFrameRenderer
+class WireFrameRenderer : public IShader
 {
 public:
 	void findLocation();
 
-	void render(const Graphics::ICamera& camera, const Graphics::LineBuffer& buffer, const float width);
+	void setBuffer(const Graphics::LineBuffer& buffer, const float width) {
+		this->buffer = buffer;
+		this->width = width;
+	}
 
-	//void changeSize(const float size) { this->pointSize = size; }
-	bool build();
+	void render(const Graphics::ICamera& camera) override;
+
+	bool build() override;
 
 private:
 
@@ -27,6 +32,8 @@ private:
 
 private:
 	ShaderObject shader;
+	Graphics::LineBuffer buffer;
+	float width;
 };
 
 	}
