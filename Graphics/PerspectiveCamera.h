@@ -2,6 +2,7 @@
 #define __CRYSTAL_GRAPHICS_PERSPECTIVE_CAMERA_H__
 
 #include "ICamera.h"
+#include "../ThirdParty/glm-0.9.8.5/glm/gtc/matrix_transform.hpp"
 
 namespace Crystal {
 	namespace Graphics {
@@ -27,7 +28,9 @@ public:
 
 	void setAspect(const float aspect) { this->aspect = aspect; }
 
-	glm::mat4 getProjectionMatrix() const override;
+	glm::mat4 getProjectionMatrix() const override {
+		return glm::perspective(fovy, aspect, near_, far_);
+	}
 
 private:
 	float fovy;

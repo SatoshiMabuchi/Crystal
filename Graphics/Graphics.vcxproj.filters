@@ -21,12 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
-    <ClCompile Include="PerspectiveCamera.cpp" />
-    <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
-    <ClCompile Include="IImage.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Imagef.cpp" />
     <ClCompile Include="TriangleBuffer.cpp" />
     <ClCompile Include="LineBuffer.cpp" />
   </ItemGroup>

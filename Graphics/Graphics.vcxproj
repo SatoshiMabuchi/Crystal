@@ -39,12 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICamera.cpp" />
-    <ClCompile Include="IImage.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Imagef.cpp" />
     <ClCompile Include="LineBuffer.cpp" />
-    <ClCompile Include="OrthogonalCamera.cpp" />
-    <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PointBuffer.cpp" />
     <ClCompile Include="TriangleBuffer.cpp" />
   </ItemGroup>
