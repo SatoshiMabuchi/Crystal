@@ -2,6 +2,7 @@
 
 namespace Crystal {
 	namespace UI {
+		class ViewModel;
 
 class IRenderer
 {

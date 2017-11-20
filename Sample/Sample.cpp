@@ -4,49 +4,16 @@
 #include "../AppBase/CtrlMenu.h"
 
 #include "../AppBase/ParticlePanel.h"
-
+#include "../AppBase/WireFramePanel.h"
 
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
-
-#include "../UI/IRenderer.h"
-#include "../Shader/PointRenderer.h"
+#include "Renderer.h"
 
 using namespace Crystal::Math;
 using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
-namespace Crystal {
-	namespace UI {
-		class Renderer : public IRenderer
-		{
-		public:
-			explicit Renderer(Graphics::ICamera* camera) :
-				camera(camera)
-			{}
-
-			bool build()
-			{
-				return pointRenderer.build();
-			}
-
-			void setViewModel(const ViewModel& vm) override {
-				this->pointRenderer.setBuffer( vm.getPointBuffer() );
-			}
-
-			void render(const int width, const int height) override
-			{
-				glClearColor(0.0, 0.0, 1.0, 0.0);
-				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-				pointRenderer.render(*camera);
-			}
-
-		private:
-			Shader::PointRenderer pointRenderer;
-			Graphics::ICamera* camera;
-		};
-	}
-}
 
 #include "../Graphics/PerspectiveCamera.h"
 
@@ -68,6 +35,7 @@ int main(int, char**)
 	Window window(&model, &canvas);
 	if (!window.init()) {
 		assert(false);
+		return 0;
 	}
 
 	window.add(new FileMenu(&model, &canvas));
@@ -75,6 +43,7 @@ int main(int, char**)
 	window.add(new CtrlMenu(&model, &canvas));
 
 	window.add(new ParticlePanel(&model, &canvas));
+	window.add(new WireFramePanel(&model, &canvas));
 
 	window.show();
 
