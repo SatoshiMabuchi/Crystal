@@ -42,6 +42,11 @@ ViewModel IModel::toViewModel() const
 	for (const auto& p : particleSystems) {
 		vm.add(p);
 	}
+	const auto& wires = objects.getWireFrames();
+	for (const auto& w : wires) {
+		vm.add(w);
+	}
+
 	return vm;
 }
 

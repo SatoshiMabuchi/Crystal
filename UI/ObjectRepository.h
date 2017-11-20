@@ -22,6 +22,8 @@ public:
 
 	Math::Box3d getBoundingBox() const;
 
+	std::list<WireFrameObject> getWireFrames() const { return wires; }
+
 private:
 	int nextId;
 	std::list<ParticleSystemObject> particleSystems;

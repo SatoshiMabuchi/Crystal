@@ -1,7 +1,9 @@
 #pragma once
 
 #include "../Graphics/PointBuffer.h"
+#include "../Graphics/LineBuffer.h"
 #include "ParticleSystemObject.h"
+#include "WireFrameObject.h"
 
 namespace Crystal {
 	namespace UI {
@@ -13,10 +15,15 @@ public:
 
 	void add(const ParticleSystemObject& object);
 
+	void add(const WireFrameObject& object);
+
 	Graphics::PointBuffer getPointBuffer() const { return pointBuffer; }
+
+	Graphics::LineBuffer getLineBuffer() const { return lineBuffer; }
 
 private:
 	Graphics::PointBuffer pointBuffer;
+	Graphics::LineBuffer lineBuffer;
 };
 	}
 }

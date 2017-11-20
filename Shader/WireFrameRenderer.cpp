@@ -13,6 +13,7 @@ bool WireFrameRenderer::build()
 	const auto& fShader = getBuildinFragmentShaderSource();
 
 	bool result = shader.build(vShader, fShader);
+	findLocation();
 	return result;
 }
 
@@ -39,7 +40,7 @@ std::string WireFrameRenderer::getBuildinFragmentShaderSource() const
 	std::ostringstream stream;
 	stream
 		<< "#version 150" << std::endl
-		<< "in vec4 vId;" << std::endl
+		<< "in vec4 vColor;" << std::endl
 		<< "out vec4 fragColor;" << std::endl
 		<< "void main(void) {" << std::endl
 		<< "	fragColor = vColor;" << std::endl

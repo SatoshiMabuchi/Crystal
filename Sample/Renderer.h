@@ -3,6 +3,7 @@
 #include "../../Crystal/UI/IRenderer.h"
 #include "../../Crystal/Graphics/ICamera.h"
 #include "../../Crystal/Shader/PointRenderer.h"
+#include "../../Crystal/Shader/WireFrameRenderer.h"
 
 namespace Crystal {
 	namespace UI {
@@ -23,6 +24,8 @@ public:
 
 private:
 	Shader::PointRenderer pointRenderer;
+	Shader::WireFrameRenderer wireRenderer;
+
 	Graphics::ICamera* camera;
 };
 	}

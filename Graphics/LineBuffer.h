@@ -14,13 +14,15 @@ public:
 	LineBuffer() {};
 
 	void clear() {
+		indices.clear();
 		positions.clear();
 		colors.clear();
 	}
 
-	void add(const Math::Vector3df& position, const ColorRGBAf& color) {
+	void add(const Math::Vector3df& position, const ColorRGBAf& color, const int index) {
 		positions.add(position);
 		colors.add(color);
+		indices.push_back(index);
 	}
 
 	Graphics::Buffer3d<float> getPositions() const { return positions; }
