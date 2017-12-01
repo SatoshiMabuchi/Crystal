@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CubeMapTextureObject.h" />
+    <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="DepthRenderer.h" />
     <ClInclude Include="DepthTextureObject.h" />
     <ClInclude Include="IShader.h" />
@@ -151,7 +153,10 @@
     <ClInclude Include="WireFrameRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CubeMapTextureObject.cpp" />
+    <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="DepthRenderer.cpp" />
+    <ClCompile Include="DepthTextureObject.cpp" />
     <ClCompile Include="OnScreenRenderer.cpp" />
     <ClCompile Include="PointRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />

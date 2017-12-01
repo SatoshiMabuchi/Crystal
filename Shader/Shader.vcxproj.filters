@@ -17,6 +17,8 @@
     <ClInclude Include="WireFrameRenderer.h" />
     <ClInclude Include="IShader.h" />
     <ClInclude Include="TextureObject.h" />
+    <ClInclude Include="CubeMapTextureObject.h" />
+    <ClInclude Include="DepthBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderObject.cpp" />
@@ -31,6 +33,9 @@
     <ClCompile Include="SmoothRenderer.cpp" />
     <ClCompile Include="WireFrameRenderer.cpp" />
     <ClCompile Include="TextureObject.cpp" />
+    <ClCompile Include="CubeMapTextureObject.cpp" />
+    <ClCompile Include="DepthTextureObject.cpp" />
+    <ClCompile Include="DepthBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
