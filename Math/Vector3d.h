@@ -15,22 +15,22 @@ using Vector3dd = glm::dvec3;
 
 static float getLengthSquared(const Vector3df& v)
 {
-	return std::pow(v.x, 2.0f) + std::pow(v.y, 2.0f) + std::pow(v.z, 2.0f);
+	return std::pow(v.x, 2) + std::pow(v.y, 2) + std::pow(v.z, 2);
 }
 
 static double getDistanceSquared(const Vector3dd& v)
 {
-	return std::pow(v.x, 2.0) + std::pow(v.y, 2.0) + std::pow(v.z, 2.0);
+	return std::pow(v.x, 2) + std::pow(v.y, 2) + std::pow(v.z, 2);
 }
 
 static float getDistanceSquared(const Vector3df& lhs, const Vector3df& rhs)
 {
-	return std::pow(lhs.x - rhs.x, 2.0f) + std::pow(lhs.y - rhs.y, 2.0f) + std::pow(lhs.z - rhs.z, 2.0f);
+	return std::pow(lhs.x - rhs.x, 2) + std::pow(lhs.y - rhs.y, 2) + std::pow(lhs.z - rhs.z, 2);
 }
 
 static double getDistanceSquared(const Vector3dd& lhs, const Vector3dd& rhs)
 {
-	return std::pow(lhs.x - rhs.x, 2.0) + std::pow(lhs.y - rhs.y, 2.0) + std::pow(lhs.z - rhs.z, 2.0);
+	return std::pow(lhs.x - rhs.x, 2) + std::pow(lhs.y - rhs.y, 2) + std::pow(lhs.z - rhs.z, 2);
 }
 
 static bool isEqualLoosely(const Vector3dd& lhs, const Vector3dd& rhs)
