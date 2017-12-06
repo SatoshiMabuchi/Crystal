@@ -391,3 +391,14 @@ std::vector<IShaderAttribute*> ShaderObject::getActiveAttributes()
 	return attributes;
 }
 
+unsigned int ShaderObject::getUniformLocation(const std::string& str)
+{
+	assert(uniformMap.find(str) != uniformMap.end());
+	return uniformMap[str];
+}
+
+unsigned int ShaderObject::getAttribLocation(const std::string& str)
+{
+	assert(attribMap.find(str) != attribMap.end());
+	return attribMap[str];
+}
