@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="DXFFileReader.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="ImageFileReader.h" />
     <ClInclude Include="MTLFileReader.h" />
     <ClInclude Include="OBJFileReader.h" />
     <ClInclude Include="PCDFileReader.h" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXFFileReader.cpp" />
+    <ClCompile Include="ImageFileReader.cpp" />
     <ClCompile Include="MTLFileReader.cpp" />
     <ClCompile Include="OBJFileReader.cpp" />
     <ClCompile Include="PCDFileReader.cpp" />
