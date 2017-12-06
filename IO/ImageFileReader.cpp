@@ -36,5 +36,6 @@ bool ImageFileReader::read(const std::string& filename)
 			i += bpp;
 		}
 	}
+	stbi_image_free(pixels);
 	return true;
 }

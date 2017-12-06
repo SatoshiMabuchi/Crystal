@@ -79,7 +79,9 @@ public:
 		this->elevation += elevation;
 	}
 
-	void zoom(const float s) { this->scale += s; }
+	void zoom(const float s) { this->position += s * getForward(); }
+
+	Math::Vector3df getForward() const { return target - position; }
 
 protected:
 	Math::Vector3df target;
