@@ -12,6 +12,8 @@ using namespace Crystal::UI;
 
 void ParticlePanel::show()
 {
+	ImGui::Begin("Particle");
+
 	if (ImGui::Button("Box")) {
 		ImGui::OpenPopup("Box");
 	}
@@ -39,4 +41,6 @@ void ParticlePanel::show()
 		}
 		ImGui::EndPopup();
 	}
+
+	ImGui::End();
 }

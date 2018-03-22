@@ -7,7 +7,10 @@ namespace Crystal {
 
 class PolygonPanel : public IPanel
 {
-	PolygonPanel(IModel* model, ICanvas* canvas);
+public:
+	PolygonPanel(IModel* model, ICanvas* canvas) :
+		IPanel(model, canvas)
+	{}
 
 	void show() override;
 };

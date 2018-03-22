@@ -12,6 +12,8 @@ using namespace Crystal::UI;
 
 void PolygonPanel::show()
 {
+	ImGui::Begin("Polygon");
+
 	if (ImGui::Button("Sphere")) {
 		ImGui::OpenPopup("Sphere");
 	}
@@ -32,4 +34,6 @@ void PolygonPanel::show()
 		}
 		ImGui::EndPopup();
 	}
+
+	ImGui::End();
 }

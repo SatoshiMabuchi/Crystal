@@ -5,6 +5,7 @@
 
 #include "../AppBase/ParticlePanel.h"
 #include "../AppBase/WireFramePanel.h"
+#include "../AppBase/PolygonPanel.h"
 
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
@@ -44,6 +45,7 @@ int main(int, char**)
 
 	window.add(new ParticlePanel(&model, &canvas));
 	window.add(new WireFramePanel(&model, &canvas));
+	window.add(new PolygonPanel(&model, &canvas));
 
 	window.show();
 

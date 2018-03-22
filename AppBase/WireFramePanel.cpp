@@ -43,12 +43,14 @@ void WireFramePanel::show()
 		ImGui::InputFloat3("Center", &center[0]);
 		static float radius = 1.0;
 		ImGui::InputFloat("Radius", &radius);
-		
+		static glm::vec4 color;
+		ImGui::ColorPicker4("Color", &color[0]);
+
 		if (ImGui::Button("OK")) {
 			Sphere3d sphere(center, radius);
 			Crystal::Shape::WireFrameBuilder builder;
 			builder.build(sphere);
-			model->getRepository()->addWireFrame(builder.getWireFrame(), ColorRGBAf(1, 1, 1, 1));
+			model->getRepository()->addWireFrame(builder.getWireFrame(), color);
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();
