@@ -89,3 +89,13 @@ TYPED_TEST(Box3dTest, TestAdd)
 	const Box3d expected(Vector3dd(-1, 0, 0), Vector3dd(3, 3, 3));
 	EXPECT_EQ(expected, b1);
 }
+
+TYPED_TEST(Box3dTest, TestGetPosition)
+{
+	const Box3d b1(Vector3dd(0, 0, 0), Vector3dd(2, 2, 2));
+	EXPECT_EQ(Vector3dd(0,0,0), b1.getPosition(Vector3dd(0, 0, 0)));
+	EXPECT_EQ(Vector3dd(2,0,0), b1.getPosition(Vector3dd(1, 0, 0)));
+	EXPECT_EQ(Vector3dd(2,2,0), b1.getPosition(Vector3dd(1, 1, 0)));
+	EXPECT_EQ(Vector3dd(0,2,0), b1.getPosition(Vector3dd(0, 1, 0)));
+
+}

@@ -28,3 +28,11 @@
 /ThirdParty/nativefiledialog/build/vs2010/NativeFileDialog.VC.db
 /ThirdParty/nativefiledialog/build/vs2010/NativeFileDialog.VC.VC.opendb
 /ipch/SHADER-c9bf7a22
+/AppBase/x64/Debug
+/AppBase/x64/Release
+/IO/x64/Release
+/IOTest/x64
+/Sample/imgui.ini
+/Shape/x64/Release
+/UI/x64
+/UITest/x64

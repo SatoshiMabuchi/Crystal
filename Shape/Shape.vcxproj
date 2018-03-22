@@ -33,6 +33,7 @@
     <ClCompile Include="HalfEdge.cpp" />
     <ClCompile Include="PolygonMesh.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="WireFrameBuilder.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{76FDBCE5-E588-4BC9-97B4-C8FE5D76F91A}</ProjectGuid>

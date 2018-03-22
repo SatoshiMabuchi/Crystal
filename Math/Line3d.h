@@ -14,6 +14,11 @@ public:
 	{
 	}
 
+	static Line3dd fromPoints(const Vector3dd& start, const Vector3dd& end)
+	{
+		return Line3dd(start, end - start);
+	}
+
 	Math::Vector3dd getStart() const { return origin; }
 
 	Math::Vector3dd getEnd() const { return origin + dir; }
