@@ -50,7 +50,6 @@ std::string SmoothRenderer::getBuildinFragmentShaderSource() const
 		<< "in vec3 vTexCoord;" << std::endl
 		<< "out vec4 fragColor;" << std::endl
 		<< "uniform vec3 eyePosition;" << std::endl
-		<< "uniform sampler2D diffuseTex;" << std::endl
 		<< "struct LightInfo {" << std::endl
 		<< "	vec3 position;" << std::endl
 		<< "	vec3 La;" << std::endl
@@ -71,8 +70,7 @@ std::string SmoothRenderer::getBuildinFragmentShaderSource() const
 		<< "	vec3 r = reflect( -s, normal );" << std::endl
 		<< "	vec3 ambient = light.La * material.Ka;" << std::endl
 		<< "	float innerProduct = max( dot(s,normal), 0.0);" << std::endl
-		<< "	vec4 texDiffuse = texture(diffuseTex, vTexCoord.rg);" << std::endl
-		<< "	vec3 diffuse = light.Ld * material.Kd * innerProduct * texDiffuse.rgb;" << std::endl
+		<< "	vec3 diffuse = light.Ld * material.Kd * innerProduct;" << std::endl
 		<< "	vec3 specular = vec3(0.0);" << std::endl
 		<< "	if(innerProduct > 0.0) {" << std::endl
 		<< "		specular = light.Ls * material.Ks * pow( max( dot(r,v), 0.0 ), material.shininess );" << std::endl
@@ -100,7 +98,6 @@ void SmoothRenderer::findLocation()
 	shader.findUniformLocation("material.Kd");
 	shader.findUniformLocation("material.Ks");
 	shader.findUniformLocation("material.shininess");
-	shader.findUniformLocation("diffuseTex");
 
 	shader.findAttribLocation("position");
 	shader.findAttribLocation("normal");
@@ -108,7 +105,7 @@ void SmoothRenderer::findLocation()
 }
 
 
-void SmoothRenderer::render(const ICamera& camera, const TriangleBuffer& buffer, const PointLight& light)
+void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 {
 	const auto& positions = buffer.getPositions().get();// buffers[0].get();
 	const auto& normals = buffer.getNormals().get();//buffers[1].get();
@@ -159,24 +156,7 @@ void SmoothRenderer::render(const ICamera& camera, const TriangleBuffer& buffer,
 	//glDrawElements(GL_TRIANGLES, static_cast<GLsizei>( indices.size()), GL_UNSIGNED_INT, indices.data());
 	for (const auto& b : buffer.getBlocks()) {
 		const auto& indices = b.getIndices();
-		const auto material = b.getMaterial();
-		assert(material != nullptr);
-		// gl4fv@‚É•ÏXD
-		glUniform3fv(shader.getUniformLocation("material.Ka"), 1, &material->getAmbient()[0]);
-		glUniform3fv(shader.getUniformLocation("material.Kd"), 1, &material->getDiffuse()[0]);
-		glUniform3fv(shader.getUniformLocation("material.Ks"), 1, &material->getSpecular()[0]);
-		glUniform1f(shader.getUniformLocation("material.shininess"), material->getShininess());
-
-		/*
-		auto tex = material->getTexture().getDiffuse();
-		assert(tex);
-		auto texObject = textureRep.find(tex);
-		texObject->bind();
-
-		glUniform1i(shader.getUniformLocation("diffuseTex"), texObject->getId());
 		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, indices.data());
-		texObject->unbind();
-		*/
 	}
 
 

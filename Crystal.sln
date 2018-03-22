@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{EF054C93-201B-4807-9285-CABC9C68978A}"
 EndProject
@@ -55,11 +55,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IOTest", "IOTest\IOTest.vcxproj", "{C34E306D-8361-41D4-9141-D646162D3583}"
 	ProjectSection(ProjectDependencies) = postProject
 		{198160CC-5ED1-499D-AD45-90DBAC4852F8} = {198160CC-5ED1-499D-AD45-90DBAC4852F8}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UITest", "UITest\UITest.vcxproj", "{C21C68CF-E866-4446-9D83-3133D442F360}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FAC137D1-3997-43DD-BA2A-11EA7355AC6B} = {FAC137D1-3997-43DD-BA2A-11EA7355AC6B}
 	EndProjectSection
 EndProject
 Global
@@ -158,16 +153,11 @@ Global
 		{C34E306D-8361-41D4-9141-D646162D3583}.Release|x64.Build.0 = Release|x64
 		{C34E306D-8361-41D4-9141-D646162D3583}.Release|x86.ActiveCfg = Release|Win32
 		{C34E306D-8361-41D4-9141-D646162D3583}.Release|x86.Build.0 = Release|Win32
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Debug|x64.ActiveCfg = Debug|x64
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Debug|x64.Build.0 = Debug|x64
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Debug|x86.ActiveCfg = Debug|Win32
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Debug|x86.Build.0 = Debug|Win32
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Release|x64.ActiveCfg = Release|x64
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Release|x64.Build.0 = Release|x64
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Release|x86.ActiveCfg = Release|Win32
-		{C21C68CF-E866-4446-9D83-3133D442F360}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90482F15-2F21-4098-9B30-0F69A2766AFA}
 	EndGlobalSection
 EndGlobal

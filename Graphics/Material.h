@@ -12,69 +12,72 @@ namespace Crystal {
 	namespace Graphics {
 
 
-		class Material
-		{
-		public:
+class Material
+{
+public:
 
-			Material(const unsigned int id = 0) :
-				diffuse(Graphics::ColorRGBAf(0,0,0,0)),
-				specular(Graphics::ColorRGBAf(0,0,0,0)),
-				ambient(Graphics::ColorRGBAf(0,0,0,0)),
-				shininess(1.0f),
-				transparent(0.0f),
-				id(id)
-			{}
+	Material(const unsigned int id = 0) :
+		diffuse(Graphics::ColorRGBAf(0,0,0,0)),
+		specular(Graphics::ColorRGBAf(0,0,0,0)),
+		ambient(Graphics::ColorRGBAf(0,0,0,0)),
+		shininess(1.0f),
+		transparent(0.0f),
+		id(id)
+	{}
 
-			~Material()
-			{}
+	~Material()
+	{}
 
-		public:
+public:
 
-			std::string getName() const { return name; }
+	std::string getName() const { return name; }
 
-			void setName(const std::string& name) { this->name = name; }
+	void setName(const std::string& name) { this->name = name; }
 
-			void setAmbient(const Graphics::ColorRGBAf& a) { this->ambient = a; }
+	void setAmbient(const Graphics::ColorRGBAf& a) { this->ambient = a; }
 
-			Graphics::ColorRGBAf getAmbient() const { return ambient; }
+	Graphics::ColorRGBAf getAmbient() const { return ambient; }
 
-			void setDiffuse(const Graphics::ColorRGBAf& d) { this->diffuse = d; }
+	void setDiffuse(const Graphics::ColorRGBAf& d) { this->diffuse = d; }
 
-			Graphics::ColorRGBAf getDiffuse() const { return diffuse; }
+	Graphics::ColorRGBAf getDiffuse() const { return diffuse; }
 
-			void setSpecular(const Graphics::ColorRGBAf& s) { this->specular = s; }
+	void setSpecular(const Graphics::ColorRGBAf& s) { this->specular = s; }
 
-			Graphics::ColorRGBAf getSpecular() const { return specular; }
+	Graphics::ColorRGBAf getSpecular() const { return specular; }
 
-			void setShininess(const float s) { this->shininess = s; }
+	void setShininess(const float s) { this->shininess = s; }
 
-			float getShininess() const { return shininess; }
+	float getShininess() const { return shininess; }
 
-			void setTransparent(const float t) { this->transparent = t; }
+	void setTransparent(const float t) { this->transparent = t; }
 
-			float getTransparent() const { return transparent; }
+	float getTransparent() const { return transparent; }
 
-			//Texture getTexture() const { return texture; }
+	//Texture getTexture() const { return texture; }
 
-			//void setTexture(const Texture texture) { this->texture = texture; }
+	//void setTexture(const Texture texture) { this->texture = texture; }
 
-			unsigned int getId() const { return id; }
+	int getTextureId() const { return textureId; }
 
-		private:
-			std::string name;
+	void setTextureId(const int id) { this->textureId = id; }
 
-			float shininess;
-			float transparent;
-			Graphics::ColorRGBAf ambient;
-			Graphics::ColorRGBAf diffuse;
-			Graphics::ColorRGBAf specular;
+	unsigned int getId() const { return id; }
 
-			const unsigned int id;
+private:
+	std::string name;
 
-			//Texture texture;
-		};
+	float shininess;
+	float transparent;
+	Graphics::ColorRGBAf ambient;
+	Graphics::ColorRGBAf diffuse;
+	Graphics::ColorRGBAf specular;
+	int textureId;
 
-		//using PolygonMaterialMap = std::map<Core::PolygonMesh*, Material*>;
+	const unsigned int id;
+
+	//Texture texture;
+};
 
 	}
 }

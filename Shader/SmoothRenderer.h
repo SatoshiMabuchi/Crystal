@@ -15,7 +15,9 @@ class SmoothRenderer
 public:
 	void findLocation();
 
-	void render(const Graphics::ICamera& camera, const Graphics::TriangleBuffer& buffer, const Graphics::PointLight& light);
+	void setBuffer(const Graphics::TriangleBuffer& buffer) { this->buffer = buffer; }
+
+	void render(const Graphics::ICamera& camera, const Graphics::PointLight& light);
 
 	bool build();
 
@@ -27,6 +29,7 @@ private:
 
 private:
 	ShaderObject shader;
+	Graphics::TriangleBuffer buffer;
 };
 
 	}
