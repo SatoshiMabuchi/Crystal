@@ -32,7 +32,7 @@ void ParticlePanel::show()
 					}
 				}
 			}
-			model->addParticleSystem(positions, ColorRGBAf(1, 1, 1, 1), 100.0f);
+			model->getRepository()->addParticleSystem(positions, ColorRGBAf(1, 1, 1, 1), 100.0f);
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();

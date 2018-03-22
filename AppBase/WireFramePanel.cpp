@@ -21,12 +21,13 @@ void WireFramePanel::show()
 		ImGui::InputFloat3("Min", &min[0]);
 		static glm::vec3 max = { 1.0f, 1.0f, 1.0f };
 		ImGui::InputFloat3("Max", &max[0]);
-
+		static glm::vec4 color;
+		ImGui::ColorPicker4("Color", &color[0]);
 		if (ImGui::Button("OK")) {
 			const Box3d box(min, max);
 			Crystal::Shape::WireFrameBuilder builder;
 			builder.build(box);
-			model->addWireFrame(builder.getWireFrame(), ColorRGBAf(1, 1, 1, 1));
+			model->getRepository()->addWireFrame(builder.getWireFrame(), color);
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();
@@ -47,7 +48,7 @@ void WireFramePanel::show()
 			Sphere3d sphere(center, radius);
 			Crystal::Shape::WireFrameBuilder builder;
 			builder.build(sphere);
-			model->addWireFrame(builder.getWireFrame(), ColorRGBAf(1, 1, 1, 1));
+			model->getRepository()->addWireFrame(builder.getWireFrame(), ColorRGBAf(1, 1, 1, 1));
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();

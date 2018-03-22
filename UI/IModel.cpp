@@ -25,16 +25,6 @@ bool IModel::write(const std::string& filename) const
 	return false;
 }
 
-int IModel::addParticleSystem(const std::vector<Vector3df>& positions, const ColorRGBAf& color, const float size)
-{
-	return objects.addParticleSystem(positions, color, size);
-}
-
-int IModel::addWireFrame(WireFrame* wire, const ColorRGBAf& color)
-{
-	return objects.addWireFrame(wire, color);
-}
-
 ViewModel IModel::toViewModel() const
 {
 	ViewModel vm;

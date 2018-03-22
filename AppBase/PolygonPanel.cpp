@@ -25,7 +25,7 @@ void PolygonPanel::show()
 			WireFrameBuilder builder;
 			const Sphere3d sphere(center, radius);
 			builder.build(sphere);
-			model->addWireFrame(builder.getWireFrame(), Graphics::ColorRGBAf(1, 0, 0, 0));
+			model->getRepository()->addWireFrame(builder.getWireFrame(), Graphics::ColorRGBAf(1, 0, 0, 0));
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();

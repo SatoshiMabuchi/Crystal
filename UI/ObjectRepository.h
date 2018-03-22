@@ -16,19 +16,24 @@ public:
 
 	int addParticleSystem(const std::vector<Math::Vector3df>& positions, const Graphics::ColorRGBAf& color, const float size);
 
+	int addWireFrame(Shape::WireFrame* wire, const Graphics::ColorRGBAf& color);
+
+	int addPolygonMesh(Shape::PolygonMesh* mesh, const Graphics::ColorRGBAf& color);
+
 	std::list<ParticleSystemObject> getParticleSystems() const { return particleSystems; }
 
-	int addWireFrame(Shape::WireFrame* wire, const Graphics::ColorRGBAf& color);
+	std::list<WireFrameObject> getWireFrames() const { return wires; }
+
+	std::list<PolygonMeshObject> getPolygonMeshes() const { return polygonMeshes; }
 
 	Math::Box3d getBoundingBox() const;
 
-	std::list<WireFrameObject> getWireFrames() const { return wires; }
 
 private:
 	int nextId;
 	std::list<ParticleSystemObject> particleSystems;
-	std::list<PolygonMeshObject> polygonMeshes;
 	std::list<WireFrameObject> wires;
+	std::list<PolygonMeshObject> polygonMeshes;
 };
 	}
 }

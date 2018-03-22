@@ -16,11 +16,7 @@ public:
 
 	bool write(const std::string& filename) const;
 
-	int addParticleSystem(const std::vector<Math::Vector3df>& positions, const Graphics::ColorRGBAf& color, const float size);
-
-	std::list<ParticleSystemObject> getParticleSystems() const { return objects.getParticleSystems(); }
-
-	int addWireFrame(Shape::WireFrame* wire, const Graphics::ColorRGBAf& color);
+	ObjectRepository* getRepository() { return &objects; }
 
 	virtual ViewModel toViewModel() const;
 

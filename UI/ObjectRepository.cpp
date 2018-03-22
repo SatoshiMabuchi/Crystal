@@ -20,8 +20,14 @@ int ObjectRepository::addParticleSystem(const std::vector<Vector3df>& positions,
 
 int ObjectRepository::addWireFrame(WireFrame* wire, const ColorRGBAf& color)
 {
-	wires.push_back(WireFrameObject(nextId++, wire));
+	wires.push_back(WireFrameObject(nextId++, wire, color));
 	return wires.back().getId();
+}
+
+int ObjectRepository::addPolygonMesh(PolygonMesh* mesh, const ColorRGBAf& color)
+{
+	polygonMeshes.push_back(PolygonMeshObject(nextId++, mesh));
+	return polygonMeshes.back().getId();
 }
 
 Box3d ObjectRepository::getBoundingBox() const
@@ -35,4 +41,3 @@ Box3d ObjectRepository::getBoundingBox() const
 	}
 	return bb;
 }
-

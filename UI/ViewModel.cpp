@@ -21,10 +21,23 @@ void ViewModel::add(const ParticleSystemObject& object)
 void ViewModel::add(const WireFrameObject& object)
 {
 	const auto& lines = object.getShape()->getLines();
+	const auto& color = object.getColor();
 	int index = 0;
 	for (const auto& l : lines) {
-		lineBuffer.add(l.getStart(), ColorRGBAf(1, 1, 1, 1), index++);
-		lineBuffer.add(l.getEnd(), ColorRGBAf(1, 1, 1, 1), index++);
-
+		lineBuffer.add(l.getStart(), color, index++);
+		lineBuffer.add(l.getEnd(), color, index++);
 	}
 }
+
+void ViewModel::add(const PolygonMeshObject& object)
+{
+	triangleBuffer.add(*object.getShape());
+
+	/*
+	const auto& vertices =  object.getShape()->getVertices();
+	for (auto l : vertices) {
+		triangleBuffer.add(*object.getShape());
+	}
+	*/
+}
+

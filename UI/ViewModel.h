@@ -2,8 +2,10 @@
 
 #include "../Graphics/PointBuffer.h"
 #include "../Graphics/LineBuffer.h"
+#include "../Graphics/TriangleBuffer.h"
 #include "ParticleSystemObject.h"
 #include "WireFrameObject.h"
+#include "PolygonMeshObject.h"
 
 namespace Crystal {
 	namespace UI {
@@ -17,13 +19,19 @@ public:
 
 	void add(const WireFrameObject& object);
 
+	void add(const PolygonMeshObject& object);
+
 	Graphics::PointBuffer getPointBuffer() const { return pointBuffer; }
 
 	Graphics::LineBuffer getLineBuffer() const { return lineBuffer; }
 
+	Graphics::TriangleBuffer getTriangleBuffer() const { return triangleBuffer; }
+
 private:
 	Graphics::PointBuffer pointBuffer;
 	Graphics::LineBuffer lineBuffer;
+	Graphics::TriangleBuffer triangleBuffer;
 };
+
 	}
 }
