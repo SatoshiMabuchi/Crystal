@@ -42,10 +42,15 @@ public:
 		return Vector3dd(x, y, z);
 	}
 
-	Vector3dd getPositionByParam(const double u, const double v) const {
+	Vector3dd getPosition(const double u, const double v) const {
 		const auto theta = u * Tolerance<double>::getPI();
 		const auto phi = v * Tolerance<double>::getTwoPI();
 		return getPositionByAngle(theta, phi);
+	}
+
+	Vector3dd getNormal(const double u, const double v) const {
+		const auto& pos = getPosition(u, v);
+		return glm::normalize( pos - center );
 	}
 
 	Vector3dd getCenter() const { return center; }

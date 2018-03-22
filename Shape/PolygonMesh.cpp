@@ -13,9 +13,8 @@ PolygonMesh::~PolygonMesh()
 	clear();
 }
 
-PolygonMesh::PolygonMesh(const std::list<Face*>& faces, const unsigned int id) :
-	faces(faces),
-	id(id)
+PolygonMesh::PolygonMesh(const std::list<Face*>& faces) :
+	faces(faces)
 {}
 
 void PolygonMesh::clear()
@@ -97,9 +96,9 @@ void PolygonMesh::remove(Face* f)
 	faces.remove(f);
 }
 
-PolygonMesh* PolygonMesh::clone(const int id)
+PolygonMesh* PolygonMesh::clone()
 {
-	return new PolygonMesh(faces, id);
+	return new PolygonMesh(faces);
 }
 
 void PolygonMesh::mergeDouble(PolygonMesh* rhs, float distance)

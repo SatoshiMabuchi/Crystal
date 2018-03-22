@@ -17,17 +17,12 @@ class Face;
 class PolygonMesh : private UnCopyable
 {
 public:
-	PolygonMesh(const unsigned int id = -1) :
-		id(id)
+	PolygonMesh()
 	{}
 
-	PolygonMesh(const std::list<Face*>& faces, const unsigned int id = -1);
+	PolygonMesh(const std::list<Face*>& faces);
 
 	~PolygonMesh();
-
-	void setId(const int id) { this->id = id; }
-
-	unsigned int getId() const { return id; }
 
 	std::list<Face*> getFaces() const { return faces; }
 
@@ -47,7 +42,7 @@ public:
 
 	void remove(Face* f);
 
-	PolygonMesh* clone(const int id);
+	PolygonMesh* clone();
 
 	HalfEdge* getShortestEdge();
 
@@ -74,7 +69,6 @@ public:
 	void updateNormals();
 
 private:
-	unsigned int id;
 	std::list<Face*> faces;
 };
 

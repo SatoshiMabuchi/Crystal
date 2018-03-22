@@ -15,6 +15,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="WireFrame.h" />
     <ClInclude Include="WireFrameBuilder.h" />
+    <ClInclude Include="PolygonMeshBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PolygonMesh.cpp" />
@@ -22,5 +23,6 @@
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="WireFrameBuilder.cpp" />
+    <ClCompile Include="PolygonMeshBuilder.cpp" />
   </ItemGroup>
 </Project>

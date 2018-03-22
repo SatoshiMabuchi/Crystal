@@ -39,7 +39,7 @@ void WireFrameBuilder::build(const Sphere3d& sphere)
 	for (auto u = 0.0; u < 1.0; u += 0.1) {
 		std::vector<Math::Vector3dd> g;
 		for (auto v = 0.0; v < 1.0; v += 0.1) {
-			g.push_back(sphere.getPositionByParam(u, v));
+			g.push_back(sphere.getPosition(u, v));
 		}
 		grid.push_back(g);
 	}

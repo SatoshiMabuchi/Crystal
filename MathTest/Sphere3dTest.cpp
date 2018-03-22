@@ -46,24 +46,34 @@ TEST(Sphere3dTest, TestGetPositionByAngle)
 	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0,-1), s.getPositionByAngle(1.0f*pi, 2.0f*pi)) );
 }
 
-TEST(Sphere3dTest, TestGetPositionByParam)
+TEST(Sphere3dTest, TestGetPosition)
 {
 	const Sphere3d s(Vector3dd(0.0, 0.0, 0.0), 1.0);
-	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPositionByParam(0.0, 0.0 )) );
-	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPositionByParam(0.0, 0.25)) );
-	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPositionByParam(0.0, 0.5 )) );
-	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPositionByParam(0.0, 0.75)) );
-	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPositionByParam(0.0, 1.0 )) );
+	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPosition(0.0, 0.0 )) );
+	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPosition(0.0, 0.25)) );
+	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPosition(0.0, 0.5 )) );
+	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPosition(0.0, 0.75)) );
+	EXPECT_TRUE( isEqualLoosely( Vector3dd( 0, 0, 1), s.getPosition(0.0, 1.0 )) );
 
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 1, 0, 0), s.getPositionByParam(0.5, 0.0 )));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 1, 0), s.getPositionByParam(0.5, 0.25)));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd(-1, 0, 0), s.getPositionByParam(0.5, 0.5 )));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0,-1, 0), s.getPositionByParam(0.5, 0.75)));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 1, 0, 0), s.getPositionByParam(0.5, 1.0 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 1, 0, 0), s.getPosition(0.5, 0.0 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 1, 0), s.getPosition(0.5, 0.25)));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd(-1, 0, 0), s.getPosition(0.5, 0.5 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0,-1, 0), s.getPosition(0.5, 0.75)));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 1, 0, 0), s.getPosition(0.5, 1.0 )));
 
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPositionByParam(1.0, 0.0 )));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPositionByParam(1.0, 0.25)));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPositionByParam(1.0, 0.5 )));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPositionByParam(1.0, 0.75)));
-	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPositionByParam(1.0, 1.0 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPosition(1.0, 0.0 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPosition(1.0, 0.25)));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPosition(1.0, 0.5 )));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPosition(1.0, 0.75)));
+	EXPECT_TRUE(isEqualLoosely(Vector3dd( 0, 0,-1), s.getPosition(1.0, 1.0 )));
+}
+
+TEST(Sphere3dTest, TestGetNormal)
+{
+	const Sphere3d s(Vector3dd(0.0, 0.0, 0.0), 1.0);
+	EXPECT_TRUE(isEqualLoosely(Vector3dd(0, 0, 1), s.getNormal(0.0, 0.0)));
+
+	EXPECT_TRUE(isEqualLoosely(Vector3dd(1, 0, 0), s.getNormal(0.5, 0.0)));
+
+
 }

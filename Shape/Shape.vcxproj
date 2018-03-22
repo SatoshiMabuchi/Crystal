@@ -23,6 +23,7 @@
     <ClInclude Include="HalfEdge.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PolygonMesh.h" />
+    <ClInclude Include="PolygonMeshBuilder.h" />
     <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WireFrame.h" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="HalfEdge.cpp" />
     <ClCompile Include="PolygonMesh.cpp" />
+    <ClCompile Include="PolygonMeshBuilder.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WireFrameBuilder.cpp" />
   </ItemGroup>
