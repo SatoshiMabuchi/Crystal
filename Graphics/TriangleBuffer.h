@@ -34,6 +34,10 @@ public:
 	TriangleBuffer() {}
 
 	void add(const Shape::PolygonMesh& polygon, Material* mat = nullptr) {
+		const auto& vertices = polygon.getVertices();
+		for (auto v : vertices) {
+			positions.add(v->getPosition());
+		}
 		const auto& faces = polygon.getFaces();
 		std::vector<unsigned int> indices;
 		for (auto f : faces) {

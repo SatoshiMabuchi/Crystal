@@ -14,6 +14,7 @@ bool SmoothRenderer::build()
 	const auto& fShader = getBuildinFragmentShaderSource();
 
 	bool result = shader.build(vShader, fShader);
+	findLocation();
 
 	return result;
 }
@@ -101,7 +102,7 @@ void SmoothRenderer::findLocation()
 
 	shader.findAttribLocation("position");
 	shader.findAttribLocation("normal");
-	shader.findAttribLocation("texCoord");
+	//shader.findAttribLocation("texCoord");
 }
 
 
@@ -141,7 +142,7 @@ void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 
 	glVertexAttribPointer(shader.getAttribLocation("position"), 3, GL_FLOAT, GL_FALSE, 0, positions.data());
 	glVertexAttribPointer(shader.getAttribLocation("normal"), 3, GL_FLOAT, GL_FALSE, 0, normals.data());
-	glVertexAttribPointer(shader.getAttribLocation("texCoord"), 3, GL_FLOAT, GL_FALSE, 0, texCoords.data());
+	//glVertexAttribPointer(shader.getAttribLocation("texCoord"), 3, GL_FLOAT, GL_FALSE, 0, texCoords.data());
 
 	//glVertexAttribPointer(location.)
 	assert(GL_NO_ERROR == glGetError());

@@ -36,6 +36,10 @@ ViewModel IModel::toViewModel() const
 	for (const auto& w : wires) {
 		vm.add(w);
 	}
+	const auto& polygons = objects.getPolygonMeshes();
+	for (const auto& p : polygons) {
+		vm.add(p);
+	}
 
 	return vm;
 }

@@ -12,7 +12,7 @@ class PolygonMeshBuilder
 {
 public:
 	PolygonMeshBuilder() :
-		nextId(1)
+		nextId(0)
 	{}
 
 	void build(const Math::Box3d& box);

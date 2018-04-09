@@ -7,14 +7,14 @@ using namespace Crystal::Shape;
 void PolygonMeshBuilder::build(const Box3d& box)
 {
 	std::vector<Vertex*> vertices;
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 0))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 0))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 0))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 0))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 1))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 1))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 1))));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 1))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 0)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 0)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 0)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 0)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 1)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 1)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 1)), nextId++));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 1)), nextId++));
 
 	std::vector<HalfEdge*> edges;
 	edges.push_back(new HalfEdge(vertices[0], vertices[1]));
