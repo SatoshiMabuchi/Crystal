@@ -21,11 +21,12 @@ public:
 
 	void build(const Math::Vector3dd& start, const Math::Vector3dd& uvec, const Math::Vector3dd& vvec);
 
-	PolygonMesh* getPolygonMesh() const { return new PolygonMesh(faces); }
+	PolygonMesh* getPolygonMesh() const { return new PolygonMesh(vertices, faces); }
 
 private:
 	//void buildEdges();
 
+	std::vector<Vertex*> vertices;
 	std::list<Face*> faces;
 	//std::vector<Vertex*> vertices;
 	int nextId;

@@ -149,13 +149,14 @@ void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
+	//glEnableVertexAttribArray(2);
 	assert(GL_NO_ERROR == glGetError());
 
 
 	//glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(positions.size() / 3));
 	//glDrawElements(GL_TRIANGLES, static_cast<GLsizei>( indices.size()), GL_UNSIGNED_INT, indices.data());
-	for (const auto& b : buffer.getBlocks()) {
+	const auto& blocks = buffer.getBlocks();
+	for (const auto& b : blocks) {
 		const auto& indices = b.getIndices();
 		const auto m = b.getMaterial();
 		const auto a = m.getAmbient();
@@ -166,7 +167,7 @@ void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
+	//glDisableVertexAttribArray(2);
 
 
 	glUseProgram(0);

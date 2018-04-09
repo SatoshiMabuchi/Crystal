@@ -57,6 +57,7 @@ void PolygonPanel::show()
 			const Box3d box(point1, point2);
 			builder.build(box);
 			Graphics::Material material;
+			material.setAmbient(glm::vec3(1, 0, 0));
 			model->getRepository()->addPolygonMesh(builder.getPolygonMesh(), material);
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());

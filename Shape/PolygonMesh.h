@@ -20,13 +20,13 @@ public:
 	PolygonMesh()
 	{}
 
-	PolygonMesh(const std::list<Face*>& faces);
+	PolygonMesh(const std::vector<Vertex*>& vertices, const std::list<Face*>& faces);
 
 	~PolygonMesh();
 
 	std::list<Face*> getFaces() const { return faces; }
 
-	std::list<Vertex*> getVertices() const;
+	std::vector<Vertex*> getVertices() const;
 
 	std::list<HalfEdge*> getEdges() const;
 
@@ -69,6 +69,7 @@ public:
 	void updateNormals();
 
 private:
+	std::vector<Vertex*> vertices;
 	std::list<Face*> faces;
 };
 

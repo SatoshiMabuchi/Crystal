@@ -82,7 +82,7 @@ void ICanvas::fitCamera(const Box3d& boundingBox)
 	camera->setNear(dist * 0.1f);
 	camera->setFar(dist * 10.0f);
 	camera->setTarget(boundingBox.getCenter());
-	camera->moveTo(boundingBox.getCenter() - dist * 0.5); //boundingBox.getMin() - Vector3dd(0, 0, boundingBox.getLength().z));
+	camera->moveTo(boundingBox.getCenter() - Vector3dd(0, 0, dist * 2.0));
 	camera->setAngle(45.0f, 45.0f);
 
 }

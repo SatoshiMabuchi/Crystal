@@ -13,20 +13,20 @@ PolygonMesh::~PolygonMesh()
 	clear();
 }
 
-PolygonMesh::PolygonMesh(const std::list<Face*>& faces) :
+PolygonMesh::PolygonMesh(const std::vector<Vertex*>& vertices, const std::list<Face*>& faces) :
+	vertices(vertices),
 	faces(faces)
 {}
 
 void PolygonMesh::clear()
 {
+	vertices.clear();
 	faces.clear();
 }
 
 //void create(const Math::TriangleCurve3d<float>& curve, const int id = -1);
 
 #include "HalfEdge.h"
-
-
 
 HalfEdge* PolygonMesh::getShortestEdge()
 {
@@ -67,15 +67,8 @@ bool PolygonMesh::has(Vertex* v)
 	return std::find(vertices.begin(), vertices.end(), v) != vertices.end();
 }
 
-std::list<Vertex*> PolygonMesh::getVertices() const
+std::vector<Vertex*> PolygonMesh::getVertices() const
 {
-	std::list<Vertex*> vertices;
-	for (auto f : faces) {
-		auto vs = f->getVertices();
-		vertices.insert(vertices.end(), vs.begin(), vs.end());
-	}
-	vertices.sort();
-	vertices.unique();
 	return vertices;
 }
 
@@ -98,7 +91,7 @@ void PolygonMesh::remove(Face* f)
 
 PolygonMesh* PolygonMesh::clone()
 {
-	return new PolygonMesh(faces);
+	return new PolygonMesh(vertices, faces);
 }
 
 void PolygonMesh::mergeDouble(PolygonMesh* rhs, float distance)

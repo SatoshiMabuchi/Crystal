@@ -6,37 +6,8 @@ using namespace Crystal::Shape;
 
 void PolygonMeshBuilder::build(const Box3d& box)
 {
-	std::vector<Vertex*> vertices;
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 0)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 0)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 0)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 0)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 1)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 1)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 1)), nextId++));
-	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 1)), nextId++));
-
-	std::vector<HalfEdge*> edges;
-	edges.push_back(new HalfEdge(vertices[0], vertices[1]));
-	edges.push_back(new HalfEdge(vertices[1], vertices[3]));
-	edges.push_back(new HalfEdge(vertices[3], vertices[0]));
-
-	edges.push_back(new HalfEdge(vertices[3], vertices[1]));
-	edges.push_back(new HalfEdge(vertices[1], vertices[2]));
-	edges.push_back(new HalfEdge(vertices[2], vertices[3]));
-
-	edges.push_back(new HalfEdge(vertices[4], vertices[5]));
-	edges.push_back(new HalfEdge(vertices[5], vertices[7]));
-	edges.push_back(new HalfEdge(vertices[7], vertices[4]));
-
-	edges.push_back(new HalfEdge(vertices[7], vertices[5]));
-	edges.push_back(new HalfEdge(vertices[5], vertices[6]));
-	edges.push_back(new HalfEdge(vertices[6], vertices[7]));
-	
-	faces.push_back(new Face(edges[0], edges[1], edges[2]));
-	faces.push_back(new Face(edges[3], edges[4], edges[5]));
-	faces.push_back(new Face(edges[6], edges[7], edges[8]));
-	faces.push_back(new Face(edges[9], edges[10], edges[11]));
+	build(box.getPosition(Vector3dd( 0, 0, 0)), Vector3dd(1, 0, 0), Vector3dd(0, 1, 0));
+	//build(box.getPosition(Vector3dd(1, 0, 0)), Vector3df(0, 0, 1), Vector3df(0, 1, 0));
 
 	//faces
 }
@@ -45,24 +16,26 @@ void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int
 {
 	const auto du = 1.0 / (double)unum;
 	const auto dv = 1.0 / (double)vnum;
-	std::vector<std::vector<Vertex*>> vertices;
+	std::vector<std::vector<Vertex*>> grid;
 	for (double u = 0.0; u < 1.0; u +=du) {
 		std::vector<Vertex*> vs;
 		for (double v = 0.0; v < 1.0; v+=dv) {
-			vs.push_back(new Vertex(sphere.getPosition(u, v), sphere.getNormal(u, v), nextId++));
+			Vertex* vert = new Vertex(sphere.getPosition(u, v), sphere.getNormal(u, v), nextId++);
+			vs.push_back(vert);
+			this->vertices.push_back(vert);
 		}
-		vertices.push_back(vs);
+		grid.push_back(vs);
 	}
-	for (int i = 0; i < vertices.size()-1; ++i) {
-		for (int j = 0; j < vertices[i].size() - 1; ++j) {
-			auto e1 = new HalfEdge(vertices[i][j], vertices[i+1][j]);
-			auto e2 = new HalfEdge(vertices[i+1][j], vertices[i][j+1]);
-			auto e3 = new HalfEdge(vertices[i][j+1], vertices[i][j]);
+	for (int i = 0; i < grid.size()-1; ++i) {
+		for (int j = 0; j < grid[i].size() - 1; ++j) {
+			auto e1 = new HalfEdge(grid[i+1][j], grid[i][j] );
+			auto e2 = new HalfEdge(grid[i][j+1], grid[i + 1][j] );
+			auto e3 = new HalfEdge(grid[i][j], grid[i][j + 1]);
 			faces.push_back(new Face(e1, e2, e3));
-			//auto e4 = new HalfEdge(vertices[i][j+1], vertices[i+1][j]);
-			//auto e5 = new HalfEdge(vertices[i+1][j], vertices[i+1][j+1]);
-			//auto e6 = new HalfEdge(vertices[i+1][j+1], vertices[i][j+1]);
-			//faces.push_back(new Face(e4, e5, e6));
+			auto e4 = new HalfEdge(grid[i][j+1], grid[i+1][j]);
+			auto e5 = new HalfEdge(grid[i+1][j], grid[i+1][j+1]);
+			auto e6 = new HalfEdge(grid[i+1][j+1], grid[i][j+1]);
+			faces.push_back(new Face(e4, e5, e6));
 		}
 	}
 }
@@ -70,7 +43,6 @@ void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int
 void PolygonMeshBuilder::build(const Vector3dd& start, const Vector3dd& uvec, const Vector3dd& vvec)
 {
 	const auto& normal = -glm::cross(uvec, vvec);
-	std::vector<Vertex*> vertices;
 	vertices.push_back(new Vertex(start, normal, nextId++));
 	vertices.push_back(new Vertex(start + uvec, normal, nextId++));
 	vertices.push_back(new Vertex(start + vvec, normal, nextId++));
