@@ -157,6 +157,9 @@ void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 	//glDrawElements(GL_TRIANGLES, static_cast<GLsizei>( indices.size()), GL_UNSIGNED_INT, indices.data());
 	for (const auto& b : buffer.getBlocks()) {
 		const auto& indices = b.getIndices();
+		const auto m = b.getMaterial();
+		const auto a = m.getAmbient();
+		glUniform3fv(shader.getUniformLocation("material.Ka"), 1, &a[0]);
 		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, indices.data());
 	}
 

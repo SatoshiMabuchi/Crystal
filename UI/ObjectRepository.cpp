@@ -24,9 +24,9 @@ int ObjectRepository::addWireFrame(WireFrame* wire, const ColorRGBAf& color)
 	return wires.back().getId();
 }
 
-int ObjectRepository::addPolygonMesh(PolygonMesh* mesh, const ColorRGBAf& color)
+int ObjectRepository::addPolygonMesh(PolygonMesh* mesh, const Material& material)
 {
-	polygonMeshes.push_back(PolygonMeshObject(nextId++, mesh, color));
+	polygonMeshes.push_back(PolygonMeshObject(nextId++, mesh, material));
 	return polygonMeshes.back().getId();
 }
 

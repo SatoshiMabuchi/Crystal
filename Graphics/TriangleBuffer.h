@@ -13,18 +13,18 @@ namespace Crystal {
 class TriangleBufferBlock
 {
 public:
-	TriangleBufferBlock(const std::vector<unsigned int>& indices, Material* material) :
+	TriangleBufferBlock(const std::vector<unsigned int>& indices, const Material& material) :
 		indices(indices),
 		material(material)
 	{}
 
 	std::vector<unsigned int> getIndices() const { return indices; }
 
-	Material* getMaterial() const { return material; }
+	Material getMaterial() const { return material; }
 
 private:
 	std::vector<unsigned int> indices;
-	Material* material;
+	Material material;
 };
 
 
@@ -33,10 +33,11 @@ class TriangleBuffer
 public:
 	TriangleBuffer() {}
 
-	void add(const Shape::PolygonMesh& polygon, Material* mat = nullptr) {
+	void add(const Shape::PolygonMesh& polygon, const Material& mat) {
 		const auto& vertices = polygon.getVertices();
 		for (auto v : vertices) {
 			positions.add(v->getPosition());
+			normals.add(v->getNormal());
 		}
 		const auto& faces = polygon.getFaces();
 		std::vector<unsigned int> indices;

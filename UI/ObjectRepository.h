@@ -18,7 +18,7 @@ public:
 
 	int addWireFrame(Shape::WireFrame* wire, const Graphics::ColorRGBAf& color);
 
-	int addPolygonMesh(Shape::PolygonMesh* mesh, const Graphics::ColorRGBAf& color);
+	int addPolygonMesh(Shape::PolygonMesh* mesh, const Graphics::Material& material);
 
 	std::list<ParticleSystemObject> getParticleSystems() const { return particleSystems; }
 

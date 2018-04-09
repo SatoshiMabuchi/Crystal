@@ -56,9 +56,35 @@ void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int
 	for (int i = 0; i < vertices.size()-1; ++i) {
 		for (int j = 0; j < vertices[i].size() - 1; ++j) {
 			auto e1 = new HalfEdge(vertices[i][j], vertices[i+1][j]);
-			auto e2 = new HalfEdge(vertices[i + 1][j], vertices[i][j + 1]);
-			auto e3 = new HalfEdge(vertices[i][j + 1], vertices[i][j]);
+			auto e2 = new HalfEdge(vertices[i+1][j], vertices[i][j+1]);
+			auto e3 = new HalfEdge(vertices[i][j+1], vertices[i][j]);
 			faces.push_back(new Face(e1, e2, e3));
+			//auto e4 = new HalfEdge(vertices[i][j+1], vertices[i+1][j]);
+			//auto e5 = new HalfEdge(vertices[i+1][j], vertices[i+1][j+1]);
+			//auto e6 = new HalfEdge(vertices[i+1][j+1], vertices[i][j+1]);
+			//faces.push_back(new Face(e4, e5, e6));
 		}
 	}
+}
+
+void PolygonMeshBuilder::build(const Vector3dd& start, const Vector3dd& uvec, const Vector3dd& vvec)
+{
+	const auto& normal = -glm::cross(uvec, vvec);
+	std::vector<Vertex*> vertices;
+	vertices.push_back(new Vertex(start, normal, nextId++));
+	vertices.push_back(new Vertex(start + uvec, normal, nextId++));
+	vertices.push_back(new Vertex(start + vvec, normal, nextId++));
+	vertices.push_back(new Vertex(start + uvec + vvec, normal, nextId++));
+
+	auto e1 = new HalfEdge(vertices[0], vertices[1]);
+	auto e2 = new HalfEdge(vertices[1], vertices[2]);
+	auto e3 = new HalfEdge(vertices[2], vertices[0]);
+	faces.push_back(new Face(e1, e2, e3));
+
+	auto e4 = new HalfEdge(vertices[2], vertices[1]);
+	auto e5 = new HalfEdge(vertices[1], vertices[3]);
+	auto e6 = new HalfEdge(vertices[3], vertices[2]);
+	faces.push_back(new Face(e4, e5, e6));
+
+	//vertices.push_back(new Ver)
 }

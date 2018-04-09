@@ -19,6 +19,8 @@ public:
 
 	void build(const Math::Sphere3d& sphere, const int udiv, const int vdiv);
 
+	void build(const Math::Vector3dd& start, const Math::Vector3dd& uvec, const Math::Vector3dd& vvec);
+
 	PolygonMesh* getPolygonMesh() const { return new PolygonMesh(faces); }
 
 private:
