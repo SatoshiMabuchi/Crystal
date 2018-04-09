@@ -22,7 +22,10 @@ public:
 	PolygonMesh* getPolygonMesh() const { return new PolygonMesh(faces); }
 
 private:
+	//void buildEdges();
+
 	std::list<Face*> faces;
+	//std::vector<Vertex*> vertices;
 	int nextId;
 };
 

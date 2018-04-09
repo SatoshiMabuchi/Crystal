@@ -2,7 +2,7 @@
 #include "../Math/Vector3d.h"
 #include "../UI/IModel.h"
 #include "../UI/ICanvas.h"
-#include "../Shape/WireFrameBuilder.h"
+#include "../Shape/PolygonMeshBuilder.h"
 #include "../Graphics/ColorRGBA.h"
 #include "../ThirdParty/imgui-1.51/imgui.h"
 
@@ -19,15 +19,42 @@ void PolygonPanel::show()
 	}
 	if (ImGui::BeginPopup("Sphere")) {
 		static glm::vec3 center = { 0,0,0 };
-		ImGui::InputFloat3("Center", &center[0]);
 		static float radius = 1.0f;
+		static int unum = 36;
+		static int vnum = 36;
+
+		ImGui::InputFloat3("Center", &center[0]);
 		ImGui::InputFloat3("Radius", &radius);
+		ImGui::InputInt("UNum", &unum);
+		ImGui::InputInt("VNum", &vnum);
 
 		if (ImGui::Button("OK")) {
-			WireFrameBuilder builder;
+			PolygonMeshBuilder builder;
 			const Sphere3d sphere(center, radius);
-			builder.build(sphere);
-			model->getRepository()->addWireFrame(builder.getWireFrame(), Graphics::ColorRGBAf(1, 0, 0, 0));
+			builder.build(sphere, unum, vnum);
+			model->getRepository()->addPolygonMesh(builder.getPolygonMesh(), Graphics::ColorRGBAf(1, 0, 0, 0));
+			canvas->setViewModel(model->toViewModel());
+			canvas->fitCamera(model->getBoundingBox());
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
+	if (ImGui::Button("Box")) {
+		ImGui::OpenPopup("Box");
+	}
+	if (ImGui::BeginPopup("Box")) {
+		static glm::vec3 point1 = { 0,0,0 };
+		static glm::vec3 point2 = { 1,1,1 };
+
+		ImGui::InputFloat3("Point1", &point1[0]);
+		ImGui::InputFloat3("Point2", &point2[0]);
+
+		if (ImGui::Button("OK")) {
+			PolygonMeshBuilder builder;
+			const Box3d box(point1, point2);
+			builder.build(box);
+			model->getRepository()->addPolygonMesh(builder.getPolygonMesh(), Graphics::ColorRGBAf(1, 0, 0, 0));
 			canvas->setViewModel(model->toViewModel());
 			canvas->fitCamera(model->getBoundingBox());
 			ImGui::CloseCurrentPopup();

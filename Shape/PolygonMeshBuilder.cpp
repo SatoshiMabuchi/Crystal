@@ -6,21 +6,39 @@ using namespace Crystal::Shape;
 
 void PolygonMeshBuilder::build(const Box3d& box)
 {
-	/*
 	std::vector<Vertex*> vertices;
-	vertices.push_back(new Vertex( box.getPosition(Vector3dd(0, 0, 0)), Vector3dd(0,1,0));
-	vertices.push_back(box.getPosition(Vector3dd(1, 0, 0)));
-	vertices.push_back(box.getPosition(Vector3dd(1, 1, 0)));
-	vertices.push_back(box.getPosition(Vector3dd(0, 1, 0)));
-	vertices.push_back(box.getPosition(Vector3dd(0, 0, 1)));
-	vertices.push_back(box.getPosition(Vector3dd(1, 0, 1)));
-	vertices.push_back(box.getPosition(Vector3dd(1, 1, 1)));
-	vertices.push_back(box.getPosition(Vector3dd(0, 1, 1)));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 0))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 0))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 0))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 0))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 0, 1))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 0, 1))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(1, 1, 1))));
+	vertices.push_back(new Vertex(box.getPosition(Vector3dd(0, 1, 1))));
 
 	std::vector<HalfEdge*> edges;
-	edges.push_back(new HalfEdge())
-	Face* f = new Face()
-	*/
+	edges.push_back(new HalfEdge(vertices[0], vertices[1]));
+	edges.push_back(new HalfEdge(vertices[1], vertices[3]));
+	edges.push_back(new HalfEdge(vertices[3], vertices[0]));
+
+	edges.push_back(new HalfEdge(vertices[3], vertices[1]));
+	edges.push_back(new HalfEdge(vertices[1], vertices[2]));
+	edges.push_back(new HalfEdge(vertices[2], vertices[3]));
+
+	edges.push_back(new HalfEdge(vertices[4], vertices[5]));
+	edges.push_back(new HalfEdge(vertices[5], vertices[7]));
+	edges.push_back(new HalfEdge(vertices[7], vertices[4]));
+
+	edges.push_back(new HalfEdge(vertices[7], vertices[5]));
+	edges.push_back(new HalfEdge(vertices[5], vertices[6]));
+	edges.push_back(new HalfEdge(vertices[6], vertices[7]));
+	
+	faces.push_back(new Face(edges[0], edges[1], edges[2]));
+	faces.push_back(new Face(edges[3], edges[4], edges[5]));
+	faces.push_back(new Face(edges[6], edges[7], edges[8]));
+	faces.push_back(new Face(edges[9], edges[10], edges[11]));
+
+	//faces
 }
 
 void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int vnum)
