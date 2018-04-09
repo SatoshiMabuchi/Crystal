@@ -35,6 +35,7 @@
     <ClCompile Include="PolygonMesh.cpp" />
     <ClCompile Include="PolygonMeshBuilder.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="WireFrame.cpp" />
     <ClCompile Include="WireFrameBuilder.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

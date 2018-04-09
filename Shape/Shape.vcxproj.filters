@@ -24,5 +24,6 @@
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="WireFrameBuilder.cpp" />
     <ClCompile Include="PolygonMeshBuilder.cpp" />
+    <ClCompile Include="WireFrame.cpp" />
   </ItemGroup>
 </Project>

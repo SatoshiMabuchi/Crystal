@@ -28,6 +28,7 @@ public:
 
 	Math::Box3d getBoundingBox() const;
 
+	std::list<Math::Vector3dd> getAllVertices() const;
 
 private:
 	int nextId;

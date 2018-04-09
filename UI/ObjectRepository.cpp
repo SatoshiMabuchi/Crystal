@@ -32,12 +32,35 @@ int ObjectRepository::addPolygonMesh(PolygonMesh* mesh, const ColorRGBAf& color)
 
 Box3d ObjectRepository::getBoundingBox() const
 {
-	if (particleSystems.empty()) {
+	const auto& vertices = getAllVertices();
+	if (vertices.empty()) {
 		return Box3d();
 	}
-	Box3d bb(particleSystems.front().getShape()->getBoundingBox());
-	for (const auto& p : particleSystems) {
-		bb.add(p.getShape()->getBoundingBox());
+	Box3d bb(vertices.front());
+	for (const auto& v : vertices) {
+		bb.add(v);
 	}
 	return bb;
+}
+
+std::list<Vector3dd> ObjectRepository::getAllVertices() const
+{
+	std::list<Vector3dd> positions;
+	for (const auto& ps : particleSystems) {
+		const auto& particles = ps.getShape()->getParticles();
+		for (const auto& p : particles) {
+			positions.push_back( p->getPosition() );
+		}
+	}
+	for (const auto& ws : wires) {
+		const auto& vs = ws.getShape()->getVertices();
+		positions.insert(positions.end(), vs.begin(), vs.end());
+	}
+	for (const auto& ps : polygonMeshes) {
+		const auto& vs = ps.getShape()->getVertices();
+		for (const auto& p : vs) {
+			positions.push_back(p->getPosition());
+		}
+	}
+	return positions;
 }

@@ -17,7 +17,9 @@ public:
 		this->lines.push_back(l);
 	}
 
-	std::vector<Math::Line3dd> getLines() const { return lines; }
+	std::vector<Math::Line3dd> getLines() const;
+
+	std::vector<Math::Vector3dd> getVertices() const;
 
 private:
 	std::vector<Math::Line3dd> lines;
