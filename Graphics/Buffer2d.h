@@ -1,6 +1,7 @@
 #ifndef __CRYSTAL_GRAPHICS_BUFFER_2D_H__
 #define __CRYSTAL_GRAPHICS_BUFFER_2D_H__
 
+#include "../Math/Vector2d.h"
 #include "../Math/Vector3d.h"
 
 #include "IBuffer.h"
@@ -19,15 +20,15 @@ public:
 
 	~Buffer2d() = default;
 
-	void add(const Math::Vector2d<T>& v) {
+	void add(const Math::Vector2df& v) {
 		buffer.push_back(v.x);
 		buffer.push_back(v.y);
 	}
 
-	Math::Vector2d<T> get(const unsigned int i) const {
+	Math::Vector2df get(const unsigned int i) const {
 		const auto x = buffer[i * 2];
 		const auto y = buffer[i * 2 + 1];
-		return Math::Vector2d<T>(x, y);
+		return Math::Vector2df(x, y);
 	}
 
 	std::vector< T > get() const { return std::move(buffer); }

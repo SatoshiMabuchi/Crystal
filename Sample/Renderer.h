@@ -29,6 +29,7 @@ private:
 	Shader::SmoothRenderer smoothRenderer;
 
 	Graphics::ICamera* camera;
+	Shader::TextureObject texture;
 };
 	}
 }

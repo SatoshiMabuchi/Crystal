@@ -20,7 +20,7 @@ void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int
 	for (double u = 0.0; u < 1.0; u +=du) {
 		std::vector<Vertex*> vs;
 		for (double v = 0.0; v < 1.0; v+=dv) {
-			Vertex* vert = new Vertex(sphere.getPosition(u, v), sphere.getNormal(u, v), nextId++);
+			Vertex* vert = new Vertex(sphere.getPosition(u, v), sphere.getNormal(u, v), Vector2df(u,v), nextId++);
 			vs.push_back(vert);
 			this->vertices.push_back(vert);
 		}

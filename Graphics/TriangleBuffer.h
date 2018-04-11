@@ -1,8 +1,9 @@
 #ifndef __CRYSTAL_GRAPHICS_TRIANGLE_BUFFER_H__
 #define __CRYSTAL_GRAPHICS_TRIANGLE_BUFFER_H__
 
-#include "Buffer3d.h"
 #include "Buffer1d.h"
+#include "Buffer2d.h"
+#include "Buffer3d.h"
 #include "Buffer4d.h"
 #include "Material.h"
 #include "../Shape/PolygonMesh.h"
@@ -38,6 +39,7 @@ public:
 		for (auto v : vertices) {
 			positions.add(v->getPosition());
 			normals.add(v->getNormal());
+			texCoords.add(v->getTexCoord());
 		}
 		const auto& faces = polygon.getFaces();
 		std::vector<unsigned int> indices;
@@ -54,14 +56,14 @@ public:
 
 	Buffer3d<float> getNormals() const { return normals; }
 
-	Buffer3d<float> getTexCoords() const { return texCoords; }
+	Buffer2d<float> getTexCoords() const { return texCoords; }
 
 	std::vector<TriangleBufferBlock> getBlocks() const { return blocks; }
 
 private:
 	Buffer3d<float> positions;
 	Buffer3d<float> normals;
-	Buffer3d<float> texCoords;
+	Buffer2d<float> texCoords;
 	std::vector<TriangleBufferBlock> blocks;
 };
 	}

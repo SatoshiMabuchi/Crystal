@@ -6,6 +6,7 @@
 #include "../Graphics/PointLight.h"
 
 #include "ShaderObject.h"
+#include "TextureObject.h"
 
 namespace Crystal {
 	namespace Shader {
@@ -17,7 +18,7 @@ public:
 
 	void setBuffer(const Graphics::TriangleBuffer& buffer) { this->buffer = buffer; }
 
-	void render(const Graphics::ICamera& camera, const Graphics::PointLight& light);
+	void render(const Graphics::ICamera& camera, const Graphics::PointLight& light, const TextureObject& texture);
 
 	bool build();
 

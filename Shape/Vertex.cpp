@@ -15,12 +15,12 @@ Vertex::Vertex(const Vector3df& position, const Vector3df& normal, const unsigne
 	id(id)
 {}
 
-/*
 Vertex::Vertex(const Vector3df& position, const Vector3df& normal, const Vector2df& texCoord, const unsigned int id) :
-	Point3d<float>(position, normal, texCoord),
+	position(position),
+	normal(normal),
+	texCoord(texCoord),
 	id(id)
 {}
-*/
 
 Vertex* Vertex::clone()
 {

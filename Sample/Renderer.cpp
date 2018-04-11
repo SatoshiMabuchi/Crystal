@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "../../Crystal/UI/ViewModel.h"
 
+using namespace Crystal::Graphics;
 using namespace Crystal::UI;
 
 bool Renderer::build()
@@ -14,6 +15,14 @@ bool Renderer::build()
 	if (!smoothRenderer.build()) {
 		return false;
 	}
+	Graphics::Image image(2, 2);
+	image.setColor(0, 0, ColorRGBAuc(255, 0, 0, 0));
+	image.setColor(1, 0, ColorRGBAuc(0, 255, 0, 0));
+	image.setColor(0, 1, ColorRGBAuc(0, 0, 255, 0));
+	image.setColor(1, 1, ColorRGBAuc(255, 255, 255, 0));
+
+
+	texture.create(image, 0);
 	return true;
 }
 
@@ -36,5 +45,5 @@ void Renderer::render(const int width, const int height)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	pointRenderer.render(*camera);
 	wireRenderer.render(*camera);
-	smoothRenderer.render(*camera, light);
+	smoothRenderer.render(*camera, light, texture);
 }

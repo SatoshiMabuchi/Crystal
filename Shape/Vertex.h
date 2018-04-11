@@ -33,6 +33,8 @@ public:
 
 	Math::Vector3df getNormal() const { return normal; }
 
+	Math::Vector2df getTexCoord() const { return texCoord; }
+
 	void move(const Math::Vector3df& v) { this->position += v; }
 
 	void setNormal(const Math::Vector3df& n) { this->normal = n; }
