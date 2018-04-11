@@ -158,9 +158,14 @@ void SmoothRenderer::render(const ICamera& camera, const PointLight& light)
 	const auto& blocks = buffer.getBlocks();
 	for (const auto& b : blocks) {
 		const auto& indices = b.getIndices();
-		const auto m = b.getMaterial();
-		const auto a = m.getAmbient();
+		const auto& m = b.getMaterial();
+		const auto& a = m.getAmbient();
+		const auto& d = m.getDiffuse();
+		const auto& s = m.getSpecular();
 		glUniform3fv(shader.getUniformLocation("material.Ka"), 1, &a[0]);
+		glUniform3fv(shader.getUniformLocation("material.Kd"), 1, &d[0]);
+		glUniform3fv(shader.getUniformLocation("material.Ks"), 1, &s[0]);
+		glUniform1f(shader.getUniformLocation("material.shininess"), m.getShininess());
 		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, indices.data());
 	}
 

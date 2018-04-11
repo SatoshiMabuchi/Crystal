@@ -7,7 +7,7 @@ using namespace Crystal::Shape;
 void PolygonMeshBuilder::build(const Box3d& box)
 {
 	build(box.getPosition(Vector3dd( 0, 0, 0)), Vector3dd(1, 0, 0), Vector3dd(0, 1, 0));
-	//build(box.getPosition(Vector3dd(1, 0, 0)), Vector3df(0, 0, 1), Vector3df(0, 1, 0));
+	build(box.getPosition(Vector3dd( 1, 0, 0)), Vector3df(0, 0, 1), Vector3df(0, 1, 0));
 
 	//faces
 }
@@ -43,19 +43,24 @@ void PolygonMeshBuilder::build(const Sphere3d& sphere, const int unum, const int
 void PolygonMeshBuilder::build(const Vector3dd& start, const Vector3dd& uvec, const Vector3dd& vvec)
 {
 	const auto& normal = -glm::cross(uvec, vvec);
-	vertices.push_back(new Vertex(start, normal, nextId++));
-	vertices.push_back(new Vertex(start + uvec, normal, nextId++));
-	vertices.push_back(new Vertex(start + vvec, normal, nextId++));
-	vertices.push_back(new Vertex(start + uvec + vvec, normal, nextId++));
 
-	auto e1 = new HalfEdge(vertices[0], vertices[1]);
-	auto e2 = new HalfEdge(vertices[1], vertices[2]);
-	auto e3 = new HalfEdge(vertices[2], vertices[0]);
+	auto v0 = new Vertex(start, normal, nextId++);
+	auto v1 = new Vertex(start + uvec, normal, nextId++);
+	auto v2 = new Vertex(start + vvec, normal, nextId++);
+	auto v3 = new Vertex(start + uvec + vvec, normal, nextId++);
+	vertices.push_back(v0);
+	vertices.push_back(v1);
+	vertices.push_back(v2);
+	vertices.push_back(v3);
+
+	auto e1 = new HalfEdge(v0, v1);
+	auto e2 = new HalfEdge(v1, v2);
+	auto e3 = new HalfEdge(v2, v0);
 	faces.push_back(new Face(e1, e2, e3));
 
-	auto e4 = new HalfEdge(vertices[2], vertices[1]);
-	auto e5 = new HalfEdge(vertices[1], vertices[3]);
-	auto e6 = new HalfEdge(vertices[3], vertices[2]);
+	auto e4 = new HalfEdge(v2, v1);
+	auto e5 = new HalfEdge(v1, v3);
+	auto e6 = new HalfEdge(v3, v2);
 	faces.push_back(new Face(e4, e5, e6));
 
 	//vertices.push_back(new Ver)
